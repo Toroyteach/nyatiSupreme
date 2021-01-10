@@ -223,6 +223,7 @@
                 <div class="tab-pane" id="attributes">
                     <product-attributes :productid="{{ $product->id }}"></product-attributes>
                 </div>
+
             </div>
         </div>
     </div>

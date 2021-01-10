@@ -13,27 +13,39 @@
 <p>{{ $message }}</p>
 </div>
 @endif
-<table class="table table-bordered">
-<tr>
-<th>No</th>
-<th>Name</th>
-<th>Email</th>
-<th>Roles</th>
-<th width="280px">Action</th>
-</tr>
-@foreach ($customer as $key => $customers)
-<tr>
-<td>{{ ++$i }}</td>
-<td>{{ $customers->first_name }}</td>
-<td>{{ $customers->email }}</td>
-<td>
 
-</td>
-<td>
-<a class="btn btn-info" href="{{ route('customers.show',$customers->id) }}">Show</a>
-</td>
-</tr>
-@endforeach
-</table>
-{!! $customer->render() !!}
+<table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <tr>
+                            <th class="text-center"> No </th>
+                            <th class="text-center"> Name </th>
+                            <th class="text-center"> Email </th>
+                            <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt  "> </i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($customer as $key => $customers)
+                            <tr>
+                                <td class="text-center">{{ ++$i }}</td>
+                                <td class="text-center">{{ $customers->getFullNameAttribute() }}</td>
+                                <td class="text-center">{{ $customers->email }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group" role="group" aria-label="Second group">
+                                        <a href="{{ route('customers.show',$customers->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    {!! $customer->render() !!}
 @endsection
+@push('scripts')
+    <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+    </script>
+@endpush

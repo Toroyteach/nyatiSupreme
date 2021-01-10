@@ -17,12 +17,28 @@
                     @endif
 
                         @forelse($notifications as $notification)
+
+                        @if ($notification->data['type'] == 'New Order')
+
                             <div class="alert alert-success" role="alert">
-                                Customer {{ $notification->data['first_name'] }} has placed and order. Order id {{ $notification->data['order_id'] }} on [{{ $notification->created_at }}]
+                                <a href="{{ route('admin.orders.show', $notification->data['order_id']) }}">Customer {{ $notification->data['first_name'] }} has placed an order. Order id {{ $notification->data['order_id'] }} on [{{ Carbon\Carbon::parse($notification->created_at) }}]</a>
                                 <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
                                     Mark as read
                                 </a>
                             </div>
+
+                        @endif
+
+                        @if ($notification->data['type'] == 'Completed Order')
+
+                        <div class="alert alert-success" role="alert">
+                            <a href="{{ route('admin.orders.show', $notification->data['order_id']) }}">Customer {{ $notification->data['first_name'] }}'s Order is now complete.</a>
+                            <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
+                                Mark as read
+                            </a>
+                        </div>
+
+                        @endif
 
                             @if($loop->last)
                                 <a href="#" id="mark-all">
@@ -37,17 +53,15 @@
         </div>
     </div>
 </div>
-@endsection
-@section('scripts')
 @parent
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
     function sendMarkRequest(id = null) {
-        return $.ajax("{{ route('admin.markNotification') }}", {
+        return $.ajax("{{ route('markNotification') }}", {
             method: 'POST',
             data: {
-                _token,
+                "_token": "{{ csrf_token() }}",
                 id
             }
         });

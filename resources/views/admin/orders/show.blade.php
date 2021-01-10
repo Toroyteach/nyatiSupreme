@@ -21,7 +21,8 @@
                     </div>
                     <div class="row invoice-info">
                         <div class="col-4">Placed By
-                            <address><strong>{{ $order->user->fullName }}</strong><br>Email: {{ $order->user->email }}</address>
+                            <address><strong>{{ $order->user->fullName }}</strong><br>Email: {{ $order->user->email }}<br>  Address: {{ $order->user->address }}</address>
+                            <a class="btn btn-outline-secondary" href="{{ route('admin.orders.pdf', $order->id) }}">Export to PDF</a>
                         </div>
                         <div class="col-4">Ship To
                             <address><strong>{{ $order->first_name }} {{ $order->last_name }}</strong><br>{{ $order->address }}<br>{{ $order->city }}, {{ $order->country }} {{ $order->post_code }}<br>{{ $order->phone_number }}<br></address>
@@ -39,7 +40,7 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Qty</th>
+                                    <th>Id</th>
                                     <th>Product</th>
                                     <th>SKU #</th>
                                     <th>Qty</th>

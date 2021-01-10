@@ -28,6 +28,7 @@ class CreateMpesaTransactionTable extends Migration
             $table->string('payer_middle_name')->nullable();
             $table->string('payer_last_name')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });

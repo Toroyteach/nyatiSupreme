@@ -30,9 +30,9 @@ class OrderStatuschangeMail extends Mailable
     public function build()
     {
 
-        $orderStatus = $this->orderStatus['status'];
-        $first_name = $this->orderStatus['first_name'];
-        $orderNumber = $this->orderStatus['order_number'];
+        // $orderStatus = $this->orderStatus['status'];
+        // $first_name = $this->orderStatus['first_name'];
+        // $orderNumber = $this->orderStatus['order_number'];
         //dd($this->orderStatus);
         return $this->markdown('emails.orderstatuschangemail')->with('orderData' , $this->orderStatus);
     }

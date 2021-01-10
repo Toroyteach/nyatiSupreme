@@ -35,16 +35,26 @@
                         </div>
                     </div><br>
                     <div class="row">
-                        <div class="col-4">
+
+                    <div class="alert alert-success" role="alert" id="showSuccess" style="display:none;">
+                        The order Status was succesfully Completed !
+                        </div>
+
+                            @if($order->status =='completed')         
+                            <div class="alert alert-danger col-lg-12 text-center" role="alert">
+                            Order is Already {{ $order->status }} !!
+                                </div>      
+                            @else
+                        <div class="alert alert-primary col-4" role="alert" id="hide">
                             <p>Change Status of the order</p>
                         </div>
 
-                        <div class="col-6">
-                        <form action="{{ route('admin.orders.update') }}" method="POST" role="form" >
-                            <input type="hidden" name="id" value="{{ $order->order_number }}">
+                        <div class="col-6" id="statusForm">
+                        <form action="{{ route('ordersUpdate') }}" method="POST" role="form" id="update">
+                            <input type="hidden" name="id" id="id" value="{{ $order->order_number }}">
                         @csrf
                             <div class="form-group">
-                                <select class="selectpicker" id="exampleFormControlSelect1" name="status">
+                                <select class="form-control" id="controlformselector" name="status">
                                 <option value="{{ $order->status }}" seleted>{{ $order->status }}</option>
                                 <option value="pending">Pending</option>
                                 <option value="processing">Processing</option>
@@ -52,12 +62,86 @@
                                 <option value="declined">Declined</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
+                                <button type="submit" class="btn btn-primary float-right">Submit</button>  
+                                </form> 
+                                </div>     
+                            @endif
                     </div>
                 </section>
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+
+$('#update').on('submit',function(event){
+    event.preventDefault();
+
+    var form = document.getElementById("statusForm");
+    var success = document.getElementById("showSuccess");
+    var hideForm = document.getElementById("hide");
+
+    let status = $('#controlformselector').val();
+    let id = $('#id').val();
+
+    if (status == 'completed') {
+
+        swal({
+        title: "Are you sure?",
+        text: "Once Status has been Completed Cannot be reverted. An Email wil be sent to Client",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+
+            $.ajax({
+            url: "{{ route('ordersUpdate') }}",
+            type:"POST",
+            data:{
+                "_token": "{{ csrf_token() }}",
+                status:status,
+                id:id,
+            },
+            success:function(response){
+                console.log(response);
+
+                form.style.display = "none";//removes the form dive
+                success.style.display = "block";//adds the success alert bootstrap
+                hideForm.style.display = "none";
+
+            },
+            });
+
+            swal("An email has been sent to customer on order status", {
+            icon: "success",
+            });
+        } else {
+            swal("You have Halted this action");
+        }
+        });
+        console.log(status);
+
+    } else {
+        $.ajax({
+            url: "{{ route('ordersUpdate') }}",
+            type:"POST",
+            data:{
+                "_token": "{{ csrf_token() }}",
+                status:status,
+                id:id,
+            },
+            success:function(response){
+                console.log(response);
+            },
+            });
+        swal("Order Status Update!", `you have changed status to ${status}`, "success");
+
+    }
+
+
+    });
+  </script>
 @endsection

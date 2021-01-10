@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
     use Notifiable;
+    use SoftDeletes;
     
     protected $table = 'orders';
 
@@ -15,6 +17,8 @@ class Order extends Model
         'order_number', 'user_id', 'status', 'grand_total', 'item_count', 'payment_status', 'payment_method',
         'first_name', 'last_name', 'address', 'city', 'country', 'post_code', 'phone_number', 'notes'
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function user()
     {

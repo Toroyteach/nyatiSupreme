@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use ConsoleTVs\Charts\Registrar as Charts;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,11 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\SampleChart::class
         ]);
+
+        // $this->registerPolicies();
+
+        // ResetPassword::createUrlUsing(function ($user, string $token) {
+        //     return 'https://nyatisupreme.co.ke/reset-password?token='.$token;
+        // });
     }
 }

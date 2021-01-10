@@ -2,7 +2,7 @@
     <a class="app-header__logo" href="#">{{ config('app.name') }}</a>
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <ul class="app-nav">
-        <li class="app-search">
+        <li class="app-search" title="Your Cart">
             <input class="app-search__input" type="search" placeholder="Search" />
             <button class="app-search__button">
                 <i class="fa fa-search"></i>
@@ -10,35 +10,66 @@
         </li>
         <li class="dropdown">
             <a class="app-nav__item notif" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i>
-                    <span class="num">{{ $countnotifications }}</span>
+                    <span class="num" style="color:red">{{ $countnotifications }}</span>
                 </a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
+                @if ($countnotifications > 0)
                 <li class="app-notification__title">
                     You have {{ $countnotifications }} new notifications.
                 </li>
+                @endif
+
                 <div class="app-notification__content">
 
                     @forelse($notifications as $notification)
 
+                    @if ($notification->data['type'] == 'New Order')
+                            <!-- new order notification -->
                     <li>
-                        <a class="app-notification__item" href="javascript:;">
+                        <a class="app-notification__item" href="{{ route('admin.orders.show', $notification->data['order_id']) }}">
                             <span class="app-notification__icon">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                    <i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i>
+                                    <i class="fa fa-first-order fa-stack-1x fa-inverse"></i>
                                 </span>
                             </span>
                             <div>
                                 <p class="app-notification__message">
-                                    A new order of from {{ $notification->data['first_name']}} has been placed with order id {{ $notification->data['order_id']}}
+                                    A new order from {{ $notification->data['first_name']}} has been placed.
                                 </p>
                                 <p class="app-notification__meta">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans()}} </p>
                             </div>
                         </a>
                     </li>
 
+                    @endif
+
+                    @if ($notification->data['type'] == 'Completed Order')
+                            <!-- order status change notification -->
+                    <li>
+                        <a class="app-notification__item" href="{{ route('admin.orders.show', $notification->data['order_id']) }}">
+                            <span class="app-notification__icon">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x text-success"></i>
+                                    <i class="fa fa-check-circle-o fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </span>
+                            <div>
+                                <p class="app-notification__message">
+                                    Order from {{ $notification->data['first_name']}} with order id {{ $notification->data['order_id']}} is now Complete
+                                </p>
+                                <p class="app-notification__meta">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans()}} </p>
+                            </div>
+                        </a>
+                    </li>
+
+                    @endif
+
+
                     @empty
-                             
+                    <li class="app-notification__title">
+                        You have <span>NO<span> new notifications.
+                    </li>
                     @endforelse
                     
                 </div>
@@ -99,9 +130,6 @@
             <ul class="dropdown-menu settings-menu dropdown-menu-right">
                 <li>
                     <a class="dropdown-item" href="{{ route('admin.settings') }}"><i class="fa fa-cog fa-lg"></i> Settings</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class="fa fa-sign-out fa-lg"></i> Logout</a>

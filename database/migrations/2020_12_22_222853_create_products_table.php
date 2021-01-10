@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->decimal('sale_price', 8, 2)->nullable();
             $table->boolean('status')->default(1);
             $table->boolean('featured')->default(0);
+            $table->softDeletes();
 
             $table->timestamps();
         });

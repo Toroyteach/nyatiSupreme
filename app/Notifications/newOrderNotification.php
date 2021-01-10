@@ -65,6 +65,7 @@ class newOrderNotification extends Notification implements ShouldQueue
             'order_id' => $this->orderData['order_number'],
             'first_name' => $this->orderData['first_name'],
             'email' => $this->orderData['email'],
+            'type' => 'New Order',
         ];
     }
 }

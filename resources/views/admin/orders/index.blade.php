@@ -19,7 +19,8 @@
                             <th class="text-center"> Total Amount </th>
                             <th class="text-center"> Items Qty </th>
                             <th class="text-center"> Payment Status </th>
-                            <th class="text-center"> Status </th>
+                            <th class="text-center"> Order Status </th>
+                            <th class="text-center"> Date Created </th>
                             <th style="width:100px; min-width:100px;" class="text-center text-danger"><i class="fa fa-bolt"> </i></th>
                         </tr>
                         </thead>
@@ -40,6 +41,7 @@
                                 <td class="text-center">
                                     <span class="badge badge-success">{{ $order->status }}</span>
                                 </td>
+                                <td class="text-center">{{ $order->created_at }} </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
                                         <a href="{{ route('admin.orders.show', $order->order_number) }}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
@@ -56,7 +58,15 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="//cdn.datatables.net/plug-ins/1.10.20/sorting/date-eu.js" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script type="text/javascript">
+        //$('#sampleTable').DataTable();
+
+        var table = $('#sampleTable').DataTable({
+            "order": [[ 7, "desc" ]], //or asc 
+            "columnDefs" : [{"targets":7, "type":"date-eu"}],
+        });
+    </script>
 @endpush

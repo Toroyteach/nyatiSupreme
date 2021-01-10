@@ -10,7 +10,7 @@ Route::group(['prefix'  =>  'admin'], function () {
 
         Route::get('/', 'Admin\AdminController@showdashboard')->name('admin.dashboard');
         Route::get('/notifications', 'Admin\AdminController@showNotification')->name('admin.notification');
-        Route::post('/mark-as-read', 'Admin\AdminController@markNotification')->name('admin.markNotification');
+        Route::post('/mark-as-read', 'Admin\AdminController@markNotification')->name('markNotification');
 
         Route::get('/vueorders', 'Admin\AdminController@vueTable');
 
@@ -72,7 +72,9 @@ Route::group(['prefix'  =>  'admin'], function () {
            Route::get('/{order}/show', 'Admin\OrderController@show')->name('admin.orders.show');
            Route::get('/show/{order}', 'Admin\OrderController@notificationShow')->name('admin.orders.notificationShow');
            Route::get('/{order}/edit', 'Admin\OrderController@edit')->name('admin.orders.edit');
-           Route::post('/order/update', 'Admin\OrderController@update')->name('admin.orders.update');
+           Route::post('/order/update', 'Admin\OrderController@update')->name('ordersUpdate');
+           Route::get('/orders/pdf/{id}', 'Admin\OrderController@getOrderPdf')->name('admin.orders.pdf');
+           Route::get('get-top-orders', 'Admin\OrderController@getOrdersData');
         });
     });
 });

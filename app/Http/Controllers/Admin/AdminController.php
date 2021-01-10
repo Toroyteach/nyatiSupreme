@@ -11,8 +11,10 @@ use Hash;
 use Auth;
 use App\Models\User;
 use App\Models\Order;
-use App\Charts\SampleChart;
+use App\Models\OrderItem;
+use App\Charts\SampleChart; //old chart
 use Illuminate\Support\Arr;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -96,36 +98,154 @@ class AdminController extends Controller
         // $lowProductArray = $this->getProductName($filtered);
         // dd($lowProductArray);
 
-        $chart = new SampleChart;
+        $chartjs = $this->getGraphData('DailySalesLineGraph');
+        $chartjs2 = $this->getGraphData('TopSellerBarGraph');
 
         $userCount = User::count();
         $pendingOrders = Order::where('status','pending')->count();
         $completedOrders = Order::where('status','completed')->count();
 
-        $data = array(
-            "chart" => array(
-                "labels" => ["First", "Second", "Third"]
-            ),
-            "datasets" => array(
-                array("name" => "Sample 1", "values" => array(10, 3, 7)),
-                array("name" => "Sample 2", "values" => array(1, 6, 2)),
-            )
-        );
+        $topOrders = Order::orderBy('id', 'desc')->take(3)->get();
+        $topCustomers = $this->getTopCustomers();
 
-        // $groups = DB::table('users')
-        // ->select('age', DB::raw('count(*) as total'))
-        // ->groupBy('age')
-        // ->pluck('total', 'age')->all();
-        // // Generate random colours for the groups
-        // for ($i=0; $i<=count($groups); $i++) {
-        //     $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
-        // }
-        // // Prepare the data for returning with the view
-        // $chart = new Chart;
-        // $chart->labels = (array_keys($groups));
-        // $chart->dataset = (array_values($groups));
-        // $chart->colours = $colours;
-        return view('admin.dashboard.index', compact('userCount', 'pendingOrders', 'completedOrders', 'data'));
+
+        return view('admin.dashboard.index', compact('userCount', 'pendingOrders', 'completedOrders', 'chartjs', 'chartjs2', 'topOrders', 'topCustomers'));
+    }
+
+    public function getGraphData($nameModel)
+    {
+
+        //dd($sales->pluck('total'));
+
+            switch ($nameModel) {
+            case "DailySalesLineGraph":
+
+                $dataArrayDailySales = $this->getDatabaseDailySales();
+                //$dataArrayDailySales = array(65, 59, 65, 59, 80, 81, 56);
+                $labelArrayDailySales = $this->getWeekdays();
+
+                $chartjs = app()->chartjs
+                ->name('lineChartTest')
+                ->type('line')
+                ->size(['width' => 400, 'height' => 200])
+                ->labels($labelArrayDailySales)
+                ->datasets([
+                    [
+                        "label" => "Daily sales of week",
+                        'backgroundColor' => "rgba(38, 185, 154, 0.31)",
+                        'borderColor' => "rgba(38, 185, 154, 0.7)",
+                        "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
+                        "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
+                        "pointHoverBackgroundColor" => "#fff",
+                        "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                        'data' => $dataArrayDailySales,
+                    ],
+                ])
+                ->options([]);
+
+                return $chartjs;
+                break;
+            case "TopSellerBarGraph":
+
+                $sales = DB::table('order_items')
+                ->select('product_id', DB::raw('count(*) as total'))
+                ->groupBy('product_id')
+                ->get(6);
+                
+        
+                $labelArrayTopSellers = $this->getDatabaseTopSellerName($sales->pluck('product_id')->toArray());
+                $dataArrayTopSellers = $sales->pluck('total');
+                $chartjs = app()->chartjs
+                ->name('barChartTest')
+                ->type('bar')
+                ->size(['width' => 400, 'height' => 200])
+                ->labels($labelArrayTopSellers)
+                ->datasets([
+                    [
+                        "label" => "High Selling products",
+                        'backgroundColor' => ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+                        'data' => $dataArrayTopSellers
+                    ],
+                ])
+                ->options([]);
+                return $chartjs;
+                break;
+            default:
+                echo "No Graph type Selected";
+            }
+    }
+
+    public function getTopCustomers()
+    {
+        //$user = array();
+
+        // $sales = DB::table('orders') //use sales of each
+        // ->select('user_id', DB::raw('SUM(grand_total) as revenue'))
+        // ->where('created_at', '=', '2021-01-05')
+        // ->groupBy('user_id')
+        // ->get();
+
+        // $testData = Order::whereDate('created_at', '2021-01-05')
+        //        ->sum('grand_total');
+
+        $topCustomersList =  DB::table('orders')
+                 ->select('users.id', 'users.first_name', DB::raw('sum(grand_total) as revenue'))
+                 //->join('users', 'users.id', '=', 'orders.user_id')
+                 ->leftJoin('users', 'users.id', '=', 'orders.user_id')
+                 ->groupBy('users.id','users.first_name')
+                 ->get(3);
+
+        //$results = DB::select( DB::raw("SELECT user_id, SUM(grand_total) AS Revenue FROM orders WHERE created_at= '2021-01-05' GROUP BY user_id") );
+        //dd($topCustomersList);
+
+        //dd($sales->pluck('userOrders', 'user_id')->toArray());
+
+        return $topCustomersList;
+        //dd($user);
+    }
+
+    public function getDatabaseTopSellerName($nameArray)
+    {
+            $names = array();
+
+            for ($x = 0; $x < count($nameArray); $x++) {
+                $names[$x] = DB::table('products')->where('id', $nameArray[$x])->value('name');
+                //array_push($names, DB::table('products')->where('id', $nameArray[$x])->value('name'));
+              }
+              return $names;
+    }
+
+    public function getDatabaseDailySales()
+    {
+        $timestamp = strtotime('-5 days');
+        $days = array();
+        for ($i = 0; $i < 7; $i++) {
+            $days[] = strftime('%F', $timestamp);
+            $timestamp = strtotime('+1 day', $timestamp);
+        }
+
+        $names = array();
+
+        $date = Carbon::now()->toDateString();
+        //dd($days);
+
+        for ($x = 0; $x < count($days); $x++) {
+            $names[] = OrderItem::whereDate('created_at', $days[$x])->sum('price');
+          }
+
+          return $names;
+    }
+
+    public function getWeekdays()
+    {
+        $timestamp = strtotime('-5 days');
+        $days = array();
+        for ($i = 0; $i < 7; $i++) {
+            $days[] = strftime('%A', $timestamp);
+            $timestamp = strtotime('+1 day', $timestamp);
+        }
+
+        return $days;
     }
 
     public function getProductName($arrayData)
@@ -154,12 +274,22 @@ class AdminController extends Controller
 
     public function markNotification(Request $request)
     {
+
         auth()->user()->unreadNotifications->when($request->input('id'), function ($query) use ($request) {
                 return $query->where('id', $request->input('id'));
             })->markAsRead();
 
         return response()->noContent();
     }
+
+    public function getOrdersData(){
+        // get records from database
+     
+        $arr = Order::orderBy('id', 'desc')->take(3)->get();
+        echo json_encode($arr);
+        exit;
+      }
+
     /**
     * Show the form for creating a new resource.
     *

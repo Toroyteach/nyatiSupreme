@@ -21,6 +21,7 @@
     import DatatableFactory from 'vuejs-datatable';
 
     export default {
+        name :'datatable-component',
         components: { DatatableFactory },
         mounted() {
             console.log('Component mounted.')

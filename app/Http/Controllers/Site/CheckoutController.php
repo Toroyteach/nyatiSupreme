@@ -82,14 +82,16 @@ class CheckoutController extends Controller
             // $when = Carbon::now()->addSecond(10);
             // Notification::send($userSchema, (new newOrderNotification($orderData))->delay($when));
             //dd('died here last');
-            return view('site.pages.success', compact('order'));
+            return view('site.pages.success', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
         }
 
-        return redirect()->back()->with('message','Order not placed');
+        return redirect()->back()->with('error','Order not placed!!');
     }
 
     public function complete(Request $request)
     {
+
+        //make and mpesa request and confirm the transaction also notify customers of success order change
         $paymentId = $request->input('paymentId');
         $payerId = $request->input('PayerID');
 

@@ -22,6 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->boolean('featured')->default(0);
             $table->boolean('menu')->default(1);
             $table->string('image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

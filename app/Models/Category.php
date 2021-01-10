@@ -6,10 +6,12 @@ use App\Models\Product;
 use TypiCMS\NestableTrait;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use NestableTrait;
+    use SoftDeletes;
 
     /**
      * @var string
@@ -31,6 +33,8 @@ class Category extends Model
         'featured'  =>  'boolean',
         'menu'      =>  'boolean'
     ];
+
+    protected $dates = ['deleted_at'];
 
     /**
      * @param $value

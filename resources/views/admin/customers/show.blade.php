@@ -26,8 +26,20 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12">
 <div class="form-group">
-<strong>Roles:</strong>
-
+<strong>Phone Number:</strong>
+{{ $customers->phonenumber }}
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="form-group">
+<strong>Address:</strong>
+{{ $customers->address }}
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+<div class="form-group">
+<strong>City:</strong>
+{{ $customers->city }}
 </div>
 </div>
 </div>
