@@ -94,3 +94,13 @@ Route::post('/reset-password', function (Request $request) {
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
 
+//log in with social media routes
+
+Route::get('/sign-in/github', 'Auth\LoginController@github')->name('login.request.github');
+Route::get('/sign-in/github/redirect', 'Auth\LoginController@githubRedirect');
+
+Route::get('/sign-in/facebook', 'Auth\LoginController@facebook')->name('login.request.facebook');
+Route::get('/sign-in/facebook/redirect', 'Auth\LoginController@facebookRedirect');
+
+Route::get('/sign-in/google', 'Auth\LoginController@google')->name('login.request.google');
+Route::get('/sign-in/google/redirect', 'Auth\LoginController@googleRedirect');

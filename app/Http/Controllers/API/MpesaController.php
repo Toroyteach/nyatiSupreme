@@ -7,6 +7,7 @@ use App\Models\MpesaTransaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use SmoDav\Mpesa\Laravel\Facades\Registrar;
+use App\Http\Controllers\Controller;
 
 
 class MpesaController extends Controller

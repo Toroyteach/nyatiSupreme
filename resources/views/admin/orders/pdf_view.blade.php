@@ -2,57 +2,82 @@
 <html>
   <head>
   <meta charset="utf-8">
-    <title>Laravel PDF</title>
+    <title>{{env('APP_NAME')}} PDF</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css" integrity="sha512-kJ30H6g4NGhWopgdseRb8wTsyllFUYIx3hiUwmGAkgA9B/JbzUBDQVr2VVlWGde6sdBVOG7oU8AL35ORDuMm8g==" crossorigin="anonymous" />
+    <style>
+
+    </style>
   </head>
   <body>
-  <div class="Container">
-  <h1 class="h1">Order Details</h1>
-  <div class="row">
-        <div class="col-md-12">
-            <div class="tile">
-                <section class="invoice">
-                    <div class="row mb-4">
-                        <div class="col-6">
-                            <h4 class="page-header"><i class="fa fa-globe"></i> {{ $order->order_number }}</h4>
-                        </div>
-                        <div class="col-6">
-                            <h5 class="text-right">Date: {{ $order->created_at->toFormattedDateString() }}</h5>
-                        </div>
-                    </div>
-                    <div class="row invoice-info">
-                    <div class="col-4">
+<div class="bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+            <h2>Order Information</h2>
+                <p>Order: {{ $order->order_number }}</p>
+                <p class="font-italic">Date: {{ $order->created_at->toFormattedDateString() }}</p>
+
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <img src="{{ asset('frontend/cssfiles/images/nyati_logo_png.png') }}" class="float-right" width="150" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="container">
+                        <div class="row">
+                            <div class="col-12">
                             <b>Order ID:</b> {{ $order->order_number }}<br>
                             <b>Amount:</b> {{ config('settings.currency_symbol') }}{{ round($order->grand_total, 2) }}<br>
                             <b>Payment Status:</b> {{ $order->payment_status == 1 ? 'Completed' : 'Not Completed' }}<br>
                             <b>Order Status:</b> {{ $order->status }}<br>
                         </div>
-                        <br>
-                        <div class="col-4">Placed By
-                            <address><strong>{{ $order->user->fullName }}</strong><br>Email: {{ $order->user->email }}<br>Number: {{ $order->user->phonenumber }}</address>
-                        </div>
-                        <br>
-                        <div class="col-4">Ship To
-                            <address><strong>{{ $order->first_name }} {{ $order->last_name }}</strong><br>{{ $order->address }}<br>{{ $order->city }}, {{ $order->country }} {{ $order->post_code }}<br>{{ $order->phone_number }}<br></address>
-                        </div>
-                        <br>
-                    </div>
-                    <div class="row">
-                    <div class="header">
-                    <h3>Order Items</h3>
-                    </div>
-                        <div class="col-12 table-responsive">
-                            <table class="table table-striped">
-                                <thead>
+    </div>
+  </div>
+
+<br>
+  <div class="container">
+    <div class="row">
+            <div class="col-md-4">
+            <p class="font-italic">Placed by:</p>
+                <address>
+                    <strong>{{ $order->user->fullName }}</strong><br>
+                    Email: {{ $order->user->email }}<br>
+                    Number: {{ $order->user->phonenumber }}<br>
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                </address>
+            <p class="font-italic">Ship to:</p>
+                <address>
+                    <strong>{{ $order->first_name }} {{ $order->last_name }}</strong><br>
+                    {{ $order->address }}<br>
+                    {{ $order->city }}, {{ $order->country }} {{ $order->post_code }}<br>
+                    <abbr title="Phone">Phone:</abbr> {{ $order->phone_number }}
+                </address>
+            </div>
+    </div>
+  </div>
+
+<br>
+  <div class="container">
+        <div class="page-header">
+                    <h4>Order items</h4>
+            </div>
+    <div class="card">
+            <table class="table table-sm">
+            <thead>
                                 <tr>
-                                    <th>Qty</th>
+                                    <th>ID</th>
                                     <th>Product</th>
                                     <th>SKU #</th>
                                     <th>Qty</th>
                                     <th>Subtotal</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                <tbody>
                                     @foreach($order->items as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
@@ -63,13 +88,9 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
+            </table>
     </div>
-    </div>
+  </div>
+  </div>
   </body>
 </html>

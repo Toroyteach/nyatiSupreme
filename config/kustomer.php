@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'icon' => '/vendor/kustomer/assets/icon.svg',
+    'icon' => '/vendor/kustomer/assets/nyati_logo.svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'logo' => '/vendor/kustomer/assets/logo.svg',
+    'logo' => '/vendor/kustomer/assets/nyati_logo.svg',
 
     /*
     |--------------------------------------------------------------------------

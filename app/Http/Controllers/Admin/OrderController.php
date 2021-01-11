@@ -15,6 +15,10 @@ class OrderController extends BaseController
 
     public function __construct(OrderContract $orderRepository)
     {
+        $this->middleware('permission:orders-list|orders-show|orders-edit', ['only' => ['index']]);
+        $this->middleware('permission:orders-show', ['only' => ['show']]);
+        $this->middleware('permission:orders-edit', ['only' => ['edit','update']]);
+
         $this->orderRepository = $orderRepository;
     }
 

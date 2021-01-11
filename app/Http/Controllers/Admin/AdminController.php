@@ -1,11 +1,10 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin;
 use App\Models\Product;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use DB;
 use Hash;
 use Auth;
@@ -15,66 +14,12 @@ use App\Models\OrderItem;
 use App\Charts\SampleChart; //old chart
 use Illuminate\Support\Arr;
 use Carbon\Carbon;
+use Mydnic\Kustomer\Feedback;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    /**
-    * Display a listing of the resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function index(Request $request)
-    {
-        //dd('dieded');
-        // Role::Create(['name'=>'Admin']);
-        // Role::Create(['name'=>'SubAdmin']);
-        
-
-        // $permissions = [
-        //     'role-create',
-        //     'user-list',
-        //     'user-create',
-        //     'user-edit',
-        //     'product-list',
-        //     'product-create',
-        //     'product-edit',
-        //     ];
-    
-            // foreach ($permissions as $permission) {
-            //     Permission::create(['name' => $permission]);
-            // }
-
-
-        //auth()->user()->givePermissionTo('role-list');
-        //auth()->user()->assignRole('Admin');
-        //return auth()->user()->permissions;
-
-        // $permission = Permission::findById(10);
-        // $role = Role::findById(3);
-        // $role->givePermissionTo($permission);
-
-        //$permission = Permission::findById(10);
-        //     $role = Role::findById(4);
-
-        // foreach ($permissions as $permission) {
-        //     $role->givePermissionTo($permission);
-        //          }
-
-        $data = Admin::orderBy('id','DESC')->paginate(5);
-        return view('admin.usersrole.index',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
-    }
-
-    public function viewCustomers(Request $request){
-        $customer = User::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.customers.index',compact('customer'))->with('i', ($request->input('page', 1) - 1) * 5);
-    }
-
-    public function showCustomers($id){
-        $customers = User::findOrFail($id);
-        return view('admin.customers.show',compact('customers'));
-    }
-
-    //private $productArrayData = array();
+        //private $productArrayData = array();
     public function showdashboard()
     {
         // $products = Product::all();
@@ -110,6 +55,51 @@ class AdminController extends Controller
 
 
         return view('admin.dashboard.index', compact('userCount', 'pendingOrders', 'completedOrders', 'chartjs', 'chartjs2', 'topOrders', 'topCustomers'));
+    }
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+
+    public function viewCustomers(Request $request){
+        $customer = User::orderBy('id', 'DESC')->paginate(5);
+        return view('admin.customers.index',compact('customer'))->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function showCustomers($id){
+        $customers = User::findOrFail($id);
+        return view('admin.customers.show',compact('customers'));
+    }
+
+    public function getFeedback()
+    {
+        //list all feedback
+        $feedbacks = Feedback::all();
+        $pageTitle = 'Customer Feedback';
+
+      return view('admin.feedback.index', compact('pageTitle', 'feedbacks'));  
+    } 
+
+    public function showFeedback(Feedback $feedback)
+    {
+        //show specific feedback
+        $feedback->screenshot = (isset($feedback->user_info['screenshot']) and !is_null($feedback->user_info['screenshot']))
+            ? Storage::url($feedback->user_info['screenshot'])
+            : null;
+            $pageTitle = 'Customer Feedback';
+            //dd($feedback);
+
+        return view('admin.feedback.show', compact('pageTitle', 'feedback'));
+    }
+
+    public function markAsReviewed(Feedback $feedback)
+    {
+        //mark as reviewd
+        $feedback->reviewed = true;
+        $feedback->save();
+
+        return redirect()->back()->with('Feedback Updated successfully' ,'message',false, false);
     }
 
     public function getGraphData($nameModel)
@@ -289,101 +279,6 @@ class AdminController extends Controller
         echo json_encode($arr);
         exit;
       }
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        $roles = Role::pluck('name','name')->all();
-        return view('admin.usersrole.create',compact('roles'));
-    }
-    /**
-    * Store a newly created resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
-    */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-        $user = Admin::create($input);
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('admin.usersrole.index')->with('success','User created successfully');
-    }
-    /**
-    * Display the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function show($id)
-    {
-        $user = Admin::find($id);
-        return view('admin.usersrole.show',compact('user'));
-    }
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function edit($id)
-    {
-        $user = Admin::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
-        return view('admin.usersrole.edit',compact('user','roles','userRole'));
-    }
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-        'name' => 'required',
-        'email' => 'required|email|unique:users,email,'.$id,
-        'password' => 'same:confirm-password',
-        'roles' => 'required'
-        ]);
-        $input = $request->all();
-        if(!empty($input['password'])){
-        $input['password'] = Hash::make($input['password']);
-        }else{
-        $input = array_except($input,array('password'));
-        }
-        $user = Admin::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-        $user->assignRole($request->input('roles'));
-        return redirect()->route('admin.usersrole.index')->with('success','User updated successfully');
-    }
-    /**
-    * Remove the specified resource from storage.
-    *
-    * @param  int  $id
-    * @return \Illuminate\Http\Response
-    */
-    public function destroy($id)
-    {
-        Admin::find($id)->delete();
-        return redirect()->route('admin.usersrole.index')
-        ->with('success','User deleted successfully');
-    }
 
     public function vueTable(Request $request)
     {

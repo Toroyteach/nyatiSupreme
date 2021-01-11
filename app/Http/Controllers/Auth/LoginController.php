@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -20,6 +25,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    //use Socialite;
 
     /**
      * Where to redirect users after login.
@@ -37,5 +43,80 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function github()
+    {
+            //sends users request to gitbuh auth
+            return Socialite::driver('github')->redirect();
+    }
+
+    public function githubRedirect()
+    {
+        $user = Socialite::driver('github')->user();
+        dd($user);
+        
+        $user = User::firstOrCreate([
+            'email' => $user->email
+        ], [
+            'first_name' => $user->name,
+            'last_name' => $user->name,
+            'password' => Hash::make(Str::random(24))
+        ]);
+
+        Auth::login($user, true);
+
+        return redirect('account/orders');
+
+    }
+
+    public function facebook()
+    {
+            //sends users request to gitbuh auth
+            return Socialite::driver('facebook')->redirect();
+    }
+
+    public function facebookRedirect()
+    {
+        $user = Socialite::driver('github')->user();
+        dd($user);
+        
+        $user = User::firstOrCreate([
+            'email' => $user->email
+        ], [
+            'first_name' => $user->name,
+            'last_name' => $user->name,
+            'password' => Hash::make(Str::random(24))
+        ]);
+
+        Auth::login($user, true);
+
+        return redirect('account/orders');
+
+    }
+
+    public function google()
+    {
+            //sends users request to gitbuh auth
+            return Socialite::driver('google')->redirect();
+    }
+
+    public function googleRedirect()
+    {
+        $user = Socialite::driver('github')->user();
+        dd($user);
+        
+        $user = User::firstOrCreate([
+            'email' => $user->email
+        ], [
+            'first_name' => $user->name,
+            'last_name' => $user->name,
+            'password' => Hash::make(Str::random(24))
+        ]);
+
+        Auth::login($user, true);
+
+        return redirect('account/orders');
+
     }
 }

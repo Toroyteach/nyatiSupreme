@@ -53,8 +53,8 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group" role="group" aria-label="Second group">
-                                                <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                                <a href="{{ route('admin.categories.delete', $category->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Category"><i class="fa fa-edit"></i></a>
+                                                <a href="{{ route('admin.categories.delete', $category->id) }}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Category"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>

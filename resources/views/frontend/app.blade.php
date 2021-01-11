@@ -39,6 +39,7 @@
 <body>
 @include('frontend.partials.header')
 @include('frontend.partials.flash-message')
+@include('kustomer::kustomer')
 @yield('content')
 @include('frontend.partials.footer')
 

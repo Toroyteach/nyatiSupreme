@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use SmoDav\Mpesa\Laravel\Facades\Simulate;
+use App\Http\Controllers\Controller;
 
 class MpesaTestController extends Controller
 {

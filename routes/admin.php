@@ -9,13 +9,19 @@ Route::group(['prefix'  =>  'admin'], function () {
     Route::group(['middleware' => ['auth:admin']], function () {
 
         Route::get('/', 'Admin\AdminController@showdashboard')->name('admin.dashboard');
+
+        Route::get('/feedback', 'Admin\AdminController@getFeedback')->name('admin.feedback');
+        Route::get('/feedback/{feedback}', 'Admin\AdminController@showFeedback')->name('admin.feedback.show');
+        Route::get('/feedback/{feedback}/review', 'Admin\AdminController@markAsReviewed')->name('admin.feedback.reviewed');
+        
         Route::get('/notifications', 'Admin\AdminController@showNotification')->name('admin.notification');
         Route::post('/mark-as-read', 'Admin\AdminController@markNotification')->name('markNotification');
 
         Route::get('/vueorders', 'Admin\AdminController@vueTable');
 
         Route::resource('/roles','Admin\RoleController');
-        Route::resource('/users','Admin\AdminController');
+        Route::resource('/users','Admin\UserController');
+
         Route::get('/customers','Admin\AdminController@viewCustomers')->name('customers.index');
         Route::get('/customers/{id}','Admin\AdminController@showCustomers')->name('customers.show');
 

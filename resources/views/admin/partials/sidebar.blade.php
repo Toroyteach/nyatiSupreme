@@ -68,7 +68,7 @@
         </li>
 
         <li>
-            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.notification' ? 'active' : '' }}" href="{{ route('admin.notification') }}">
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.feedback' ? 'active' : '' }}" href="{{ route('admin.feedback') }}">
                 <i class="app-menu__icon fa fa-comments-o"></i>
                 <span class="app-menu__label">Customer Feedback</span>
             </a>

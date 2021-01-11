@@ -58,4 +58,9 @@ class SettingController extends BaseController
         }
         return $this->responseRedirectBack('Settings updated successfully.', 'success');
     }
+
+    public function updateProfile(Request $request)
+    {
+
+    }
 }

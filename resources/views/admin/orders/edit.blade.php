@@ -43,28 +43,36 @@
                             @if($order->status =='completed')         
                             <div class="alert alert-danger col-lg-12 text-center" role="alert">
                             Order is Already {{ $order->status }} !!
-                                </div>      
+                            </div>      
                             @else
                         <div class="alert alert-primary col-4" role="alert" id="hide">
                             <p>Change Status of the order</p>
                         </div>
 
                         <div class="col-6" id="statusForm">
-                        <form action="{{ route('ordersUpdate') }}" method="POST" role="form" id="update">
-                            <input type="hidden" name="id" id="id" value="{{ $order->order_number }}">
-                        @csrf
-                            <div class="form-group">
-                                <select class="form-control" id="controlformselector" name="status">
-                                <option value="{{ $order->status }}" seleted>{{ $order->status }}</option>
-                                <option value="pending">Pending</option>
-                                <option value="processing">Processing</option>
-                                <option value="completed">Completed</option>
-                                <option value="declined">Declined</option>
-                                </select>
-                            </div>
-                                <button type="submit" class="btn btn-primary float-right">Submit</button>  
+                    
+                            <div id="update">
+                                <form action="{{ route('ordersUpdate') }}" method="POST" role="form">
+                                    <input type="hidden" name="id" id="id" value="{{ $order->order_number }}">
+                                @csrf
+                                    <div class="form-group">
+                                        <select class="form-control" id="controlformselector" name="status">
+                                        <option value="{{ $order->status }}" seleted>{{ $order->status }}</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="completed">Completed</option>
+                                        <option value="declined">Declined</option>
+                                        </select>
+                                    </div>
+                                        <button type="submit" class="btn btn-primary float-right">Submit</button>  
                                 </form> 
-                                </div>     
+                            </div>
+                        </div>   
+
+                        <div class="spinner" role="status" id="spinner" style="display:none">
+                            <span class="sr-only">Loading...</span>
+                        </div>  
+                        
                             @endif
                     </div>
                 </section>
@@ -81,12 +89,13 @@ $('#update').on('submit',function(event){
     var form = document.getElementById("statusForm");
     var success = document.getElementById("showSuccess");
     var hideForm = document.getElementById("hide");
+    var spinner = document.getElementById("spinner");
 
     let status = $('#controlformselector').val();
     let id = $('#id').val();
 
     if (status == 'completed') {
-
+        
         swal({
         title: "Are you sure?",
         text: "Once Status has been Completed Cannot be reverted. An Email wil be sent to Client",
@@ -96,7 +105,8 @@ $('#update').on('submit',function(event){
         })
         .then((willDelete) => {
         if (willDelete) {
-
+            form.style.display = "none";//this one
+            spinner.style.display = "block";
             $.ajax({
             url: "{{ route('ordersUpdate') }}",
             type:"POST",
@@ -108,16 +118,14 @@ $('#update').on('submit',function(event){
             success:function(response){
                 console.log(response);
 
-                form.style.display = "none";//removes the form dive
                 success.style.display = "block";//adds the success alert bootstrap
                 hideForm.style.display = "none";
+                spinner.style.display = "none";
 
             },
             });
 
-            swal("An email has been sent to customer on order status", {
-            icon: "success",
-            });
+            swal("An email has been sent to customer on order status", { icon: "success", });
         } else {
             swal("You have Halted this action");
         }

@@ -66,11 +66,15 @@
                         </div>
 
                         <div class="form-group row">
-                        <a href="#" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
+                        <a href="{{ route('login.request.facebook') }}" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
                         </div>
                         
                         <div class="form-group row">
-                        <a href="#" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+                        <a href="{{ route('login.request.github') }}" class="btn btn-github btn-block mb-4"> <i class="fab fa-github"></i> &nbsp  Sign in with Github</a>
+                        </div>
+
+                        <div class="form-group row">
+                        <a href="{{ route('login.request.google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
                         </div>
 
                     </form>
