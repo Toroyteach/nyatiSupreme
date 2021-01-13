@@ -9,7 +9,7 @@
             </button>
         </li>
         <li class="dropdown">
-            <a class="app-nav__item notif" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i>
+            <a class="app-nav__item notif" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg" data-toggle="tooltip" data-placement="top" title="Notifications"></i>
                     <span class="num" style="color:red">{{ $countnotifications }}</span>
                 </a>
             <ul class="app-notification dropdown-menu dropdown-menu-right">
@@ -29,7 +29,7 @@
                         <a class="app-notification__item" href="{{ route('admin.orders.show', $notification->data['order_id']) }}">
                             <span class="app-notification__icon">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                    <i class="fa fa-circle fa-stack-2x text-warning"></i>
                                     <i class="fa fa-first-order fa-stack-1x fa-inverse"></i>
                                 </span>
                             </span>
@@ -57,6 +57,27 @@
                             <div>
                                 <p class="app-notification__message">
                                     Order from {{ $notification->data['first_name']}} with order id {{ $notification->data['order_id']}} is now Complete
+                                </p>
+                                <p class="app-notification__meta">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans()}} </p>
+                            </div>
+                        </a>
+                    </li>
+
+                    @endif
+
+                    @if ($notification->data['type'] == 'Low Count')
+                            <!-- order status change notification -->
+                    <li>
+                        <a class="app-notification__item" href="">
+                            <span class="app-notification__icon">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                    <i class="fa fa-exclamation-triangle fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </span>
+                            <div>
+                                <p class="app-notification__message">
+                                    The following products have low count {{ $notification->data['low_product']}}
                                 </p>
                                 <p class="app-notification__meta">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans()}} </p>
                             </div>
@@ -126,7 +147,12 @@
         </li> -->
         <!-- User Menu-->
         <li class="dropdown">
-            <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+        @if (Auth::user()->profile_image != null)
+            <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><div class="icon" data-toggle="tooltip" data-placement="top" title="View Profile"><img class="icon icon-sm rounded-circle" style="width:20px;height:20px"src="{{ asset('storage/' . Auth::user()->profile_image) }}"></div></a>
+        @else
+            <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg" data-toggle="tooltip" data-placement="top" title="View Profile"></i></a>
+        @endif
+            
             <ul class="dropdown-menu settings-menu dropdown-menu-right">
                 <li>
                     <a class="dropdown-item" href="{{ route('admin.settings') }}"><i class="fa fa-cog fa-lg"></i> Settings</a>

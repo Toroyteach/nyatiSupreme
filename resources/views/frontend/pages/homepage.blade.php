@@ -9,23 +9,26 @@
 <div class="row">
 	<aside class="col-lg col-md-3 flex-lg-grow-0">
 		<nav class="nav-home-aside">
-			<h6 class="title-category">MY MARKETS <i class="d-md-none icon fa fa-chevron-down"></i></h6>
+			<h6 class="title-category">	TOP CATEGORIES <i class="d-md-none icon fa fa-chevron-down"></i></h6>
 			<ul class="menu-category">
-				<li><a href="#">Fashion and clothes</a></li>
-				<li><a href="#">Automobile and motors</a></li>
-				<li><a href="#">Gardening and agriculture</a></li>
-				<li><a href="#">Electronics and tech</a></li>
-				<li><a href="#">Packaginf and printing</a></li>
-				<li><a href="#">Home and kitchen</a></li>
-				<li><a href="#">Digital goods</a></li>
-				<li class="has-submenu"><a href="#">More items</a>
-					<ul class="submenu">
-						<li><a href="#">Submenu name</a></li>
-						<li><a href="#">Great submenu</a></li>
-						<li><a href="#">Another menu</a></li>
-						<li><a href="#">Some others</a></li>
-					</ul>
-				</li>
+
+
+                @foreach($categories as $cat)
+                    @foreach($cat->items as $category)
+						@if ($category->items->count() > 0)
+						<li class="has-submenu"><a href="#">More items</a>
+							<ul class="submenu">
+							@foreach($category->items as $item)
+                                        <a class="dropdown-item" href="{{ route('category.show', $item->slug) }}">{{ $item->name }}</a>
+                                    @endforeach
+							</ul>
+						</li>
+                        @else
+							<li><a href="#">View products</a></li>
+                        @endif
+                    @endforeach
+                @endforeach
+
 			</ul>
 		</nav>
 	</aside> <!-- col.// -->
@@ -178,110 +181,10 @@
 </section>
 <!-- =============== SECTION DEAL // END =============== -->
 
-<!-- =============== SECTION 1 =============== -->
-<section class="padding-bottom">
-<header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Apparel</h4>
-</header>
-
-<div class="card card-home-category">
-<div class="row no-gutters">
-	<div class="col-md-3">
-	
-	<div class="home-category-banner bg-light-orange">
-		<h5 class="title">Best trending clothes only for summer</h5>
-		<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-		<a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
-		<img src="{{ asset('frontend/cssfiles/images/items/2.jpg') }}" class="img-bg">
-	</div>
-
-	</div> <!-- col.// -->
-	<div class="col-md-9">
-<ul class="row no-gutters bordered-cols">
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Well made women clothes with trending collection  </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
-	</div>
-</a>
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Great clothes with trending collection  </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/2.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Beijing, China</p>
-	</div>
-</a>
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Demo clothes with sample collection  </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/3.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Tokyo, Japan</p>
-	</div>
-</a>
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/4.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Tashkent, Uzb</p>
-	</div>
-</a>	
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/5.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> London, Britain</p>
-	</div>
-</a>
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/6.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
-	</div>
-</a>
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Well made clothes with trending collection </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/7.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Hong Kong, China</p>
-
-	</div>
-</a>
-	</li>
-	<li class="col-6 col-lg-3 col-md-4">
-<a href="#" class="item"> 
-	<div class="card-body">
-		<h6 class="title">Home and kitchen interior  stuff collection   </h6>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/6.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
-	</div>
-</a>
-	</li>
-</ul>
-	</div> <!-- col.// -->
-</div> <!-- row.// -->
-</div> <!-- card.// -->
-</section>
-<!-- =============== SECTION 1 END =============== -->
-
 <!-- =============== SECTION 2 =============== -->
 <section class="padding-bottom">
 <header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Electronics</h4>
+	<h4 class="title-section text-uppercase">Cataloque</h4>
 </header>
 
 <div class="card card-home-category">
@@ -447,7 +350,7 @@
 <section  class="padding-bottom-sm">
 
 <header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Recommended items</h4>
+	<h4 class="title-section text-uppercase">Tops Items</h4>
 </header>
 
 <div class="row row-sm">
@@ -612,27 +515,6 @@
 
 </section>
 <!-- =============== SECTION SERVICES .//END =============== -->
-
-<!-- =============== SECTION REGION =============== -->
-<section  class="padding-bottom">
-
-<header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Choose region</h4>
-</header>
-
-<ul class="row mt-4">
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/CN.png') }}"> <span>China</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/DE.png') }}"> <span>Germany</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/AU.png') }}"> <span>Australia</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/RU.png') }}"> <span>Russia</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/IN.png') }}"> <span>India</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/GB.png') }}"> <span>England</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/TR.png') }}"> <span>Turkey</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <img class="icon-flag-sm" src="{{ asset('frontend/cssfiles/images/icons/flags/UZ.png') }}"> <span>Uzbekistan</span> </a></li>
-	<li class="col-md col-6"><a href="#" class="icontext"> <i class="mr-3 fa fa-ellipsis-h"></i> <span>More regions</span> </a></li>
-</ul>
-</section>
-<!-- =============== SECTION REGION .//END =============== -->
 
 <article class="my-4">
 	<img src="{{ asset('frontend/cssfiles/images/banners/ad-sm.png') }}" class="w-100">

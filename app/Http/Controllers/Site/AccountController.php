@@ -99,9 +99,10 @@ class AccountController extends Controller
         $request->profile_image = $filePath;
         //dd($filePath);
         $input = $request->all();
+        $input['profile_image'] = $filePath;
         //dd($input);
         $user->fill($input)->save();
-        return redirect()->back()->with('success', 'Your user was updated successfully!');
+        return redirect()->back()->with('success', 'Your user data was updated successfully!');
     }
 
     public function storeAddress(Request $request)
@@ -172,12 +173,16 @@ class AccountController extends Controller
     {
         //dd($id);
         $activeAddresss = UserAddress::where('default_address', 1)->where('user_id', auth()->user()->id)->first();
-        //dd($activeAddresss->toArray());
 
-        $setAddressData0 = array([
-            'default_address' => 0
-        ]);
-        $activeAddresss->update(['default_address' => 0]);
+        if($activeAddresss != null){
+            
+            //dd($activeAddresss->toArray());
+
+            $setAddressData0 = array([
+                'default_address' => 0
+            ]);
+            $activeAddresss->update(['default_address' => 0]);
+        }
 
         $setAddressData1 = array([
             'default_address' => 1
@@ -187,5 +192,18 @@ class AccountController extends Controller
 
         //dd($changed);
         return redirect()->back()->with('success', 'New Shipping Address set successfully!');
+    }
+
+    public function clearAddressDefault()
+    {
+        $activeAddresss = UserAddress::where('default_address', 1)->where('user_id', auth()->user()->id)->first();
+        if($activeAddresss != null)
+        {
+            $activeAddresss->update(['default_address' => 0]);
+            return redirect()->back()->with('success', 'Shipping Address removed successfully!');
+        }
+        
+        return redirect()->back();
+
     }
 }

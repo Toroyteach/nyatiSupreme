@@ -3,7 +3,7 @@
 
 Welcome to Nyati Supreme Delivery where we get you good stuff
 
-@component('mail::button', ['url' => 'google.com'])
+@component('mail::button', ['url' => 'nyatisupreme.co.ke'])
 OPEN WEBSITE
 @endcomponent
 

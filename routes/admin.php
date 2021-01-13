@@ -27,6 +27,7 @@ Route::group(['prefix'  =>  'admin'], function () {
 
         Route::get('/settings', 'Admin\SettingController@index')->name('admin.settings');
         Route::post('/settings', 'Admin\SettingController@update')->name('admin.settings.update');
+        Route::post('/settings/user', 'Admin\SettingController@updateUser')->name('admin.settings.user.update');
 
         Route::group(['prefix'  =>   'categories'], function() {
 

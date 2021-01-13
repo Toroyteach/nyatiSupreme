@@ -5,8 +5,10 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use App\Models\Product;
+use DB;
 use App\Models\ProductAttribute;
+use App\Events\LowCount;
+
 
 class cronLowProductNotification extends Command
 {
@@ -15,14 +17,14 @@ class cronLowProductNotification extends Command
      *
      * @var string
      */
-    protected $signature = 'notify:email';
+    protected $signature = 'notify:product';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send low product count notification cron';
+    protected $description = 'Send low product count notification to admin';
 
     public $productArrayData = [];
 
@@ -53,25 +55,37 @@ class cronLowProductNotification extends Command
      *  */
     public function init()
     {
-        $dataItems = $this->getProductDetails();
+        $lowProductItems = null; //$this->getProductDetails();
 
-        $filtered = Arr::where($dataItems, function ($value, $key) {
-            return is_string($value);
-        });
+        //fire the event here
+        event(new LowCount($lowProductItems));
+
     }
 
     public function getProductDetails()
     {
-        $products = Product::all();
-        //$productArrayData = [];
+        $lowProductArrayData = array();
 
-        foreach ($products as $product)
-         {
-            $this->productArrayData[] = $product->only(['name', 'quantity']);
-         }
 
-         dd($this->productArrayData);
+        $productsWithoutAttributes = DB::table("products")->select('id', 'name', 'quantity')->whereNotIn('id',function($query) {
 
-         return $this->productArrayData;
+            $query->select('product_id')->from('product_attributes');
+         
+         })->whereRaw('low_quantity_count > quantity')->get();
+         
+
+         $productswithAttributes = ProductAttribute::select('product_id','value','name','product_attributes.quantity')->join('products', 'product_attributes.product_id', '=', 'products.id')->where('low_attribute_quantity_count', '>', 'quantity')->get();
+         //dd($productsWithoutAttributes);
+
+         //dd($productsWithoutAttributes->where('low_quantity_count', '>', 'quantity')->toArray());
+
+         //$lowProductArrayData = Arr::only($productsWithoutAttributes->toArray(), 'id');
+
+         array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
+
+         //dd($lowProductArrayData);
+         $collapsed = Arr::flatten($lowProductArrayData);
+         //dd($lowProductArrayData);
+         return $lowProductArrayData;
     }
 }

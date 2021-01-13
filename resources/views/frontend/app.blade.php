@@ -14,6 +14,7 @@
 <meta name="description" content="Nyati Supreme Construction Materials Ecommerce">
 <meta name="keywords" content="Online shop kenya, shop, Construction, cabros, blocks, pave blocks">
 
+<link href="{{ asset('assets/style.css') }}" rel="stylesheet" type="text/css">
 
 <link href="{{ asset('frontend/cssfiles/images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
 
@@ -35,6 +36,7 @@
 <script src="{{ asset('frontend/cssfiles/js/script.js?v=2.0') }}" type="text/javascript"></script>
 
 <script src="{{ asset('vendor/kustomer/js/kustomer.js') }}" defer></script>
+
 </head>
 <body>
 @include('frontend.partials.header')

@@ -1,8 +1,10 @@
 @component('mail::message')
-# Greetings {{ $orderData['first_name']}}
+# Greetings
 
-We would like to inform you that your order status 
-has changed to {{ $orderData['status']}}
+The following products have critical low count.
+Please take action!!
+
+{{$mailData}}
 
 @component('mail::button', ['url' => 'nyatisupreme.co.ke'])
 OPEN WEBSITE

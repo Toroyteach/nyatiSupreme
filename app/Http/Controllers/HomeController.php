@@ -25,4 +25,19 @@ class HomeController extends Controller
     {
         return view('frontend.pages.homepage');
     }
+
+    public function shop()
+    {
+        return view('frontend.pages.productlist');
+    }
+
+    public function about()
+    {
+        return view('frontend.pages.about');
+    }
+
+    public function contact()
+    {
+        return view('frontend.pages.contact');
+    }
 }

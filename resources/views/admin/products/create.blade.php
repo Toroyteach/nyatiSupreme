@@ -121,6 +121,22 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label class="control-label" for="lowquantity">Low Qunantity Alert</label>
+                                            <input
+                                                class="form-control @error('low_quantity_count') is-invalid @enderror"
+                                                type="number"
+                                                placeholder="Enter product Low quantity alert"
+                                                id="low_quantity_count"
+                                                name="low_quantity_count"
+                                                value="{{ old('low_quantity_count') }}"
+                                            />
+                                            <div class="invalid-feedback active">
+                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('low_quantity_count') <span>{{ $message }}</span> @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
                                             <label class="control-label" for="weight">Weight</label>
                                             <input
                                                 class="form-control"

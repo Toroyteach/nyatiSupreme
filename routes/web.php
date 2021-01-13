@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('account/address/update/{id}', 'Site\AccountController@updateAddress')->name('account.address.update');
     Route::get('account/address/delete/{id}', 'Site\AccountController@deleteAddress')->name('account.address.delete');
     Route::get('account/address/default/{id}', 'Site\AccountController@makeAddressDefault')->name('account.address.default');
+    Route::get('account/address/clear', 'Site\AccountController@clearAddressDefault')->name('account.address.clear');
 
     Route::get('account/orders', 'Site\AccountController@getOrders')->name('account.orders');
     Route::get('account/wishlist', 'Site\AccountController@getWishlist')->name('account.wishlist');

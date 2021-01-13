@@ -16,6 +16,7 @@ class CreateProductAttributesTable extends Migration
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quantity');
+            $table->integer('low_attribute_quantity_count');
             $table->decimal('price')->nullable();
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');

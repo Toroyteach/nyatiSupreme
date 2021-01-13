@@ -2,9 +2,9 @@
 <section class="header-main border-bottom">
 	<div class="container">
 <div class="row align-items-center">
-	<div class="col-lg-3 col-sm-4 col-md-4 col-5">
+	<div class="col-lg-3 col-sm-4 col-md-4 col-5" id="logo">
 	<a href="http://bootstrap-ecommerce.com" class="brand-wrap">
-		<img class="logo" src="{{ asset('frontend/cssfiles/images/logo.png') }}">
+		<img class="logo" style="" src="{{ asset('frontend/cssfiles/images/nyati_logo_png.png') }}">
 	</a> <!-- brand-wrap.// -->
 	</div>
 	<div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
@@ -23,15 +23,6 @@
 		<div class="widgets-wrap d-flex justify-content-end">
 			<div class="widget-header">
 				<a href="#" class="ml-4 icontext">
-					<div class="icon"><i class="text-primary fa fa-lg fa-heart"></i></div>
-					<div class="text">
-						<small class="text-muted">Favorites</small> 
-						<div>0 item</div>
-					</div>
-				</a>
-			</div> <!-- widget .// -->
-			<div class="widget-header">
-				<a href="#" class="ml-4 icontext">
 					<div class="icon"><i class="text-primary fa fa-lg fa-shopping-cart"></i></div>
 					<div class="text">
 						<small class="text-muted">Cart</small> 
@@ -41,9 +32,13 @@
 			</div> <!-- widget .// -->
 			<div class="widget-header dropdown">
 				<a href="#" class="ml-4 icontext" data-toggle="dropdown" data-offset="20,10">
-					<div class="icon"><i class="text-primary fa fa-lg fa-user"></i></div>
+
+				@auth
+					<div class="icon"><img class="icon icon-xs rounded-circle" src="{{ asset('storage/' . Auth::user()->profile_image) }}"></div>
+				@endauth
+
 					<div class="text"> 
-						<small class="text-muted">Hello.</small> 
+						<small class="text-muted">Hello. </small> 
 
 						<div>Account<i class="fa fa-caret-down"></i></div>
 

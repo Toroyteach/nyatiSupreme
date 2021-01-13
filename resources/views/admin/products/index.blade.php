@@ -46,8 +46,8 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group" role="group" aria-label="Second group">
-                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
-                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Product"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Edit Product"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

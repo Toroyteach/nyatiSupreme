@@ -6,7 +6,7 @@ and place with the order id {{ $orderData['order_number']}}
 
 and a grand total of ksh{{$orderData['grand_total']}}
 
-@component('mail::button', ['url' => 'google.com'])
+@component('mail::button', ['url' => 'nyatisupreme.co.ke'])
 OPEN WEBSITE
 @endcomponent
 

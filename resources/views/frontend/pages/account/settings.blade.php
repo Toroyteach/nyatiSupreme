@@ -78,9 +78,12 @@
      	</div> <!-- col.// -->
      	<div class="col-md">
 
-			 <img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="img-md rounded-circle border">
-
-			 <img src="{{ asset('storage/'.$userDetails->profile_image) }}" class="img-md rounded-circle border" alt="img">
+		 @if ($userDetails->profile_image != null)
+			<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="img-md rounded-circle border" alt="img">
+			@elseif (count($records) > 1)
+			<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="img-md rounded-circle border">
+			@else
+		@endif
 
      	</div>  <!-- col.// -->
       </form>

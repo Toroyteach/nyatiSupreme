@@ -42,6 +42,13 @@
                         <small class="text-danger">This price will be added to the main price of product on frontend.</small>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="price">Low Quantity Alert</label>
+                        <input class="form-control" type="number" id="lowquanity" v-model="lowQuantity"/>
+                        <small class="text-danger">This price will be used to notify low county.</small>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <button class="btn btn-sm btn-primary" @click="addProductAttribute()">
                         <i class="fa fa-plus"></i> Add
@@ -58,6 +65,7 @@
                         <tr class="text-center">
                             <th>Value</th>
                             <th>Qty</th>
+                            <th>Low Qty</th>
                             <th>Price</th>
                             <th>Action</th>
                         </tr>
@@ -66,6 +74,7 @@
                         <tr v-for="pa in productAttributes">
                             <td style="width: 25%" class="text-center">{{ pa.value}}</td>
                             <td style="width: 25%" class="text-center">{{ pa.quantity}}</td>
+                            <td style="width: 25%" class="text-center">{{ pa.lowquantity}}</td>
                             <td style="width: 25%" class="text-center">{{ pa.price}}</td>
                             <td style="width: 25%" class="text-center">
                                 <button class="btn btn-sm btn-danger" @click="deleteProductAttribute(pa)">
@@ -98,6 +107,7 @@
                 currentValue: '',
                 currentQty: '',
                 currentPrice: '',
+                lowQuantity: '',
             }
         },
         created: function() {
@@ -140,9 +150,10 @@
                 this.currentValue = value.value;
                 this.currentQty = value.quantity;
                 this.currentPrice = value.price;
+                this.lowQuantity = value.lowQuantity
             },
             addProductAttribute() {
-                if (this.currentQty === null || this.currentPrice === null) {
+                if (this.currentQty === null || this.currentPrice === null || this.lowQuantity === null) {
                     this.$swal("Error, Some values are missing.", {
                         icon: "error",
                     });
@@ -153,6 +164,7 @@
                         value:  this.currentValue,
                         quantity: this.currentQty,
                         price: this.currentPrice,
+                        low_quantity_count: 10,
                         product_id: this.productid,
                     };
 
@@ -165,6 +177,7 @@
                         _this.currentValue = '';
                         _this.currentQty = '';
                         _this.currentPrice = '';
+                        _this.lowQuantity = '';
                         _this.valueSelected = false;
                     }).catch(function (error) {
                         console.log(error);

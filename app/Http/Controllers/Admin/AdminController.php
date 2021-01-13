@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductAttribute;
 use DB;
 use Hash;
 use Auth;
@@ -16,10 +17,11 @@ use Illuminate\Support\Arr;
 use Carbon\Carbon;
 use Mydnic\Kustomer\Feedback;
 use Illuminate\Support\Facades\Storage;
+use App\Events\LowCount;
 
 class AdminController extends Controller
 {
-        //private $productArrayData = array();
+
     public function showdashboard()
     {
         // $products = Product::all();
@@ -42,6 +44,35 @@ class AdminController extends Controller
 
         // $lowProductArray = $this->getProductName($filtered);
         // dd($lowProductArray);
+
+        // Product::select(*)->whereNotIn('book_price', [100,200])->get();
+        // DB::table(..)->select(..)->whereNotIn('book_price', [100,200])->get();
+        // SELECT p.id FROM products p where p.id NOT IN( SELECT a.product_id FROM product_attributes a)
+        $lowProductArrayData = array();
+
+
+        $productsWithoutAttributes = DB::table("products")->select('id', 'name', 'quantity')->whereNotIn('id',function($query) {
+
+            $query->select('product_id')->from('product_attributes');
+         
+         })->whereRaw('low_quantity_count > quantity')->get();
+         
+
+         $productswithAttributes = ProductAttribute::select('product_id','value','name','product_attributes.quantity')->join('products', 'product_attributes.product_id', '=', 'products.id')->where('low_attribute_quantity_count', '>', 'quantity')->get();
+         //dd($productsWithoutAttributes);
+
+         //dd($productsWithoutAttributes->where('low_quantity_count', '>', 'quantity')->toArray());
+
+         //$lowProductArrayData = Arr::only($productsWithoutAttributes->toArray(), 'id');
+
+         array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
+
+         //dd($lowProductArrayData);
+         $collapsed = Arr::flatten($lowProductArrayData);
+         //dd(json_encode($lowProductArrayData));
+         //event(new LowCount($lowProductArrayData));
+         //dd('sent');
+
 
         $chartjs = $this->getGraphData('DailySalesLineGraph');
         $chartjs2 = $this->getGraphData('TopSellerBarGraph');
