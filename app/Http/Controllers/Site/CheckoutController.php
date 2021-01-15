@@ -38,6 +38,7 @@ class CheckoutController extends Controller
 
     public function placeOrder(Request $request)
     {
+        //dd($request->all());
         // Before storing the order we should implement the
         // request validation which I leave it to you
         $testdata = array(
@@ -49,11 +50,12 @@ class CheckoutController extends Controller
             "post_code" => "020-1094",
             "phone_number" => "0710516288",
             "notes" => "i want this delivery",
-            "email" => "email@email.com"
+            "email" => "email@email.com",
+            "payment_method" => "mpesa"
           );
 
         //$order = $this->orderRepository->storeOrderDetails($request->all());
-        $order = $this->orderRepository->storeOrderDetails($testdata);
+        $order = $this->orderRepository->storeOrderDetails($request->all());
 
         // You can add more control here to handle if the order is not stored properly
         if ($order) {

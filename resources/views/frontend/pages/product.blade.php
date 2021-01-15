@@ -115,13 +115,13 @@
                                                         @if ($attributeCheck)
 
                                                             <dd>
-                                                                <select class="form-control option" style="width:180px;" name="{{ strtolower($attribute->name ) }}">
+                                                                <select class="form-control option" style="width:180px;" id="" name="{{ strtolower($attribute->name ) }}">
                                                                     <option data-price="0" value="0"> Select a {{ $attribute->name }}</option>
                                                                     @foreach($product->attributes as $attributeValue)
                                                                         @if ($attributeValue->attribute_id == $attribute->id)
                                                                             <option
                                                                                 data-price="{{ $attributeValue->price }}"
-                                                                                value="{{ $attributeValue->value }}"> {{ ucwords($attributeValue->value . ' +'. $attributeValue->price) }}
+                                                                                value="{{ $attributeValue->value }}"> {{ ucwords($attributeValue->value . ' + '. $attributeValue->price) }}
                                                                             </option>
                                                                         @endif
                                                                     @endforeach
@@ -288,12 +288,13 @@
 
 @stop
 @push('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
         $(document).ready(function () {
             $('#addToCart').submit(function (e) {
                 if ($('.option').val() == 0) {
                     e.preventDefault();
-                    alert('Please select an option');
+                    swal("Please choose Attribute");
                 }
             });
             $('.option').change(function () {

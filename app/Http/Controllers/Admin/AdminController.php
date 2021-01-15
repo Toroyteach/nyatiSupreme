@@ -51,25 +51,39 @@ class AdminController extends Controller
         $lowProductArrayData = array();
 
 
-        $productsWithoutAttributes = DB::table("products")->select('id', 'name', 'quantity')->whereNotIn('id',function($query) {
+        $productsWithoutAttributes = DB::table("products")
+        ->select('id', 'name', 'quantity')
+        ->whereNotIn('id',function($query) {
 
             $query->select('product_id')->from('product_attributes');
          
          })->whereRaw('low_quantity_count > quantity')->get();
-         
 
-         //$productswithAttributes = ProductAttribute::select('product_id','value','name','product_attributes.quantity')->join('products', 'product_attributes.product_id', '=', 'products.id')->where('quantity', '<', 21)->get();
+        dd($productsWithoutAttributes->toArray());
+         
+        $productswithAttributes = DB::table("product_attributes")
+            ->select('product_id','value','name','product_attributes.quantity')
+            ->join('products', 'product_attributes.product_id', '=', 'products.id')
+            ->whereRaw('product_attributes.low_attribute_quantity_count > product_attributes.quantity')
+            ->get();
+         
+         
+        //  $productswithAttributes = ProductAttribute::select('product_id','value','name')
+        //  ->join('products', 'product_attributes.product_id', '=', 'products.id')
+        //  ->where('product_attributes.low_attribute_quantity_count', '>', 'product_attributes.quantity')
+        //  ->get();
+
          //dd($productswithAttributes->toArray());
 
-         //dd($productsWithoutAttributes->where('low_quantity_count', '>', 'quantity')->toArray());
+         //dd($productsWithoutAttributes);
 
          //$lowProductArrayData = Arr::only($productsWithoutAttributes->toArray(), 'id');
 
-         //array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
+         array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
 
          //dd($lowProductArrayData);
          //$collapsed = Arr::flatten($lowProductArrayData);
-         //dd($lowProductArrayData);
+         dd($lowProductArrayData);
          //event(new LowCount($lowProductArrayData));
          //dd('sent');
 

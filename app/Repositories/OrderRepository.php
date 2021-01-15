@@ -5,6 +5,7 @@ namespace App\Repositories;
 use Cart;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\ProductAttribute;
 use App\Models\OrderItem;
 use App\Contracts\OrderContract;
 use App\Models\User;
@@ -22,7 +23,9 @@ class OrderRepository extends BaseRepository implements OrderContract
     {
         $shippingAddress = UserAddress::where('user_id', auth()->user()->id)->where('default_address', 1)->get();
 
-        dd(Cart::getContent());
+        //dd(Cart::getContent());
+
+        //$updateDB = $this->updateDd();
 
         if($shippingAddress->isEmpty())
         {
@@ -36,14 +39,14 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'grand_total'       =>  Cart::getSubTotal(),
                 'item_count'        =>  Cart::getTotalQuantity(),
                 'payment_status'    =>  0,
-                'payment_method'    =>  null,
+                'payment_method'    =>  $params['payment_method'],
                 'first_name'        =>  $params['first_name'],
                 'last_name'         =>  $params['last_name'],
                 'address'           =>  $params['address'], //decide here about which address delivery to use
                 'city'              =>  $params['city'],
-                'country'           =>  $params['county'],
+                'country'           =>  $params['country'],
                 'post_code'         =>  $params['post_code'],
-                'phone_number'      =>  $params['phone_number'],
+                'phone_number'      =>  auth()->user()->phonenumber,
                 'notes'             =>  $params['notes']
             ]);
 
@@ -75,25 +78,42 @@ class OrderRepository extends BaseRepository implements OrderContract
         if ($order) {
 
             $items = Cart::getContent();
+            //dd($items);
 
 
             foreach ($items as $item)
             {
                 // A better way will be to bring the product id with the cart items
                 // you can explore the package documentation to send product id with the cart
-                $product = Product::where('name', $item->name)->first();
+                if($item->attributes->size == null){
+
+                    Product::where('id', $item->attributes->productId)->decrement('quantity', $item->quantity);
+
+                }
+
+                $product = Product::where('id', $item->attributes->productId)->first();
+                //dd($item->quantity);
+                $productAttribute = ProductAttribute::where('product_id', $item->attributes->productId)->where('value', $item->attributes->size)->decrement('quantity', $item->quantity);
 
                 $orderItem = new OrderItem([
                     'product_id'    =>  $product->id,
                     'quantity'      =>  $item->quantity,
-                    'price'         =>  $item->getPriceSum()
+                    'price'         =>  $item->getPriceSum(),
+                    'attribute'     =>  $item->attributes->size
                 ]);
 
                 $order->items()->save($orderItem);
             }
-        }
 
+
+        }
+            //dd('finished');
         return $order;
+    }
+
+    public function updateDb()
+    {
+
     }
 
     public function listOrders(string $order = 'id', string $sort = 'asc', array $columns = ['*'])

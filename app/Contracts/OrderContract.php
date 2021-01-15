@@ -13,4 +13,6 @@ interface OrderContract
     public function updateOrderStatus(array $params);
 
     public function getDiscount();
+
+    public function updateDb();
 }
