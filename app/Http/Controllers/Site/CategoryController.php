@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Contracts\CategoryContract;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -15,10 +16,11 @@ class CategoryController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function show($slug)
+    public function show()
     {
-        $category = $this->categoryRepository->findBySlug($slug);
+        //$category = $this->categoryRepository->findBySlug($slug);
+        $cats = Category::orderByRaw('-name ASC')->get()->nest();
 
-        return view('site.pages.category', compact('category'));
+        return view('frontend.pages.category', compact('cats'));
     }
 }

@@ -2232,6 +2232,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "product-attributes",
   props: ['productid'],
@@ -2248,7 +2254,8 @@ __webpack_require__.r(__webpack_exports__);
       currentValue: '',
       currentQty: '',
       currentPrice: '',
-      lowQuantity: ''
+      lowQuantity: '',
+      itemDescription: ''
     };
   },
   created: function created() {
@@ -2294,40 +2301,56 @@ __webpack_require__.r(__webpack_exports__);
       this.currentValue = value.value;
       this.currentQty = value.quantity;
       this.currentPrice = value.price;
-      this.lowQuantity = value.lowQuantity;
+      this.lowQuantity = value.low_attribute_quantity_count;
+      this.itemDescription = value.description;
     },
     addProductAttribute: function addProductAttribute() {
-      if (this.currentQty === null || this.currentPrice === null || this.lowQuantity === null) {
-        this.$swal("Error, Some values are missing.", {
+      if (this.currentQty == null && this.currentPrice == null) {
+        this.$swal("Error, Please fill in all values correctly.", {
           icon: "error"
         });
       } else {
-        var _this = this;
-
-        var data = {
-          attribute_id: this.currentAttributeId,
-          value: this.currentValue,
-          quantity: this.currentQty,
-          price: this.currentPrice,
-          low_quantity_count: 10,
-          product_id: this.productid
-        };
-        axios.post('/admin/products/attributes/add', {
-          data: data
-        }).then(function (response) {
-          _this.$swal("Success! " + response.data.message, {
-            icon: "success"
+        if (this.lowQuantity == null) {
+          this.$swal("Error, Please fill in all values correctly.", {
+            icon: "error"
           });
+        } else {
+          if (this.lowQuantity >= this.currentQty) {
+            this.$swal("Error, Please fill correct values for low quantity count.", {
+              icon: "error"
+            });
+          } else {
+            var _this = this;
 
-          _this.currentValue = '';
-          _this.currentQty = '';
-          _this.currentPrice = '';
-          _this.lowQuantity = '';
-          _this.valueSelected = false;
-        })["catch"](function (error) {
-          console.log(error);
-        });
-        this.loadProductAttributes(this.productid);
+            var data = {
+              attribute_id: this.currentAttributeId,
+              value: this.currentValue,
+              quantity: this.currentQty,
+              price: this.currentPrice,
+              low_attribute_quantity_count: this.lowQuantity,
+              product_id: this.productid,
+              description: this.itemDescription
+            }; //console.log(data);
+
+            axios.post('/admin/products/attributes/add', {
+              data: data
+            }).then(function (response) {
+              _this.$swal("Success! " + response.data.message, {
+                icon: "success"
+              });
+
+              _this.currentValue = '';
+              _this.currentQty = '';
+              _this.currentPrice = '';
+              _this.lowQuantity = '';
+              _this.itemDescription = '';
+              _this.valueSelected = false;
+            })["catch"](function (error) {
+              console.log(error);
+            });
+            this.loadProductAttributes(this.productid);
+          }
+        }
       }
     },
     deleteProductAttribute: function deleteProductAttribute(pa) {
@@ -20494,7 +20517,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "number", id: "lowquanity" },
+                      attrs: {
+                        type: "number",
+                        placeholder: "lower than Qty",
+                        id: "low_attribute_quantity_count"
+                      },
                       domProps: { value: _vm.lowQuantity },
                       on: {
                         input: function($event) {
@@ -20507,8 +20534,44 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("small", { staticClass: "text-danger" }, [
-                      _vm._v("This price will be used to notify low county.")
+                      _vm._v("This price will be used to notify on low county.")
                     ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "control-label", attrs: { for: "price" } },
+                      [_vm._v("Description")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.itemDescription,
+                          expression: "itemDescription"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Small description",
+                        id: "description"
+                      },
+                      domProps: { value: _vm.itemDescription },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.itemDescription = $event.target.value
+                        }
+                      }
+                    })
                   ])
                 ]),
                 _vm._v(" "),
@@ -20570,7 +20633,7 @@ var render = function() {
                       staticClass: "text-center",
                       staticStyle: { width: "25%" }
                     },
-                    [_vm._v(_vm._s(pa.lowquantity))]
+                    [_vm._v(_vm._s(pa.low_attribute_quantity_count))]
                   ),
                   _vm._v(" "),
                   _c(
@@ -33487,7 +33550,7 @@ if (token) {
 Vue.use(vue_swal__WEBPACK_IMPORTED_MODULE_0___default.a); //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('attribute-values', __webpack_require__(/*! ./components/AttributeValues.vue */ "./resources/js/components/AttributeValues.vue")["default"]);
-Vue.component('product-attributes', __webpack_require__(/*! ./components/ProductAttributes */ "./resources/js/components/ProductAttributes.vue")["default"]); //Vue.component('datatable-component', require('./components/DataTableComponent').default);
+Vue.component('product-attributes', __webpack_require__(/*! ./components/ProductAttributes.vue */ "./resources/js/components/ProductAttributes.vue")["default"]); //Vue.component('datatable-component', require('./components/DataTableComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

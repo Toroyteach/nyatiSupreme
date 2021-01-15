@@ -4,70 +4,84 @@
     <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 <div class="container" style="max-width: 720px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    @if (Session::has('error'))
+                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
+                    @endif
+                </div>
+            </div>
 
 <div class="card mb-4">
       <div class="card-body">
-      <h4 class="card-title mb-3">Delivery info</h4>
-
+      <h4 class="card-title mb-3">Delivery information</h4>
+		
+		<br>
+		<h5 class="title">Payment Option</h5>
 	  <div class="form-row">
 			<div class="form-group col-sm-6">
 				<label class="js-check box active">
-					<input type="radio" name="dostavka" value="option1" checked>
-					<h6 class="title">Standart delivery</h6>
-					<p class="text-muted">Free by airline within 20 days</p>
+					<input type="radio" name="paymentOption" value="option1" checked>
+					<h6 class="title">Mpesa</h6>
 				</label> <!-- js-check.// -->
 			</div>
 			<div class="form-group col-sm-6">
 				<label class="js-check box">
-					<input type="radio" name="dostavka" value="option1">
-					<h6 class="title">Fast delivery</h6>
-					<p class="text-muted">Extra 20$ will be charged </p>
+					<input type="radio" name="paymentOption" value="option1">
+					<h6 class="title">Credit Card</h6>
 				</label> <!-- js-check.// -->
 			</div>
 		</div> <!-- form row.// -->
 
+		<br>
+		<h5 class="title">Confirm Details</h5>
 	<div class="form-row">
 		<div class="col form-group">
 			<label>First name</label>
-		  	<input type="text" class="form-control" placeholder="">
+		  	<input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{Auth::user()->first_name}}" required>
 		</div> <!-- form-group end.// -->
 		<div class="col form-group">
 			<label>Last name</label>
-		  	<input type="text" class="form-control" placeholder="">
+		  	<input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{Auth::user()->last_name}}" required>
 		</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
 	<div class="form-row">
 		<div class="col form-group">
 			<label>Email</label>
-		  	<input type="email" class="form-control" placeholder="">
+		  	<input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{Auth::user()->email}}" required disabled>
 		</div> <!-- form-group end.// -->
 		<div class="col form-group">
 			<label>Phone</label>
-		  	<input type="text" class="form-control" placeholder="">
+		  	<input type="number" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{Auth::user()->phonenumber}}" required disabled>
 		</div> <!-- form-group end.// -->
 	</div> <!-- form-row end.// -->
 
 	<div class="form-row">
 		<div class="form-group col-md-6">
+		  <label>Address</label>
+		  <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" value="{{Auth::user()->address}}" required>
+		</div> <!-- form-group end.// -->
+		<div class="form-group col-md-6">
+		  <label>Post Code</label>
+		  <input type="text" name="post_code" class="form-control @error('post_code') is-invalid @enderror" value="{{Auth::user()->post_code}}" required>
+		</div> <!-- form-group end.// -->
+	</div> <!-- form-row.// -->
+
+	<div class="form-row">
+		<div class="form-group col-md-6">
 		  <label>Country</label>
-		  <select id="inputState" class="form-control">
-		    <option> Choose...</option>
-		      <option>Uzbekistan</option>
-		      <option>Russia</option>
-		      <option selected="">United States</option>
-		      <option>India</option>
-		      <option>Afganistan</option>
-		  </select>
+		  <input type="text" name="country" class="form-control @error('country') is-invalid @enderror" value="{{Auth::user()->country}}" required>
 		</div> <!-- form-group end.// -->
 		<div class="form-group col-md-6">
 		  <label>City</label>
-		  <input type="text" class="form-control">
+		  <input type="text" name="city" class="form-control @error('city') is-invalid @enderror" value="{{Auth::user()->city}}" required>
 		</div> <!-- form-group end.// -->
 	</div> <!-- form-row.// -->
+
 	<div class="form-group">
-		<label>Adress</label>
-       <textarea class="form-control" rows="2"></textarea>
+		<label>Shipping Notes</label>
+       <textarea class="form-control" rows="2" name="notes"></textarea>
     </div> <!-- form-group// -->  
 
       </div> <!-- card-body.// -->
@@ -77,7 +91,7 @@
 		<div class="card mb-4">
       <div class="card-body">
       <h4 class="card-title mb-4">Payment</h4>
-      <form role="form" style="max-width:380px;">
+
 			<div class="form-group">
 			<label for="username">Name on card</label>
 			<input type="text" class="form-control" name="username" placeholder="Ex. John Smith" required="">

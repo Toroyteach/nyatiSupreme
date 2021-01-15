@@ -32,6 +32,9 @@
 <link href="{{ asset('frontend/cssfiles/css/ui.css?v=2.0') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('frontend/cssfiles/css/responsive.css?v=2.0') }}" rel="stylesheet" type="text/css" />
 
+<!-- fancy box -->
+<link href="{{ asset('frontend/cssfiles/plugins/fancybox/fancybox.min.css') }}" rel="stylesheet" type="text/css"/>
+
 <!-- custom javascript -->
 <script src="{{ asset('frontend/cssfiles/js/script.js?v=2.0') }}" type="text/javascript"></script>
 
@@ -45,5 +48,6 @@
 @yield('content')
 @include('frontend.partials.footer')
 
+@include('frontend.partials.scripts')
 </body>
 </html>

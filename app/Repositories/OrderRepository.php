@@ -22,6 +22,8 @@ class OrderRepository extends BaseRepository implements OrderContract
     {
         $shippingAddress = UserAddress::where('user_id', auth()->user()->id)->where('default_address', 1)->get();
 
+        dd(Cart::getContent());
+
         if($shippingAddress->isEmpty())
         {
             // dd($shippingAddress);

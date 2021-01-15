@@ -33,7 +33,7 @@ class CheckoutController extends Controller
 
     public function getCheckout()
     {
-        return view('site.pages.checkout');
+        return view('frontend.pages.checkout');
     }
 
     public function placeOrder(Request $request)
@@ -82,7 +82,7 @@ class CheckoutController extends Controller
             // $when = Carbon::now()->addSecond(10);
             // Notification::send($userSchema, (new newOrderNotification($orderData))->delay($when));
             //dd('died here last');
-            return view('site.pages.success', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+            return view('frontend.pages.success', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
         }
 
         return redirect()->back()->with('error','Order not placed!!');
@@ -125,6 +125,6 @@ class CheckoutController extends Controller
         //\Notification::send($users, (new DealPublished($deal))->delay($when));    
 
         Cart::clear();
-        return view('site.pages.success', compact('order'));
+        return view('frontend.pages.success', compact('order'));
     }
 }

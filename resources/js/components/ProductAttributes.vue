@@ -45,8 +45,14 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label" for="price">Low Quantity Alert</label>
-                        <input class="form-control" type="number" id="lowquanity" v-model="lowQuantity"/>
-                        <small class="text-danger">This price will be used to notify low county.</small>
+                        <input class="form-control" type="number" placeholder="lower than Qty" id="low_attribute_quantity_count" v-model="lowQuantity"/>
+                        <small class="text-danger">This price will be used to notify on low county.</small>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label" for="price">Description</label>
+                        <input class="form-control" type="text" placeholder="Small description" id="description" v-model="itemDescription"/>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -74,7 +80,7 @@
                         <tr v-for="pa in productAttributes">
                             <td style="width: 25%" class="text-center">{{ pa.value}}</td>
                             <td style="width: 25%" class="text-center">{{ pa.quantity}}</td>
-                            <td style="width: 25%" class="text-center">{{ pa.lowquantity}}</td>
+                            <td style="width: 25%" class="text-center">{{ pa.low_attribute_quantity_count}}</td>
                             <td style="width: 25%" class="text-center">{{ pa.price}}</td>
                             <td style="width: 25%" class="text-center">
                                 <button class="btn btn-sm btn-danger" @click="deleteProductAttribute(pa)">
@@ -108,6 +114,7 @@
                 currentQty: '',
                 currentPrice: '',
                 lowQuantity: '',
+                itemDescription: '',
             }
         },
         created: function() {
@@ -150,40 +157,66 @@
                 this.currentValue = value.value;
                 this.currentQty = value.quantity;
                 this.currentPrice = value.price;
-                this.lowQuantity = value.lowQuantity
+                this.lowQuantity = value.low_attribute_quantity_count;
+                this.itemDescription = value.description;
             },
             addProductAttribute() {
-                if (this.currentQty === null || this.currentPrice === null || this.lowQuantity === null) {
-                    this.$swal("Error, Some values are missing.", {
-                        icon: "error",
-                    });
-                } else {
-                    let _this = this;
-                    let data = {
-                        attribute_id: this.currentAttributeId,
-                        value:  this.currentValue,
-                        quantity: this.currentQty,
-                        price: this.currentPrice,
-                        low_quantity_count: 10,
-                        product_id: this.productid,
-                    };
+                if (this.currentQty == null && this.currentPrice == null) {
 
-                    axios.post('/admin/products/attributes/add', {
-                        data: data
-                    }).then (function(response){
-                        _this.$swal("Success! " + response.data.message, {
-                            icon: "success",
+                        this.$swal("Error, Please fill in all values correctly.", {
+                            icon: "error",
                         });
-                        _this.currentValue = '';
-                        _this.currentQty = '';
-                        _this.currentPrice = '';
-                        _this.lowQuantity = '';
-                        _this.valueSelected = false;
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-                    this.loadProductAttributes(this.productid);
-                }
+
+                } else {
+
+                    if(this.lowQuantity == null){
+                        this.$swal("Error, Please fill in all values correctly.", {
+                            icon: "error",
+                        });
+
+                    } else {
+
+                        if(this.lowQuantity >= this.currentQty){
+                            this.$swal("Error, Please fill correct values for low quantity count.", {
+                                icon: "error",
+                            });
+                        } else {
+                        let _this = this;
+                        let data = {
+                            attribute_id: this.currentAttributeId,
+                            value:  this.currentValue,
+                            quantity: this.currentQty,
+                            price: this.currentPrice,
+                            low_attribute_quantity_count: this.lowQuantity,
+                            product_id: this.productid,
+                            description: this.itemDescription,
+                        };
+
+                        //console.log(data);
+
+                        axios.post('/admin/products/attributes/add', {
+                            data: data
+                        }).then (function(response){
+                            _this.$swal("Success! " + response.data.message, {
+                                icon: "success",
+                            });
+                            _this.currentValue = '';
+                            _this.currentQty = '';
+                            _this.currentPrice = '';
+                            _this.lowQuantity = '';
+                            _this.itemDescription = '';
+                            _this.valueSelected = false;
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                        this.loadProductAttributes(this.productid);
+
+                        }
+
+                    }
+
+
+                    }
             },
             deleteProductAttribute(pa) {
                 let _this = this;
@@ -203,7 +236,7 @@
                                 _this.$swal("Success! Product attribute has been deleted!", {
                                     icon: "success",
                                 });
-                                this.loadProductAttributes(this.productid);
+                                 this.loadProductAttributes(this.productid);
                             } else {
                                 _this.$swal("Your Product attribute not deleted!");
                             }

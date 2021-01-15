@@ -25,13 +25,15 @@ class ProductController extends Controller
         $product = $this->productRepository->findProductBySlug($slug);
         $attributes = $this->attributeRepository->listAttributes();
 
-        return view('site.pages.product', compact('product', 'attributes'));
+        return view('frontend.pages.product', compact('product', 'attributes'));
     }
 
     public function addToCart(Request $request)
     {
+        //dd('here');
         $product = $this->productRepository->findProductById($request->input('productId'));
         $options = $request->except('_token', 'productId', 'price', 'qty');
+        //dd($product->toArray());
 
         //$discountConditions = $this->productRepository->getProductCountDiscount();
 
@@ -43,6 +45,7 @@ class ProductController extends Controller
             'attributes' => $options,
             //'conditions' => $discountConditions
         );
+        //dd($arrayParams);
 
         Cart::add($arrayParams);
 

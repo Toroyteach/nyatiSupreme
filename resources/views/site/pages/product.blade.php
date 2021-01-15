@@ -60,7 +60,7 @@
                                         @if ($product->sale_price > 0)
                                             <var class="price h3 text-danger">
                                                 <span class="currency">{{ config('settings.currency_symbol') }}</span><span class="num" id="productPrice">{{ $product->sale_price }}</span>
-                                                <del class="price-old"> {{ config('settings.currency_symbol') }}{{ $product->price }}</del>
+                                                <del class="price-old"> {{ config('settings.currency_symbol') }} {{ $product->price }}</del>
                                             </var>
                                         @else
                                             <var class="price h3 text-success">
@@ -148,6 +148,7 @@
             $('.option').change(function () {
                 $('#productPrice').html("{{ $product->sale_price != '' ? $product->sale_price : $product->price }}");
                 let extraPrice = $(this).find(':selected').data('price');
+                console.log(extraPrice);
                 let price = parseFloat($('#productPrice').html());
                 let finalPrice = (Number(extraPrice) + price).toFixed(2);
                 $('#finalPrice').val(finalPrice);

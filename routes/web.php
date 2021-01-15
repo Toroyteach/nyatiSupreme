@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-Route::view('/', 'site.pages.homepage');
-Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
+Route::view('/', 'frontend.pages.homepage');
+//Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
+Route::get('/category', 'Site\CategoryController@show')->name('category.show');
 Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
 
 Route::post('/product/add/cart', 'Site\ProductController@addToCart')->name('product.add.cart');

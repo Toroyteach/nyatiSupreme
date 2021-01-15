@@ -80,9 +80,8 @@
 
 		 @if ($userDetails->profile_image != null)
 			<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="img-md rounded-circle border" alt="img">
-			@elseif (count($records) > 1)
-			<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="img-md rounded-circle border">
 			@else
+			<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="img-md rounded-circle border">
 		@endif
 
      	</div>  <!-- col.// -->

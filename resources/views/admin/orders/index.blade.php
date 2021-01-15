@@ -58,13 +58,14 @@
     </div>
 @endsection
 @push('scripts')
-    <script src="//cdn.datatables.net/plug-ins/1.10.20/sorting/date-eu.js" type="text/javascript"></script>
+
     <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript">
         //$('#sampleTable').DataTable();
 
         var table = $('#sampleTable').DataTable({
+            "bStateSave" : true,
             "order": [[ 7, "desc" ]], //or asc 
             "columnDefs" : [{"targets":7, "type":"date-eu"}],
         });

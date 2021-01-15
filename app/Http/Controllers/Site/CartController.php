@@ -10,7 +10,7 @@ class CartController extends Controller
 {
     public function getCart()
     {
-        return view('site.pages.cart');
+        return view('frontend.pages.cart');
     }
 
     public function removeItem($id)

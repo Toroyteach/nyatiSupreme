@@ -58,18 +58,18 @@ class AdminController extends Controller
          })->whereRaw('low_quantity_count > quantity')->get();
          
 
-         $productswithAttributes = ProductAttribute::select('product_id','value','name','product_attributes.quantity')->join('products', 'product_attributes.product_id', '=', 'products.id')->where('low_attribute_quantity_count', '>', 'quantity')->get();
-         //dd($productsWithoutAttributes);
+         //$productswithAttributes = ProductAttribute::select('product_id','value','name','product_attributes.quantity')->join('products', 'product_attributes.product_id', '=', 'products.id')->where('quantity', '<', 21)->get();
+         //dd($productswithAttributes->toArray());
 
          //dd($productsWithoutAttributes->where('low_quantity_count', '>', 'quantity')->toArray());
 
          //$lowProductArrayData = Arr::only($productsWithoutAttributes->toArray(), 'id');
 
-         array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
+         //array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
 
          //dd($lowProductArrayData);
-         $collapsed = Arr::flatten($lowProductArrayData);
-         //dd(json_encode($lowProductArrayData));
+         //$collapsed = Arr::flatten($lowProductArrayData);
+         //dd($lowProductArrayData);
          //event(new LowCount($lowProductArrayData));
          //dd('sent');
 

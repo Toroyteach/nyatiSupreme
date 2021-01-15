@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     public function github()
     {
-            //sends users request to gitbuh auth
+            //sends users request to github auth
             return Socialite::driver('github')->redirect();
     }
 
@@ -72,7 +72,7 @@ class LoginController extends Controller
 
     public function facebook()
     {
-            //sends users request to gitbuh auth
+            //sends users request to facebook auth
             return Socialite::driver('facebook')->redirect();
     }
 
@@ -97,7 +97,7 @@ class LoginController extends Controller
 
     public function google()
     {
-            //sends users request to gitbuh auth
+            //sends users request to google auth
             return Socialite::driver('google')->redirect();
     }
 
