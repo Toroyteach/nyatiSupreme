@@ -14,7 +14,7 @@ class LowCount
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $lowCountData = array();
+    public $lowCountData;
 
     /**
      * Create a new event instance.
@@ -25,7 +25,7 @@ class LowCount
     {
         //
         $this->$lowCountData = $lowCountData;
-        dd($lowCountData);
+        //dd($this->$lowCountData);
 
     }
 }

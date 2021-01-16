@@ -1,12 +1,8 @@
-@component('mail::message')
-# Greetings {{ $user }}
+@component('mail::newUser')
 
-Welcome to Nyati Supreme Delivery where we get you good stuff
+@slot('name')
+@endslot
 
-@component('mail::button', ['url' => 'nyatisupreme.co.ke'])
-OPEN WEBSITE
-@endcomponent
-
-Thanks,<br>
-{{ config('app.name') }}
+@slot('url')
+@endslot
 @endcomponent

@@ -54,19 +54,21 @@ class LoginController extends Controller
     public function githubRedirect()
     {
         $user = Socialite::driver('github')->user();
-        dd($user);
+        //dd($user);
         
         $user = User::firstOrCreate([
             'email' => $user->email
         ], [
             'first_name' => $user->name,
-            'last_name' => $user->name,
-            'password' => Hash::make(Str::random(24))
+            'last_name' => $user->nickname,
+            'password' => Hash::make(Str::random(24)),
+            'email' => $user->email,
+            'profile_image' => $user->avatar
         ]);
 
         Auth::login($user, true);
 
-        return redirect('account/orders');
+        return redirect('/home');
 
     }
 
@@ -85,13 +87,15 @@ class LoginController extends Controller
             'email' => $user->email
         ], [
             'first_name' => $user->name,
-            'last_name' => $user->name,
-            'password' => Hash::make(Str::random(24))
+            'last_name' => $user->nickname,
+            'password' => Hash::make(Str::random(24)),
+            'email' => $user->email,
+            'profile_image' => $user->avatar
         ]);
 
         Auth::login($user, true);
 
-        return redirect('account/orders');
+        return redirect('/home');
 
     }
 
@@ -110,13 +114,15 @@ class LoginController extends Controller
             'email' => $user->email
         ], [
             'first_name' => $user->name,
-            'last_name' => $user->name,
-            'password' => Hash::make(Str::random(24))
+            'last_name' => $user->nickname,
+            'password' => Hash::make(Str::random(24)),
+            'email' => $user->email,
+            'profile_image' => $user->avatar
         ]);
 
         Auth::login($user, true);
 
-        return redirect('account/orders');
+        return redirect('/home');
 
     }
 }

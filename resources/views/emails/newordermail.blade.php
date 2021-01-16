@@ -1,15 +1,31 @@
-@component('mail::message')
-# Greetings {{ $orderData['first_name']}}
+@component('mail::newOrder')
 
-We would like to inform you that your order has been received
-and place with the order id {{ $orderData['order_number']}}
+@slot('name')
+{{$orderDetails->first_name}}
+@endslot
 
-and a grand total of ksh{{$orderData['grand_total']}}
+@slot('orderNumber')
+{{$orderDetails->order_number}}
+@endslot
 
-@component('mail::button', ['url' => 'nyatisupreme.co.ke'])
-OPEN WEBSITE
-@endcomponent
+@slot('subTotal')
+@endslot
 
-Thanks,<br>
-{{ config('app.name') }}
+@slot('shippingFee')
+@endslot
+
+@slot('tax')
+@endslot
+
+@slot('grandTotal')
+{{$orderDetails->grand_total}}
+@endslot
+
+@slot('deliveryAddress')
+{{$orderDetails->address}}
+{{$orderDetails->city}}
+{{$orderDetails->post_code}}
+@endslot
+
+
 @endcomponent

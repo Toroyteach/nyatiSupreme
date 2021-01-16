@@ -1,13 +1,6 @@
-@component('mail::message')
-# Greetings {{ $orderData['first_name']}}
+@component('mail::orderStatusChange')
 
-We would like to inform you that your order status 
-has changed to {{ $orderData['status']}}
+@slot('name')
+@endslot
 
-@component('mail::button', ['url' => 'nyatisupreme.co.ke'])
-OPEN WEBSITE
-@endcomponent
-
-Thanks,<br>
-{{ config('app.name') }}
 @endcomponent

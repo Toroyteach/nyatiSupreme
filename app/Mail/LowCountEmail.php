@@ -30,7 +30,7 @@ class LowCountEmail extends Mailable
      */
     public function build()
     {
-        $exploded = explode(',', $this->emailData);
-        return $this->markdown('emails.lowcountmail')->with('mailData' , $this->emailData);
+        //dd($this->emailData);
+        return $this->markdown('emails.lowcountmail')->with('orderDetails' , $this->emailData);
     }
 }

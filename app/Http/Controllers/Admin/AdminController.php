@@ -59,7 +59,7 @@ class AdminController extends Controller
          
          })->whereRaw('low_quantity_count > quantity')->get();
 
-        dd($productsWithoutAttributes->toArray());
+        //dd($productsWithoutAttributes->toArray());
          
         $productswithAttributes = DB::table("product_attributes")
             ->select('product_id','value','name','product_attributes.quantity')
@@ -83,8 +83,12 @@ class AdminController extends Controller
 
          //dd($lowProductArrayData);
          //$collapsed = Arr::flatten($lowProductArrayData);
-         dd($lowProductArrayData);
-         //event(new LowCount($lowProductArrayData));
+         //dd($lowProductArrayData);
+         //$testemail = Order::find(141);
+         //$eventData = collect($testemail)->except('token');
+         //$eventData->all();
+         //dd($eventData);
+         //event(new LowCount($eventData));
          //dd('sent');
 
 

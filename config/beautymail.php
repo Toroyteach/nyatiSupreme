@@ -24,9 +24,9 @@ return [
         'address'     => null,
 
         'logo'        => [
-            'path'   => '%PUBLIC%/vendor/beautymail/assets/images/Nyati_logo_png.png',
-            'width'  => '',
-            'height' => '',
+            'path'   => '%PUBLIC%/vendor/beautymail/assets/images/nyati_logo_png.png',
+            'width'  => '250px',
+            'height' => 'auto',
         ],
 
         'twitter'  => null,

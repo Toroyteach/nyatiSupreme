@@ -15,8 +15,23 @@ use Illuminate\Support\Facades\Hash;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/testmail', function()
+// {
+// 	$beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+// 	$beautymail->send('emails.lowcountmail', [], function($message)
+// 	{
+// 		$message
+// 			->from('bar@example.com')
+// 			->to('foo@example.com', 'John Smith')
+// 			->subject('Welcome!');
+// 	});
 
-Route::view('/', 'frontend.pages.homepage');
+// });
+
+Route::view('/', 'frontend.pages.productlist');
+
+Route::view('/about', 'frontend.pages.about')->name('about');
+Route::view('/contact', 'frontend.pages.contact')->name('contact');
 //Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/category', 'Site\CategoryController@show')->name('category.show');
 Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
