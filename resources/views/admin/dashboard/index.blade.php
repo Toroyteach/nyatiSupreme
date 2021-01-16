@@ -75,7 +75,7 @@
         <div class="card">
                 <div class="card-header">Recent Orders</div>
                      
-                <div class="card-body">
+                <div class="card-body table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
                 <table class="table table-hover">
 
                 <thead>
@@ -92,8 +92,8 @@
                 <tr id="">
                     <td>{{$key+1}}</td>
                     <td>{{ $order->order_number }}</td>
-                    <td>{{ $order->created_at }}</td>
-                    <td>{{ config('settings.currency_symbol').$order->grand_total }}</td>
+                    <td>{{ $order->created_at->toFormattedDateString() }}</td>
+                    <td>{{ config('settings.currency_symbol').' '.$order->grand_total }}</td>
                 @endforeach
 
                 </tbody>
@@ -108,7 +108,7 @@
 
     <div class="card" >
     <div class="card-header">Top Customers</div>
-    <div class="card-body">
+    <div class="card-body table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
                 <table class="table table-hover">
 
                 <thead>
@@ -123,15 +123,14 @@
                 <tr id="">
                     <td>{{$key+1}}</td>
                     <td>{{ $customer->first_name }}</td>
-                    <td>{{ config('settings.currency_symbol').$customer->revenue }}</td>
+                    <td>{{ config('settings.currency_symbol').' '.$customer->revenue }}</td>
                 @endforeach
 
                 </tbody>
                 </table>
                 </div>
-
-    </div>
-</div>
+                </div>
+            </div>
         </div>
     </div>
 

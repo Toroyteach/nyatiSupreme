@@ -13,7 +13,7 @@
 <p>{{ $message }}</p>
 </div>
 @endif
-
+<div class="table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
 <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>
@@ -39,6 +39,7 @@
                         </tbody>
                     </table>
                     {!! $customer->render() !!}
+</div>
 @endsection
 @push('scripts')
     <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>

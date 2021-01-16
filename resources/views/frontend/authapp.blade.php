@@ -40,8 +40,8 @@
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-xl-2 col-lg-3 col-md-12">
-				<a href="http://bootstrap-ecommerce.com" class="brand-wrap">
-					<img class="logo" src="{{ asset('frontend/cssfiles/images/logo.png?v=2.0') }}">
+				<a href="{{route('home')}}" class="brand-wrap">
+					<img class="logo" src="{{ asset('frontend/cssfiles/images/nyati_logo_png.png') }}">
 				</a> <!-- brand-wrap.// -->
 			</div>
 			<div class="col-xl-6 col-lg-5 col-md-6">

@@ -16,10 +16,10 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:users-list|users-create|users-edit|users-delete', ['only' => ['index']]);
-        $this->middleware('permission:users-create', ['only' => ['create','store']]);
-        $this->middleware('permission:users-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:users-delete', ['only' => ['destroy']]);
+        // $this->middleware('permission:users-list|users-create|users-edit|users-delete', ['only' => ['index']]);
+        // $this->middleware('permission:users-create', ['only' => ['create','store']]);
+        // $this->middleware('permission:users-edit', ['only' => ['edit','update']]);
+        // $this->middleware('permission:users-delete', ['only' => ['destroy']]);
     }
 
 
@@ -94,7 +94,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-        'name' => 'required',
+        'first_name' => 'required',
+        'last_name' => 'required',
         'email' => 'required|email|unique:users,email,'.$id,
         'password' => 'same:confirm-password',
         'roles' => 'required'

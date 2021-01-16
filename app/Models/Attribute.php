@@ -30,6 +30,8 @@ class Attribute extends Model
         'is_required'   =>  'boolean',
     ];
 
+    protected $dates = ['deleted_at'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

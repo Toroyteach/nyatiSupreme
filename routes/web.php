@@ -30,8 +30,9 @@ use Illuminate\Support\Facades\Hash;
 
 Route::view('/', 'frontend.pages.productlist');
 
-Route::view('/about', 'frontend.pages.about')->name('about');
-Route::view('/contact', 'frontend.pages.contact')->name('contact');
+Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/shop', 'HomeController@shop')->name('shop');
 //Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/category', 'Site\CategoryController@show')->name('category.show');
 Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');

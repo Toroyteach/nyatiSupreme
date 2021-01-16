@@ -24,7 +24,7 @@
 							</ul>
 						</li>
                         @else
-							<li><a href="#">View products</a></li>
+							<li><a class="nav-link" href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a></li>
                         @endif
                     @endforeach
                 @endforeach

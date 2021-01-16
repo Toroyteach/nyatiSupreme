@@ -20,6 +20,7 @@ class CreateAttributeValuesTable extends Migration
             $table->text('value');
             $table->decimal('price', 2)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

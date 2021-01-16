@@ -11,15 +11,15 @@
 <meta http-equiv="cache-control" content="max-age=604800" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta name="description" content="Nyati Supreme Construction Materials Ecommerce">
-<meta name="keywords" content="Online shop kenya, shop, Construction, cabros, blocks, pave blocks">
+<meta name="description" content="{{ config('settings.seo_meta_description') }}">
+<meta name="keywords" content="{{ config('settings.seo_meta_title') }}">
 
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet" type="text/css">
 
-<link href="{{ asset('frontend/cssfiles/images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+<link href="{{ config('settings.site_favicon') }}" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
-<script src="{{ asset('frontend/cssfiles/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
 
 <!-- Bootstrap4 files-->
 <script src="{{ asset('frontend/cssfiles/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
@@ -40,9 +40,15 @@
 
 <script src="{{ asset('vendor/kustomer/js/kustomer.js') }}" defer></script>
 
+<style>
+.kustomer-feedback-component{
+    z-index: 1000 !important;
+}
+</style>
+
 </head>
 <body>
-@include('frontend.partials.header')
+@include('frontend.partials.header2')
 @include('frontend.partials.flash-message')
 @include('kustomer::kustomer')
 @yield('content')

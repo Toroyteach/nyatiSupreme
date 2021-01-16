@@ -18,6 +18,7 @@
 <p>{{ $message }}</p>
 </div>
 @endif
+<div class="table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
 <table class="table table-bordered">
 <tr>
 <th>No</th>
@@ -43,5 +44,6 @@
 @endforeach
 </table>
 {!! $roles->render() !!}
+</div>
 <p class="text-center text-primary"><small>Tutorial by rscoder.com</small></p>
 @endsection

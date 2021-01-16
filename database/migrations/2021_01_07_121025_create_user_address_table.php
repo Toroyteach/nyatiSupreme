@@ -27,6 +27,7 @@ class CreateUserAddressTable extends Migration
             $table->string('location');
             $table->boolean('default_address')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

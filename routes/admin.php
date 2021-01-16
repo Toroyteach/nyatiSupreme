@@ -21,6 +21,7 @@ Route::group(['prefix'  =>  'admin'], function () {
 
         Route::resource('/roles','Admin\RoleController');
         Route::resource('/users','Admin\UserController');
+        Route::get('/useroles','Admin\UserController@index')->name('admin.usersrole.index');
 
         Route::get('/customers','Admin\AdminController@viewCustomers')->name('customers.index');
         Route::get('/customers/{id}','Admin\AdminController@showCustomers')->name('customers.show');

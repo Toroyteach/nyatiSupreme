@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <div class="tile-body">
+                <div class="tile-body table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr>
@@ -41,7 +41,7 @@
                                 <td class="text-center">
                                     <span class="badge badge-success">{{ $order->status }}</span>
                                 </td>
-                                <td class="text-center">{{ $order->created_at }} </td>
+                                <td class="text-center">{{ $order->created_at->toFormattedDateString() }} </td>
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
                                         <a href="{{ route('admin.orders.show', $order->order_number) }}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="View order"><i class="fa fa-eye"></i></a>

@@ -25,6 +25,8 @@ class AttributeValue extends Model
         'attribute_id'  =>  'integer',
     ];
 
+    protected $dates = ['deleted_at'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
