@@ -13,6 +13,7 @@
         "chartisan/php": "^1.2",
         "consoletvs/charts": "7.*",
         "darryldecode/cart": "~4.0",
+        "davejamesmiller/laravel-breadcrumbs": "5.x",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "fx3costa/laravelchartjs": "^2.8",

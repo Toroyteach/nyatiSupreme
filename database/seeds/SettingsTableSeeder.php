@@ -39,15 +39,15 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'footer_copyright_text',
-            'value'                     =>  '',
+            'value'                     =>  'Privacy Policy - Terms of Use - User Information Legal Enquiry Guide',
         ],
         [
             'key'                       =>  'seo_meta_title',
-            'value'                     =>  '',
+            'value'                     =>  'Online shop kenya shop Construction cabros blocks pave blocks',
         ],
         [
             'key'                       =>  'seo_meta_description',
-            'value'                     =>  '',
+            'value'                     =>  'Nyati Supreme Construction Materials Ecommerce',
         ],
         [
             'key'                       =>  'social_facebook',

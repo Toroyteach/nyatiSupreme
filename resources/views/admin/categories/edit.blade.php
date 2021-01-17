@@ -76,6 +76,8 @@
                     <div class="tile-footer">
                         <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Update Category</button>
                         &nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-danger" href="{{ route('admin.categories.delete', $targetCategory->id) }}"><i class="fa fa-fw fa-lg fa-trash"></i>Delete</a>
+                        &nbsp;&nbsp;&nbsp;
                         <a class="btn btn-secondary" href="{{ route('admin.categories.index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
                     </div>
                 </form>

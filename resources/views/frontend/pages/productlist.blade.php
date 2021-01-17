@@ -6,11 +6,7 @@
 <div class="container">
 	<h2 class="title-page"> products</h2>
 	<nav>
-	<ol class="breadcrumb text-white">
-	    <li class="breadcrumb-item"><a href="#">Home</a></li>
-	    <li class="breadcrumb-item"><a href="#">Best category</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Great articles</li>
-	</ol>  
+	{{ Breadcrumbs::render('shop') }}
 	</nav>
 </div> <!-- container //  -->
 </section>
@@ -208,16 +204,6 @@
 	</div> <!-- col.// -->
 </div> <!-- row end.// -->
 
-
-<nav class="mt-4" aria-label="Page navigation sample">
-  <ul class="pagination">
-    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
 
 	</main> <!-- col.// -->
 

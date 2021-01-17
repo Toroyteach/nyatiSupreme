@@ -116,7 +116,7 @@ $('#update').on('submit',function(event){
                 id:id,
             },
             success:function(response){
-                console.log(response);
+                //console.log(response);
 
                 success.style.display = "block";//adds the success alert bootstrap
                 hideForm.style.display = "none";
@@ -142,7 +142,7 @@ $('#update').on('submit',function(event){
                 id:id,
             },
             success:function(response){
-                console.log(response);
+                //console.log(response);
             },
             });
         swal("Order Status Update!", `you have changed status to ${status}`, "success");

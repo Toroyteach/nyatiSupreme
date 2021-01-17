@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Hash;
 
 // });
 
-Route::view('/', 'frontend.pages.productlist');
+Route::view('/', 'frontend.pages.homepage');
 
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');

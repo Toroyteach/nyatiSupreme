@@ -54,7 +54,6 @@
                                         <td class="text-center">
                                             <div class="btn-group" role="group" aria-label="Second group">
                                                 <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Category"><i class="fa fa-edit"></i></a>
-                                                <a href="{{ route('admin.categories.delete', $category->id) }}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Delete Category"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -71,4 +70,29 @@
     <script type="text/javascript" src="{{ asset('backend/js/plugins/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('backend/js/plugins/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#deleteCategory").click(function(){
+
+            swal({
+                title: "Are you sure?",
+                text: "Once Status has been Completed Cannot be reverted. Note some products depend on categories",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            //var deletePostUri = "{{ route('admin.categories.delete', '$(this).data("id")')}}";
+        } else {
+
+        }
+        });
+
+        }); 
+    });
+    </script>
 @endpush

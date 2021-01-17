@@ -1,6 +1,14 @@
 @extends('frontend.app')
 @section('content')
 
+<section class="section-pagetop bg">
+<div class="container">
+	<h2 class="title-page"> Checkout </h2>
+	<nav>
+	{{ Breadcrumbs::render('checkout') }}
+	</nav>
+</div> <!-- container //  -->
+</section>
     <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 <div class="container" style="max-width: 720px;">

@@ -11,7 +11,9 @@
                     @endif
                 </div>
             </div>
-
+	<nav>
+		{{ Breadcrumbs::render('cart') }}
+	</nav>
 <div class="row">
 	<main class="col-md-9">
 <div class="card">
