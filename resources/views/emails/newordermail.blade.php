@@ -1,11 +1,11 @@
 @component('mail::newOrder')
 
 @slot('name')
-{{$orderDetails->first_name}}
+{{$orderData['first_name']}}
 @endslot
 
 @slot('orderNumber')
-{{$orderDetails->order_number}}
+{{$orderData['order_number']}}
 @endslot
 
 @slot('subTotal')
@@ -18,13 +18,13 @@
 @endslot
 
 @slot('grandTotal')
-{{$orderDetails->grand_total}}
+{{$orderData['grand_total']}}
 @endslot
 
 @slot('deliveryAddress')
-{{$orderDetails->address}}
-{{$orderDetails->city}}
-{{$orderDetails->post_code}}
+{{$orderData['address']}}<br>
+{{$orderData['city']}}<br>
+{{$orderData['post_code']}}<br>
 @endslot
 
 

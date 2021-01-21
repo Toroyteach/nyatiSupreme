@@ -25,11 +25,12 @@ class SendOrderConfirmationEmail
     public function handle(OrderPlaced $event)
     {
         //
-        //dd($event->order['grand_total']);
+        //dd($event);
         Mail::to($event->order['email'])->send(new OrderConfirmationMail($event->order));
+        //dd('mail sent');
 
-        $userSchema = Admin::all();
-        $when = Carbon::now()->addSecond(10);
-        Notification::send($userSchema, (new newOrderNotification($event->order))->delay($when));
+        // $userSchema = Admin::all();
+        // $when = Carbon::now()->addSecond(10);
+        // Notification::send($userSchema, (new newOrderNotification($event->order))->delay($when));
     }
 }

@@ -61,14 +61,14 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'grand_total'       =>  Cart::getSubTotal(),
                 'item_count'        =>  Cart::getTotalQuantity(),
                 'payment_status'    =>  0,
-                'payment_method'    =>  null,
+                'payment_method'    =>  $params['payment_method'],
                 'first_name'        =>  $params['first_name'],
                 'last_name'         =>  $params['last_name'],
                 'address'           =>  $shippingAddress[0]->address, //decide here about which address delivery to use
                 'city'              =>  $shippingAddress[0]->city,
                 'country'           =>  $shippingAddress[0]->county,
                 'post_code'         =>  $params['post_code'],
-                'phone_number'      =>  $params['phone_number'],
+                'phone_number'      =>  auth()->user()->phonenumber,
                 'notes'             =>  $params['notes']
             ]);
 
@@ -105,7 +105,15 @@ class OrderRepository extends BaseRepository implements OrderContract
                 $order->items()->save($orderItem);
             }
 
-
+            if($order->payment_method == 'mpesa'){
+                //dd('mpesa');
+            }
+            else {
+                if($order->payment_method == 'credit'){
+                    //call credit c2b push request
+                    //dd('credit');
+                }
+            }
         }
             //dd('finished');
         return $order;

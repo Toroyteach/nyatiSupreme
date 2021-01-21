@@ -1,0 +1,122 @@
+@extends('frontend.app')
+@section('content')
+    <!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg-gray">
+<div class="container">
+	<h2 class="title-page">Pending Order</h2>
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION PAGETOP END// ========================= -->
+	
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content bg padding-y border-top">
+<div class="container">
+            <div class="row">
+                <main class="col-sm-12">
+                    <p class="alert alert-warning">Your order placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
+                </main>
+
+                <main class="col-sm-12 successAlert" style="display:none">
+                    <div class="alert alert-success">
+                        <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
+                        <p>Your payment has been received successfully.</p><br>
+                        <p>Your order number is : <span>{{ $order->order_number }}<span>.</p><br>
+                        <p>Thank you for shooping with us.</p><br>
+                        <p>Nyati Supreme Team.</p><br>
+                        <a class="btn btn-primary btn-sm" href="{{ route('account.orders') }}">View Order</a>
+
+                    </div>
+                </main>
+
+                <main class="col-sm-12">
+
+                    <div class="spinner-border m-5" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+
+                    <div class="alert alert-info pendingAlert">
+                        <p>Please wait while we finish processing your payment.</p> <br> 
+                        <p>Also wait 2 minutes and click here to request another mpesa confirmation</p>
+                        <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="requestSubmition()">Request</button><br>
+                        <input type="hidden" value="{{ $order->order_number }}" name="orderNumber"></input>
+                    </div>
+                </main>
+            </div>
+        </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+@stop
+@push('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+      
+      <script>
+      init();
+
+         function init(){
+
+            var timerID = setInterval(function() {
+                // your code goes here...
+                checkPaymentStatus();
+            }, 10 * 1000); 
+
+            setTimeout(function() {
+                clearInterval(timerID);      
+            }, 60000);
+
+         }
+
+
+         function requestSubmition() {
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            let BillrefNo = $("input[name=orderNumber]").val();
+
+            console.log(BillrefNo);
+
+            $.ajax({
+               type:'POST',
+               url:'/requestMpesa',
+               data:{
+                    BilRefNo:BillrefNo,
+                    _token:_token,
+                },
+               success:function(data) {
+
+                $(".reSubmitButton").prop('disabled', true);
+
+                setTimeout(function() {
+                    $(".reSubmitButton").removeAttr("disabled");      
+                }, 180000);
+
+                console.log(data.success);
+               }
+
+            });
+         }
+
+         function checkPaymentStatus(){
+            let _token = $('meta[name="csrf-token"]').attr('content');
+            let BillrefNo = $("input[name=orderNumber]").val();
+
+            console.log(BillrefNo);
+
+            $.ajax({
+               type:'POST',
+               url:'/requestOrderPaymentConfirmation',
+               data:{
+                    BilRefNo:BillrefNo,
+                    _token:_token,
+                },
+               success:function(data) {
+
+                //hide pending alert
+                //show success alert
+                console.log(data.success);
+            
+               }
+
+            });
+         }
+      </script>
+
+@endpush

@@ -24,7 +24,7 @@
                         <p class="alert alert-warning">Your shopping cart is empty.</p>
                     @else
                         <div class="card">
-						<table class="table table-borderless table-shopping-cart">
+						<table class="table table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm table-borderless table-shopping-cart">
 							<thead class="text-muted">
 							<tr class="small text-uppercase">
 							<th scope="col">Product</th>

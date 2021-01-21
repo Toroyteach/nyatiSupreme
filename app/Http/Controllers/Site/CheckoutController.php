@@ -39,6 +39,7 @@ class CheckoutController extends Controller
     public function placeOrder(Request $request)
     {
         //dd($request->all());
+        //return response()->json(['success'=>'Ajax request submitted successfully']);
         // Before storing the order we should implement the
         // request validation which I leave it to you
         $testdata = array(
@@ -53,7 +54,7 @@ class CheckoutController extends Controller
             "email" => "email@email.com",
             "payment_method" => "mpesa"
           );
-
+          
         //$order = $this->orderRepository->storeOrderDetails($request->all());
         $order = $this->orderRepository->storeOrderDetails($request->all());
 
@@ -61,30 +62,17 @@ class CheckoutController extends Controller
         if ($order) {
             //replace with mpesa service processing
             //$this->payPal->processPayment($order);
-            $eventdata = collect($order)->only('order_number', 'grand_total', 'first_name');
+            $eventdata = collect($order)->only('order_number', 'grand_total', 'first_name', 'address', 'city', 'post_code');
             $eventdata->all();
             $user = array('email' => Auth::user()->email);
             $eventdata = $eventdata->union($user);
             //$eventdata->all();
             //dd($testdata);
-    
-            event(new OrderPlaced($eventdata));
-            //dd('died here');
-    
-            // $userSchema = Admin::all();
-      
-            // $orderData = [
-            //     'name' => 'New Order',
-            //     'body' => 'This is a new placed order ',
-            //     'order_id' => $order->order_number,
-            //     'first_name' => $order->order_first_name,
-            //     'email' => $user
-            // ];
-    
-            // $when = Carbon::now()->addSecond(10);
-            // Notification::send($userSchema, (new newOrderNotification($orderData))->delay($when));
-            //dd('died here last');
-            return view('frontend.pages.success', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+            
+            //event with order placed
+            event(new OrderPlaced($eventdata));// move to success mpesa payment api
+
+            return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
         }
 
         return redirect()->back()->with('error','Order not placed!!');
@@ -93,7 +81,7 @@ class CheckoutController extends Controller
     public function complete(Request $request)
     {
 
-        //make and mpesa request and confirm the transaction also notify customers of success order change
+        //not in use
         $paymentId = $request->input('paymentId');
         $payerId = $request->input('PayerID');
 
@@ -128,5 +116,17 @@ class CheckoutController extends Controller
 
         Cart::clear();
         return view('frontend.pages.success', compact('order'));
+    }
+
+    public function requestPaymentAgain(Request $request)
+    {
+        return response()->json(['success'=>'request submitted successfully']);
+    }
+    
+    public function requestUpdatePendingPay(Request $request)
+    {
+
+        //check if order number payment status has changed to successfull
+        return response()->json(['success'=>'payment Accepted Suucessfully']);
     }
 }

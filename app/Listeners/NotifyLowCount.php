@@ -26,7 +26,7 @@ class NotifyLowCount
 
         $userSchema = Admin::all();
         $when = Carbon::now()->addSecond(0);
-        //dd($event->lowCountData);
+        dd($event);
         //Notification::send($userSchema, (new LowCountNotification($event->lowCountData))->delay($when));
 
         foreach($userSchema as $user) {

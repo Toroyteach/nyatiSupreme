@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::get('change-password', 'Site\ChangePasswordController@index')->name('update.password');
     Route::post('change-password', 'Site\ChangePasswordController@store')->name('change.password');
+
+    //ajax request
+    Route::post('/requestMpesa', 'Site\CheckoutController@requestPaymentAgain');
+    Route::post('/requestOrderPaymentConfirmation', 'Site\CheckoutController@requestUpdatePendingPay');
 });
 
 Auth::routes(['verify' => true]);

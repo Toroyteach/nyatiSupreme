@@ -19,7 +19,7 @@
                     @endif
                 </div>
             </div>
-	<form action="{{ route('checkout.place.order') }}" method="POST" role="form">
+	<form action="{{ route('checkout.place.order') }}" name="myform" method="POST" role="form" id="submitform">
 	  	@csrf
 <div class="card mb-4">
       <div class="card-body">
@@ -90,7 +90,7 @@
 
 	<div class="form-group">
 		<label>Shipping Notes</label>
-       <textarea class="form-control" rows="2" name="notes"></textarea>
+       <textarea class="form-control" rows="2" id="notes" name="notes" form="submitform"></textarea>
     </div> <!-- form-group// -->  
 
       </div> <!-- card-body.// -->
@@ -160,7 +160,10 @@
 			</div> <!-- card .// -->
 
 
-		<button class="subscribe btn btn-primary btn-block" type="submit"> Make Order </button>
+		<button class="btn btn-primary btn-block submitbtn" type="submit" id="submitButton">
+			<!-- <span class="spinner-grow spinner-grow-sm" role="status" style="display:none;" aria-hidden="true"></span> -->
+				Make Order
+		</button>
 				</form>
 
 <br>
@@ -171,6 +174,7 @@
 
 @stop
 @push('scripts')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 
 function my_function(elm)
@@ -189,5 +193,83 @@ function my_function(elm)
 			document.getElementById('creditCard').style.display = "block";
 		}
 }
+
+function manageButtonInput()
+{
+	document.querySelector('#submitButton').innerText = 'Loading...';
+	document.getElementById('creditCard').style.display = "block";
+}
+
+function validate() {
+      
+	  if( document.myForm.Name.value == "" ) {
+		swal("Please provide First Name");
+		 document.myForm.Name.focus() ;
+		 return false;
+	  }
+	  if( document.myForm.EMail.value == "" ) {
+		 alert( "Please provide your Email!" );
+		 document.myForm.EMail.focus() ;
+		 return false;
+	  }
+	  if( document.myForm.Zip.value == "" ) {	 
+		 alert( "Please provide a zip in the format #####." );
+		 document.myForm.Zip.focus() ;
+		 return false;
+	  }
+	  if( document.myForm.Country.value == "-1" ) {
+		 alert( "Please provide your country!" );
+		 return false;
+	  }
+	  return( true );
+   }
+
+$("").click(function(event){
+      event.preventDefault();
+
+	  //disable button add the loading icon 
+	  manageButtonInput();
+
+	  //get data from form
+	  let _token = $('meta[name="csrf-token"]').attr('content');
+      let first_name = $("input[name=first_name]").val();
+      let last_name = $("input[name=last_name]").val();
+      let address = $("input[name=address]").val();
+	  let city = $("input[name=city]").val();
+	  let country = $("input[name=country]").val();
+	  let post_code = $("input[name=post_code]").val();
+      let email = $("input[name=email]").val();
+	  let phone_number = $("input[name=phone_number]").val();
+	  let mpesaPhone = $("input[name=mpesaPhonenumber]").val();
+	  let notes = $("#notes").val();
+	  let payment_method = $("input[name=payment_method]").val();
+
+	  console.log(first_name, last_name, address, city, country, post_code, email, phone_number, mpesaPhone, notes, payment_method);
+
+    //   $.ajax({
+    //     url: "/checkout/order",
+    //     type:"POST",
+    //     data:{
+    //       first_name:first_name,
+    //       last_name:last_name,
+    //       address:address,
+	// 	  	 city:city,
+	// 	  	 country:country,
+    //       post_code:post_code,
+    //       email:email,
+	// 	  	 phone_number:phone_number,
+	// 	  	 notes:notes,
+    //       payment_method:payment_method,
+    //       _token: _token
+    //     },
+    //     success:function(response){
+    //       console.log(response);
+    //       if(response) {
+    //         swal("SUCCESS");
+    //       }
+    //     },
+    //    });
+  });
+
     </script>
 @endpush

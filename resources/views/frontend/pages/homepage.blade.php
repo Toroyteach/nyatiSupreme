@@ -9,7 +9,7 @@
 <div class="row">
 	<aside class="col-lg col-md-3 flex-lg-grow-0">
 		<nav class="nav-home-aside">
-			<h6 class="title-category">	TOP CATEGORIES <i class="d-md-none icon fa fa-chevron-down"></i></h6>
+			<h6 class="title-category">	CATEGORIES <i class="d-md-none icon fa fa-chevron-down"></i></h6>
 			<ul class="menu-category">
 
 
@@ -66,7 +66,7 @@
 	</div> <!-- col.// -->
 	<div class="col-md d-none d-lg-block flex-grow-1">
 		<aside class="special-home-right">
-			<h6 class="bg-blue text-center text-white mb-0 p-2">Popular category</h6>
+			<h6 class="bg-blue text-center text-white mb-0 p-2">Top Interests</h6>
 			
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
@@ -192,9 +192,9 @@
 	<div class="col-md-3">
 	
 	<div class="home-category-banner bg-light-orange">
-		<h5 class="title">Machinery items for manufacturers</h5>
-		<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-		<a href="#" class="btn btn-outline-primary rounded-pill">Source now</a>
+		<h5 class="title">Nyati Supreme Concrete Works</h5>
+		<p>Here are but a few of the products we manufacture. We value our customers with services we offer. </p>
+		<a href="#" class="btn btn-outline-primary rounded-pill">See More</a>
 		<img src="{{ asset('frontend/cssfiles/images/items/14.jpg') }}" class="img-bg">
 	</div>
 
@@ -204,63 +204,63 @@
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Well made electronic  stuff collection  </h6>
+		<h5 class="title">Solid Blocks </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/7.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Tokyo, Japan</p>
+		<p class="text-muted">High quality concrete blocks that meet both dimensional and strength</p>
 	</div>
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Another demo text for item stuff goes here  </h6>
+		<h5 class="title">Hollow blocks and Hollow Port  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/8.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Hong Kong, China</p>
+		<p class="text-muted">Both hollow blocks and hollow ports are void fillers hence non-load bearing</p>
 	</div>
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
+		<h5 class="title">Coloured Cabros  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/9.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Tashkent, Uzb</p>
+		<p class="text-muted">Special type of paving blocks with various profiles and customised colours</p>
 	</div>
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Group of electronic  stuff collection  </h6>
+		<h5 class="title">Paving Blocks  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/10.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+		<p class="text-muted">Void fillers hence non-load bearing</p>
 	</div>
 </a>	
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
+		<h5 class="title">Wall Coppings  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/11.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+		<p class="text-muted"> Protecting your perimeter walling or outer exposed walling</p>
 	</div>
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
+		<h5 class="title">Baluster  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/12.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+		<p class="text-muted"> Used as railings and poles in balconies, verandas and stairways</p>
 	</div>
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
+		<h5 class="title">Louvre Block and Ventilation  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+		<p class="text-muted">Precast louver blocks allow light and air into a functional space</p>
 
 	</div>
 </a>
@@ -268,9 +268,9 @@
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="#" class="item"> 
 	<div class="card-body">
-		<h6 class="title">Home and kitchen electronic  stuff collection  </h6>
+		<h5 class="title">Storm Water Drain  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/items/2.jpg') }}"> 
-		<p class="text-muted"><i class="fa fa-map-marker-alt"></i> Guanjou, China</p>
+		<p class="text-muted">Helps direct large flow of water safely avoiding </p>
 	</div>
 </a>
 	</li>
@@ -295,9 +295,9 @@
 	<div class="col-md-8">
 <div class="card-banner banner-quote overlay-gradient" style="background-image: url('frontend/cssfiles/images/banners/banner9.jpg');">
   <div class="card-img-overlay white">
-    <h3 class="card-title">An easy way to send request to suppliers</h3>
-    <p class="card-text" style="max-width: 400px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt.</p>
+    <h3 class="card-title">Not finding what you are looking for?</h3>
+    <p class="card-text" style="max-width: 400px">Don not you worry if you cannot find the product specification youtr looking for. 
+	Just fill in the form with your specifications and we shall get back to you shortly after.</p>
     <a href="" class="btn btn-primary rounded-pill">Learn more</a>
   </div>
 </div>
@@ -305,33 +305,21 @@
 	<div class="col-md-4">
 
 <div class="card card-body">
-	<h4 class="title py-3">One Request, Multiple Quotes</h4>
+	<h5 class="title">Please fill in the form with your needs</h5>
 	<form>
 		<div class="form-group">
-			<input class="form-control" name="" placeholder="What are you looking for?" type="text">
+			<input class="form-control" name="" placeholder="What are you looking for?" type="text" required>
 		</div>
 		<div class="form-group">
 			<div class="input-group">
-				<input class="form-control" placeholder="Quantity" name="" type="text">
-				
-				<select class="custom-select form-control">
-					<option>Pieces</option>
-					<option>Litres</option>
-					<option>Tons</option>
-					<option>Gramms</option>
-				</select>
+				<input class="form-control" placeholder="Quantity" name="" type="text" required>
+				<input class="form-control" placeholder="Email or Number" type="text" required>
 			</div>
 		</div>
 		<div class="form-group text-muted">
-			<p>Select template type:</p>
-			<label class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" value="option1">
-			   <span class="form-check-label">Request price</span>
-			</label>
-			<label class="form-check form-check-inline">
-			  <input class="form-check-input" type="checkbox" value="option2">
-			  <dspaniv class="form-check-label">Request a sample</span>
-			</label>
+		<p>Description:</p>
+		<textarea id="w3review" name="w3review" rows="2" cols="42">
+		</textarea>
 		</div>
 		<div class="form-group">
 			<button class="btn btn-warning">Request for quote</button>
@@ -471,7 +459,7 @@
 <section  class="padding-bottom">
 
 <header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Trade services</h4>
+	<h4 class="title-section text-uppercase">Our Trade services</h4>
 </header>
 
 <div class="row">
@@ -480,7 +468,7 @@
 		  <img src="{{ asset('frontend/cssfiles/images/posts/1.jpg') }}" class="card-img-top">
 		  <div class="card-body">
 		    <h6 class="title">Trade Assurance</h6>
-		    <p class="small text-uppercase text-muted">Order protection</p>
+		    <p class="small text-uppercase text-muted">Order and Service protection</p>
 		  </div>
 		</article> <!-- card.// -->
 	</div> <!-- col.// -->
@@ -488,7 +476,7 @@
 		<article class="card card-post">
 		  <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
 		  <div class="card-body">
-		    <h6 class="title">Pay anytime</h6>
+		    <h6 class="title">Payment Easy and Secure</h6>
 		    <p class="small text-uppercase text-muted">Finance solution</p>
 		  </div>
 		</article> <!-- card.// -->
@@ -506,7 +494,7 @@
 		<article class="card card-post">
 		  <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
 		  <div class="card-body">
-		    <h6 class="title">Ocean and Air Shipping</h6>
+		    <h6 class="title">Easy Shipping and Delivery</h6>
 		    <p class="small text-uppercase text-muted">Logistic services</p>
 		  </div>
 		</article> <!-- card.// -->
@@ -526,7 +514,8 @@
 <section class="section-subscribe padding-y-lg">
 <div class="container">
 
-<p class="pb-2 text-center text-white">Delivering the latest product trends and industry news straight to your inbox</p>
+<p class="pb-2 text-center text-white">Through our “client is king” philosophy we have ensured to
+train our staff on customer care and interaction </p>
 
 <div class="row justify-content-md-center">
 	<div class="col-lg-5 col-md-6">
@@ -535,7 +524,7 @@
 		<input class="form-control border-0" placeholder="Your Email" type="email">
 		</div> <!-- col.// -->
 		<div class="col-md-4 col-5">
-		<button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+		<button type="submit" data-toggle="tooltip" data-placement="top" title="Subscribe to recieve our newsletter" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
 		</div> <!-- col.// -->
 </form>
 <small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
