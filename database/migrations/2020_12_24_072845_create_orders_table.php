@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
 
             $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending');
             $table->decimal('grand_total', 20, 6);
+            $table->decimal('shipping_fee', 20, 6)->default(0);
             $table->bigInteger('item_count')->Unsigned();
 
             $table->boolean('payment_status')->default(1);

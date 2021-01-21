@@ -23,7 +23,11 @@
 				
 				<figure class="icontext">
 						<div class="icon">
-							<img class="rounded-circle img-sm border" src="{{ asset('frontend/cssfiles/images/avatars/avatar3.jpg') }}">
+							@if ($user->profile_image != null)
+								<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+								@else
+								<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="rounded-circle img-sm border">
+							@endif
 						</div>
 						<div class="text">
 							<strong> {{$user->getFullNameAttribute()}} </strong> <br> 
@@ -76,7 +80,6 @@
 
 				<div class="col-md-6">
 					<figure class="itemside  mb-3">
-						<div class="aside"><img src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}" class="border img-sm"></div>
 						<figcaption class="info">
 							<time class="text-muted"><i class="fa fa-calendar-alt"></i> {{ Carbon\Carbon::parse($order->created_at)}}</time>
 							<p>{{$order->order_number}}</p>
@@ -91,7 +94,7 @@
 											@break
 
 										@case('pending')
-										<span class="badge badge-warnig">Pending</span>
+										<span class="badge badge-warning">Pending</span>
 											@break
 
 										@default

@@ -73,5 +73,12 @@
                 <span class="app-menu__label">Customer Feedback</span>
             </a>
         </li>
+
+        <li>
+            <a class="app-menu__item {{ Route::currentRouteName() == 'admin.productrequest' ? 'active' : '' }}" href="{{ route('admin.productrequest') }}">
+                <i class="app-menu__icon fa fa-product-hunt"></i>
+                <span class="app-menu__label">Product Request</span>
+            </a>
+        </li>
     </ul>
 </aside>

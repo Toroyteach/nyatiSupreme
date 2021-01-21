@@ -22,11 +22,11 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\OrderPlaced::class => [
             \App\Listeners\SendOrderConfirmationEmail::class,
         ],
-        \App\Events\LowCount::class => [
-            \App\Listeners\NotifyLowCount::class,
-        ],
         \App\Events\OrderStatusChangedEvent::class => [
             \App\Listeners\SendEmailNotification::class,
+        ],
+        \App\Events\LowCount::class => [
+            \App\Listeners\NotifyLowCount::class,
         ],
     ];
 

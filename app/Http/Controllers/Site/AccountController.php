@@ -42,7 +42,7 @@ class AccountController extends Controller
 
     public function getDashboardDetails()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->limit(4)->get();
+        $orders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->limit(4)->get();
         $completeOrders = Order::where('user_id', auth()->user()->id)->where('status', 'completed')->count();
         $pendingOrders = Order::where('user_id', auth()->user()->id)->where('status', '!=', 'completed')->count();
         $orderscount = auth()->user()->orders()->count();
@@ -75,11 +75,17 @@ class AccountController extends Controller
             'address' => 'required|max:55',
             'city' => 'required|max:55',
             'country' => 'required|max:55',
-            'phonenumber' => ['required', 'digits:10'],
-            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'phonenumber' => ['required', 'digits:10']
         ]);
 
+        $user = User::findOrFail(auth()->user()->id);
+        $input = $request->all();
+
         if ($request->has('profile_image')) {
+
+            $this->validate($request, [
+                'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
             // Get image file
             $image = $request->file('profile_image');
             // Make a image name based on user name and current timestamp
@@ -92,16 +98,14 @@ class AccountController extends Controller
             $this->uploadOne($image, $folder, 'public', $name);
             // Set user profile image path in database to filePath
             //$user->profile_image = $filePath;
+            $request->profile_image = $filePath;
+            //dd($filePath);
+            $input['profile_image'] = $filePath;
+            //dd($input);
         }
 
-        $user = User::findOrFail(auth()->user()->id);
-        //get filestoreage properties
-        $request->profile_image = $filePath;
-        //dd($filePath);
-        $input = $request->all();
-        $input['profile_image'] = $filePath;
-        //dd($input);
         $user->fill($input)->save();
+        //get filestoreage properties
         return redirect()->back()->with('success', 'Your user data was updated successfully!');
     }
 

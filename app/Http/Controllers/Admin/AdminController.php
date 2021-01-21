@@ -84,12 +84,12 @@ class AdminController extends Controller
          //dd($lowProductArrayData);
          //$collapsed = Arr::flatten($lowProductArrayData);
          //dd($lowProductArrayData);
-         $testemail = Order::find(141);
-         $eventData = collect($testemail)->except('token');
-         $eventData->all();
-         //dd($eventData);
-         event(new LowCount($eventData));
-         dd('sent');
+        //  $testemail = Order::find(141);
+        //  $eventData = collect($testemail)->except('token');
+        //  $eventData->all();
+        //  //dd($eventData);
+        //  event(new LowCount($eventData));
+        //  dd('sent');
 
 
         $chartjs = $this->getGraphData('DailySalesLineGraph');

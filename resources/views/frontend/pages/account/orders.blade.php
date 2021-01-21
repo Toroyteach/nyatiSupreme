@@ -40,27 +40,40 @@
 				<div class="col-md-4">
 					<h6 class="text-muted">Payment</h6>
 					<span class="text-success">
-						<i class="fab fa-lg fa-cc-visa"></i>
-					    Visa  **** 4216  
+
+									@switch($data->payment_method)
+										@case('mpesa')
+										<img src="{{ asset('frontend/cssfiles/images/icons/mpesa.svg') }}" class="img-fluid" style="height:30px;width:auto;" alt="img">
+											@break
+
+										@case('credit')
+										<i class="fa fa-credit-card"></i>
+											@break
+
+										@default
+										<i class="fas fa-money-check"></i>
+									@endswitch
+
 					</span>
 					<p>Subtotal: {{ config('settings.currency_symbol'). $data->grand_total }} <br>
-					 Shipping fee:  $56 <br> 
+					 Shipping fee:  {{ config('settings.currency_symbol'). $data->shipping_fee }} <br> 
 					 <span class="b">Total:  {{ config('settings.currency_symbol'). $data->grand_total }} </span>
 					</p>
 				</div>
 			</div> <!-- row.// -->
 		</div> <!-- card-body .// -->
 		<div class="table-responsive">
-			<p>Order Items</p>
+			<p>  Order Items</p>
 		<table class="table table-hover">
 		
 			<tbody>
 			@foreach($data->items as $key => $dataItem)
 			<tr>
-				<td width="65">
-					<img src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}" class="img-xs border">
+				<td width="75">
+					<img src="{{ asset('storage/'. $dataItem->product->images->first()->full) }}" class="img-sm border" alt="img">
 				</td>
-				<td><p class="title mb-0">Id: {{ $key++ }}</p>
+				<td>
+					<p class="title mb-0">Id: {{ $key++ }}</p>
 					<p class="title mb-0">Item Name: {{ $dataItem->product->name }}</p>
 					<p class="title mb-0">Quantity: {{ $dataItem->quantity }}</p>
 					<var class="price text-muted">{{ config('settings.currency_symbol'). $dataItem->price }}</var>

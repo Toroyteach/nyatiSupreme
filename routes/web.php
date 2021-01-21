@@ -42,6 +42,12 @@ Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
 Route::get('/cart/item/{id}/remove', 'Site\CartController@removeItem')->name('checkout.cart.remove');
 Route::get('/cart/clear', 'Site\CartController@clearCart')->name('checkout.cart.clear');
 
+Route::group(['prefix' => 'requestproducts'], function () {
+    Route::get('/', 'Admin\RequestProductController@index')->name('admin.requestproducts.index');
+    Route::post('/store', 'Admin\RequestProductController@store')->name('admin.requestproducts.store');
+    Route::get('/{item}/show', 'Admin\RequestProductController@show')->name('admin.requestproducts.show');
+ });
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index');
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');

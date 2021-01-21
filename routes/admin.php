@@ -84,5 +84,10 @@ Route::group(['prefix'  =>  'admin'], function () {
            Route::get('/orders/pdf/{id}', 'Admin\OrderController@getOrderPdf')->name('admin.orders.pdf');
            Route::get('get-top-orders', 'Admin\OrderController@getOrdersData');
         });
+
+        Route::group(['prefix' => 'requestproducts'], function () {
+            Route::get('/', 'Admin\RequestProductController@index')->name('admin.productrequest');
+            Route::get('/{item}/show', 'Admin\RequestProductController@show')->name('admin.productrequest.show');
+         });
     });
 });

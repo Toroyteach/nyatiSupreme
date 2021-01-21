@@ -292,6 +292,13 @@
 </header>
 
 <div class="row">
+
+                <div class="col-sm-12">
+                    @if (Session::has('message'))
+                        <p class="alert alert-success">{{ Session::get('message') }}</p>
+                    @endif
+                </div>
+				
 	<div class="col-md-8">
 <div class="card-banner banner-quote overlay-gradient" style="background-image: url('frontend/cssfiles/images/banners/banner9.jpg');">
   <div class="card-img-overlay white">
@@ -306,23 +313,24 @@
 
 <div class="card card-body">
 	<h5 class="title">Please fill in the form with your needs</h5>
-	<form>
+	<form method="post" action="{{ route('admin.requestproducts.store')}}" role="form">
+		@csrf
 		<div class="form-group">
-			<input class="form-control" name="" placeholder="What are you looking for?" type="text" required>
+			<input class="form-control" name="name" placeholder="What are you looking for?" type="text" required>
 		</div>
 		<div class="form-group">
 			<div class="input-group">
-				<input class="form-control" placeholder="Quantity" name="" type="text" required>
-				<input class="form-control" placeholder="Email or Number" type="text" required>
+				<input class="form-control" placeholder="Quantity" name="quantity" type="text" required>
+				<input class="form-control" placeholder="Email or Number" name="email_number" type="text" required>
 			</div>
 		</div>
 		<div class="form-group text-muted">
 		<p>Description:</p>
-		<textarea id="w3review" name="w3review" rows="2" cols="42">
+		<textarea id="w3review" name="description" rows="2" class="form-control" cols="42">
 		</textarea>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-warning">Request for quote</button>
+			<button class="btn btn-warning" type="submit" >Request for quote</button>
 		</div>
 	</form>
 </div>

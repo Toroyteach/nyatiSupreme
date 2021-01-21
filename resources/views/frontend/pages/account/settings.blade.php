@@ -66,7 +66,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 				  <label>Choose Image</label>
-				  <input type="file" class="form-control @error('profile_image') is-invalid @enderror" name="profile_image" id="avatar" required>
+				  <input type="file" class="form-control @error('profile_image') is-invalid @enderror" name="profile_image" id="avatar">
 				</div> <!-- form-group end.// -->
 			</div> <!-- form-row.// -->
 

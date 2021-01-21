@@ -29,8 +29,8 @@ class SendOrderConfirmationEmail
         Mail::to($event->order['email'])->send(new OrderConfirmationMail($event->order));
         //dd('mail sent');
 
-        // $userSchema = Admin::all();
-        // $when = Carbon::now()->addSecond(10);
-        // Notification::send($userSchema, (new newOrderNotification($event->order))->delay($when));
+        $userSchema = Admin::all();
+        $when = Carbon::now()->addSecond(10);
+        Notification::send($userSchema, (new newOrderNotification($event->order))->delay($when));
     }
 }
