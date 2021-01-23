@@ -1,18 +1,11 @@
 @extends('admin.app')
-@section('title') Dashboard @endsection
+@section('title') {{ $pageTitle }} @endsection
 @section('content')
-<div class="content">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    Requested Product
-                </div>
-
-            </div>
+<div class="app-title">
+        <div>
+            <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
         </div>
     </div>
-</div>
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">

@@ -23,4 +23,12 @@ class CategoryController extends Controller
 
         return view('frontend.pages.category', compact('cats'));
     }
+
+    public function showProduct($slug)
+    {
+        //$category = $this->categoryRepository->findBySlug($slug);
+        $cats = Category::orderByRaw('-name ASC')->where('slug', $slug)->get();
+
+        return view('frontend.pages.categoryshow', compact('cats'));
+    }
 }

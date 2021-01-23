@@ -35,6 +35,7 @@ Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('/shop', 'HomeController@shop')->name('shop');
 //Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/category', 'Site\CategoryController@show')->name('category.show');
+Route::get('/category/{slug}', 'Site\CategoryController@showProduct')->name('category.show.product');
 Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
 
 Route::post('/product/add/cart', 'Site\ProductController@addToCart')->name('product.add.cart');
@@ -49,7 +50,7 @@ Route::group(['prefix' => 'requestproducts'], function () {
  });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index');
+    Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index')->middleware(['emptyCart']);
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
     Route::get('checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
 

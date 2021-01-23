@@ -14,66 +14,48 @@
 
 <nav class="row">
 
-		<div class="col-md-3">
-			<div class="card card-category">
 
-			  <div class="img-wrap" style="background: #ffd7d7">
-			  	<img src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}">
-			  </div>
-			  <div class="card-body">
-			    <h4 class="card-title"><a href="#">Categoty Name</a></h4>
-			    <ul class="list-menu">
-			    	<li><a href="">Unisex T shirts</a></li>
-					<li><a href="">Casual shirts</a></li>
-					<li><a href="">Scherf Ice cream</a></li>
-					<li><a href="">Another category</a></li>
-					<li><a href="">Great items name</a></li>
-					<li><a href="">Great items name</a></li>
-
-			    </ul>
-			  </div>
-
-			</div>
-		</div> <!-- col.// -->
-
-
-				@foreach($cats as $cat)
-				<div class="col-md-3">
-					<div class="card card-category">
-						@foreach($cat->items as $category)
-							@if ($category->items->count() > 0)
+		@foreach($cats as $cat)
+			@foreach($cat->items as $category)
+				<div class="col-md-3 col-sm-12 col-lg-3 col-xl-3">
+						@if ($category->items->count() > 0)
+							<div class="card card-category">
 
 								<div class="img-wrap" style="background: #ffd7d7">
-									<img src="{{ asset('storage/'.$category->image) }}">
+										<img src="{{ asset('storage/'.$category->image) }}">
 								</div>
 								<div class="card-body">
-									<h4 class="card-title"><a href="{{ route('category.show', $category->slug) }}">{{$category->name}}</a></h4>
+									<h4 class="card-title"><a href="{{ route('category.show.product', $category->slug) }}">{{$category->name}}</a></h4>
 									<ul class="list-menu" aria-labelledby="{{ $category->slug }}">
 										@foreach($category->items as $item)
-											<li><a href="{{ route('category.show', $item->slug) }}">{{ $item->name }}</a></li>
+											<li><a href="{{ route('category.show.product', $item->slug) }}">{{ $item->name }}</a></li>
 										@endforeach
 									</ul>
 								</div>
-								
-							@else
-
+							</div>
+									
+						@else
+							<div class="card card-category">
 								<div class="img-wrap" style="background: #ffd7d7">
-								@if ($category->image != null)
-								<img src="{{ asset('storage/'.$category->image) }}" alt="img">
-								@else
-								<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="">
-								@endif
+									@if ($category->image != null)
+									<img src="{{ asset('storage/'.$category->image) }}" alt="img">
+									@else
+									<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="">
+									@endif
 								</div>
-								
-								<div class="card-body">
-									<h4 class="card-title"><a href="{{ route('category.show', $category->slug) }}">{{$category->name}}</a></h4>
-								</div>
+									
+									<div class="card-body">
+										<h4 class="card-title"><a href="{{ route('category.show.product', $category->slug) }}">{{$category->name}}</a></h4>
+									</div>
 
-							@endif
-						@endforeach
-					</div>
+							</div>
+						@endif
 				</div> <!-- col.// -->
-				@endforeach
+			@endforeach
+		@endforeach
+
+
+
 				
 	</nav> <!-- row.// -->
 

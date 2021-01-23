@@ -13,7 +13,7 @@
 <div class="container">
             <div class="row">
 
-                <main class="col-sm-12 successAlert">
+                <main class="col-sm-12 successAlert" style="display:none">
                     <div class="alert alert-success">
                         <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
                         <p>Your payment has been received successfully.</p><br>
@@ -26,6 +26,12 @@
 
             </div>
         </div> <!-- container .//  -->
+
+<div class="container">
+    <div class="embed-responsive embed-responsive-4by3">
+        {{ iframe }}
+    </div>
+</div>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 @stop

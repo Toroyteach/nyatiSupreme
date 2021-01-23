@@ -11,12 +11,13 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content bg padding-y border-top">
 <div class="container">
-            <div class="row">
-                <main class="col-sm-12">
+            <div class="">
+                <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6">
                     <p class="alert alert-warning">Your order placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
                 </main>
+                <br>
 
-                <main class="col-sm-12 successAlert" style="display:none">
+                <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6 successAlert" id="successAlert" style="display:none">
                     <div class="alert alert-success">
                         <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
                         <p>Your payment has been received successfully.</p><br>
@@ -28,7 +29,7 @@
                     </div>
                 </main>
 
-                <main class="col-sm-12">
+                <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6" id="pendingAlert">
 
                     <div class="spinner-border m-5" role="status">
                         <span class="sr-only">Loading...</span>
@@ -51,6 +52,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
       
       <script>
+
+        var successAlert = document.getElementById("successAlert");
+        var pendingAlert = document.getElementById("pendingAlert");
       init();
 
          function init(){
@@ -109,9 +113,13 @@
                 },
                success:function(data) {
 
-                //hide pending alert
-                //show success alert
+                //hide pending alaert
+                pendingAlert.style.display = "none";
+                //show success alaert
+                successAlert.style.display = "block";
+
                 console.log(data.success);
+                //redirect after few minutes 
             
                }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use Cart;
+use Pesapal;
 use App\Models\Order;
 use Illuminate\Http\Request;
 //use App\Services\PayPalService;
@@ -26,7 +27,7 @@ class CheckoutController extends Controller
     public function __construct(OrderContract $orderRepository)
     {
         //dd('payment not set');
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth','verified','emptyCart']);
         //$this->payPal = $payPal;
         $this->orderRepository = $orderRepository;
     }
@@ -37,7 +38,7 @@ class CheckoutController extends Controller
     }
 
     public function placeOrder(Request $request)
-    {
+    {   
         //dd($request->all());
         //return response()->json(['success'=>'Ajax request submitted successfully']);
         // Before storing the order we should implement the
@@ -71,6 +72,28 @@ class CheckoutController extends Controller
             
             //event with order placed
             event(new OrderPlaced($eventdata));// move to success mpesa payment api
+
+            Cart::clear();
+
+            if($order->payment_method == 'credit'){
+
+                $details = array(
+                    'amount' => $order -> amount,
+                    'description' => 'Test Transaction',
+                    'type' => 'MERCHANT',
+                    'first_name' => 'Fname',
+                    'last_name' => 'Lname',
+                    'email' => 'test@test.com',
+                    'phonenumber' => '254-723232323',
+                    'reference' => $order -> transactionid,
+                    'height'=>'400px',
+                    //'currency' => 'USD'
+                );
+
+                $iframe=Pesapal::makePayment($details);
+
+                return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+            }
 
             return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
         }
@@ -127,6 +150,41 @@ class CheckoutController extends Controller
     {
 
         //check if order number payment status has changed to successfull
-        return response()->json(['success'=>'payment Accepted Suucessfully']);
+        return response()->json(['success'=>'Payment is Not Processed']);
+    }
+
+    //pesapal payment methods
+    public function paymentsuccess(Request $request)//just tells u payment has gone thru..but not confirmed
+    {
+        $trackingid = $request->input('tracking_id');
+        $ref = $request->input('merchant_reference');
+
+        $payments = Order::where('transactionid',$ref)->first();
+        $payments -> trackingid = $trackingid;
+        $payments -> status = 'PENDING';
+        $payments -> save();
+        //go back home
+        $payments=Order::all();
+        return view('frontend.pages.success');
+    }
+    //This method just tells u that there is a change in pesapal for your transaction..
+    //u need to now query status..retrieve the change...CANCELLED? CONFIRMED?
+    public function paymentconfirmation(Request $request)
+    {
+        $trackingid = $request->input('pesapal_transaction_tracking_id');
+        $merchant_reference = $request->input('pesapal_merchant_reference');
+        $pesapal_notification_type= $request->input('pesapal_notification_type');
+
+        //use the above to retrieve payment status now..
+        $this->checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type);
+    }
+    //Confirm status of transaction and update the DB
+    public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type){
+        $status = Pesapal::getMerchantStatus($merchant_reference);
+        $payments = Order::where('trackingid',$trackingid)->first();
+        $payments -> status = $status;
+        $payments -> payment_method = "PESAPAL";//use the actual method though...
+        $payments -> save();
+        return "success";
     }
 }

@@ -35,7 +35,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             $order = Order::create([
                 'order_number'      =>  'ORD-'.strtoupper(uniqid()),
                 'user_id'           => auth()->user()->id,
-                'status'            =>  'pending',
+                'status'            =>  'lost',
                 'grand_total'       =>  Cart::getSubTotal(),
                 'shipping_fee'      =>  0,
                 'item_count'        =>  Cart::getTotalQuantity(),
@@ -58,7 +58,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             $order = Order::create([
                 'order_number'      =>  'ORD-'.strtoupper(uniqid()),
                 'user_id'           => auth()->user()->id,
-                'status'            =>  'pending',
+                'status'            =>  'lost',
                 'grand_total'       =>  Cart::getSubTotal(),
                 'shipping_fee'      =>  0,
                 'item_count'        =>  Cart::getTotalQuantity(),
@@ -110,12 +110,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             if($order->payment_method == 'mpesa'){
                 //dd('mpesa');
             }
-            else {
-                if($order->payment_method == 'credit'){
-                    //call credit c2b push request
-                    //dd('credit');
-                }
-            }
+
         }
             //dd('finished');
         return $order;

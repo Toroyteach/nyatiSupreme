@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'icon' => 'vendor/kustomer/assets/nyati_logo.svg',
+    'icon' => '/vendor/kustomer/assets/nyati_logo.svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ return [
     |
      */
 
-    'close' => 'vendor/kustomer/assets/close.svg',
+    'close' => '/vendor/kustomer/assets/close.svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ return [
     |
     */
 
-    'logo' => 'vendor/kustomer/assets/nyati_logo.svg',
+    'logo' => '/vendor/kustomer/assets/nyati_logo.svg',
 
     /*
     |--------------------------------------------------------------------------
@@ -75,13 +75,13 @@ return [
 
     'feedbacks' => [
         'like' => [
-            'icon' => 'vendor/kustomer/assets/like.svg',
+            'icon' => '/vendor/kustomer/assets/like.svg',
         ],
         'dislike' => [
-            'icon' => 'vendor/kustomer/assets/dislike.svg',
+            'icon' => '/vendor/kustomer/assets/dislike.svg',
         ],
         'suggestion' => [
-            'icon' => 'vendor/kustomer/assets/idea.svg',
+            'icon' => '/vendor/kustomer/assets/idea.svg',
         ],
         // 'bug' => [
         //     'icon' => '/vendor/kustomer/assets/bug.svg',

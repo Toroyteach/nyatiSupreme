@@ -22,23 +22,23 @@
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
 
 <!-- Bootstrap4 files-->
-<script src="{{ asset('frontend/cssfiles/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
-<link href="{{ asset('frontend/cssfiles/css/bootstrap.css?v=2.0') }}" rel="stylesheet" type="text/css"/>
+<script src="{{ asset('/frontend/cssfiles/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<link href="{{ asset('/frontend/cssfiles/css/bootstrap.css?v=2.0') }}" rel="stylesheet" type="text/css"/>
 
 <!-- Font awesome 5 -->
-<link href="{{ asset('frontend/cssfiles/fonts/fontawesome/css/all.min.css?v=2.0') }}" type="text/css" rel="stylesheet">
+<link href="{{ asset('/frontend/cssfiles/fonts/fontawesome/css/all.min.css?v=2.0') }}" type="text/css" rel="stylesheet">
 
 <!-- custom style -->
-<link href="{{ asset('frontend/cssfiles/css/ui.css?v=2.0') }}" rel="stylesheet" type="text/css"/>
-<link href="{{ asset('frontend/cssfiles/css/responsive.css?v=2.0') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/frontend/cssfiles/css/ui.css?v=2.0') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/frontend/cssfiles/css/responsive.css?v=2.0') }}" rel="stylesheet" type="text/css" />
 
 <!-- fancy box -->
-<link href="{{ asset('frontend/cssfiles/plugins/fancybox/fancybox.min.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ asset('/frontend/cssfiles/plugins/fancybox/fancybox.min.css') }}" rel="stylesheet" type="text/css"/>
 
 <!-- custom javascript -->
-<script src="{{ asset('frontend/cssfiles/js/script.js?v=2.0') }}" type="text/javascript"></script>
+<script src="{{ asset('/frontend/cssfiles/js/script.js?v=2.0') }}" type="text/javascript"></script>
 
-<script src="{{ asset('vendor/kustomer/js/kustomer.js') }}" defer></script>
+<script src="{{ asset('/vendor/kustomer/js/kustomer.js') }}" defer></script>
 
 <style>
 .kustomer-feedback-component{

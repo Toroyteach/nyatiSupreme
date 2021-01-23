@@ -61,7 +61,10 @@
 			<a class="nav-link" href="{{route('home')}}">Home</a>
 		</li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Shop">
-		<a class="nav-link" href="{{route('shop')}}">shop</a>
+		<a class="nav-link" href="{{route('shop')}}">Shop</a>
+		</li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="About Us">
+		<a class="nav-link" href="{{route('category.show')}}">Categories</a>
 		</li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="top" title="About Us">
 		<a class="nav-link" href="{{route('about')}}">About</a>

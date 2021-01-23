@@ -19,12 +19,12 @@
 						<li class="has-submenu"><a href="#">More items</a>
 							<ul class="submenu">
 							@foreach($category->items as $item)
-                                        <a class="dropdown-item" href="{{ route('category.show', $item->slug) }}">{{ $item->name }}</a>
+                                        <a class="dropdown-item" href="{{ route('category.show.product', $item->slug) }}">{{ $item->name }}</a>
                                     @endforeach
 							</ul>
 						</li>
                         @else
-							<li><a class="nav-link" href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a></li>
+							<li><a class="nav-link" href="{{ route('category.show.product', $category->slug) }}">{{ $category->name }}</a></li>
                         @endif
                     @endforeach
                 @endforeach

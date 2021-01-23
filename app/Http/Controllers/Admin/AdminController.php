@@ -307,8 +307,9 @@ class AdminController extends Controller
     public function showNotification()
     {
         $notifications = Auth::user()->unreadNotifications;
+        $pageTitle = 'Notifications';
         
-        return view('admin.dashboard.notification', compact('notifications'));
+        return view('admin.dashboard.notification', compact('pageTitle','notifications'));
     }
 
     public function markNotification(Request $request)

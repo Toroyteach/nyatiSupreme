@@ -12,15 +12,17 @@ class RequestProductController extends Controller
     public function index()
     {
             $productsRequest = RequestProduct::all()->sortByDesc('created_at');
+            $pageTitle = 'Requested Product';
 
-            return view('admin.requestproducts.index', compact('productsRequest'));
+            return view('admin.requestproducts.index', compact('pageTitle','productsRequest'));
     }
 
     public function show($id)
     {
             $productsRequests = RequestProduct::find($id);
+            $pageTitle = 'Requested Product';
 
-            return view('admin.requestproducts.show', compact('productsRequests'));
+            return view('admin.requestproducts.show', compact('pageTitle','productsRequests'));
     }
 
     public function store(Request $request)
