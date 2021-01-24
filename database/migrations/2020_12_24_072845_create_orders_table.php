@@ -19,12 +19,12 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('lost');
+            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending');
             $table->decimal('grand_total', 20, 6);
             $table->decimal('shipping_fee', 20, 6)->default(0);
             $table->bigInteger('item_count')->Unsigned();
 
-            $table->boolean('payment_status')->default(1);
+            $table->boolean('payment_status')->default(0);
             $table->string('payment_method')->nullable();
 
             $table->string('first_name');

@@ -7,12 +7,21 @@
         </div>
     </section>
     <section class="section-content bg padding-y border-top">
-        <div class="container">
+<div class="container">
             <div class="row">
-                <main class="col-sm-12">
-                    <p class="alert alert-success">Your order placed successfully. Your order number is : {{ $order->order_number }}.</p>
+
+                <main class="col-sm-12 successAlert">
+                    <div class="alert alert-success">
+                        <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
+                        <p>Your payment status has been received.</p><br>
+                        <p>Your order number is : <span>{{ $order->order_number }}<span>.</p><br>
+                        <p>Thank you for shooping with us. We shall send you confirmation once payment is successfull</p><br>
+                        <p>Nyati Supreme Team.</p><br>
+                        <a class="btn btn-primary btn-sm" href="{{ route('account.orders') }}">View Order</a>
+                    </div>
                 </main>
+
             </div>
-        </div>
-    </section>
+        </div> <!-- container .//  -->
+</section>
 @stop

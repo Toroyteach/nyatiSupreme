@@ -10,6 +10,7 @@ use App\Models\OrderItem;
 use App\Contracts\OrderContract;
 use App\Models\User;
 use App\Models\UserAddress;
+use SmoDav\Mpesa\Laravel\Facades\STK;
 
 class OrderRepository extends BaseRepository implements OrderContract
 {
@@ -35,7 +36,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             $order = Order::create([
                 'order_number'      =>  'ORD-'.strtoupper(uniqid()),
                 'user_id'           => auth()->user()->id,
-                'status'            =>  'lost',
+                'status'            =>  'pending',
                 'grand_total'       =>  Cart::getSubTotal(),
                 'shipping_fee'      =>  0,
                 'item_count'        =>  Cart::getTotalQuantity(),
@@ -58,7 +59,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             $order = Order::create([
                 'order_number'      =>  'ORD-'.strtoupper(uniqid()),
                 'user_id'           => auth()->user()->id,
-                'status'            =>  'lost',
+                'status'            =>  'pending',
                 'grand_total'       =>  Cart::getSubTotal(),
                 'shipping_fee'      =>  0,
                 'item_count'        =>  Cart::getTotalQuantity(),
@@ -109,6 +110,7 @@ class OrderRepository extends BaseRepository implements OrderContract
 
             if($order->payment_method == 'mpesa'){
                 //dd('mpesa');
+                $response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');
             }
 
         }

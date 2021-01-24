@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use Cart;
 use Pesapal;
+use App\Models\PesapalTransaction;
 use App\Models\Order;
 use Illuminate\Http\Request;
 //use App\Services\PayPalService;
@@ -77,16 +78,27 @@ class CheckoutController extends Controller
 
             if($order->payment_method == 'credit'){
 
+                $payments = new PesapalTransaction;
+                $payments->order()->associate($order->id);
+                $payments->businessid = Auth::user()->id; //Business ID
+                $payments->transactionid = Pesapal::random_reference();
+                $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
+                $payments->amount = 10;
+                $payments->save();
+
+                //dd($payments.''.$order);
+
+                //make a model to create pesapal transaction
                 $details = array(
-                    'amount' => $order -> amount,
+                    'amount' => $order->grand_total,
                     'description' => 'Test Transaction',
                     'type' => 'MERCHANT',
-                    'first_name' => 'Fname',
-                    'last_name' => 'Lname',
-                    'email' => 'test@test.com',
-                    'phonenumber' => '254-723232323',
-                    'reference' => $order -> transactionid,
-                    'height'=>'400px',
+                    'first_name' => Auth::user()->first_name,
+                    'last_name' => Auth::user()->last_name,
+                    'email' => Auth::user()->email,
+                    'phonenumber' => Auth::user()->phonenumber,
+                    'reference' => $payments->transactionid,
+                    //'height'=>'400px',
                     //'currency' => 'USD'
                 );
 
@@ -150,7 +162,8 @@ class CheckoutController extends Controller
     {
 
         //check if order number payment status has changed to successfull
-        return response()->json(['success'=>'Payment is Not Processed']);
+        return response()->json(['success'=>'Payment is Processed', 'status' => 1]);
+        //return response()->json(['failure'=>'Payment is Not Processed', 'status' => 0]);
     }
 
     //pesapal payment methods
@@ -158,14 +171,17 @@ class CheckoutController extends Controller
     {
         $trackingid = $request->input('tracking_id');
         $ref = $request->input('merchant_reference');
+        
+        $payments = PesapalTransaction::where('transactionid',$ref)->first();
+        $payments->trackingid = $trackingid;
+        $payments->status = 'pending';
+        $payments->save();
 
-        $payments = Order::where('transactionid',$ref)->first();
-        $payments -> trackingid = $trackingid;
-        $payments -> status = 'PENDING';
-        $payments -> save();
+        $order = Order::find($payments->order_id);
+        $order->payment_status = 'pending';
+        $order->save();
         //go back home
-        $payments=Order::all();
-        return view('frontend.pages.success');
+        return view('frontend.pages.success', compact('order'));
     }
     //This method just tells u that there is a change in pesapal for your transaction..
     //u need to now query status..retrieve the change...CANCELLED? CONFIRMED?
@@ -181,10 +197,14 @@ class CheckoutController extends Controller
     //Confirm status of transaction and update the DB
     public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type){
         $status = Pesapal::getMerchantStatus($merchant_reference);
-        $payments = Order::where('trackingid',$trackingid)->first();
-        $payments -> status = $status;
-        $payments -> payment_method = "PESAPAL";//use the actual method though...
-        $payments -> save();
+        $payments = PesapalTransaction::where('trackingid',$trackingid)->first();
+        $payments->status = $status;
+        $payments->payment_method = "PESAPAL";//use the actual method though...
+        $payments->save();
+
+        $order = Order::find($payments->order_id);
+        $order->payment_status = 'Completed';
+        $order->save();
         return "success";
     }
 }

@@ -13,7 +13,7 @@
 <div class="container">
             <div class="">
                 <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6">
-                    <p class="alert alert-warning">Your order placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
+                    <p class="alert alert-info">Your order placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
                 </main>
                 <br>
 
@@ -35,7 +35,7 @@
                         <span class="sr-only">Loading...</span>
                     </div>
 
-                    <div class="alert alert-info pendingAlert">
+                    <div class="alert alert-warning pendingAlert">
                         <p>Please wait while we finish processing your payment.</p> <br> 
                         <p>Also wait 2 minutes and click here to request another mpesa confirmation</p>
                         <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="requestSubmition()">Request</button><br>
@@ -113,6 +113,7 @@
                 },
                success:function(data) {
 
+                if(data.status){
                 //hide pending alaert
                 pendingAlert.style.display = "none";
                 //show success alaert
@@ -120,6 +121,7 @@
 
                 console.log(data.success);
                 //redirect after few minutes 
+                }
             
                }
 

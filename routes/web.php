@@ -77,6 +77,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     //ajax request
     Route::post('/requestMpesa', 'Site\CheckoutController@requestPaymentAgain');
     Route::post('/requestOrderPaymentConfirmation', 'Site\CheckoutController@requestUpdatePendingPay');
+
+    Route::group(['prefix' => 'payment'], function () {
+        Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'CheckoutController@paymentsuccess']);
+        Route::get('/paymentconfirmation', 'CheckoutController@paymentconfirmation');
+    });
 });
 
 Auth::routes(['verify' => true]);
@@ -121,6 +126,7 @@ Route::post('/reset-password', function (Request $request) {
     return $status == Password::PASSWORD_RESET
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
+                
 })->middleware('guest')->name('password.update');
 
 //log in with social media routes
