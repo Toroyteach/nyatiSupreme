@@ -27,5 +27,6 @@ class SendEmailVerificationNotification
     public function handle(Registered $event)
     {
         //
+        dd('here');
     }
 }

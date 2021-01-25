@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -23,12 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.homepage');
+        $topItems = Product::orderBy('updated_at', 'DESC')->take(12)->get();
+        $topCats = Category::orderBy('updated_at', 'DESC')->where('featured',1)->take(3)->get();
+        //dd($topCats);
+        return view('frontend.pages.homepage', compact('topItems', 'topCats'));
     }
 
     public function shop()
     {
-        return view('frontend.pages.productlist');
+        $cats = Category::orderByRaw('-name ASC')->get()->nest();
+        $products = $topItems = Product::orderBy('updated_at', 'DESC')->get();
+
+        return view('frontend.pages.productlist', compact('cats', 'products'));
     }
 
     public function about()
@@ -39,5 +47,9 @@ class HomeController extends Controller
     public function contact()
     {
         return view('frontend.pages.contact');
+    }
+    public function getInformation($slug)
+    {
+        return view('frontens.pages.information');
     }
 }

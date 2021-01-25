@@ -15,6 +15,7 @@
 <meta name="keywords" content="{{ config('settings.seo_meta_title') }}">
 
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('/frontend/cssfiles/custome.css') }}" rel="stylesheet" type="text/css">
 
 <link href="{{ config('settings.site_favicon') }}" rel="shortcut icon" type="image/x-icon">
 

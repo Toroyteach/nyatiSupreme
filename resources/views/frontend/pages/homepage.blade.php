@@ -16,10 +16,10 @@
                 @foreach($categories as $cat)
                     @foreach($cat->items as $category)
 						@if ($category->items->count() > 0)
-						<li class="has-submenu"><a href="#">More items</a>
+						<li class="has-submenu"><a href="{{ route('category.show.product', $category->slug) }}">{{ $category->name }}</a>
 							<ul class="submenu">
 							@foreach($category->items as $item)
-                                        <a class="dropdown-item" href="{{ route('category.show.product', $item->slug) }}">{{ $item->name }}</a>
+								<li><a class="dropdown-item" href="{{ route('category.show.product', $item->slug) }}">{{ $item->name }}</a></li>
                                     @endforeach
 							</ul>
 						</li>
@@ -67,30 +67,17 @@
 	<div class="col-md d-none d-lg-block flex-grow-1">
 		<aside class="special-home-right">
 			<h6 class="bg-blue text-center text-white mb-0 p-2">Top Interests</h6>
-			
-			<div class="card-banner border-bottom">
-			  <div class="py-3" style="width:80%">
-			    <h6 class="card-title">Men clothing</h6>
-			    <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
-			  </div> 
-			  <img src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}" height="80" class="img-bg">
-			</div>
 
+			@foreach($topCats as $cat)
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
-			    <h6 class="card-title">Winter clothing </h6>
-			    <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
+			    <h6 class="card-title">{{$cat->slug}}</h6>
+			    <a href="{{ route('category.show.product', $cat->slug) }}" class="btn btn-secondary btn-sm"> Source now </a>
 			  </div> 
-			  <img src="{{ asset('frontend/cssfiles/images/items/2.jpg') }}" height="80" class="img-bg">
+			  <img src="{{ asset('storage/'.$cat->image) }}" height="80" class="img-bg">
 			</div>
+			@endforeach
 
-			<div class="card-banner border-bottom">
-			  <div class="py-3" style="width:80%">
-			    <h6 class="card-title">Home inventory</h6>
-			    <a href="#" class="btn btn-secondary btn-sm"> Source now </a>
-			  </div> 
-			  <img src="{{ asset('frontend/cssfiles/images/items/6.jpg') }}" height="80" class="img-bg">
-			</div>
 
 		</aside>
 	</div> <!-- col.// -->
@@ -102,84 +89,6 @@
 </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
-
-
-<!-- =============== SECTION DEAL =============== -->
-<section class="padding-bottom">
- <div class="card card-deal">
-     <div class="col-heading content-body">
-      <header class="section-heading">
-       <h3 class="section-title">Deals and offers</h3>
-       <p>Hygiene equipments</p>
-     </header><!-- sect-heading -->
-     <div class="timer">
-       <div> <span class="num">04</span> <small>Days</small></div>
-       <div> <span class="num">12</span> <small>Hours</small></div>
-       <div> <span class="num">58</span> <small>Min</small></div>
-       <div> <span class="num">02</span> <small>Sec</small></div>
-     </div>
-   </div> <!-- col.// -->
-   <div class="row no-gutters items-wrap">
-    <div class="col-md col-6">
-     <figure class="card-product-grid card-sm">
-      <a href="#" class="img-wrap"> 
-       <img src="{{ asset('frontend/cssfiles/images/items/3.jpg') }}"> 
-      </a>
-      <div class="text-wrap p-3">
-       	<a href="#" class="title">Summer clothes</a>
-       	<span class="badge badge-danger"> -20% </span>
-      </div>
-   </figure>
- </div> <!-- col.// -->
- <div class="col-md col-6">
-   <figure class="card-product-grid card-sm">
-    <a href="#" class="img-wrap"> 
-     <img src="{{ asset('frontend/cssfiles/images/items/4.jpg') }}"> 
-   </a>
-   <div class="text-wrap p-3">
-     <a href="#" class="title">Some category</a>
-     <span class="badge badge-danger"> -5% </span>
-   </div>
- </figure>
-</div> <!-- col.// -->
-<div class="col-md col-6">
- <figure class="card-product-grid card-sm">
-  <a href="#" class="img-wrap"> 
-   <img src="{{ asset('frontend/cssfiles/images/items/5.jpg') }}"> 
- </a>
- <div class="text-wrap p-3">
-   <a href="#" class="title">Another category</a>
-   <span class="badge badge-danger"> -20% </span>
- </div>
-</figure>
-</div> <!-- col.// -->
-<div class="col-md col-6">
- <figure class="card-product-grid card-sm">
-  <a href="#" class="img-wrap"> 
-   <img src="{{ asset('frontend/cssfiles/images/items/6.jpg') }}"> 
- </a>
- <div class="text-wrap p-3">
-   <a href="#" class="title">Home apparel</a>
-   <span class="badge badge-danger"> -15% </span>
- </div>
-</figure>
-</div> <!-- col.// -->
-<div class="col-md col-6">
- <figure class="card-product-grid card-sm">
-  <a href="#" class="img-wrap"> 
-   <img src="{{ asset('frontend/cssfiles/images/items/7.jpg') }}"> 
- </a>
- <div class="text-wrap p-3">
-   <a href="#" class="title text-truncate">Smart watches</a>
-   <span class="badge badge-danger"> -10% </span>
- </div>
-</figure>
-</div> <!-- col.// -->
-</div>
-</div>
-
-</section>
-<!-- =============== SECTION DEAL // END =============== -->
 
 <!-- =============== SECTION 2 =============== -->
 <section class="padding-bottom">
@@ -281,7 +190,45 @@
 </section>
 <!-- =============== SECTION 2 END =============== -->
 
-
+<section class="section-content padding-y bg">
+<div class="container">
+<div class="row">
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 1 ================================= -->
+<div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/banners/banner4.jpg') }}');">
+  <article class="card-body caption">
+	<h5 class="card-title">Men</h5>
+	<p>No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
+	<a href="#" class="btn btn-warning"> View more </a>
+  </article>
+</div>
+<!-- ======================= COMPONENT BANNER 1  END .// ============================ -->
+		</div> <!-- col.// -->
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 2 ================================= -->
+<div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/banners/banner5.jpg') }}');">
+  <article class="card-body bg-gradient-green text-white">
+	<h5 class="card-title">Women</h5>
+	<p>No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
+	<a href="#" class="btn btn-warning"> View more </a>
+  </article>
+</div>
+<!-- ============================ COMPONENT BANNER 2  END .// =========================== -->
+		</div> <!-- col.// -->
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 3 ================================= -->
+<div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/banners/banner6.jpg') }}');">
+  <article class="card-img-overlay bg-gradient-red text-white">
+	<h5 class="card-title">Kids</h5>
+	<p>No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
+	<a href="#" class="btn btn-warning"> View more </a>
+  </article>
+</div>
+<!-- ============================ COMPONENT BANNER 3  END .// ================================= -->
+		</div> <!-- col.// -->
+</div> <!-- row.// -->
+</div> <!-- container .//  -->
+</section>
 
 <!-- =============== SECTION REQUEST =============== -->
 
@@ -350,171 +297,115 @@
 </header>
 
 <div class="row row-sm">
+@foreach($topItems as $item)
 	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
 		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}"> </a>
+			<a href="#" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first() )}}"> </a>
 			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+				<a href="#" class="title">{{$item->name}}</a>
+				<div class="price mt-1">{{ config('settings.currency_symbol') }} {{ $item->price }}</div> <!-- price-wrap.// -->
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/2.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/3.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/4.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/5.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/6.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/7.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/9.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/4.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/5.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Just another product name</a>
-				<div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/6.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Some item name here</a>
-				<div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
-		<div class="card card-sm card-product-grid">
-			<a href="#" class="img-wrap"> <img src="{{ asset('frontend/cssfiles/images/items/7.jpg') }}"> </a>
-			<figcaption class="info-wrap">
-				<a href="#" class="title">Great product name here</a>
-				<div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
+@endforeach
+
+
 </div> <!-- row.// -->
 </section>
 <!-- =============== SECTION ITEMS .//END =============== -->
 
+<!-- =============== SECTION BANNER =============== -->
+<section class="padding-bottom">
+	<div class="row">
+		<aside class="col-md-6">
+			<div class="card card-banner-lg bg-dark">
+				<img src="{{ asset('frontend/cssfiles/images/banners/banner4.jpg') }}" class="card-img opacity">
+				<div class="card-img-overlay text-white">
+				  <h2 class="card-title">High Quality Concrete Blocks</h2>
+				  <p class="card-text" style="max-width: 80%">We manufacture high quality concrete blocks that meet both dimensional and strength requirements by the
+relevant authorities and according to customer specifications.</p>
+				  <a href="#" class="btn btn-light">Discover</a>
+				</div>
+			 </div>
+		</aside>
+		<div class="col-md-6">
+			<div class="card card-banner-lg bg-dark">
+				<img src="{{ asset('frontend/cssfiles/images/banners/banner5.jpg') }}" class="card-img opacity">
+				<div class="card-img-overlay text-white">
+				  <h2 class="card-title">Beautiful Coloured Blocks</h2>
+				    <p class="card-text" style="max-width: 80%">We offer special type of paving blocks with various profiles and customised colours according to client needs,
+this provides a break from the monotony of the common profiles and ordinary grey/whitish shade that has been
+common for ages.</p>
+				  <a href="#" class="btn btn-light">Discover</a>
+				</div>
+			 </div>
+		</div> <!-- col.// -->
+	</div> <!-- row.// -->
+</section>
+<!-- =============== SECTION BANNER .//END =============== -->
+
 
 <!-- =============== SECTION SERVICES =============== -->
 <section  class="padding-bottom">
-
 <header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Our Trade services</h4>
+	<h5 class="title-section text-uppercase">How to place and order	</h5>
 </header>
+<div class="container">
 
+<!-- ============================ COMPONENT 1 ================================= -->
 <div class="row">
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/1.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Trade Assurance</h6>
-		    <p class="small text-uppercase text-muted">Order and Service protection</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Payment Easy and Secure</h6>
-		    <p class="small text-uppercase text-muted">Finance solution</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/3.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Inspection solution</h6>
-		    <p class="small text-uppercase text-muted">Easy Inspection</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Easy Shipping and Delivery</h6>
-		    <p class="small text-uppercase text-muted">Logistic services</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-</div> <!-- row.// -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="fas fa-columns"></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">Browse through items</h5>
+			<p>Look through the items on categories or shop section </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div><!-- col // -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="fas fa-shopping-cart"></i></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">View your Cart</h5>
+			<p>Once selected review your items on your cart </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div> <!-- col // -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="fas fa-shopping-bag"></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">Proceed to checkout</h5>
+			<p>Once items verified make purchase and head to checkout</p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div> <!-- col // -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="far fa-paper-plane"></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">Place your Order</h5>
+			<p>Confirm and fill in your contact details and place your order </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div> <!-- col // -->
+</div>
+<!-- ============================ COMPONENT 1 END .// ================================= -->
+</div>
 
 </section>
 <!-- =============== SECTION SERVICES .//END =============== -->
 
-<article class="my-4">
-	<img src="{{ asset('frontend/cssfiles/images/banners/ad-sm.png') }}" class="w-100">
-</article>
+
 </div>  
 <!-- container end.// -->
 

@@ -13,13 +13,13 @@ class AlterProductAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::table('product_attributes', function (Blueprint $table) {
+        // Schema::table('product_attributes', function (Blueprint $table) {
 
-            //$table->bigInteger('attribute_id')->after('id')->unsigned();
-            //$table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
+        //     //$table->bigInteger('attribute_id')->after('id')->unsigned();
+        //     //$table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
 
-            //$table->string('value')->after('attribute_id');
-        });
+        //     //$table->string('value')->after('attribute_id');
+        // });
     }
 
     /**

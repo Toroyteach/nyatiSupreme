@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function show()
     {
         //$category = $this->categoryRepository->findBySlug($slug);
-        $cats = Category::orderByRaw('-name ASC')->get()->nest();
+        $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->get()->nest();
 
         return view('frontend.pages.category', compact('cats'));
     }
@@ -27,7 +27,8 @@ class CategoryController extends Controller
     public function showProduct($slug)
     {
         //$category = $this->categoryRepository->findBySlug($slug);
-        $cats = Category::orderByRaw('-name ASC')->where('slug', $slug)->get();
+        $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->get();
+        //dd($cats);
 
         return view('frontend.pages.categoryshow', compact('cats'));
     }

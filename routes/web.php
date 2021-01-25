@@ -33,10 +33,12 @@ Route::view('/', 'frontend.pages.homepage');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
 Route::get('/shop', 'HomeController@shop')->name('shop');
+Route::get('/product/information', 'HomeController@getInformation')->name('product.information');
 //Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
 Route::get('/category', 'Site\CategoryController@show')->name('category.show');
 Route::get('/category/{slug}', 'Site\CategoryController@showProduct')->name('category.show.product');
 Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
+
 
 Route::post('/product/add/cart', 'Site\ProductController@addToCart')->name('product.add.cart');
 Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
