@@ -74,7 +74,8 @@
 
 <div class="row justify-content-md-center">
 	<div class="col-lg-4 col-sm-6">
-<form class="form-row">
+	<form class="form-row" action="{{ route('subscribers.store') }}" method="post">
+	@csrf
 		<div class="col-8">
 		<input class="form-control" placeholder="Your Email" type="email">
 		</div> <!-- col.// -->

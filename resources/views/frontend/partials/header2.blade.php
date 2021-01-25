@@ -77,7 +77,7 @@
 
       <form class="form-inline my-2 my-lg-0" data-toggle="tooltip" data-placement="top" title="search item">
 		    <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search an item">
+          <input type="text" class="form-control typeahead" placeholder="Search an item">
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit">
               <i class="fa fa-search"></i>
@@ -91,3 +91,18 @@
 </nav>
 </section> <!-- header-main .// -->
 </header> <!-- section-header.// -->
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+    var path = "{{ route('autocomplete') }}";
+    $('input.typeahead').typeahead({
+        source:  function (query, process) {
+        return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>
+@endpush

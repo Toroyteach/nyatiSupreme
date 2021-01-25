@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\CustomerContact;
 
 class HomeController extends Controller
 {
@@ -50,6 +51,33 @@ class HomeController extends Controller
     }
     public function getInformation($slug)
     {
+
         return view('frontens.pages.information');
+    }
+
+    public function storeFeedback(Request $request)
+    {
+        $this->validate($request,[
+            'name'=>'required|max:20',
+            'email'=>'required',
+            'subject'=>'required|max:20',
+            'description'=>'required:191'
+         ]);
+
+        CustomerContact::create($request->except('_token'));
+
+        return redirect()->back()->with('message', 'We have recieved your contact information. We shall get back to you');
+    }
+
+    public function search()
+    {
+
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = Product::select("slug")->where("slug","LIKE","%{$request->query}%")->get();
+
+        return response()->json($data);
     }
 }

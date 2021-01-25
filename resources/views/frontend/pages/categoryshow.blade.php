@@ -102,7 +102,7 @@
 		@endforeach
 	@empty
 	<div class="alert alert-warning" role="alert">
-		Theres no more products in tis Category. Click <a href="{{route('shop')}}" class="alert-link">Here</a>. To view other products.
+		Theres no more products in this Category. Click <a href="{{route('shop')}}" class="alert-link">Here</a>. To view other products.
 	</div>
 	@endforelse
 

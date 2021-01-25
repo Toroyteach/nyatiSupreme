@@ -10,6 +10,11 @@
 	</ol>  
 	</nav>
 </div> <!-- container //  -->
+@if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
 
 <br><br>
 <div class="container">
@@ -94,31 +99,27 @@
 <!-- ============================ COMPONENT FEEDBACK  ================================= -->
         <div class="card">
             <div class="card-body">
-                <form>
+            <form action="{{ route('contact.store') }}" method="post">
+	            @csrf
                     <div class="form-row">
                         <div class="col form-group">
                             <label>Name</label>
-                            <input type="name" class="form-control" placeholder="">
+                            <input type="name" class="form-control" placeholder="" name="name" required>
                         </div> <!-- form-group end.// -->
                         <div class="col form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" placeholder="">
+                            <input type="email" class="form-control" placeholder="" name="email" required>
                         </div> <!-- form-group end.// -->
                     </div> <!-- form-row.// -->
                     <div class="form-group">
                         <label>Subject</label>
-                        <input type="subject" class="form-control" placeholder="">
+                        <input type="subject" class="form-control" placeholder="" name="subject" required>
                     </div>
                     <div class="form-group">
                         <label>What is message about?</label>
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" name="description" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label  for="exampleFormControlFile1">
-                            <input type="file" class="form-control-file">
-                        </label>
-                    </div>
-                    <button class="btn btn-primary btn-block">Send</button>
+                    <button class="btn btn-primary btn-block" type="submit">Send</button>
                 </form>
             </div> <!-- card-body.// -->
         </div> <!-- card .// -->

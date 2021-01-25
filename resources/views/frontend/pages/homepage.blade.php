@@ -1,5 +1,10 @@
 @extends('frontend.app')
 @section('content')
+@if (session('subscribed'))
+    <div class="alert alert-success">
+        {{ session('subscribed') }}
+    </div>
+@endif
 <div class="container">
 <!-- ========================= SECTION MAIN  ========================= -->
 <section class="section-main padding-y">
@@ -13,7 +18,7 @@
 			<ul class="menu-category">
 
 
-                @foreach($categories as $cat)
+                @forelse($categories as $cat)
                     @foreach($cat->items as $category)
 						@if ($category->items->count() > 0)
 						<li class="has-submenu"><a href="{{ route('category.show.product', $category->slug) }}">{{ $category->name }}</a>
@@ -27,7 +32,11 @@
 							<li><a class="nav-link" href="{{ route('category.show.product', $category->slug) }}">{{ $category->name }}</a></li>
                         @endif
                     @endforeach
-                @endforeach
+				@empty
+				<div class="alert alert-warning" role="alert">
+					Theres no Category.
+				</div>
+				@endforelse
 
 			</ul>
 		</nav>
@@ -68,7 +77,7 @@
 		<aside class="special-home-right">
 			<h6 class="bg-blue text-center text-white mb-0 p-2">Top Interests</h6>
 
-			@foreach($topCats as $cat)
+			@forelse($topCats as $cat)
 			<div class="card-banner border-bottom">
 			  <div class="py-3" style="width:80%">
 			    <h6 class="card-title">{{$cat->slug}}</h6>
@@ -76,7 +85,11 @@
 			  </div> 
 			  <img src="{{ asset('storage/'.$cat->image) }}" height="80" class="img-bg">
 			</div>
-			@endforeach
+			@empty
+			<div class="alert alert-warning" role="alert">
+					Theres no Category.
+				</div>
+			@endforelse
 
 
 		</aside>
@@ -297,7 +310,7 @@
 </header>
 
 <div class="row row-sm">
-@foreach($topItems as $item)
+@forelse($topItems as $item)
 	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
 		<div class="card card-sm card-product-grid">
 			<a href="#" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first() )}}"> </a>
@@ -307,7 +320,11 @@
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->
-@endforeach
+	@empty
+			<div class="alert alert-warning" role="alert">
+					Theres no More Products.
+				</div>
+			@endforelse
 
 
 </div> <!-- row.// -->
@@ -418,9 +435,10 @@ train our staff on customer care and interaction </p>
 
 <div class="row justify-content-md-center">
 	<div class="col-lg-5 col-md-6">
-<form class="form-row">
+<form class="form-row" action="{{ route('subscribers.store') }}" method="post">
+	@csrf
 		<div class="col-md-8 col-7">
-		<input class="form-control border-0" placeholder="Your Email" type="email">
+		<input class="form-control border-0" placeholder="Your Email" type="email" name="email">
 		</div> <!-- col.// -->
 		<div class="col-md-4 col-5">
 		<button type="submit" data-toggle="tooltip" data-placement="top" title="Subscribe to recieve our newsletter" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>

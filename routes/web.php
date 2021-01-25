@@ -28,10 +28,11 @@ use Illuminate\Support\Facades\Hash;
 
 // });
 
-Route::view('/', 'frontend.pages.homepage');
+Route::get('/', 'HomeController@index');
 
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::post('/contact/store', 'HomeController@storeFeedback')->name('contact.store');
 Route::get('/shop', 'HomeController@shop')->name('shop');
 Route::get('/product/information', 'HomeController@getInformation')->name('product.information');
 //Route::get('/category/{slug}', 'Site\CategoryController@show')->name('category.show');
@@ -39,6 +40,7 @@ Route::get('/category', 'Site\CategoryController@show')->name('category.show');
 Route::get('/category/{slug}', 'Site\CategoryController@showProduct')->name('category.show.product');
 Route::get('/product/{slug}', 'Site\ProductController@show')->name('product.show');
 
+Route::get('autocomplete', 'HomeController@autocomplete')->name('autocomplete');
 
 Route::post('/product/add/cart', 'Site\ProductController@addToCart')->name('product.add.cart');
 Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
@@ -81,8 +83,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/requestOrderPaymentConfirmation', 'Site\CheckoutController@requestUpdatePendingPay');
 
     Route::group(['prefix' => 'payment'], function () {
-        Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'CheckoutController@paymentsuccess']);
-        Route::get('/paymentconfirmation', 'CheckoutController@paymentconfirmation');
+        Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
+        Route::get('/paymentconfirmation', 'Site\CheckoutController@paymentconfirmation');
     });
 });
 
