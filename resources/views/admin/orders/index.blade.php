@@ -39,7 +39,11 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
+                                    @if ($order->status == 'completed')
                                     <span class="badge badge-success">{{ $order->status }}</span>
+                                    @else
+                                    <span class="badge badge-warning">{{ $order->status }}</span>
+                                    @endif
                                 </td>
                                 <td class="text-center">{{ $order->created_at->toFormattedDateString() }} </td>
                                 <td class="text-center">

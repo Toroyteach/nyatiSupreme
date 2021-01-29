@@ -29,7 +29,7 @@
 													<div class="img-big-wrap">
 														<div class="">
 															<a href="{{ asset('storage/'.$product->images->first()->full) }}" data-fancybox data-caption="{{$product->name}}">
-																<img src="{{ asset('storage/'.$product->images->first()->full) }}" alt="">
+																<img src="{{ asset('storage/'.$product->images->first()->full) }}" alt="" class="img-fluid" >
 															</a>
 														</div>
 													</div>
@@ -44,7 +44,7 @@
 													<div class="img-small-wrap">
 														@foreach($product->images as $image)
 															<div class="">
-																<img src="{{ asset('storage/'.$image->full) }}" alt="">
+																<img src="{{ asset('storage/'.$image->full) }}" alt="" class="img-fluid">
 															</div>
 														@endforeach
 													</div>
@@ -133,24 +133,21 @@
 
 		<div class="form-group col-md flex-grow-0">
 			<div class="input-group mb-3 input-spinner">
-			  <div class="input-group-prepend">
-			    <button class="btn btn-light" type="button" id="button-plus"> + </button>
-			  </div>
+				<div class="input-group-prepend">
+					<button class="btn btn-light" type="button" id="button-plus"> + </button>
+				</div>
 			  <input type="text" class="form-control" name="qty" value ="1" max="{{ $product->quantity }}">
-			  <div class="input-group-append">
-			    <button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
-			  </div>
+				<div class="input-group-append">
+					<button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+				</div>
 			</div>
 		</div> <!-- col.// -->
 
 		<div class="form-group col-md">
-
-		<input type="hidden" name="productId" value="{{ $product->id }}">
-        <input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">
-        <input type="hidden" name="productId" value="{{ $product->id }}">
-
+			<input type="hidden" name="productId" value="{{ $product->id }}">
+			<input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">
+			<input type="hidden" name="productId" value="{{ $product->id }}">
 			<button type="submit" id="addtocart" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> </button>
-
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
 </form>

@@ -13,7 +13,7 @@ use Notification;
 use App\Notifications\newOrderNotification;
 use App\Models\Admin;
 
-class SendOrderConfirmationEmail
+class SendOrderConfirmationEmail implements ShouldQueue
 {
 
     /**

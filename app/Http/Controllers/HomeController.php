@@ -26,16 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topItems = Product::orderBy('updated_at', 'DESC')->take(12)->get();
+        $topItems = Product::orderBy('updated_at', 'DESC')->with('images')->take(12)->get();
         $topCats = Category::orderBy('updated_at', 'DESC')->where('featured',1)->take(3)->get();
-        //dd($topCats);
+        //dd($topItems->all());
         return view('frontend.pages.homepage', compact('topItems', 'topCats'));
     }
 
     public function shop()
     {
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $products = $topItems = Product::orderBy('updated_at', 'DESC')->get();
+        $products = Product::orderBy('updated_at', 'DESC')->with('images')->get();
 
         return view('frontend.pages.productlist', compact('cats', 'products'));
     }
@@ -69,15 +69,37 @@ class HomeController extends Controller
         return redirect()->back()->with('message', 'We have recieved your contact information. We shall get back to you');
     }
 
-    public function search()
+    public function search(Request $request)
     {
+        $searchItem = $request->item;
+        $cats = Category::orderByRaw('-name ASC')->get()->nest();
+        $products = Product::where('name', $searchItem)->get();
+        //dd($products);
 
+        return view('frontend.pages.productshow', compact('cats', 'products'));
     }
 
     public function autocomplete(Request $request)
     {
-        $data = Product::select("slug")->where("slug","LIKE","%{$request->query}%")->get();
+        $item = $request->get('term');
+        $data = Product::where('name', 'LIKE', '%'. $item. '%')->get();
 
         return response()->json($data);
+    }
+
+    public function itemShow($slug)
+    {
+        //dd('$slug');
+        $cats = Category::orderByRaw('-name ASC')->get()->nest();
+        $catItems = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->get();
+        $title = "This title";
+
+        return view('frontend.pages.itemshow', compact('cats', 'catItems', 'title'));   
+    }
+
+    public function unavailableItems()
+    {
+
+        return view('frontend.pages.unavailableitems');   
     }
 }

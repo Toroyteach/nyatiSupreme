@@ -1,7 +1,7 @@
 <header class="section-header">
 <section class="navbar-light border-bottom">
-<div class="container">
-  <nav class="d-flex align-items-center flex-column flex-md-row">
+<div class="container" style="color:blue;">
+  <nav class="d-flex align-items-center flex-column flex-md-row navbar-light">
     <ul class="nav mr-md-auto">
     		<li class="nav-item dropdown" data-toggle="tooltip" data-placement="top" title="Contact us email">
     			<a href="{{route('contact')}}" class="nav-link pl-0">info@nyatisupreme.co.ke</a>
@@ -60,11 +60,11 @@
 	  <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Home">
 			<a class="nav-link" href="{{route('home')}}">Home</a>
 		</li>
-		<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Shop">
-		<a class="nav-link" href="{{route('shop')}}">Shop</a>
-		</li>
     <li class="nav-item" data-toggle="tooltip" data-placement="top" title="About Us">
 		<a class="nav-link" href="{{route('category.show')}}">Categories</a>
+		</li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Shop">
+		<a class="nav-link" href="{{route('shop')}}">Shop</a>
 		</li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="top" title="About Us">
 		<a class="nav-link" href="{{route('about')}}">About</a>
@@ -75,13 +75,12 @@
 
       </ul>
 
-      <form class="form-inline my-2 my-lg-0" data-toggle="tooltip" data-placement="top" title="search item">
+      <form class="form-inline my-2 my-lg-0" data-toggle="tooltip" data-placement="top" title="search item" action="{{ route('product.search') }}" method="post" autocomplete="off"> 
+      @csrf
 		    <div class="input-group">
-          <input type="text" class="form-control typeahead" placeholder="Search an item">
+          <input type="text" class="form-control" id="search" placeholder="Search an item" name="item">
           <div class="input-group-append">
-            <button class="btn btn-primary" type="submit">
-              <i class="fa fa-search"></i>
-            </button>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
           </div>
         </div>
 		  </form>
@@ -96,10 +95,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 <script type="text/javascript">
-    var path = "{{ route('autocomplete') }}";
-    $('input.typeahead').typeahead({
-        source:  function (query, process) {
-        return $.get(path, { query: query }, function (data) {
+    var route = "{{ url('autocomplete') }}";
+    $('#search').typeahead({
+        source:  function (term, process) {
+        return $.get(route, { term: term }, function (data) {
                 return process(data);
             });
         }

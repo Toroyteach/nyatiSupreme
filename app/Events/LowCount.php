@@ -25,7 +25,7 @@ class LowCount
     {
         //
         $this->$lowCountData = $lowCountData;
-        //dd($this->$lowCountData);
+        dd($this->$lowCountData);
 
     }
 }

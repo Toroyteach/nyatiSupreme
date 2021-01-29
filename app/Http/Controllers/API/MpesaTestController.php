@@ -17,7 +17,7 @@ class MpesaTestController extends Controller
     public function fakeInvoice()
     {
         $response = Simulate::request(2000)
-            ->from(254708374149)
+            ->from(254768624270)
             ->usingReference('fakeInvoice')
             ->setCommand(CUSTOMER_PAYBILL_ONLINE)
             ->push();

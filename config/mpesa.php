@@ -43,8 +43,8 @@ return [
     'accounts' => [
         'staging' => [
             'sandbox' => true,
-            'key' => '',
-            'secret' => '',
+            'key' => env('MPESA_CONSUMER_KEY'),
+            'secret' => env('MPESA_CONSUMER_SECRET'),
             'initiator' => 'apitest363',
             'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
             'lnmo' => [
@@ -57,8 +57,8 @@ return [
 
         'production' => [
             'sandbox' => false,
-            'key' => '',
-            'secret' => '',
+            'key' => env('MPESA_CONSUMER_KEY'),
+            'secret' => env('MPESA_CONSUMER_SECRET'),
             'initiator' => 'apitest363',
             'id_validation_callback' => 'http://example.com/callback?secret=some_secret_hash_key',
             'lnmo' => [

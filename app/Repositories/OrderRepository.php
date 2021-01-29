@@ -110,7 +110,7 @@ class OrderRepository extends BaseRepository implements OrderContract
 
             if($order->payment_method == 'mpesa'){
                 //dd('mpesa');
-                $response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');
+                //$response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');
             }
 
         }

@@ -19,7 +19,9 @@ class CategoryController extends Controller
     public function show()
     {
         //$category = $this->categoryRepository->findBySlug($slug);
-        $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->get()->nest();
+        $cats = Category::orderByRaw('-name ASC')->get()->nest();
+        // $catItems = Category::orderByRaw('-name ASC')->where('featured', 1)->get()->nest();
+        //dd($cats);
 
         return view('frontend.pages.category', compact('cats'));
     }
@@ -27,9 +29,10 @@ class CategoryController extends Controller
     public function showProduct($slug)
     {
         //$category = $this->categoryRepository->findBySlug($slug);
-        $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->get();
-        //dd($cats);
+        $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->get();
+        $catItems = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->get();
+        //dd($catItems->all());
 
-        return view('frontend.pages.categoryshow', compact('cats'));
+        return view('frontend.pages.categoryshow', compact('cats', 'catItems'));
     }
 }

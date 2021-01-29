@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeNewUserMail;
 
-class SendWelcomeEmail
+class SendWelcomeEmail implements ShouldQueue
 {
 
     /**

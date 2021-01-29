@@ -23,6 +23,7 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = $this->productRepository->findProductBySlug($slug);
+        //dd($product);
         $attributes = $this->attributeRepository->listAttributes();
 
         return view('frontend.pages.product', compact('product', 'attributes'));

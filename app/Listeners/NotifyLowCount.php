@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use App\Notifications\LowCountNotification;
 use App\Mail\LowCountEmail;
 
-class NotifyLowCount
+class NotifyLowCount implements ShouldQueue
 {
     /**
      * Handle the event.

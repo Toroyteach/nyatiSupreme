@@ -12,7 +12,7 @@ use App\Notifications\OrderCompleted;
 use App\Models\Admin;
 use Carbon\Carbon;
 
-class SendEmailNotification
+class SendEmailNotification implements ShouldQueue
 {
     /**
      * Handle the event. this sends email to customers on status change

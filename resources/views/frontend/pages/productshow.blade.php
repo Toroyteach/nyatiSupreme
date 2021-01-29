@@ -4,7 +4,7 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
 <div class="container">
-	<h2 class="title-page"> products</h2>
+	<h2 class="title-page"> Search Result</h2>
 	<nav>
 	{{ Breadcrumbs::render('shop') }}
 	</nav>
@@ -24,7 +24,7 @@
 		<header class="card-header">
 			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
 				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Category type</h6>
+				<h6 class="title">Other Categories</h6>
 			</a>
 		</header>
 		<div class="filter-content collapse show" id="collapse_1" style="">
@@ -60,6 +60,7 @@
 	<div class="col-md-4">
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
+				<span class="badge badge-danger"> NEW </span>
 				<img src="">
 				<a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
 			</div> <!-- img-wrap.// -->

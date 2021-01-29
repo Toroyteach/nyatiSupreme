@@ -45,6 +45,14 @@
 .kustomer-feedback-component{
     z-index: 1000 !important;
 }
+
+/* body {
+  background-image: url("{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}");
+  max-height: 10px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+} */
 </style>
 
 </head>

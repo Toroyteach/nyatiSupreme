@@ -48,13 +48,13 @@
                     <strong>{{ $order->user->fullName }}</strong><br>
                     Email: {{ $order->user->email }}<br>
                     Number: {{ $order->user->phonenumber }}<br>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
                 </address>
             <p class="font-italic">Ship to:</p>
                 <address>
                     <strong>{{ $order->first_name }} {{ $order->last_name }}</strong><br>
-                    {{ $order->address }}<br>
-                    {{ $order->city }}, {{ $order->country }} {{ $order->post_code }}<br>
+                    Address: {{ $order->address }}<br>
+                    Town: {{ $order->city }} <br> 
+                    Post-Code: {{ $order->post_code }}<br>
                     <abbr title="Phone">Phone:</abbr> {{ $order->phone_number }}
                 </address>
             </div>
@@ -72,7 +72,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Product</th>
-                                    <th>SKU #</th>
+                                    <th>Attribute #</th>
                                     <th>Qty</th>
                                     <th>Subtotal</th>
                                 </tr>
@@ -82,7 +82,7 @@
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->product->name }}</td>
-                                            <td>{{ $item->product->sku }}</td>
+                                            <td>{{ $item->attribute }}</td>
                                             <td>{{ $item->quantity }}</td>
                                             <td>{{ config('settings.currency_symbol') }}{{ round($item->price, 2) }}</td>
                                         </tr>

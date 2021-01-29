@@ -233,10 +233,10 @@
                             id: pa.id,
                         }).then (function(response){
                             if (response.data.status === 'success') {
+                                this.loadProductAttributes(this.productid);
                                 _this.$swal("Success! Product attribute has been deleted!", {
                                     icon: "success",
                                 });
-                                 this.loadProductAttributes(this.productid);
                             } else {
                                 _this.$swal("Your Product attribute not deleted!");
                             }

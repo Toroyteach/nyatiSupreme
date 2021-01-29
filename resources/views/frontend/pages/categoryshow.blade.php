@@ -56,9 +56,10 @@
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
-	@forelse($cats as $cat)
-		@foreach($cat->products as $key => $prodItems)
-			<article class="card card-product-list">
+	@forelse($catItems as $cat)
+		@forelse($cat->products as $key => $prodItems)
+		
+		<article class="card card-product-list">
 				<div class="row no-gutters">
 					<aside class="col-md-3">
 						<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()) }}"></a>
@@ -99,7 +100,13 @@
 					</aside> <!-- col.// -->
 				</div> <!-- row.// -->
 			</article> <!-- card-product .// -->
-		@endforeach
+		@empty
+		<div class="alert alert-warning" role="alert">
+			Theres no more products in this Category. Click <a href="{{route('shop')}}" class="alert-link">Here</a>. To view other products.
+		</div>
+
+
+		@endforelse
 	@empty
 	<div class="alert alert-warning" role="alert">
 		Theres no more products in this Category. Click <a href="{{route('shop')}}" class="alert-link">Here</a>. To view other products.

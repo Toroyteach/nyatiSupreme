@@ -6,7 +6,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendEmailVerificationNotification
+class SendEmailVerificationNotification implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -27,6 +27,6 @@ class SendEmailVerificationNotification
     public function handle(Registered $event)
     {
         //
-        dd('here');
+        //dd($event);
     }
 }
