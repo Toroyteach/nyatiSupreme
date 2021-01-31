@@ -15,7 +15,7 @@
 <meta name="keywords" content="Online shop kenya, shop, Construction, cabros, blocks, pave blocks">
 
 
-<link href="{{ asset('frontend/cssfiles/images/favicon.ico') }}" rel="shortcut icon" type="image/x-icon">
+<link href="{{ asset('frontend/cssfiles/images/nyati/catalogue/nyati_logo.png') }}" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
 <script src="{{ asset('frontend/cssfiles/js/jquery-2.0.0.min.js') }}" type="text/javascript"></script>

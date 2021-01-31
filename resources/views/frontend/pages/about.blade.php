@@ -23,7 +23,7 @@
 		<article class="card card-post">
 		  <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
 		  <div class="card-body">
-		    <h6 class="title">Pay anytime</h6>
+		    <h6 class="title">Easy Payment</h6>
 		    <p class="small text-uppercase text-muted">Finance solution</p>
 		  </div>
 		</article> <!-- card.// -->
@@ -41,7 +41,7 @@
 		<article class="card card-post">
 		  <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
 		  <div class="card-body">
-		    <h6 class="title">Ocean and Air Shipping</h6>
+		    <h6 class="title">Safe and Fast Shipping</h6>
 		    <p class="small text-uppercase text-muted">Logistic services</p>
 		  </div>
 		</article> <!-- card.// -->
@@ -64,11 +64,14 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h4 class="featurette-heading">Team work. <span class="text-muted">All the way.</span></h4>
+            <p class="lead">It will please our clients to know that we have
+              acquired a reputation of making high quality products
+              and this can be attributed to the selection of the best raw
+              materials.</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/options_edited.jpg') }}" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" style="height: 200px;" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/options_edited.jpg') }}" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -76,11 +79,13 @@
 
         <div class="row featurette">
           <div class="col-md-7 order-md-2">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h4 class="featurette-heading">High quality output. <span class="text-muted">With product inspection.</span></h4>
+            <p class="lead">Through our “client is king” philosophy we have ensured to
+                train our staff on customer care and interaction hence the
+                excellent experience that they always experience.</p>
           </div>
           <div class="col-md-5 order-md-1">
-            <img class="featurette-image img-fluid mx-auto" src="{{ asset('frontend/cssfiles/images/nyati/slider/3_edited.jpg') }}" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" style="height: 200px;"  src="{{ asset('frontend/cssfiles/images/nyati/slider/3_edited.jpg') }}" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -88,11 +93,11 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+            <h4 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h4>
             <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
           </div>
           <div class="col-md-5">
-            <img class="featurette-image img-fluid mx-auto" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/work_edited.jpg') }}" alt="Generic placeholder image">
+            <img class="featurette-image img-fluid mx-auto" style="height: 200px;" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/work_edited.jpg') }}" alt="Generic placeholder image">
           </div>
         </div>
 
@@ -103,5 +108,30 @@
       </div><!-- /.container -->
 
     </main>
+
+    <!-- ========================= SECTION SUBSCRIBE  ========================= -->
+<section class="padding-y-lg bg-light border-top">
+<div class="container">
+
+<p class="pb-2 text-center">Delivering the latest product trends and industry news straight to your inbox</p>
+
+<div class="row justify-content-md-center">
+  <div class="col-lg-4 col-sm-6">
+<form class="form-row">
+    <div class="col-8">
+    <input class="form-control" placeholder="Your Email" type="email">
+    </div> <!-- col.// -->
+    <div class="col-4">
+    <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
+    </div> <!-- col.// -->
+</form>
+<small class="form-text">We’ll never share your email address with a third-party. </small>
+  </div> <!-- col-md-6.// -->
+</div>
+  
+
+</div>
+</section>
+<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
 
 @stop

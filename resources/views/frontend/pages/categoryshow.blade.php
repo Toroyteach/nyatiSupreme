@@ -114,8 +114,8 @@
 	@endforelse
 
 
-<div class="d-flex justify-content-center">
-
+	<div class="d-flex justify-content-center">
+    	{!! $catItems->links() !!}
 	</div>
 
 	</main> <!-- col.// -->

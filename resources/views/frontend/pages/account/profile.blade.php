@@ -24,7 +24,11 @@
 				<figure class="icontext">
 						<div class="icon">
 							@if ($user->profile_image != null)
-								<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+									@if($user->social != null)
+									<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+									@else
+									<img src="{{ (Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+									@endif
 								@else
 								<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="rounded-circle img-sm border">
 							@endif
@@ -76,7 +80,7 @@
 
 				<div class="row">
 	
-				@foreach ($orders as $key => $order)
+				@forelse ($orders as $key => $order)
 
 				<div class="col-md-6">
 					<figure class="itemside  mb-3">
@@ -104,8 +108,11 @@
 						</figcaption>
 					</figure>
 				</div> <!-- col.// -->
-
-				@endforeach
+				@empty
+				<div class="alert alert-warning" role="alert">
+					You dont have any Orders yet. Click <a href="{{route('shop')}}" class="alert-link">Here</a>. To View products and place an Order.
+				</div>
+				@endforelse
 
 
 

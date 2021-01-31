@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Support\Str;
 use App\Traits\UploadAble;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -20,7 +21,7 @@ class AccountController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth']);
     }
     
     public function getOrders()
@@ -207,6 +208,16 @@ class AccountController extends Controller
             return redirect()->back()->with('success', 'Shipping Address removed successfully!');
         }
         
+        return redirect()->back();
+
+    }
+
+    public function regenerateToken()
+    {
+        //dd('here');
+        \UserVerification::generate(Auth::user());
+        \UserVerification::send(Auth::user(), 'Account Verification Link');
+
         return redirect()->back();
 
     }

@@ -59,6 +59,27 @@
                     value="{{ config('settings.currency_symbol') }}"
                 />
             </div>
+            <div class="form-group">
+                <label class="control-label" for="currency_symbol">Shipping surcharge Fee</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Enter shipping fee"
+                    id="shipping_fee"
+                    name="shipping_fee"
+                    value="{{ config('settings.shipping_fee') }}"
+                />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="currency_symbol">Shipping Payment Policy</label>
+                <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Enter payment policy"
+                    id="payment_policy"
+                    name="payment_policy"
+                >{{ config('settings.payment_policy') }}</textarea>
+            </div>
         </div>
         <div class="tile-footer">
             <div class="row d-print-none mt-2">

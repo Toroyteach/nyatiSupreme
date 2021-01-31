@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 //use App\Events\Registered;
 use Illuminate\Auth\Events\Registered;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -25,6 +28,8 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    use VerifiesUsers;
 
     /**
      * Where to redirect users after registration.
@@ -42,7 +47,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         //dd("died first here");
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['getVerification', 'getVerificationError']]);
     }
 
     /**
@@ -86,7 +91,11 @@ class RegisterController extends Controller
             'country' => $data['country'],
         ]);
 
-        event(new Registered($user));
+        //event(new Registered($user));
+
+        UserVerification::generate($user);
+
+        UserVerification::send($user, $subject = "New Customer", $from = null, $name = null);
 
         return $user;
 

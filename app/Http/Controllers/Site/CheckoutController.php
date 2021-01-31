@@ -40,6 +40,17 @@ class CheckoutController extends Controller
 
     public function placeOrder(Request $request)
     {   
+        $this->validate(request(), [
+            'mpesaPhonenumber' => 
+                array(
+                    'required',
+                    'regex:/(\+?254|0|^){1}[-. ]?[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}\z/',
+                    'digits:10'
+                )
+        ]);
+
+        //dd('submited');
+
         //dd($request->all());
         //return response()->json(['success'=>'Ajax request submitted successfully']);
         // Before storing the order we should implement the

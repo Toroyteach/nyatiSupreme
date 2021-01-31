@@ -56,14 +56,14 @@ Route::group(['prefix' => 'requestproducts'], function () {
     Route::get('/{item}/show', 'Admin\RequestProductController@show')->name('admin.requestproducts.show');
  });
 
-Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index')->middleware(['emptyCart']);
+Route::group(['middleware' => ['auth', 'isVerified']], function () {
+    Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index')->middleware(['emptyCart', 'emptysocialdetails']);
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
     Route::get('checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
 
     Route::get('account/dashboard', 'Site\AccountController@getDashboardDetails')->name('account.dashboard');
 
-    Route::get('account/address', 'Site\AccountController@getAddress')->name('account.address');
+    Route::get('account/address', 'Site\AccountController@getAddress')->name('account.address')->middleware(['emptysocialdetails']);
     Route::view('account/address/create', 'frontend.pages.account.address.create')->name('account.address.create');
     Route::post('account/address/store', 'Site\AccountController@storeAddress')->name('account.address.store');
     Route::get('account/address/edit/{id}', 'Site\AccountController@editAddress')->name('account.address.edit');
@@ -95,6 +95,12 @@ Auth::routes(['verify' => true]);
 require 'admin.php';
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
+Route::get('email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');
+Route::view('/account/verify','auth.verifyaccount')->name('auth.verify.account');
+Route::get('account/verify/email','Site\AccountController@regenerateToken')->name('auth.verify.email');
+
 
 Route::get('/forgot-password', function () { return view('auth.passwords.email');})->middleware('guest')->name('password.request');
 Route::post('/forgot-password', function (Request $request) {

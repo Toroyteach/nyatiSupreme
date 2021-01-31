@@ -17,7 +17,7 @@
 <link href="{{ asset('assets/style.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('/frontend/cssfiles/custome.css') }}" rel="stylesheet" type="text/css">
 
-<link href="{{ config('settings.site_favicon') }}" rel="shortcut icon" type="image/x-icon">
+<link href="{{ asset('frontend/cssfiles/images/nyati/catalogue/nyati_logo.png') }}" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->

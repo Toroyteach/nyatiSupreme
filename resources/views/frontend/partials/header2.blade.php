@@ -35,10 +35,14 @@
     <ul class="nav ">
         @auth
             @if (Auth::user()->profile_image != null)
-              <li class="icon" style="position:relative;right:20px"><a href="{{ route('account.settings') }}"><img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
-								@else
-              <li class="icon" style="position:relative;right:20px;top:3px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
-							@endif
+              @if(Auth::user()->social != null)
+                <li class="icon" style="position:relative;right:20px;top:-5px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+              @else
+              <li class="icon" style="position:relative;right:20px"><a href="{{ route('account.settings') }}"><img src="{{ (Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+              @endif
+						@else
+                <li class="icon" style="position:relative;right:20px;top:3px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+						@endif
         @endauth
         <!-- <li  class="nav-item"><a href="#" class="nav-link">  <i class="fa fa-heart"></i> Wishlist </a></li> -->
         <li  class="nav-item" data-toggle="tooltip" data-placement="top" title="Cart"><a href="{{ route('checkout.cart') }}" class="nav-link"> <i class="fa fa-shopping-cart"></i> My Cart <span class="badge badge-pill badge-danger">{{$cartCount}}</span> </a></li>

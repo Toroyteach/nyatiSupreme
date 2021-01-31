@@ -28,6 +28,9 @@ class OrderRepository extends BaseRepository implements OrderContract
 
         //$updateDB = $this->updateDd();
 
+        $grandTotal = Cart::getSubTotal() + (float)config('settings.shipping_fee');
+        //dd($grandTotal);
+
         if($shippingAddress->isEmpty())
         {
             // dd($shippingAddress);
@@ -37,8 +40,8 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'order_number'      =>  'ORD-'.strtoupper(uniqid()),
                 'user_id'           => auth()->user()->id,
                 'status'            =>  'pending',
-                'grand_total'       =>  Cart::getSubTotal(),
-                'shipping_fee'      =>  0,
+                'grand_total'       =>  $grandTotal,
+                'shipping_fee'      =>  config('settings.shipping_fee'),
                 'item_count'        =>  Cart::getTotalQuantity(),
                 'payment_status'    =>  0,
                 'payment_method'    =>  $params['payment_method'],
@@ -60,8 +63,8 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'order_number'      =>  'ORD-'.strtoupper(uniqid()),
                 'user_id'           => auth()->user()->id,
                 'status'            =>  'pending',
-                'grand_total'       =>  Cart::getSubTotal(),
-                'shipping_fee'      =>  0,
+                'grand_total'       =>  $grandTotal,
+                'shipping_fee'      =>  config('settings.shipping_fee'),
                 'item_count'        =>  Cart::getTotalQuantity(),
                 'payment_status'    =>  0,
                 'payment_method'    =>  $params['payment_method'],
@@ -76,6 +79,8 @@ class OrderRepository extends BaseRepository implements OrderContract
             ]);
 
         }
+
+        //dd($order);
 
 
         if ($order) {

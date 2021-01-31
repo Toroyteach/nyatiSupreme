@@ -19,7 +19,7 @@
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
-	@foreach($orders as $data)	
+	@forelse($orders as $data)	
 	<article class="card mb-4">
 		<header class="card-header">
 			<strong class="d-inline-block mr-3">Order ID: {{ $data->order_number }}</strong>
@@ -86,7 +86,12 @@
 		</table>
 		</div> <!-- table-responsive .end// -->
 		</article> <!-- card order-item .// -->
-	@endforeach
+	@empty
+	<div class="alert alert-warning" role="alert">
+			You dont have any Orders yet. Click <a href="{{route('shop')}}" class="alert-link">Here</a>. To View products and place an Order.
+		</div>
+
+	@endforelse
 
 	<div class="d-flex justify-content-center">
     	{!! $orders->links() !!}

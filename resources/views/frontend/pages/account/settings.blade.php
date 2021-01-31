@@ -18,6 +18,17 @@
 	</aside> <!-- col.// -->
 	<main class="col-md-9">
 
+	@if (session('message'))
+            <div class="col-sm-12">
+                <div class="alert  alert-warning alert-dismissible fade show" role="alert">
+                {{session('message')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+            </div>
+        @endif
+
 	<div class="card">
       <div class="card-body">
 	 <form class="row" action="{{ route('account.users.update') }}" method="POST" role="form" enctype="multipart/form-data">
@@ -79,8 +90,11 @@
      	<div class="col-md">
 
 		 @if ($userDetails->profile_image != null)
-			<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="img-md rounded-circle border" alt="img">
-			@else
+		 @if($userDetails->social != null)
+									<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+									@else
+									<img src="{{ (Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+									@endif			@else
 			<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="img-md rounded-circle border">
 		@endif
 

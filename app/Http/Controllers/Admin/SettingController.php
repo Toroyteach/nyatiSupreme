@@ -33,6 +33,7 @@ class SettingController extends BaseController
      */
     public function update(Request $request)
     {
+        //dd($request->payment_policy);
         if ($request->has('site_logo') && ($request->file('site_logo') instanceof UploadedFile)) {
 
             if (config('settings.site_logo') != null) {
@@ -52,6 +53,7 @@ class SettingController extends BaseController
         } else {
 
             $keys = $request->except('_token');
+            //dd($keys);
 
             foreach ($keys as $key => $value)
             {

@@ -83,7 +83,9 @@
 
 </div> <!-- row end.// -->
 
-
+<div class="d-flex justify-content-center">
+    	{!! $products->links() !!}
+	</div>
 	</main> <!-- col.// -->
 
 </div>

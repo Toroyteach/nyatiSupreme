@@ -85,10 +85,12 @@ class AdminController extends Controller
          //$collapsed = Arr::flatten($lowProductArrayData);
          //dd($lowProductArrayData);
           $testemail = Order::find(141);
-          $eventData = collect($testemail)->except('token');
+          //$eventData = collect($testemail)->except('token');
           //$eventData->all();
           //dd($eventData);
-          event(new LowCount(json_encode($eventData)));
+          $eventdata = collect($testemail)->only('order_number', 'grand_total', 'first_name', 'address', 'city', 'post_code');
+          //dd($eventdata->all());
+          event(new LowCount($eventdata));
           dd('sent');
 
 

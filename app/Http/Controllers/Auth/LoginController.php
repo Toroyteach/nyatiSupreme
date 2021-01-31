@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -63,8 +64,13 @@ class LoginController extends Controller
             'last_name' => $user->nickname,
             'password' => Hash::make(Str::random(24)),
             'email' => $user->email,
-            'profile_image' => $user->avatar
+            'profile_image' => $user->avatar,
+            'social' => 1 ,
+            'verified' => 1
+
         ]);
+
+        // $user->markEmailAsVerified();
 
         Auth::login($user, true);
 
@@ -80,18 +86,23 @@ class LoginController extends Controller
 
     public function facebookRedirect()
     {
-        $user = Socialite::driver('github')->user();
+        $user = Socialite::driver('facebook')->user();
         dd($user);
         
         $user = User::firstOrCreate([
             'email' => $user->email
         ], [
             'first_name' => $user->name,
-            'last_name' => $user->nickname,
+            'last_name' => ' ',
             'password' => Hash::make(Str::random(24)),
             'email' => $user->email,
-            'profile_image' => $user->avatar
+            'profile_image' => $user->avatar,
+            'social' => 1 ,
+            'verified' => 1
+
         ]);
+
+        // $user->markEmailAsVerified();
 
         Auth::login($user, true);
 
@@ -107,18 +118,24 @@ class LoginController extends Controller
 
     public function googleRedirect()
     {
-        $user = Socialite::driver('github')->user();
-        dd($user);
+        $user = Socialite::driver('google')->user();
+        $mytime = Carbon::now();
+        //dd($mytime);
         
         $user = User::firstOrCreate([
             'email' => $user->email
         ], [
             'first_name' => $user->name,
-            'last_name' => $user->nickname,
+            'last_name' => ' ',
             'password' => Hash::make(Str::random(24)),
             'email' => $user->email,
-            'profile_image' => $user->avatar
+            'profile_image' => $user->avatar,
+            'social' => 1 ,
+            'verified' => 1
+
         ]);
+
+        // $user->markEmailAsVerified();
 
         Auth::login($user, true);
 

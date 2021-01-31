@@ -30,7 +30,7 @@ class CategoryController extends Controller
     {
         //$category = $this->categoryRepository->findBySlug($slug);
         $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->get();
-        $catItems = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->get();
+        $catItems = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->paginate(5);
         //dd($catItems->all());
 
         return view('frontend.pages.categoryshow', compact('cats', 'catItems'));

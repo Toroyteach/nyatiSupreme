@@ -90,38 +90,23 @@
 
 	</main> <!-- col.// -->
 	<aside class="col-md-3">
-		<div class="card mb-3">
-			<div class="card-body">
-			<form>
-				<div class="form-group">
-					<label>Have coupon?</label>
-					<div class="input-group">
-						<input type="text" class="form-control" name="" placeholder="Coupon code">
-						<span class="input-group-append"> 
-							<button class="btn btn-primary">Apply</button>
-						</span>
-					</div>
-				</div>
-			</form>
-			</div> <!-- card-body.// -->
-		</div>  <!-- card .// -->
 		<div class="card">
 			<div class="card-body">
 					<dl class="dlist-align">
-					  <dt>Total price:</dt>
-					  <dd class="text-right">USD 568</dd>
-					</dl>
-					<dl class="dlist-align">
-					  <dt>Discount:</dt>
-					  <dd class="text-right">USD 658</dd>
-					</dl>
-					<dl class="dlist-align">
 					  <dt>Total:</dt>
-					  <dd class="text-right  h5"><strong>{{ config('settings.currency_symbol') }}{{ \Cart::getSubTotal() }}</strong></dd>
+					  <dd class="text-right">{{ config('settings.currency_symbol') }} {{ \Cart::getTotal() }}</dd>
+					</dl>
+					<dl class="dlist-align">
+					  <dt>Shipping fee:</dt>
+					  <dd class="text-right">{{ config('settings.currency_symbol') }} {{ config('settings.shipping_fee') }}</dd>
+					</dl>
+					<dl class="dlist-align">
+					  <dt>Sub Total:</dt>
+					  <dd class="text-right  h5"><strong>{{ config('settings.currency_symbol') }} {{ \Cart::getSubTotal() }}</strong></dd>
 					</dl>
 					<hr>
 					<p class="text-center mb-3">
-						<img src="{{ asset('frontend/cssfiles/images/misc/payments.png') }}" height="26">
+						<img src="{{ asset('frontend/cssfiles/images/misc/pament_edited.png') }}" >
 					</p>
 					
 			</div> <!-- card-body.// -->
@@ -138,18 +123,7 @@
 <section class="section-name border-top padding-y">
 <div class="container">
 <h6>Payment and refund policy</h6>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p> {{ config('settings.payment_policy') }}</p>
 
 </div><!-- container // -->
 </section>
@@ -166,8 +140,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			<span class="text-primary"><i class="fa fa-2x fa-truck"></i></span>
 			<figcaption class="pt-3">
 				<h5 class="title">Fast delivery</h5>
-				<p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore </p>
+				<p>We deliver our products and services with most urgency and as soon as you place your order</p>
 			</figcaption>
 		</figure> <!-- iconbox // -->
 	</div><!-- col // -->
@@ -176,7 +149,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			<span class="text-primary"><i class="fa fa-2x fa-landmark"></i></span>	
 			<figcaption class="pt-3">
 				<h5 class="title">Creative Strategy</h5>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				<p>We liase with you our customer to see how we can effectively deliver your products
 				 </p>
 			</figcaption>
 		</figure> <!-- iconbox // -->
@@ -186,7 +159,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			<span class="text-primary"><i class="fa fa-2x fa-lock"></i></span>
 			<figcaption class="pt-3">
 				<h5 class="title">High secured </h5>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				<p>We guarantee you our customer your order will arrive safe and secured.
 				 </p>
 			</figcaption>
 		</figure> <!-- iconbox // -->

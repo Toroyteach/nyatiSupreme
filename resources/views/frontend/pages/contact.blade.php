@@ -33,48 +33,31 @@
 		<div class="contact-middle-area pt-100 pb-70">
 			<div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <!-- ============================ COMPONENT ITEM BG ================================= -->
-                    <div class="shadow-sm card-banner">
-                    <div class="p-4" style="width:75%">
-                    <address>
-                                    <strong>Example Inc.</strong><br>
-                                    1234 Example Street<br>
-                                    Antartica, Example 0987<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address>
-                    </div> 
-                    <img src="../images/banners/banner-item1.jpg" height="150" class="img-bg">
-                    </div>
-                    <!-- ============================ COMPONENT ITEM BG  END .// =========================== -->
-                </div> <!-- col.// -->
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <!-- ============================ COMPONENT ITEM BG ================================= -->
                     <div class="shadow-sm card-banner">
                     <div class="p-4" style="width:70%">
                     <address>
-                                    <strong>Example Inc.</strong><br>
-                                    1234 Example Street<br>
-                                    Antartica, Example 0987<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                                    <strong>Nyati Supreme.</strong><br>
+                                    P. O. Box 484 - 30100,<br>
+                                    Eldoret - Kapsabet Road,<br>
+                                    <abbr title="Phone">Tel:</abbr> 0722 550 247
                                 </address>
                     </div>
-                    <img src="../images/banners/banner-item2.jpg" height="150" class="img-bg">
                     </div>
                     <!-- ============================ COMPONENT ITEM BG  END .// =========================== -->
                 </div> <!-- col.// -->
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <!-- ============================ COMPONENT ITEM BG ================================= -->
                     <div class="shadow-sm card-banner">
                     <div class="p-4" style="width:75%">
-                        <address>
-                                    <strong>Example Inc.</strong><br>
-                                    1234 Example Street<br>
-                                    Antartica, Example 0987<br>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                    <address>
+                                    <strong>Nyati Supreme.</strong><br>
+                                    P. O. Box 484 - 30100,<br>
+                                    Eldoret - Kapsabet Road,<br>
+                                    <abbr title="Phone">Tel</abbr>: 0722 550 247
                                 </address>
                     </div>
-                    <img src="../images/banners/banner-item3.jpg" height="150" class="img-bg">
                     </div>
                     <!-- ============================ COMPONENT ITEM BG  END .// =========================== -->
                 </div> <!-- col.// -->

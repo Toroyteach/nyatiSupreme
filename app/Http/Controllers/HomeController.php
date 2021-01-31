@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function shop()
     {
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $products = Product::orderBy('updated_at', 'DESC')->with('images')->get();
+        $products = Product::orderBy('updated_at', 'DESC')->with('images')->paginate(4);
 
         return view('frontend.pages.productlist', compact('cats', 'products'));
     }

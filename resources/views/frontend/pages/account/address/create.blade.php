@@ -38,33 +38,33 @@
         <div class="form-row">
 			<div class="col form-group">
 				<label>Name</label>
-			  	<input type="text" class="form-control" value="John" disabled>
+			  	<input type="text" class="form-control" value="{{Auth::user()->getFullNameAttribute()}}" disabled>
 			</div> <!-- form-group end.// -->
 			<div class="col form-group">
 				<label>Email</label>
-			  	<input type="email" class="form-control" value="Michael" disabled>
+			  	<input type="email" class="form-control" value="{{Auth::user()->email}}" disabled>
 			</div> <!-- form-group end.// -->
 		</div> <!-- form-row.// -->
 		
 		<div class="form-row">
 			<div class="form-group col-md-6">
 			  <label>County</label>
-              <input type="text" class="form-control @error('county')" placeholder="enter county" name="county" required>
+              <input type="text" class="form-control @error('county') is-invalid @enderror" placeholder="enter county" name="county" required>
 			</div> <!-- form-group end.// -->
 			<div class="form-group col-md-6">
 			  <label>City</label>
-			  <input type="text" class="form-control @error('city')" placeholder="enter city" name="city" required>
+			  <input type="text" class="form-control @error('city') is-invalid @enderror" placeholder="enter city" name="city" required>
 			</div> <!-- form-group end.// -->
 		</div> <!-- form-row.// -->
 
 		<div class="form-row">
 			<div class="form-group col-md-6">
 			  <label>Town</label>
-			  <input type="text" class="form-control @error('town')" placeholder="enter town" name="town" required>
+			  <input type="text" class="form-control @error('town') is-invalid @enderror" placeholder="enter town" name="town" required>
 			</div> <!-- form-group end.// -->
 			<div class="form-group col-md-6">
 			  <label>Location</label>
-			  <input type="text" class="form-control @error('location')" placeholder="enter suitable area name" name="location" required>
+			  <input type="text" class="form-control @error('location') is-invalid @enderror" placeholder="enter suitable area name" name="location" required>
 			</div> <!-- form-group end.// -->
 		</div> <!-- form-row.// -->
 

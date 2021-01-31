@@ -134,11 +134,11 @@
 		<div class="form-group col-md flex-grow-0">
 			<div class="input-group mb-3 input-spinner">
 				<div class="input-group-prepend">
-					<button class="btn btn-light" type="button" id="button-plus"> + </button>
+					<button class="btn btn-light" type="button" onclick="incrementQty()" id="button-plus"> + </button>
 				</div>
-			  <input type="text" class="form-control" name="qty" value ="1" max="{{ $product->quantity }}">
+			  <input type="text" class="form-control" id="number" name="qty" value ="1" max="{{ $product->quantity }}" min="1">
 				<div class="input-group-append">
-					<button class="btn btn-light" type="button" id="button-minus"> &minus; </button>
+					<button class="btn btn-light" type="button" onclick="decrementQty()" id="button-minus"> &minus; </button>
 				</div>
 			</div>
 		</div> <!-- col.// -->
@@ -195,58 +195,9 @@
 			<tr> <td>Exterior</td><td>Stainless steel</td> </tr>
 			<tr> <td>Interior</td><td>Iron</td> </tr>
 
-			<tr> <th colspan="2">Connections</th> </tr>
-			<tr> <td>Heating Type</td><td>Gas</td> </tr>
-			<tr> <td>Connected load gas</td><td>15 Kw</td> </tr>
-
 		</table>
 	</div> <!-- col.// -->
-	
-	<aside class="col-md-4">
 
-		<div class="box">
-		
-		<h5 class="title-description">Files</h5>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</p>
-
-    <h5 class="title-description">Videos</h5>
-      
-
-    <article class="media mb-3">
-      <a href="#"><img class="img-sm mr-3" src="{{ asset('frontend/cssfiles/images/posts/3.jpg') }}"></a>
-      <div class="media-body">
-        <h6 class="mt-0"><a href="#">How to use this item</a></h6>
-        <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-      </div>
-    </article>
-
-    <article class="media mb-3">
-      <a href="#"><img class="img-sm mr-3" src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}"></a>
-      <div class="media-body">
-        <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-        <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-      </div>
-    </article>
-
-    <article class="media mb-3">
-      <a href="#"><img class="img-sm mr-3" src="{{ asset('frontend/cssfiles/images/posts/1.jpg') }}"></a>
-      <div class="media-body">
-        <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-        <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-      </div>
-    </article>
-
-
-		
-	</div> <!-- box.// -->
-	</aside> <!-- col.// -->
 </div> <!-- row.// -->
 
 </div> <!-- container .//  -->
@@ -284,6 +235,28 @@
 @push('scripts')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
+	function incrementQty()
+	{
+		var value = parseInt(document.getElementById('number').value, 10);
+		value = isNaN(value) ? 0 : value;
+    	value++;
+    	document.getElementById('number').value = value;
+	}
+
+	function decrementQty()
+	{
+		var value = parseInt(document.getElementById('number').value, 10);
+		value = isNaN(value) ? 0 : value;
+			if(value > 1){
+				value--;	
+			} else{
+				swal("Quantity must be greater than or equal to 1");
+			}
+
+    	document.getElementById('number').value = value;
+	}
+
         $(document).ready(function () {
             $('#addToCart').submit(function (e) {
                 if ($('.option').val() == 0) {
