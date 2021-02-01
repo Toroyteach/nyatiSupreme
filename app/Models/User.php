@@ -48,10 +48,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->first_name. ' '. $this->last_name;
     }
 
-    public function getimageurl()
-    {
-        return env('APP_URL').$this->profile_image;
-    }
+    // public function getimageurl()
+    // {
+    //     return env('APP_URL').$this->profile_image;
+    // }
 
     public function orders()
     {

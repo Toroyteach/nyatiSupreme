@@ -140,23 +140,12 @@
 
 		<h5 class="title-description">Specifications</h5>
 		<table class="table table-bordered">
-			<tr> <th colspan="2">Basic specs</th> </tr>
-			<tr> <td>Type of energy</td><td>Lava stone</td> </tr>
-			<tr> <td>Number of zones</td><td>2</td> </tr>
-			<tr> <td>Automatic connection	</td> <td> <i class="fa fa-check text-success"></i> Yes </td></tr>
 
 			<tr> <th colspan="2">Dimensions</th> </tr>
 			<tr> <td>Width</td><td>500mm</td> </tr>
 			<tr> <td>Depth</td><td>400mm</td> </tr>
 			<tr> <td>Height	</td><td>700mm</td> </tr>
 
-			<tr> <th colspan="2">Materials</th> </tr>
-			<tr> <td>Exterior</td><td>Stainless steel</td> </tr>
-			<tr> <td>Interior</td><td>Iron</td> </tr>
-
-			<tr> <th colspan="2">Connections</th> </tr>
-			<tr> <td>Heating Type</td><td>Gas</td> </tr>
-			<tr> <td>Connected load gas</td><td>15 Kw</td> </tr>
 
 		</table>
 	</div> <!-- col.// -->

@@ -160,6 +160,59 @@
                                     <label class="control-label" for="description">Description</label>
                                     <textarea name="description" id="description" rows="8" class="form-control">{{ old('description', $product->description) }}</textarea>
                                 </div>
+
+                                <label class="control-label" for="description">Dimentions</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="price">Length</label>
+                                            <input
+                                                class="form-control @error('length') is-invalid @enderror"
+                                                type="text"
+                                                placeholder="Enter product length"
+                                                id="length"
+                                                name="length"
+                                                value="{{ old('length', $product->length) }}"
+                                            />
+                                            <div class="invalid-feedback active">
+                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('length') <span>{{ $message }}</span> @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="width">Width</label>
+                                            <input
+                                                class="form-control"
+                                                type="text"
+                                                placeholder="Enter product width"
+                                                id="width"
+                                                name="width"
+                                                value="{{ old('width', $product->width) }}"
+                                            />
+                                            <div class="invalid-feedback active">
+                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('width') <span>{{ $message }}</span> @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="sale_price">Height</label>
+                                            <input
+                                                class="form-control"
+                                                type="text"
+                                                placeholder="Enter product height"
+                                                id="height"
+                                                name="height"
+                                                value="{{ old('height', $product->height) }}"
+                                            />
+                                            <div class="invalid-feedback active">
+                                                <i class="fa fa-exclamation-circle fa-fw"></i> @error('height') <span>{{ $message }}</span> @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="form-check">
                                         <label class="form-check-label">
