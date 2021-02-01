@@ -49,10 +49,10 @@ class HomeController extends Controller
     {
         return view('frontend.pages.contact');
     }
-    public function getInformation($slug)
+    public function getInformation()
     {
 
-        return view('frontens.pages.information');
+        return view('frontend.pages.information');
     }
 
     public function storeFeedback(Request $request)

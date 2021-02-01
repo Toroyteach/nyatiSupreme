@@ -95,7 +95,7 @@ class RegisterController extends Controller
 
         UserVerification::generate($user);
 
-        UserVerification::send($user, $subject = "New Customer", $from = null, $name = null);
+        UserVerification::sendQueue($user, $subject = "New Customer", $from = null, $name = null);
 
         return $user;
 

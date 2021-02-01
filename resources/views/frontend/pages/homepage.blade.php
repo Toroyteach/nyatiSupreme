@@ -59,57 +59,49 @@
     <div class="carousel-item active">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/1.jpg') }}" alt="First slide"> 
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Wall Grill</h5>
 	  </div>
     </div>
     <div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/2_edited.jpg') }}" alt="Second slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Coloured Cabro</h5>
 	  </div>
     </div>
     <div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/3_edited.jpg') }}" alt="Third slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Work in Action</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/10.jpg') }}" alt="Fourth slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Beautiful Pavement</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/11_edited.jpg') }}" alt="Fifth slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Louvre and Ventilation</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/6_edited.jpg') }}" alt="Sixth slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Solid Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/12.jpg') }}" alt="Seventh slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Hollow Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/8.jpg') }}" alt="Eight slide">
 	  <div class="carousel-caption d-none d-md-block">
-			<h5>this heading</h5>
-			<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime tempora aperiam voluptatem.</p>
+			<h5>Sample Application</h5>
 	  </div>
     </div>
   </div>
@@ -168,7 +160,7 @@
 	<div class="home-category-banner bg-light-orange">
 		<h5 class="title">Nyati Supreme Concrete Works</h5>
 		<p>Here are but a few of the products we manufacture. We value our customers with services we offer. </p>
-		<a href="{{ route('category.show') }}" class="btn btn-outline-primary rounded-pill">See More</a>
+		<a href="{{ route('product.information') }}" class="btn btn-outline-primary rounded-pill">See More</a>
 		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="bottom:15px;height:43%;width:auto;left:0px;" class="img-bg">
 	</div>
 
@@ -176,7 +168,7 @@
 	<div class="col-md-9">
 <ul class="row no-gutters bordered-cols">
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'blocks') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Solid Blocks </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/block1.jpg') }}"> 
@@ -185,7 +177,7 @@
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'blocks') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Hollow blocks and Hollow Port  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/hollo_edited.jpg') }}"> 
@@ -194,7 +186,7 @@
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'cabros') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Coloured Cabros  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/cabro2.jpg') }}"> 
@@ -203,7 +195,7 @@
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'paving_blocks') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Paving Blocks  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/paveblock2.jpg') }}"> 
@@ -212,7 +204,7 @@
 </a>	
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'wall_copping') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Wall Coppings  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/wallcopping_edited.jpg') }}"> 
@@ -221,10 +213,10 @@
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'baluster') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Baluster  </h5>
-		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.jpg') }}"> 
+		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/baluster_edited.jpg') }}"> 
 		<p class="text-muted"> Used as railings and poles in balconies, verandas and stairways</p>
 	</div>
 </a>
@@ -240,7 +232,7 @@
 </a>
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'water_drain') }}" class="item"> 
+<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
 	<div class="card-body">
 		<h5 class="title">Storm Water Drain  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain1.jpg') }}"> 
@@ -260,11 +252,13 @@
 <div class="row">
 		<div class="col-md-4">
 <!-- ============================ COMPONENT BANNER 1 ================================= -->
-<div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/block3_edited.jpg') }}');">
+<div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/roadkerb3_edited.jpg') }}');">
   <article class="card-body caption">
-	<h5 class="card-title">Blocks</h5>
-	<p>No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
-	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning"> View more </a>
+	<h5 class="card-title">Road Kerb and Channel</h5>
+	<p>We manufacture high quality concrete blocks that meet both dimensional and strength requirements by the
+relevant authorities and according to customer specifications.
+.</p>
+	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">Shop Item</a>
   </article>
 </div>
 <!-- ======================= COMPONENT BANNER 1  END .// ============================ -->
@@ -272,10 +266,10 @@
 		<div class="col-md-4">
 <!-- ============================ COMPONENT BANNER 2 ================================= -->
 <div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/culvert2.jpg') }}');">
-  <article class="card-body bg-gradient-green text-white">
+  <article class="card-body  text-white">
 	<h5 class="card-title">Culvert</h5>
-	<p>No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
-	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning"> View more </a>
+	<p>high quality culvert used to convey water from one area to another, normally from one side of a road to the other side.</p>
+	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">Shop Item</a>
   </article>
 </div>
 <!-- ============================ COMPONENT BANNER 2  END .// =========================== -->
@@ -285,8 +279,8 @@
 <div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/paveslabs_edited.jpg') }}');">
   <article class="card-img-overlay bg-gradient-red text-white">
 	<h5 class="card-title">Slabs</h5>
-	<p>No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
-	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning"> View more </a>
+	<p>Concrete or stone slabs use to beautify and mark the pavements clearly.</p>
+	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">Shop Item</a>
   </article>
 </div>
 <!-- ============================ COMPONENT BANNER 3  END .// ================================= -->
@@ -317,7 +311,7 @@
     <h3 class="card-title">Not finding what you are looking for?</h3>
     <p class="card-text" style="max-width: 400px">Don not you worry if you cannot find the product specification youtr looking for. 
 	Just fill in the form with your specifications and we shall get back to you shortly after.</p>
-    <a href="{{route('unavailableitems')}}" class="btn btn-primary rounded-pill">Learn more</a>
+    <!-- <a href="{{route('unavailableitems')}}" class="btn btn-primary rounded-pill">Learn more</a> -->
   </div>
 </div>
 	</div> <!-- col // -->
@@ -393,7 +387,7 @@
 				  <h2 class="card-title">High Quality Concrete Blocks</h2>
 				  <p class="card-text" style="max-width: 80%">We manufacture high quality concrete blocks that meet both dimensional and strength requirements by the
 relevant authorities and according to customer specifications.</p>
-				  <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Discover</a>
+					<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">View more</a>
 				</div>
 			 </div>
 		</aside>
@@ -401,11 +395,11 @@ relevant authorities and according to customer specifications.</p>
 			<div class="card card-banner-lg bg-dark">
 				<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/cabro3.jpg') }}" class="card-img opacity">
 				<div class="card-img-overlay text-white">
-				  <h2 class="card-title">Beautiful Coloured Blocks</h2>
+				  <h2 class="card-title">Beautifuly Coloured Cabro</h2>
 				    <p class="card-text" style="max-width: 80%">We offer special type of paving blocks with various profiles and customised colours according to client needs,
 this provides a break from the monotony of the common profiles and ordinary grey/whitish shade that has been
 common for ages.</p>
-				  <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Discover</a>
+					<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">View more</a>
 				</div>
 			 </div>
 		</div> <!-- col.// -->

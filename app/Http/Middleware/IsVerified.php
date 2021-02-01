@@ -20,7 +20,7 @@ class IsVerified
             //Session::flush();
             return redirect()->route('auth.verify.account');
 
-            dd('here');
+            //dd('here');
             //throw new UserNotVerifiedException;
         }
 
