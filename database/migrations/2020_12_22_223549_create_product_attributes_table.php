@@ -17,6 +17,9 @@ class CreateProductAttributesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('quantity');
             $table->integer('low_attribute_quantity_count')->default(10);
+            $table->string('length')->nullable();
+            $table->string('width')->nullable();
+            $table->string('height')->nullable();
             $table->decimal('price')->nullable();
             $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');

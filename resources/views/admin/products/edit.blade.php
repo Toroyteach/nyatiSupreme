@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label" for="description">Description</label>
-                                    <textarea name="description" id="description" rows="8" class="form-control">{{ old('description', $product->description) }}</textarea>
+                                    <textarea name="description" id="description" rows="4" class="form-control">{{ old('description', $product->description) }}</textarea>
                                 </div>
 
                                 <label class="control-label" for="description">Dimentions</label>

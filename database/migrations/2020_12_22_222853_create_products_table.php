@@ -22,6 +22,9 @@ class CreateProductsTable extends Migration
             $table->bigInteger('quantity');
             $table->integer('low_quantity_count');
             $table->decimal('weight', 8, 2)->nullable();
+            $table->string('length')->nullable();
+            $table->string('width')->nullable();
+            $table->string('height')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->decimal('sale_price', 8, 2)->nullable();
             $table->boolean('status')->default(1);

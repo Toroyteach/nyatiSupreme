@@ -2238,6 +2238,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "product-attributes",
   props: ['productid'],
@@ -2255,7 +2281,10 @@ __webpack_require__.r(__webpack_exports__);
       currentQty: '',
       currentPrice: '',
       lowQuantity: '',
-      itemDescription: ''
+      itemDescription: '',
+      length: '',
+      width: '',
+      height: ''
     };
   },
   created: function created() {
@@ -2303,6 +2332,9 @@ __webpack_require__.r(__webpack_exports__);
       this.currentPrice = value.price;
       this.lowQuantity = value.low_attribute_quantity_count;
       this.itemDescription = value.description;
+      this.length = value.length;
+      this.width = value.width;
+      this.height = value.height;
     },
     addProductAttribute: function addProductAttribute() {
       if (this.currentQty == null && this.currentPrice == null) {
@@ -2329,7 +2361,10 @@ __webpack_require__.r(__webpack_exports__);
               price: this.currentPrice,
               low_attribute_quantity_count: this.lowQuantity,
               product_id: this.productid,
-              description: this.itemDescription
+              description: this.itemDescription,
+              length: this.length,
+              width: this.width,
+              height: this.height
             }; //console.log(data);
 
             axios.post('/admin/products/attributes/add', {
@@ -2344,6 +2379,9 @@ __webpack_require__.r(__webpack_exports__);
               _this.currentPrice = '';
               _this.lowQuantity = '';
               _this.itemDescription = '';
+              _this.height = '';
+              _this.length = '';
+              _this.width = '';
               _this.valueSelected = false;
             })["catch"](function (error) {
               console.log(error);
@@ -2371,11 +2409,11 @@ __webpack_require__.r(__webpack_exports__);
             id: pa.id
           }).then(function (response) {
             if (response.data.status === 'success') {
+              this.loadProductAttributes(this.productid);
+
               _this.$swal("Success! Product attribute has been deleted!", {
                 icon: "success"
               });
-
-              this.loadProductAttributes(this.productid);
             } else {
               _this.$swal("Your Product attribute not deleted!");
             }
@@ -20543,7 +20581,10 @@ var render = function() {
                   _c("div", { staticClass: "form-group" }, [
                     _c(
                       "label",
-                      { staticClass: "control-label", attrs: { for: "price" } },
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "description" }
+                      },
                       [_vm._v("Description")]
                     ),
                     _vm._v(" "),
@@ -20569,6 +20610,120 @@ var render = function() {
                             return
                           }
                           _vm.itemDescription = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "length" }
+                      },
+                      [_vm._v("Length")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.length,
+                          expression: "length"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        placeholder: "enter length",
+                        type: "number",
+                        id: "length"
+                      },
+                      domProps: { value: _vm.length },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.length = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      { staticClass: "control-label", attrs: { for: "width" } },
+                      [_vm._v("Width")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.width,
+                          expression: "width"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        placeholder: "enter width",
+                        type: "number",
+                        id: "width"
+                      },
+                      domProps: { value: _vm.width },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.width = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "control-label",
+                        attrs: { for: "height" }
+                      },
+                      [_vm._v("Height")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.height,
+                          expression: "height"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "number",
+                        placeholder: "enter height",
+                        id: "height"
+                      },
+                      domProps: { value: _vm.height },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.height = $event.target.value
                         }
                       }
                     })
@@ -20613,7 +20768,7 @@ var render = function() {
                     "td",
                     {
                       staticClass: "text-center",
-                      staticStyle: { width: "25%" }
+                      staticStyle: { width: "20%" }
                     },
                     [_vm._v(_vm._s(pa.value))]
                   ),
@@ -20622,7 +20777,7 @@ var render = function() {
                     "td",
                     {
                       staticClass: "text-center",
-                      staticStyle: { width: "25%" }
+                      staticStyle: { width: "10%" }
                     },
                     [_vm._v(_vm._s(pa.quantity))]
                   ),
@@ -20631,7 +20786,7 @@ var render = function() {
                     "td",
                     {
                       staticClass: "text-center",
-                      staticStyle: { width: "25%" }
+                      staticStyle: { width: "10%" }
                     },
                     [_vm._v(_vm._s(pa.low_attribute_quantity_count))]
                   ),
@@ -20640,7 +20795,7 @@ var render = function() {
                     "td",
                     {
                       staticClass: "text-center",
-                      staticStyle: { width: "25%" }
+                      staticStyle: { width: "20%" }
                     },
                     [_vm._v(_vm._s(pa.price))]
                   ),
@@ -20649,7 +20804,34 @@ var render = function() {
                     "td",
                     {
                       staticClass: "text-center",
-                      staticStyle: { width: "25%" }
+                      staticStyle: { width: "10%" }
+                    },
+                    [_vm._v(_vm._s(pa.length))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "10%" }
+                    },
+                    [_vm._v(_vm._s(pa.width))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "10%" }
+                    },
+                    [_vm._v(_vm._s(pa.height))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "text-center",
+                      staticStyle: { width: "10%" }
                     },
                     [
                       _c(
@@ -20708,6 +20890,12 @@ var staticRenderFns = [
         _c("th", [_vm._v("Low Qty")]),
         _vm._v(" "),
         _c("th", [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("length")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("width")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("heigth")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])

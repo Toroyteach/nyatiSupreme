@@ -51,10 +51,30 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="control-label" for="price">Description</label>
+                        <label class="control-label" for="description">Description</label>
                         <input class="form-control" type="text" placeholder="Small description" id="description" v-model="itemDescription"/>
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="length">Length</label>
+                        <input class="form-control" placeholder="enter length" type="number" id="length" v-model="length"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="width">Width</label>
+                        <input class="form-control" placeholder="enter width" type="number" id="width" v-model="width"/>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label" for="height">Height</label>
+                        <input class="form-control" type="number" placeholder="enter height" id="height" v-model="height"/>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
                     <button class="btn btn-sm btn-primary" @click="addProductAttribute()">
                         <i class="fa fa-plus"></i> Add
@@ -73,16 +93,22 @@
                             <th>Qty</th>
                             <th>Low Qty</th>
                             <th>Price</th>
+                            <th>length</th>
+                            <th>width</th>
+                            <th>heigth</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="pa in productAttributes">
-                            <td style="width: 25%" class="text-center">{{ pa.value}}</td>
-                            <td style="width: 25%" class="text-center">{{ pa.quantity}}</td>
-                            <td style="width: 25%" class="text-center">{{ pa.low_attribute_quantity_count}}</td>
-                            <td style="width: 25%" class="text-center">{{ pa.price}}</td>
-                            <td style="width: 25%" class="text-center">
+                            <td style="width: 20%" class="text-center">{{ pa.value}}</td>
+                            <td style="width: 10%" class="text-center">{{ pa.quantity}}</td>
+                            <td style="width: 10%" class="text-center">{{ pa.low_attribute_quantity_count}}</td>
+                            <td style="width: 20%" class="text-center">{{ pa.price}}</td>
+                            <td style="width: 10%" class="text-center">{{ pa.length}}</td>
+                            <td style="width: 10%" class="text-center">{{ pa.width}}</td>
+                            <td style="width: 10%" class="text-center">{{ pa.height}}</td>
+                            <td style="width: 10%" class="text-center">
                                 <button class="btn btn-sm btn-danger" @click="deleteProductAttribute(pa)">
                                     <i class="fa fa-trash"></i>
                                 </button>
@@ -115,6 +141,9 @@
                 currentPrice: '',
                 lowQuantity: '',
                 itemDescription: '',
+                length: '',
+                width: '',
+                height: '',
             }
         },
         created: function() {
@@ -159,6 +188,9 @@
                 this.currentPrice = value.price;
                 this.lowQuantity = value.low_attribute_quantity_count;
                 this.itemDescription = value.description;
+                this.length = value.length;
+                this.width = value.width;
+                this.height = value.height;
             },
             addProductAttribute() {
                 if (this.currentQty == null && this.currentPrice == null) {
@@ -190,6 +222,9 @@
                             low_attribute_quantity_count: this.lowQuantity,
                             product_id: this.productid,
                             description: this.itemDescription,
+                            length: this.length,
+                            width: this.width,
+                            height: this.height,
                         };
 
                         //console.log(data);
@@ -205,6 +240,9 @@
                             _this.currentPrice = '';
                             _this.lowQuantity = '';
                             _this.itemDescription = '';
+                            _this.height = '';
+                            _this.length = '';
+                            _this.width = '';
                             _this.valueSelected = false;
                         }).catch(function (error) {
                             console.log(error);

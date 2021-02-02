@@ -47,7 +47,7 @@ class SettingsTableSeeder extends Seeder
         ],
         [
             'key'                       =>  'seo_meta_description',
-            'value'                     =>  'Nyati Supreme Construction Materials Ecommerce',
+            'value'                     =>  'Nyati Supreme Construction Materials Ecommerce solid hollow blocks coloured cabro baluster road kerb ',
         ],
         [
             'key'                       =>  'social_facebook',

@@ -19,7 +19,7 @@ class Product extends Model
      */
     protected $fillable = [
          'sku', 'name', 'slug', 'description', 'quantity', 'low_quantity_count',
-        'weight', 'price', 'sale_price', 'status', 'featured',
+        'weight', 'price', 'length', 'width', 'height', 'sale_price', 'status', 'featured',
     ];
 
     /**

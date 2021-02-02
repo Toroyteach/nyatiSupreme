@@ -15,7 +15,7 @@
 <nav class="row">
 
 
-		@foreach($cats as $cat)
+		@forelse($cats as $cat)
 			@foreach($cat->items as $category)
 				<div class="col-md-3 col-sm-12 col-lg-3 col-xl-3">
 						@if ($category->items->count() > 0)
@@ -52,7 +52,11 @@
 						@endif
 				</div> <!-- col.// -->
 			@endforeach
-		@endforeach
+		@empty
+		<div class="alert alert-warning" role="alert">
+					Theres no more Category.
+				</div>
+		@endforelse
 
 
 

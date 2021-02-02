@@ -51,7 +51,7 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'city'              =>  $params['city'],
                 'country'           =>  $params['country'],
                 'post_code'         =>  $params['post_code'],
-                'phone_number'      =>  auth()->user()->phonenumber,
+                'phone_number'      =>  $params['mpesaPhonenumber'],
                 'notes'             =>  $params['notes']
             ]);
 
@@ -74,7 +74,7 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'city'              =>  $shippingAddress[0]->city,
                 'country'           =>  $shippingAddress[0]->county,
                 'post_code'         =>  $params['post_code'],
-                'phone_number'      =>  auth()->user()->phonenumber,
+                'phone_number'      =>  $params['mpesaPhonenumber'],
                 'notes'             =>  $params['notes']
             ]);
 

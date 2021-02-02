@@ -18,6 +18,12 @@ class SettingController extends BaseController
 {
     use UploadAble;
 
+    public function _construct()
+    {
+        $this->middleware('permission:settings-profile', ['only' => ['index','updateUser']]);
+        $this->middleware('permission:settings-edit', ['only' => ['index','update', 'updateUser']]);
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

@@ -54,6 +54,9 @@
 	<li data-target="#carousel1_indicator" data-slide-to="5"></li>
 	<li data-target="#carousel1_indicator" data-slide-to="6"></li>
 	<li data-target="#carousel1_indicator" data-slide-to="7"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="8"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="9"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="10"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -81,6 +84,12 @@
 	  </div>
     </div>
 	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain2.jpg') }}" alt="Fourth slide">
+	  <div class="carousel-caption d-none d-md-block">
+			<h5>Shallow Drain</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/11_edited.jpg') }}" alt="Fifth slide">
 	  <div class="carousel-caption d-none d-md-block">
 			<h5>Louvre and Ventilation</h5>
@@ -93,7 +102,7 @@
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/12.jpg') }}" alt="Seventh slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/hollowbricks_edited.jpg') }}" alt="Seventh slide">
 	  <div class="carousel-caption d-none d-md-block">
 			<h5>Hollow Blocks</h5>
 	  </div>
@@ -102,6 +111,12 @@
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/8.jpg') }}" alt="Eight slide">
 	  <div class="carousel-caption d-none d-md-block">
 			<h5>Sample Application</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/custom.jpg') }}" alt="Fourth slide">
+	  <div class="carousel-caption d-none d-md-block">
+			<h5>Custom Items</h5>
 	  </div>
     </div>
   </div>
