@@ -19,7 +19,7 @@ class WelcomeNewUserMail extends Mailable
      */
     public function build(Request $request)
     {
-        //dd('Send user email');
-        return $this->markdown('emails.newusermail')->with('user', $request->first_name);
+        //dd($request->name);
+        return $this->markdown('emails.socialnewuser')->with('user', $request->name);
     }
 }

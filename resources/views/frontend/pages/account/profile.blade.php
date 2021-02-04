@@ -24,7 +24,7 @@
 				<figure class="icontext">
 						<div class="icon">
 							@if ($user->profile_image != null)
-									@if($user->social != null)
+									@if($user->social != 1)
 									<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
 									@else
 									<img src="{{ (Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">

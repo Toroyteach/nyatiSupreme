@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
+
 
 class LoginController extends Controller
 {
@@ -74,6 +76,8 @@ class LoginController extends Controller
 
         Auth::login($user, true);
 
+        event(new Registered($user));
+
         return redirect('/home');
 
     }
@@ -105,6 +109,8 @@ class LoginController extends Controller
         // $user->markEmailAsVerified();
 
         Auth::login($user, true);
+
+        event(new Registered($user));
 
         return redirect('/home');
 
@@ -138,6 +144,8 @@ class LoginController extends Controller
         // $user->markEmailAsVerified();
 
         Auth::login($user, true);
+
+        event(new Registered($user));
 
         return redirect('/home');
 

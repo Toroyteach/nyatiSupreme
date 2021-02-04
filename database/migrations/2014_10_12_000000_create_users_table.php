@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('verified')->default(0);
             $table->string('verification_token')->nullable();
             $table->string('password');
-            $table->string('phonenumber');
+            $table->string('phonenumber')->nullable();
             $table->string('address', 255)->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();

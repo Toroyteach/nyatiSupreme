@@ -21,7 +21,7 @@
 						@if ($category->items->count() > 0)
 							<div class="card card-category">
 
-								<div class="img-wrap" style="background: #ffd7d7">
+								<div class="img-wrap" style="">
 										<img src="{{ asset('storage/'.$category->image) }}">
 								</div>
 								<div class="card-body">
@@ -36,7 +36,7 @@
 									
 						@else
 							<div class="card card-category">
-								<div class="img-wrap" style="background: #ffd7d7">
+								<div class="img-wrap" style="">
 									@if ($category->image != null)
 									<img src="{{ asset('storage/'.$category->image) }}" alt="img">
 									@else
@@ -68,32 +68,5 @@
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
-
-
-<!-- ========================= SECTION SUBSCRIBE  ========================= -->
-<section class="padding-y-lg bg-light border-top">
-<div class="container">
-
-<p class="pb-2 text-center">Delivering the latest product trends and industry news straight to your inbox</p>
-
-<div class="row justify-content-md-center">
-	<div class="col-lg-4 col-sm-6">
-	<form class="form-row" action="{{ route('subscribers.store') }}" method="post">
-	@csrf
-		<div class="col-8">
-		<input class="form-control" placeholder="Your Email" type="email">
-		</div> <!-- col.// -->
-		<div class="col-4">
-		<button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
-		</div> <!-- col.// -->
-</form>
-<small class="form-text">We’ll never share your email address with a third-party. </small>
-	</div> <!-- col-md-6.// -->
-</div>
-	
-
-</div>
-</section>
-<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
 
 @stop

@@ -99,7 +99,7 @@
                                                             
                     </form>
                     <hr>
-                    <p class="text-center">Have an account? <a href="{{route('login')}}">Log In</a></p>
+                    <p class="text-center">Have an account? <a href="{{route('login')}}">Log In</a> or sign in with Facebook or Google</p>
                 </article> <!-- card-body end .// -->
             </div> <!-- card.// -->
         <!-- ============================ COMPONENT REGISTER END .// ================================= -->

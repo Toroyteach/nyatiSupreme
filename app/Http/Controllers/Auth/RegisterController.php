@@ -91,7 +91,7 @@ class RegisterController extends Controller
             'country' => $data['country'],
         ]);
 
-        //event(new Registered($user));
+        // event(new Registered($user));
 
         UserVerification::generate($user);
 

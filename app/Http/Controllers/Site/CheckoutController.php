@@ -28,7 +28,9 @@ class CheckoutController extends Controller
     public function __construct(OrderContract $orderRepository)
     {
         //dd('payment not set');
-        $this->middleware(['auth','verified','emptyCart']);
+        $this->middleware(['auth','isVerified','emptyCart', 'emptysocialdetails'] , ['except' => [
+            'paymentsuccess', 'paymentconfirmation'
+        ]]);
         //$this->payPal = $payPal;
         $this->orderRepository = $orderRepository;
     }

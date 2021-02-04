@@ -67,3 +67,48 @@
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }
+
+ /* Extra small devices (portrait phones, less than 576px)
+ No media query for `xs` since this is the default in Bootstrap */
+
+ /* Small devices (landscape phones, 576px and down) */
+@media only screen and (max-width: 575.98px) { 
+    .catalogue img{
+      display: none;
+      position: relative;
+      top:85px !important;
+      height:40%;
+      width:auto;
+      left:0px;
+    }
+ }
+
+ /* Medium devices (tablets, 768px and down) */
+@media (max-width: 767.98px) { 
+  .catalogue img{
+    bottom:15px;
+    height:43%;
+    width:auto;
+    left:0px;
+  }
+ }
+
+ /* Large devices (desktops, 992px and down) */
+@media (max-width: 991.98px) { 
+  .catalogue img{
+    bottom:15px;
+    height:43%;
+    width:auto;
+    left:0px;
+  }
+ }
+
+ /* Extra large devices (large desktops, 1200px and down) */
+@media (max-width: 1199.98px) { 
+  .catalogue img{
+    bottom:15px;
+    height:43%;
+    width:auto;
+    left:0px;
+  }
+ }

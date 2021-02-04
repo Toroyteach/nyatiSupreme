@@ -90,7 +90,7 @@
      	<div class="col-md">
 
 		 @if ($userDetails->profile_image != null)
-		 @if($userDetails->social != null)
+		 @if($userDetails->social != 1)
 									<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
 									@else
 									<img src="{{ (Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">

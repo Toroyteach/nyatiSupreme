@@ -172,11 +172,11 @@
 <div class="row no-gutters">
 	<div class="col-md-3">
 	
-	<div class="home-category-banner bg-light-orange">
+	<div class="home-category-banner bg-light-orange catalogue">
 		<h5 class="title">Nyati Supreme Concrete Works</h5>
 		<p>Here are but a few of the products we manufacture. We value our customers with services we offer. </p>
 		<a href="{{ route('product.information') }}" class="btn btn-outline-primary rounded-pill">See More</a>
-		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="bottom:15px;height:43%;width:auto;left:0px;" class="img-bg">
+		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="" class="img-bg">
 	</div>
 
 	</div> <!-- col.// -->
@@ -270,7 +270,7 @@
 <div class="card-banner" style="height:220px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/roadkerb3_edited.jpg') }}');">
   <article class="card-body caption">
 	<h5 class="card-title">Road Kerb and Channel</h5>
-	<p>We manufacture high quality concrete blocks that meet both dimensional and strength requirements by the
+	<p>high quality concrete blocks that meet both dimensional and strength requirements by the
 relevant authorities and according to customer specifications.
 .</p>
 	<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">Shop Item</a>
@@ -326,7 +326,7 @@ relevant authorities and according to customer specifications.
     <h3 class="card-title">Not finding what you are looking for?</h3>
     <p class="card-text" style="max-width: 400px">Don not you worry if you cannot find the product specification youtr looking for. 
 	Just fill in the form with your specifications and we shall get back to you shortly after.</p>
-    <!-- <a href="{{route('unavailableitems')}}" class="btn btn-primary rounded-pill">Learn more</a> -->
+    <a href="{{route('unavailableitems')}}" class="btn btn-primary rounded-pill">Learn more</a>
   </div>
 </div>
 	</div> <!-- col // -->
@@ -486,32 +486,5 @@ common for ages.</p>
 
 </div>  
 <!-- container end.// -->
-
-<!-- ========================= SECTION SUBSCRIBE  ========================= -->
-<section class="section-subscribe padding-y-lg">
-<div class="container">
-
-<p class="pb-2 text-center text-white">Through our “client is king” philosophy we have ensured to
-train our staff on customer care and interaction </p>
-
-<div class="row justify-content-md-center">
-	<div class="col-lg-5 col-md-6">
-<form class="form-row" action="{{ route('subscribers.store') }}" method="post">
-	@csrf
-		<div class="col-md-8 col-7">
-		<input class="form-control border-0" placeholder="Your Email" type="email" name="email">
-		</div> <!-- col.// -->
-		<div class="col-md-4 col-5">
-		<button type="submit" data-toggle="tooltip" data-placement="top" title="Subscribe to recieve our newsletter" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Subscribe </button>
-		</div> <!-- col.// -->
-</form>
-<small class="form-text text-white-50">We’ll never share your email address with a third-party. </small>
-	</div> <!-- col-md-6.// -->
-</div>
-	
-
-</div>
-</section>
-<!-- ========================= SECTION SUBSCRIBE END// ========================= -->
 
 @stop
