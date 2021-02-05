@@ -12,7 +12,8 @@ class CartController extends Controller
     {
         //$item = Cart::getContent();
 
-        //dd($item);
+        //dd($item->all());
+        
         return view('frontend.pages.cart');
     }
 

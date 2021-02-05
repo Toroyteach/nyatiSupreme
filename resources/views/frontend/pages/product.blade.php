@@ -105,7 +105,8 @@
                                                                     @foreach($product->attributes as $attributeValue)
                                                                         @if ($attributeValue->attribute_id == $attribute->id)
                                                                             <option
-                                                                                data-price="{{ $attributeValue->price }}"
+																				data-price="{{ $attributeValue->price }}"
+																				data-description="{{ $attributeValue->description }}"
 																				data-length="{{ $attributeValue->length }}"
 																				data-width="{{ $attributeValue->width }}"
 																				data-height="{{ $attributeValue->height }}"
@@ -138,6 +139,7 @@
 			<input type="hidden" name="productId" value="{{ $product->id }}">
 			<input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">
 			<input type="hidden" name="productId" value="{{ $product->id }}">
+			<input type="hidden" name="description" id="finalDesc" value="">
 			<button type="submit" id="addtocart" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> </button>
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
@@ -165,12 +167,29 @@
 		<h5 class="title-description">More Description</h5>
 		<p>{!! $product->name !!}. </p>
 		<ul class="list-check">
-	@php
-                                                    
-	$output = str_split($product->description, 30);
 
-	@endphp
-		<li>{{$output[0]}}</li>
+	@foreach($attributes as $attribute)
+        @php
+                                                        
+            if ($attribute->count() > 0) {
+                $attributeCheck = in_array($attribute->id, $product->attributes->pluck('attribute_id')->toArray());
+			} else {
+                $attributeCheck = [];
+            }
+        @endphp
+        @if ($attributeCheck)
+
+                    @foreach($product->attributes as $attributeValue)
+                        @if ($attributeValue->attribute_id == $attribute->id)
+
+						<li>{{ ucwords($attributeValue->description) }}</li>
+
+                        @endif
+                    @endforeach
+
+        @endif
+	@endforeach
+													
 
 		</ul>
 
@@ -213,10 +232,14 @@
 				let height = $(this).find(':selected').data('height');
                 let price = parseFloat($('#productPrice').html());
                 let finalPrice = (Number(extraPrice)).toFixed(2);
+				let finalDesc = $(this).find(':selected').data('description');
+
                 $('#finalPrice').val(finalPrice);
+				$('#finalDesc').val(finalDesc);
+
                 $('#productPrice').html(finalPrice);
 
-				console.log(length, width, height);
+				//console.log(length, width, height);
 				// $("td:contains('l_mm')").remove();
 
 				$("td:contains('l_mm')").html(length);

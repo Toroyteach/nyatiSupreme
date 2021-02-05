@@ -48,24 +48,24 @@ class AdminController extends Controller
         // Product::select(*)->whereNotIn('book_price', [100,200])->get();
         // DB::table(..)->select(..)->whereNotIn('book_price', [100,200])->get();
         // SELECT p.id FROM products p where p.id NOT IN( SELECT a.product_id FROM product_attributes a)
-        $lowProductArrayData = array();
+        // $lowProductArrayData = array();
 
 
-        $productsWithoutAttributes = DB::table("products")
-        ->select('id', 'name', 'quantity')
-        ->whereNotIn('id',function($query) {
+        // $productsWithoutAttributes = DB::table("products")
+        // ->select('id', 'name', 'quantity')
+        // ->whereNotIn('id',function($query) {
 
-            $query->select('product_id')->from('product_attributes');
+        //     $query->select('product_id')->from('product_attributes');
          
-         })->whereRaw('low_quantity_count > quantity')->get();
+        //  })->whereRaw('low_quantity_count > quantity')->get();
 
-        //dd($productsWithoutAttributes->toArray());
+        // //dd($productsWithoutAttributes->toArray());
          
-        $productswithAttributes = DB::table("product_attributes")
-            ->select('product_id','value','name','product_attributes.quantity')
-            ->join('products', 'product_attributes.product_id', '=', 'products.id')
-            ->whereRaw('product_attributes.low_attribute_quantity_count > product_attributes.quantity')
-            ->get();
+        // $productswithAttributes = DB::table("product_attributes")
+        //     ->select('product_id','value','name','product_attributes.quantity')
+        //     ->join('products', 'product_attributes.product_id', '=', 'products.id')
+        //     ->whereRaw('product_attributes.low_attribute_quantity_count > product_attributes.quantity')
+        //     ->get();
          
          
         //  $productswithAttributes = ProductAttribute::select('product_id','value','name')
@@ -79,19 +79,19 @@ class AdminController extends Controller
 
          //$lowProductArrayData = Arr::only($productsWithoutAttributes->toArray(), 'id');
 
-         array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
+        // array_push($lowProductArrayData, [$productswithAttributes->toArray(), $productsWithoutAttributes->toArray()]);
 
          //dd($lowProductArrayData);
          //$collapsed = Arr::flatten($lowProductArrayData);
          //dd($lowProductArrayData);
-          $testemail = Order::find(141);
+          //$testemail = Order::find(141);
           //$eventData = collect($testemail)->except('token');
           //$eventData->all();
           //dd($eventData);
-          $eventdata = collect($testemail)->only('order_number', 'grand_total', 'first_name', 'address', 'city', 'post_code');
+          //$eventdata = collect($testemail)->only('order_number', 'grand_total', 'first_name', 'address', 'city', 'post_code');
           //dd($eventdata->all());
-          event(new LowCount($eventdata));
-          dd('sent');
+          //event(new LowCount($eventdata));
+          //dd('sent');
 
 
         $chartjs = $this->getGraphData('DailySalesLineGraph');

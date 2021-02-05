@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Contracts\ProductContract;
 use App\Http\Controllers\Controller;
 use App\Contracts\AttributeContract;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -34,8 +35,10 @@ class ProductController extends Controller
     {
         //dd($request->all());
         $product = $this->productRepository->findProductById($request->input('productId'));
-        $options = $request->except('_token', 'price', 'qty');
+        $options = $request->except('_token', 'price', 'qty', 'productId');
         //dd($product->toArray());
+        $product = Product::find($request->productId);
+        //dd($product);
 
         //$discountConditions = $this->productRepository->getProductCountDiscount();
 
@@ -45,11 +48,13 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'quantity' => $request->input('qty'),
             'attributes' => $options,
+            'associatedModel' => $product,
             //'conditions' => $discountConditions
         );
         //dd($arrayParams);
 
         Cart::add($arrayParams);
+        //dd(Cart::getContent());
 
         return redirect()->back()->with('message', 'Item added to cart successfully.');
     }

@@ -39,14 +39,13 @@
                                         <td>
 
 											<figure class="itemside">
-												<div class="aside"><img src="{{ asset('frontend/cssfiles/images/items/1.jpg') }}" class="img-sm"></div>
+												<div class="aside"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}" class="img-sm" ></div>
 												<figcaption class="info">
 
-													<a href="#" class="title text-dark">{{ Str::words($item->name,20) }}</a>
+												{{ Str::words($item->name,20) }}
                                                     @foreach($item->attributes as $key  => $value)
                                                         <dl class="dlist-inline small">
-                                                            <dt> {{ ucwords($key) }}: </dt>
-                                                            <dd>Value: {{ ucwords($value) }}</dd>
+                                                            <dt> {{ ucwords($key) }}: </dt> <dd>{{ ucwords($value) }}</dd>
                                                         </dl>
                                                     @endforeach
 												</figcaption>
@@ -105,6 +104,7 @@
 					  <dd class="text-right  h5"><strong>{{ config('settings.currency_symbol') }} {{ \Cart::getSubTotal() }}</strong></dd>
 					</dl>
 					<hr>
+					<!-- <a href="{{ route('checkout.index') }}" class="btn btn-primary">Clear Cart</a> -->
 					<p class="text-center mb-3">
 						<img src="{{ asset('frontend/cssfiles/images/misc/pament_edited.png') }}" >
 					</p>

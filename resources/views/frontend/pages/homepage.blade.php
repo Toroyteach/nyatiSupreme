@@ -386,7 +386,7 @@ relevant authorities and according to customer specifications.
 					Theres no More Products.
 				</div>
 			@endforelse
-
+			<a href="{{ route('shop') }}" class="btn btn-warning">See More</a>
 
 </div> <!-- row.// -->
 </section>

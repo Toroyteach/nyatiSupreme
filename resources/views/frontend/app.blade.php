@@ -74,8 +74,9 @@
  }
 
  /* Small devices (landscape phones, 576px and down) */
- @media only screen and (max-width: 575.98px) { 
+ @media (max-width: 575.98px) { 
     .catalogue>.responsive{
+      display: none;
       top: -10px !important;
       left: 80px;
       position: relative;
@@ -87,19 +88,30 @@
   /* Medium devices (tablets, 768px and down) */
 @media (max-width: 767.98px) { 
   .catalogue>.responsive{
-      top: -10px !important;
+    display: none;
+      /* top: -10px !important; */
+      /* position: relative; */
       left: 30px;
-      position: relative;
-      height: 100px;
+      height: 30% !important;
       width: auto;
     }
  }
 
  /* Large devices (desktops, 992px and down) */
 @media (max-width: 991.98px) { 
-  .catalogue img{
-    bottom:15px;
-    height:43%;
+  .catalogue>.responsive{
+    bottom: 12px;
+    height:20%;
+    width:auto;
+    left:0px;
+  }
+ }
+
+  /* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .catalogue>.responsive{
+    bottom: 12px;
+    height:30%;
     width:auto;
     left:0px;
   }

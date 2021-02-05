@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $topItems = Product::orderBy('updated_at', 'DESC')->with('images')->take(12)->get();
-        // dd($topItems);
+         //dd($topItems);
         $topCats = Category::orderBy('updated_at', 'DESC')->where('featured',1)->take(3)->get();
         //dd($topItems->all());
         return view('frontend.pages.homepage', compact('topItems', 'topCats'));
