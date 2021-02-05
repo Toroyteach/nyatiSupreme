@@ -41,6 +41,16 @@
 
 <script src="{{ asset('/vendor/kustomer/js/kustomer.js') }}" defer></script>
 
+<!-- plugin: slickslider -->
+<link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.css') }} " rel="stylesheet" type="text/css" />
+<link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick-theme.css') }}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script>
+
+<!-- plugin: owl carousel  -->
+<link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
+<link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
+<script src="{{ asset('/frontend/cssfiles/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
+
 <style>
 .kustomer-feedback-component{
     z-index: 1000 !important;

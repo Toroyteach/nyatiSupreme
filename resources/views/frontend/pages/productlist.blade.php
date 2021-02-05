@@ -60,7 +60,7 @@
 	<div class="col-md-4">
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
-				<img src="">
+				<img src="{{ asset('storage/'.$item->images->first()->full )}}" >
 				<a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">

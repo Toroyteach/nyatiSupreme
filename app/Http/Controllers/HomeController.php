@@ -26,8 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topItems = Product::orderBy('updated_at', 'DESC')->with('images')->take(12)->get();
+        $topItems = Product::orderBy('updated_at')->where('status', 1)->with('images')->take(12)->get();
+        //$topItems = Product::orderBy('name')->take(10)->get();
+
          //dd($topItems);
+         //$user = Product::first();
+         //dd($user->images->first()->full);
+
         $topCats = Category::orderBy('updated_at', 'DESC')->where('featured',1)->take(3)->get();
         //dd($topItems->all());
         return view('frontend.pages.homepage', compact('topItems', 'topCats'));
@@ -36,7 +41,7 @@ class HomeController extends Controller
     public function shop()
     {
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $products = Product::orderBy('updated_at', 'DESC')->with('images')->paginate(6);
+        $products = Product::orderBy('updated_at')->where('status', 1)->with('images')->paginate(6);
 
         return view('frontend.pages.productlist', compact('cats', 'products'));
     }

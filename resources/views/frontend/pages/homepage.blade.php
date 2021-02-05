@@ -183,7 +183,7 @@
 	<div class="col-md-9">
 <ul class="row no-gutters bordered-cols">
 	<li class="col-6 col-lg-3 col-md-4">
-<a href="{{ route('item.show', 'ventilation') }}" class="item"> 
+<a href="{{ route('item.show', 'block') }}" class="item"> 
 	<div class="card-body catalogueimg">
 		<h5 class="title">Solid Blocks </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/block1.jpg') }}"> 
@@ -374,7 +374,7 @@ relevant authorities and according to customer specifications.
 @forelse($topItems as $item)
 	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
 		<div class="card card-sm card-product-grid">
-			<a href="{{ route('product.show', $item->slug) }}" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first->full )}}"> </a>
+			<a href="{{ route('product.show', $item->slug) }}" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first()->full )}}"> </a>
 			<figcaption class="info-wrap">
 				<a href="#" class="title">{{$item->name}}</a>
 				<div class="price mt-1">{{ config('settings.currency_symbol') }} {{ $item->price }}</div> <!-- price-wrap.// -->
