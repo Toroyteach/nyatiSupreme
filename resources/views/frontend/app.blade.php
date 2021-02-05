@@ -20,7 +20,7 @@
 <link href="{{ asset('frontend/cssfiles/images/nyati/catalogue/nyati_logo.png') }}" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap4 files-->
 <script src="{{ asset('/frontend/cssfiles/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
@@ -53,6 +53,58 @@
   background-attachment: fixed;
   background-size: cover;
 } */
+
+ /* Small devices (landscape phones, 375px and down) */
+@media only screen and (max-width: 374.98px) { 
+    .catalogue img{
+      display: none;
+    }
+
+    .bannersection h3{
+      font-size: 1.3rem;
+    }
+
+    .catalogueimg img{
+      float: none !important;
+    }
+
+    .catalogueimg p{
+      padding-top: 10px;
+    }
+ }
+
+ /* Small devices (landscape phones, 576px and down) */
+ @media only screen and (max-width: 575.98px) { 
+    .catalogue>.responsive{
+      top: -10px !important;
+      left: 80px;
+      position: relative;
+      height: 100px;
+      width: auto;
+    }
+ }
+
+  /* Medium devices (tablets, 768px and down) */
+@media (max-width: 767.98px) { 
+  .catalogue>.responsive{
+      top: -10px !important;
+      left: 30px;
+      position: relative;
+      height: 100px;
+      width: auto;
+    }
+ }
+
+ /* Large devices (desktops, 992px and down) */
+@media (max-width: 991.98px) { 
+  .catalogue img{
+    bottom:15px;
+    height:43%;
+    width:auto;
+    left:0px;
+  }
+ }
+
 </style>
 
 </head>

@@ -28,19 +28,19 @@
 		<header class="card-header">
 			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
 				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Product type</h6>
+				<h6 class="title">Other Categories</h6>
 			</a>
 		</header>
 		<div class="filter-content collapse show" id="collapse_1" style="">
 			<div class="card-body">
-				<form class="pb-3">
+				<!-- <form class="pb-3">
 				<div class="input-group">
 				  <input type="text" class="form-control" placeholder="Search">
 				  <div class="input-group-append">
 				    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
 				  </div>
 				</div>
-				</form>
+				</form> -->
 				
 				<ul class="list-menu">
 					@foreach($cats as $cat)
@@ -62,7 +62,7 @@
 		<article class="card card-product-list">
 				<div class="row no-gutters">
 					<aside class="col-md-3">
-						<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()) }}"></a>
+						<a href="" data-fancybox data-caption="{{$prodItems->name}}" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
 					</aside> <!-- col.// -->
 					<div class="col-md-6">
 						<div class="info-main">
@@ -88,10 +88,7 @@
 					</div> <!-- col.// -->
 					<aside class="col-sm-3">
 						<div class="info-aside">
-							<div class="price-wrap">
-								<span class="price h5"> $62 </span>	
-							</div> <!-- info-price-detail // -->
-							<p class="text-success">Free shipping</p>
+							<br>
 							<br>
 							<p>
 								<a href="{{ route('product.show', $prodItems->slug) }}" class="btn btn-primary btn-block"> Details </a>

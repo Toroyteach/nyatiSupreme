@@ -176,7 +176,7 @@
 		<h5 class="title">Nyati Supreme Concrete Works</h5>
 		<p>Here are but a few of the products we manufacture. We value our customers with services we offer. </p>
 		<a href="{{ route('product.information') }}" class="btn btn-outline-primary rounded-pill">See More</a>
-		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="" class="img-bg">
+		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="" class="img-bg responsive">
 	</div>
 
 	</div> <!-- col.// -->
@@ -184,7 +184,7 @@
 <ul class="row no-gutters bordered-cols">
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Solid Blocks </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/block1.jpg') }}"> 
 		<p class="text-muted">High quality concrete blocks that meet both dimensional and strength</p>
@@ -193,7 +193,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Hollow blocks and Hollow Port  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/hollo_edited.jpg') }}"> 
 		<p class="text-muted">Both hollow blocks and hollow ports are void fillers hence non-load bearing</p>
@@ -202,7 +202,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Coloured Cabros  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/cabro2.jpg') }}"> 
 		<p class="text-muted">Special type of paving blocks with various profiles and customised colours</p>
@@ -211,7 +211,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Paving Blocks  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/paveblock2.jpg') }}"> 
 		<p class="text-muted">Void fillers hence non-load bearing</p>
@@ -220,7 +220,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Wall Coppings  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/wallcopping_edited.jpg') }}"> 
 		<p class="text-muted"> Protecting your perimeter walling or outer exposed walling</p>
@@ -229,7 +229,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Baluster  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/baluster_edited.jpg') }}"> 
 		<p class="text-muted"> Used as railings and poles in balconies, verandas and stairways</p>
@@ -238,7 +238,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Louvre Block and Ventilation  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/ventilation4.jpg') }}"> 
 		<p class="text-muted">Precast louver blocks allow light and air into a functional space</p>
@@ -248,7 +248,7 @@
 	</li>
 	<li class="col-6 col-lg-3 col-md-4">
 <a href="{{ route('item.show', 'ventilation') }}" class="item"> 
-	<div class="card-body">
+	<div class="card-body catalogueimg">
 		<h5 class="title">Storm Water Drain  </h5>
 		<img class="img-sm float-right" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain1.jpg') }}"> 
 		<p class="text-muted">Helps direct large flow of water safely avoiding </p>
@@ -374,7 +374,7 @@ relevant authorities and according to customer specifications.
 @forelse($topItems as $item)
 	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
 		<div class="card card-sm card-product-grid">
-			<a href="{{ route('product.show', $item->slug) }}" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first() )}}"> </a>
+			<a href="{{ route('product.show', $item->slug) }}" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first->full )}}"> </a>
 			<figcaption class="info-wrap">
 				<a href="#" class="title">{{$item->name}}</a>
 				<div class="price mt-1">{{ config('settings.currency_symbol') }} {{ $item->price }}</div> <!-- price-wrap.// -->
@@ -393,15 +393,15 @@ relevant authorities and according to customer specifications.
 <!-- =============== SECTION ITEMS .//END =============== -->
 
 <!-- =============== SECTION BANNER =============== -->
-<section class="padding-bottom">
+<section class="padding-bottom bannersection">
 	<div class="row">
 		<aside class="col-md-6">
 			<div class="card card-banner-lg bg-dark">
 				<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/63.jpg') }}" class="card-img opacity">
 				<div class="card-img-overlay text-white">
-				  <h2 class="card-title">High Quality Concrete Blocks</h2>
-				  <p class="card-text" style="max-width: 80%">We manufacture high quality concrete blocks that meet both dimensional and strength requirements by the
-relevant authorities and according to customer specifications.</p>
+				  <h3 class="card-title">High Quality Concrete Blocks</h3>
+				  <p class="card-text" style="max-width: 100%;">High quality concrete blocks that meet both dimensional and strength requirements by the
+relevant authorities and customer specifications.</p>
 					<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">View more</a>
 				</div>
 			 </div>
@@ -410,10 +410,9 @@ relevant authorities and according to customer specifications.</p>
 			<div class="card card-banner-lg bg-dark">
 				<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/cabro3.jpg') }}" class="card-img opacity">
 				<div class="card-img-overlay text-white">
-				  <h2 class="card-title">Beautifuly Coloured Cabro</h2>
-				    <p class="card-text" style="max-width: 80%">We offer special type of paving blocks with various profiles and customised colours according to client needs,
-this provides a break from the monotony of the common profiles and ordinary grey/whitish shade that has been
-common for ages.</p>
+				  <h3 class="card-title">Beautifuly Coloured Cabro</h3>
+				    <p class="card-text" style="max-width: 100%">We offer special type of paving blocks with various profiles and customised colours according to client needs,
+this provides a break from the monotony of the common profiles and ordinary grey/whitish shade.</p>
 					<a href="{{ route('item.show', 'ventilation') }}" class="btn btn-warning">View more</a>
 				</div>
 			 </div>

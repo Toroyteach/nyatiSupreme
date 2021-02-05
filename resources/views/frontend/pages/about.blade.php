@@ -18,7 +18,20 @@
 
       <div class="container marketing">
 
+      <p class="lead">We produce a wide range of masonry building and paving blocks compli-
+ant to all the latest technical and environmental standards for use in
 
+foundation walls, Internal walls ,acoustic separating walls ,thermally insu-
+lating walls and permeable/semi-permeable paving solutions for drive-
+ways , parking bays and fuel stations. We continually strive to enhance
+
+our product range through active research and development (R&D) into
+new innovative products that will drive down the cost of construction
+through improved manufacturing processes and the increased use of
+recycled materials in our manufacturing processes with a commitment to
+minimize our impact on the environment by reducing energy use
+throughout our operations whilst continuing to produce high quality
+products for the low carbon homes of the future..</p>
         <!-- START THE FEATURETTES -->
 
         <hr class="featurette-divider">
@@ -54,8 +67,10 @@
 
         <div class="row featurette">
           <div class="col-md-7">
-            <h4 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h4>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h4 class="featurette-heading">Customer. <span class="text-muted"> Reachability.</span></h4>
+            <p class="lead">Our group of two manufacturing plants are located within Eldoret town
+offering a comprehensive and flexible supply network both of which are
+well established and highly respected.</p>
           </div>
           <div class="col-md-5">
             <img class="featurette-image img-fluid mx-auto" style="height: 200px;" src="{{ asset('frontend/cssfiles/images/nyati/catalogue/work_edited.jpg') }}" alt="Generic placeholder image">
@@ -68,46 +83,46 @@
 
       </div><!-- /.container -->
 
-    </main>
 
-    <div class="row">
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/1.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Trade Assurance</h6>
-		    <p class="small text-uppercase text-muted">Order protection</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Easy Payment</h6>
-		    <p class="small text-uppercase text-muted">Finance solution</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/3.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Inspection solution</h6>
-		    <p class="small text-uppercase text-muted">Easy Inspection</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-	<div class="col-md-3 col-sm-6">
-		<article class="card card-post">
-		  <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
-		  <div class="card-body">
-		    <h6 class="title">Safe and Fast Shipping</h6>
-		    <p class="small text-uppercase text-muted">Logistic services</p>
-		  </div>
-		</article> <!-- card.// -->
-	</div> <!-- col.// -->
-</div> <!-- row.// -->
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <article class="card card-post">
+            <img src="{{ asset('frontend/cssfiles/images/posts/1.jpg') }}" class="card-img-top">
+            <div class="card-body">
+              <h6 class="title">Trade Assurance</h6>
+              <p class="small text-uppercase text-muted">Order protection</p>
+            </div>
+          </article> <!-- card.// -->
+        </div> <!-- col.// -->
+        <div class="col-md-3 col-sm-6">
+          <article class="card card-post">
+            <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
+            <div class="card-body">
+              <h6 class="title">Easy Payment</h6>
+              <p class="small text-uppercase text-muted">Finance solution</p>
+            </div>
+          </article> <!-- card.// -->
+        </div> <!-- col.// -->
+        <div class="col-md-3 col-sm-6">
+          <article class="card card-post">
+            <img src="{{ asset('frontend/cssfiles/images/posts/3.jpg') }}" class="card-img-top">
+            <div class="card-body">
+              <h6 class="title">Inspection solution</h6>
+              <p class="small text-uppercase text-muted">Easy Inspection</p>
+            </div>
+          </article> <!-- card.// -->
+        </div> <!-- col.// -->
+        <div class="col-md-3 col-sm-6">
+          <article class="card card-post">
+            <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
+            <div class="card-body">
+              <h6 class="title">Safe and Fast Shipping</h6>
+              <p class="small text-uppercase text-muted">Logistic services</p>
+            </div>
+          </article> <!-- card.// -->
+        </div> <!-- col.// -->
+      </div>
+  </div> <!-- row.// -->
 
 
 @stop

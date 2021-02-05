@@ -23,8 +23,7 @@
 	<div class="row">
 		<aside class="col-md-6">
 			<div class="card">
-
-			<article class="gallery-wrap"> 
+				<article class="gallery-wrap"> 
 												@if ($product->images->count() > 0)
 													<div class="img-big-wrap">
 														<div class="">
@@ -40,20 +39,11 @@
 														</div>
 													</div>
 												@endif
-												@if ($product->images->count() > 0)
-													<div class="img-small-wrap">
-														@foreach($product->images as $image)
-															<div class="">
-																<img src="{{ asset('storage/'.$image->full) }}" alt="" class="img-fluid">
-															</div>
-														@endforeach
-													</div>
-												@endif
-			</article> <!-- gallery-wrap .end// -->
 
+				</article> <!-- gallery-wrap .end// -->
 			</div> <!-- card.// -->
 		</aside>
-		<main class="col-md-6">
+	<main class="col-md-6">
 <article class="product-info-aside">
 
 <h2 class="title mt-3">{{ $product->name }}</h2>
@@ -110,13 +100,16 @@
                                                         @if ($attributeCheck)
 
                                                             <dd>
-                                                                <select class="form-control option" style="width:180px;" id="" name="{{ strtolower($attribute->name ) }}">
+                                                                <select class="form-control option" style="width:180px;" id="option" name="{{ strtolower($attribute->name ) }}">
                                                                     <option data-price="0" value="0"> Select a {{ $attribute->name }}</option>
                                                                     @foreach($product->attributes as $attributeValue)
                                                                         @if ($attributeValue->attribute_id == $attribute->id)
                                                                             <option
                                                                                 data-price="{{ $attributeValue->price }}"
-                                                                                value="{{ $attributeValue->value }}"> {{ ucwords($attributeValue->value . ' + '. $attributeValue->price) }}
+																				data-length="{{ $attributeValue->length }}"
+																				data-width="{{ $attributeValue->width }}"
+																				data-height="{{ $attributeValue->height }}"
+                                                                                value="{{ $attributeValue->value }}"> {{ ucwords($attributeValue->description) }}
                                                                             </option>
                                                                         @endif
                                                                     @endforeach
@@ -150,6 +143,8 @@
 	</div> <!-- row.// -->
 </form>
 
+<p>{{ $product->description}}</p>
+
 </article> <!-- product-info-aside .// -->
 		</main> <!-- col.// -->
 	</div> <!-- row.// -->
@@ -167,23 +162,25 @@
 
 <div class="row">
 	<div class="col-md-8">
-		<h5 class="title-description">Description</h5>
-		<p>{!! $product->description !!}. </p>
+		<h5 class="title-description">More Description</h5>
+		<p>{!! $product->name !!}. </p>
 		<ul class="list-check">
-		<li>Material: Stainless steel</li>
-		<li>Weight: 82kg</li>
-		<li>built-in drip tray</li>
-		<li>Open base for pots and pans</li>
-		<li>On request available in propane execution</li>
+	@php
+                                                    
+	$output = str_split($product->description, 30);
+
+	@endphp
+		<li>{{$output[0]}}</li>
+
 		</ul>
 
 		<h5 class="title-description">Specifications</h5>
-		<table class="table table-bordered">
+		<table class="table table-bordered" id="dimentions">
 
 			<tr> <th colspan="2">Dimensions</th> </tr>
-			<tr> <td>Width</td><td>500mm</td> </tr>
-			<tr> <td>Depth</td><td>400mm</td> </tr>
-			<tr> <td>Height	</td><td>700mm</td> </tr>
+			<tr> <td>Length</td><td id="length">l_mm</td> </tr>
+			<tr> <td>Width</td><td id="width">w_mm</td> </tr>
+			<tr> <td>Height	</td><td id="height">h_mm</td> </tr>
 
 		</table>
 	</div> <!-- col.// -->
@@ -198,7 +195,35 @@
 @stop
 @push('scripts')
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
+<script type="text/javascript">
+        $(window).load(function () {
+			//console.log($('.option').val());
+			//swal("Please choose Attribute");
+            $('#addToCart').submit(function (e) {
+                if ($('.option').val() == 0) {
+                    e.preventDefault();
+                    swal("Please choose an attribute size you would like");
+                }
+            });
+            $('.option').change(function () {
+                $('#productPrice').html("{{ $product->sale_price != '' ? $product->sale_price : $product->price }}");
+                let extraPrice = $(this).find(':selected').data('price');
+				let length = $(this).find(':selected').data('length');
+				let width = $(this).find(':selected').data('width');
+				let height = $(this).find(':selected').data('height');
+                let price = parseFloat($('#productPrice').html());
+                let finalPrice = (Number(extraPrice)).toFixed(2);
+                $('#finalPrice').val(finalPrice);
+                $('#productPrice').html(finalPrice);
+
+				console.log(length, width, height);
+				// $("td:contains('l_mm')").remove();
+
+				$("td:contains('l_mm')").html(length);
+				$("td:contains('w_mm')").html(width);
+				$("td:contains('h_mm')").html(height);
+            });
+        });
 
 	function incrementQty()
 	{
@@ -220,22 +245,5 @@
 
     	document.getElementById('number').value = value;
 	}
-
-        $(document).ready(function () {
-            $('#addToCart').submit(function (e) {
-                if ($('.option').val() == 0) {
-                    e.preventDefault();
-                    swal("Please choose Attribute");
-                }
-            });
-            $('.option').change(function () {
-                $('#productPrice').html("{{ $product->sale_price != '' ? $product->sale_price : $product->price }}");
-                let extraPrice = $(this).find(':selected').data('price');
-                let price = parseFloat($('#productPrice').html());
-                let finalPrice = (Number(extraPrice) + price).toFixed(2);
-                $('#finalPrice').val(finalPrice);
-                $('#productPrice').html(finalPrice);
-            });
-        });
     </script>
 @endpush

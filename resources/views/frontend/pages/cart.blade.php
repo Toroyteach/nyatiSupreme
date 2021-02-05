@@ -45,7 +45,7 @@
 													<a href="#" class="title text-dark">{{ Str::words($item->name,20) }}</a>
                                                     @foreach($item->attributes as $key  => $value)
                                                         <dl class="dlist-inline small">
-                                                            <dt>Size: {{ ucwords($key) }}: </dt>
+                                                            <dt> {{ ucwords($key) }}: </dt>
                                                             <dd>Value: {{ ucwords($value) }}</dd>
                                                         </dl>
                                                     @endforeach
