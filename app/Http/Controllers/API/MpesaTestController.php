@@ -19,6 +19,7 @@ class MpesaTestController extends Controller
         $response = Simulate::request(2000)
             ->from(254768624270)
             ->usingReference('fakeInvoice')
+            ->setCommand(CUSTOMER_PAYBILL_ONLINE)
             ->push();
 
         return response()->json([
@@ -42,8 +43,8 @@ class MpesaTestController extends Controller
             ]);
         }
 
-        $response = Simulate::request($order->amount)
-            ->from($order->order_number)
+        $response = Simulate::request((int)$order->grand_total)
+            ->from($order->phone_number)
             ->usingReference($order->order_number)
             ->setCommand(CUSTOMER_PAYBILL_ONLINE)
             ->push();

@@ -39,7 +39,7 @@
                                         <td>
 
 											<figure class="itemside">
-												<div class="aside"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}" class="img-sm" ></div>
+												<div class="aside"><img src="{{ asset('storage/'.$item->associatedModel->images->first->full )}}" class="img-sm" ></div>
 												<figcaption class="info">
 
 												{{ Str::words($item->name,20) }}

@@ -51,7 +51,7 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'city'              =>  $params['city'],
                 'country'           =>  $params['country'],
                 'post_code'         =>  $params['post_code'],
-                'phone_number'      =>  $params['mpesaPhonenumber'],
+                'phone_number'      =>  '254'.substr($params['mpesaPhonenumber'], 1),
                 'notes'             =>  $params['notes']
             ]);
 
@@ -74,7 +74,7 @@ class OrderRepository extends BaseRepository implements OrderContract
                 'city'              =>  $shippingAddress[0]->city,
                 'country'           =>  $shippingAddress[0]->county,
                 'post_code'         =>  $params['post_code'],
-                'phone_number'      =>  $params['mpesaPhonenumber'],
+                'phone_number'      =>  '254'.substr($params['mpesaPhonenumber'], 1),
                 'notes'             =>  $params['notes']
             ]);
 
@@ -98,16 +98,17 @@ class OrderRepository extends BaseRepository implements OrderContract
                     Product::where('id', $item->attributes->productId)->decrement('quantity', $item->quantity);
 
                 }
-
+                
                 $product = Product::where('id', $item->attributes->productId)->first();
-                //dd($item->quantity);
+
+                //dd($product);
                 $productAttribute = ProductAttribute::where('product_id', $item->attributes->productId)->where('value', $item->attributes->size)->decrement('quantity', $item->quantity);
 
                 $orderItem = new OrderItem([
                     'product_id'    =>  $product->id,
                     'quantity'      =>  $item->quantity,
                     'price'         =>  $item->getPriceSum(),
-                    'attribute'     =>  $item->attributes->size,
+                    'attribute'     =>  ($item->attributes->size == null ? 'null' : $item->attributes->size),
                     'description'   =>  $item->description 
                 ]);
 
@@ -116,11 +117,11 @@ class OrderRepository extends BaseRepository implements OrderContract
 
             if($order->payment_method == 'mpesa'){
                 //dd('mpesa');
-                $response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');
+                //$response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');
             }
 
         }
-            //dd('finished');
+            dd('finished');
         return $order;
     }
 
