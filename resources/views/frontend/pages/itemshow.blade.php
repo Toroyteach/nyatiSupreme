@@ -58,7 +58,7 @@
 		<article class="card card-product-list">
 				<div class="row no-gutters">
 					<aside class="col-md-3">
-						<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()) }}"></a>
+						<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
 					</aside> <!-- col.// -->
 					<div class="col-md-6">
 						<div class="info-main">

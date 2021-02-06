@@ -79,9 +79,9 @@
 		</div> <!-- col.// -->
 		<div class="col-md-4">
 <!-- ============================ COMPONENT BANNER 6 ================================= -->
-        <div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/wallgrillz2.jpg') }}');">
+        <div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/new/arificialmazera.jpg') }}');">
 			  <article class="caption bottom">
-			    	<h5 class="card-title">Wall Grill</h5>
+			    	<h5 class="card-title">Artificial Mazera</h5>
                     <p>Precast louver blocks allow light and air into a functional space whilst proving beauty</p>
                     <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
 			   </article>
@@ -92,5 +92,80 @@
 
 <br><br>
 
+<div class="row">
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 4 ================================= -->
+        <div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/new/chimney.jpg') }}');">
+			  <article class="caption bottom">
+			    	<h5 class="card-title">Chimney Cover</h5>
+                    <p>Precast louver blocks allow light and air into a functional space whilst proving beauty.</p>
+                    <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
+			   </article>
+			</div>
+<!-- ======================= COMPONENT BANNER 4  END .// ============================ -->
+		</div> <!-- col.// -->
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 5  ================================= -->
+			<div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/baluster_edited.jpg') }}');">
+			  <article class="caption bottom">
+			    	<h5 class="card-title">Wall cladding</h5>
+                    <p>Balusters are used as railings and poles in balconies, verandas and stairways for protection.</p>
+                    <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
+			   </article>
+			</div>
+<!-- ============================ COMPONENT BANNER 5  END .// =========================== -->
+		</div> <!-- col.// -->
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 6 ================================= -->
+        <div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/custom.jpg') }}');">
+			  <article class="caption bottom">
+			    	<h5 class="card-title">Flower Pots</h5>
+                    <p>Precast louver blocks allow light and air into a functional space whilst proving beauty</p>
+                    <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
+			   </article>
+			</div>
+<!-- ============================ COMPONENT BANNER 6  END .// ================================= -->
+		</div> <!-- col.// -->
+</div> <!-- row.// -->
+
+<br><br>
+
+<div class="row">
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 4 ================================= -->
+        <div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/catalogue/paveslab.jpg') }}');">
+			  <article class="caption bottom">
+			    	<h5 class="card-title">Concrete Tile</h5>
+                    <p>Precast louver blocks allow light and air into a functional space whilst proving beauty.</p>
+                    <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
+			   </article>
+			</div>
+<!-- ======================= COMPONENT BANNER 4  END .// ============================ -->
+		</div> <!-- col.// -->
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 5  ================================= -->
+			<div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/new/gardenkerb.jpg') }}');">
+			  <article class="caption bottom">
+			    	<h5 class="card-title">Garden Kerb</h5>
+                    <p>Balusters are used as railings and poles in balconies, verandas and stairways for protection.</p>
+                    <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
+			   </article>
+			</div>
+<!-- ============================ COMPONENT BANNER 5  END .// =========================== -->
+		</div> <!-- col.// -->
+		<div class="col-md-4">
+<!-- ============================ COMPONENT BANNER 6 ================================= -->
+        <div class="card-banner" style="height:250px; background-image: url('{{ asset('frontend/cssfiles/images/nyati/new/pillacap.jpg') }}');">
+			  <article class="caption bottom">
+			    	<h5 class="card-title">Pillar Cap</h5>
+                    <p>Precast louver blocks allow light and air into a functional space whilst proving beauty</p>
+                    <a href="{{ route('item.show', 'ventilation') }}" class="btn btn-light">Shop Item</a>
+			   </article>
+			</div>
+<!-- ============================ COMPONENT BANNER 6  END .// ================================= -->
+		</div> <!-- col.// -->
+</div> <!-- row.// -->
+
+<br><br>
 
 @stop

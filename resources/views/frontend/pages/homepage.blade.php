@@ -84,6 +84,12 @@
 	  </div>
     </div>
 	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/new/mazera.jpg') }}" alt="Fourth slide">
+	  <div class="carousel-caption d-none d-md-block">
+			<h5>Mazera</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain2.jpg') }}" alt="Fourth slide">
 	  <div class="carousel-caption d-none d-md-block">
 			<h5>Shallow Drain</h5>
@@ -386,9 +392,8 @@ relevant authorities and according to customer specifications.
 					Theres no More Products.
 				</div>
 			@endforelse
-			<a href="{{ route('shop') }}" class="btn btn-warning">See More</a>
-
 </div> <!-- row.// -->
+<a href="{{ route('shop') }}" class="btn btn-warning">See More</a>
 </section>
 <!-- =============== SECTION ITEMS .//END =============== -->
 

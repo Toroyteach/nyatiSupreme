@@ -20,10 +20,10 @@
 <link href="{{ asset('frontend/cssfiles/images/nyati/catalogue/nyati_logo.png') }}" rel="shortcut icon" type="image/x-icon">
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
 
 <!-- Bootstrap4 files-->
-<script src="{{ asset('/frontend/cssfiles/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('/frontend/cssfiles/js/bootstrap.bundle.min.js') }}" type="text/javascript"></script> -->
 <link href="{{ asset('/frontend/cssfiles/css/bootstrap.css?v=2.0') }}" rel="stylesheet" type="text/css"/>
 
 <!-- Font awesome 5 -->
@@ -37,19 +37,19 @@
 <link href="{{ asset('/frontend/cssfiles/plugins/fancybox/fancybox.min.css') }}" rel="stylesheet" type="text/css"/>
 
 <!-- custom javascript -->
-<script src="{{ asset('/frontend/cssfiles/js/script.js?v=2.0') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('/frontend/cssfiles/js/script.js?v=2.0') }}" type="text/javascript"></script> -->
 
 <script src="{{ asset('/vendor/kustomer/js/kustomer.js') }}" defer></script>
 
 <!-- plugin: slickslider -->
-<link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.css') }} " rel="stylesheet" type="text/css" />
+<!-- <link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.css') }} " rel="stylesheet" type="text/css" />
 <link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick-theme.css') }}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script>
+<script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script> -->
 
 <!-- plugin: owl carousel  -->
-<link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
+<!-- <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
 <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
-<script src="{{ asset('/frontend/cssfiles/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('/frontend/cssfiles/plugins/owlcarousel/owl.carousel.min.js') }}"></script> -->
 
 <style>
 .kustomer-feedback-component{

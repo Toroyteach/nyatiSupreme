@@ -83,7 +83,41 @@ well established and highly respected.</p>
 
       </div><!-- /.container -->
 
+  <!-- =============== SECTION SERVICES =============== -->
+<section  class="padding-bottom padding-top">
 
+<header class="section-heading heading-line">
+    <h5 class="title-section">Quality, Environmental and Sustainability</h5>
+    <p class="text-muted"></p>
+</header>
+
+</section>
+<!-- =============== SECTION SERVICES .//END =============== -->
+
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+
+      <p class="lead">Our belief is that true business success is achieved through giving the customer the
+highest quality products going hand in hand with excellent customer service which
+is the reason why we have continually grown as a business whilst achieving 100%
+customer retention and innumerable referrals since our inception.
+We are fully committed to ensuring we minimize our impact upon the environment
+and to promote the undoubted and proven 3 sustainability principles of Masonry
+construction</p>
+
+<ul class="list-check">
+<li>Highest quality products using locally sourced raw materials</li>
+<li>Supporting local economies and Jobs</li>
+<li>No imported materials and minimal carbon footprint.</li>
+
+</ul>
+      </div>
+      <br><br>
+
+      <div class="container-marketing">
       <div class="row">
         <div class="col-md-3 col-sm-6">
           <article class="card card-post">

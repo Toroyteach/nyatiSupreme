@@ -43,11 +43,17 @@
 												<figcaption class="info">
 
 												{{ Str::words($item->name,20) }}
-                                                    @foreach($item->attributes as $key  => $value)
+                                                    @forelse($item->attributes as $key  => $value)
                                                         <dl class="dlist-inline small">
-                                                            <dt> {{ ucwords($key) }}: </dt> <dd>{{ ucwords($value) }}</dd>
+                                                            <dt> {{ ucwords($key) }}: </dt> 
+															<dd>{{ ucwords($value) }} </dd>
                                                         </dl>
-                                                    @endforeach
+                                                    @empty
+													<dl class="dlist-inline small">
+                                                            <dt></dt> 
+															<dd></dd>
+                                                        </dl>
+													@endforelse
 												</figcaption>
 											</figure>
 

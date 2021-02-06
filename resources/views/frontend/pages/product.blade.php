@@ -139,7 +139,7 @@
 			<input type="hidden" name="productId" value="{{ $product->id }}">
 			<input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">
 			<input type="hidden" name="productId" value="{{ $product->id }}">
-			<input type="hidden" name="description" id="finalDesc" value="">
+			<input type="hidden" name="description" id="finalDesc" value="{{$product->description}}">
 			<button type="submit" id="addtocart" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> </button>
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
@@ -164,7 +164,7 @@
 
 <div class="row">
 	<div class="col-md-8">
-		<h5 class="title-description">More Description</h5>
+		<h5 class="title-description">More Attributes</h5>
 		<p>{!! $product->name !!}. </p>
 		<ul class="list-check">
 
@@ -235,7 +235,9 @@
 				let finalDesc = $(this).find(':selected').data('description');
 
                 $('#finalPrice').val(finalPrice);
+				if(finalDesc!=null){
 				$('#finalDesc').val(finalDesc);
+				}
 
                 $('#productPrice').html(finalPrice);
 
