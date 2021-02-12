@@ -29,9 +29,10 @@
 		</header>
 		<div class="filter-content collapse show" id="collapse_1" style="">
 			<div class="card-body">
-				<form class="pb-3">
+				<form class="pb-3" action="{{ route('product.search') }}" method="post" autocomplete="off">
+					@csrf
 				<div class="input-group">
-				  <input type="text" class="form-control" placeholder="Search">
+				  <input type="text" class="form-control" id="searchshop" placeholder="Search an item" name="itemshop">
 				  <div class="input-group-append">
 				    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
 				  </div>
@@ -68,7 +69,7 @@
 					<a href="#" class="title">{{$item->slug}}</a>
 					<div class="price-wrap mt-2">
 						<span class="price">{{ config('settings.currency_symbol') }} {{$item->price}}</span>
-						<!-- <del class="price-old">$1980</del> -->
+						<del class="price-old">per item</del>
 					</div> <!-- price-wrap.// -->
 				</div>
 				<a href="{{ route('product.show', $item->slug) }}" class="btn btn-block btn-primary">View Details </a>
@@ -95,3 +96,17 @@
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
 @stop
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+    var route = "{{ url('autocomplete') }}";
+    $('#searchshop').typeahead({
+        source:  function (term, process) {
+        return $.get(route, { term: term }, function (data) {
+                return process(data);
+            });
+        }
+    });
+</script>
+@endpush

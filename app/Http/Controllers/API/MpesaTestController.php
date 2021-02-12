@@ -16,10 +16,26 @@ class MpesaTestController extends Controller
      */
     public function fakeInvoice()
     {
+
+/*
+      "BusinessShortCode": "174379",
+      "Password": "",
+      "Timestamp": "20211212125900",
+      "TransactionType": "CustomerPayBillOnline",
+      "Amount": "500",
+      "PartyA": "254716315141",
+      "PartyB": "174379",
+      "PhoneNumber": "254716315141",
+      "CallBackURL": "https://ensnyjovrdjl2pp.m.pipedream.net",
+      "AccountReference": "Nyati Supreme",
+      "TransactionDesc": "Items Payment"
+*/
+
+	$comand = 'CUSTOMER_PAYBILL_ONLINE';
         $response = Simulate::request(2000)
-            ->from(254768624270)
-            ->usingReference('fakeInvoice')
-            ->setCommand(CUSTOMER_PAYBILL_ONLINE)
+            ->from(254705814794)
+            ->usingReference('fakeInvoice', 'test payment')
+            //->setCommand('comand')
             ->push();
 
         return response()->json([
@@ -54,4 +70,5 @@ class MpesaTestController extends Controller
             'next' => 'Please check your ngrok endpoints and validate that BOTH the validate and confirm endpoint will be called. Also check the Transactions table.'
         ]);
     }
+    
 }

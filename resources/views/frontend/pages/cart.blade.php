@@ -39,7 +39,7 @@
                                         <td>
 
 											<figure class="itemside">
-												<div class="aside"><img src="{{ asset('storage/'.$item->associatedModel->images->first->full )}}" class="img-sm" ></div>
+												<div class="" style="padding:5px;"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}" class="img-sm" ></div>
 												<figcaption class="info">
 
 												{{ Str::words($item->name,20) }}
@@ -84,7 +84,7 @@
 </table>
 
 <div class="card-body border-top">
-	<a href="{{ route('checkout.index') }}" class="btn btn-primary float-sm-left float-md-left float-lg-left float-xl-left">Make Purchase<i class="fa fa-chevron-right"></i> </a>
+	<a href="" class="btn btn-primary float-sm-left float-md-left float-lg-left float-xl-left">Make Purchase<i class="fa fa-chevron-right"></i> </a>
 	<a href="{{ route('home') }}" class="btn btn-light float-sm-right float-md-right float-lg-right float-xl-right"> <i class="fa fa-chevron-left"></i>Back shopping</a>
 </div>	
 </div> <!-- card.// -->
@@ -110,7 +110,7 @@
 					  <dd class="text-right  h5"><strong>{{ config('settings.currency_symbol') }} {{ \Cart::getSubTotal() }}</strong></dd>
 					</dl>
 					<hr>
-					<!-- <a href="{{ route('checkout.index') }}" class="btn btn-primary">Clear Cart</a> -->
+					<a href="{{ route('checkout.cart.clear') }}" class="btn btn-primary">Clear Cart</a>
 					<p class="text-center mb-3">
 						<img src="{{ asset('frontend/cssfiles/images/misc/pament_edited.png') }}" >
 					</p>
@@ -176,3 +176,8 @@
 </section>
 <!-- ============================ COMPONENT 3 END .// ================================= -->
 @stop
+@push('scripts')
+<script type="text/javascript">
+
+</script>
+@endpush

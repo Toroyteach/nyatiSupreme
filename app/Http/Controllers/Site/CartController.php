@@ -31,6 +31,6 @@ class CartController extends Controller
     {
         Cart::clear();
 
-        return redirect('/');
+        return redirect()->back()->with('message', 'You have cleared your cart');
     }
 }

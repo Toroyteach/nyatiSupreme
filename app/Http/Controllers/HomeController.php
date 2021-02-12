@@ -33,7 +33,7 @@ class HomeController extends Controller
          //$user = Product::first();
          //dd($user->images->first()->full);
 
-        $topCats = Category::orderBy('updated_at', 'DESC')->where('featured',1)->take(3)->get();
+        $topCats = Category::orderBy('updated_at', 'DESC')->take(3)->get();
         //dd($topItems->all());
         return view('frontend.pages.homepage', compact('topItems', 'topCats'));
     }
@@ -41,7 +41,14 @@ class HomeController extends Controller
     public function shop()
     {
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $products = Product::orderBy('updated_at')->with('images')->paginate(6);
+        $products = Product::orderBy('updated_at')->where('status', 1)->with('images')->paginate(5);
+
+        // dd($products->all());
+
+        // $no_image = array();
+        // foreach($products as $product->images()->full){
+        //     if(empty($product->ZZ))
+        // }
 
         return view('frontend.pages.productlist', compact('cats', 'products'));
     }
@@ -97,8 +104,8 @@ class HomeController extends Controller
     {
         //dd('$slug');
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $catItems = Category::orderByRaw('-name ASC')->where('featured', 1)->where('slug', $slug)->with('products')->get();
-        $title = "This title";
+        $catItems = Category::orderByRaw('-name ASC')->where('slug', $slug)->with('products')->get();
+        $title = $slug;
 
         return view('frontend.pages.itemshow', compact('cats', 'catItems', 'title'));   
     }

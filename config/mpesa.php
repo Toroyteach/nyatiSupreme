@@ -46,7 +46,7 @@ return [
             'key' => env('MPESA_CONSUMER_KEY'),
             'secret' => env('MPESA_CONSUMER_SECRET'),
             'initiator' => 'Nyati Supreme Concrete Works',
-            'id_validation_callback' => '',
+            'id_validation_callback' => env('MPESA_CALLBACK_URL'),
             'lnmo' => [
                 'paybill' => '174379',
                 'shortcode' => '174379',

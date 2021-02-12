@@ -124,23 +124,22 @@
 
 <section class="section-content padding-y">
 <div class="container">
-<h4>heading</h4>
+<h4>More Images of {{$title}}</h4>
 
 <div class="row">
 	<aside class="col-md-6">
-		<h4>Slick slider banner</h4>
 		<!-- ============== COMPONENT SLIDER SINGLE SLICK  ============= -->
-		<div class="slider-banner-slick">
+		<!-- <div class="slider-banner-slick">
 			<div class="item-slide">
-				<img src="images/banners/slide1.jpg">
+				<img src="{{ asset('/frontend/cssfiles/images/banners/slide1.jpg') }}">
 			</div>
 			<div class="item-slide">
-				<img src="images/banners/slide2.jpg">
+				<img src="{{ asset('/frontend/cssfiles/images/banners/slide2.jpg') }}">
 			</div>
 			<div class="item-slide">
-				<img src="images/banners/slide3.jpg">
+				<img src="{{ asset('/frontend/cssfiles/images/banners/slide3.jpg') }}">
 			</div>
-		</div>
+		</div> -->
 		<!-- ============== COMPONENT SLIDER SINGLE SLICK .end // ============= -->
 		<br><br>
 		</aside> <!-- col.// -->
@@ -152,18 +151,20 @@
 
 @stop
 @push('scrips')
+<script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script>
 <script type="text/javascript">
 /// some script
 
 // jquery ready start
 $(document).ready(function() {
 	// jQuery code
-
+	alert('this');
 
 
 
     /////////////////  items slider. /plugins/slickslider/
     if ($('.slider-banner-slick').length > 0) { // check if element exists
+	alert('this');
         $('.slider-banner-slick').slick({
               infinite: true,
               autoplay: true,

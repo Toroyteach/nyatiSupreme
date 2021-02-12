@@ -42,9 +42,9 @@
 <script src="{{ asset('/vendor/kustomer/js/kustomer.js') }}" defer></script>
 
 <!-- plugin: slickslider -->
-<!-- <link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.css') }} " rel="stylesheet" type="text/css" />
+<link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.css') }} " rel="stylesheet" type="text/css" />
 <link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick-theme.css') }}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script> -->
+<!-- <script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script> -->
 
 <!-- plugin: owl carousel  -->
 <!-- <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
@@ -65,9 +65,9 @@
 } */
 
  /* Small devices (landscape phones, 375px and down) */
-@media only screen and (max-width: 374.98px) { 
+@media only screen and (max-width: 574.98px) and (min-width: 374.98px) { 
     .catalogue img{
-      display: none;
+      /* display: none; */
     }
 
     .bannersection h3{
@@ -82,6 +82,7 @@
       padding-top: 10px;
     }
  }
+ 
 
  /* Small devices (landscape phones, 576px and down) */
  @media (max-width: 575.98px) { 
