@@ -137,7 +137,22 @@
 			</div>
 			</div>
 			@else
-				@if($key != 0)
+			@endif
+				
+					@if($prodItems->images->count() > 0)
+
+						@forelse($prodItems->images as $key => $prodItemsImages)
+
+						<div class="carousel-item">
+						<img src="{{ asset('storage/'.$prodItemsImages->full) }}" alt="image slide"> 
+						<div class="carousel-caption d-inline p-2 bg-secondary text-white">
+								<h5 class="lead">{{$prodItems->name}}</h5>
+						</div>
+						</div>
+						@empty
+						@endforelse
+
+					@else
 
 						<div class="carousel-item">
 						<img src="{{ asset('storage/'.$prodItems->images->first()->full) }}" alt="image slide"> 
@@ -146,22 +161,7 @@
 						</div>
 						</div>
 
-				@else
-
-					@forelse($prodItems->images() as $key => $prodItemsImages)
-
-					<div class="carousel-item">
-					<img src="{{ asset('storage/'.$prodItemsImages->images->full) }}" alt="image slide"> 
-					<div class="carousel-caption d-inline p-2 bg-secondary text-white">
-							<h5 class="lead">{{$prodItems->name}}</h5>
-					</div>
-					</div>
-					@empty
-					@endforelse
-
-				@endif
-
-			@endif
+					@endif
 
 		@empty
 		@endforelse

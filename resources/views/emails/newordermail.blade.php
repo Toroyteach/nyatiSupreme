@@ -8,13 +8,12 @@
 {{$orderData['order_number']}}
 @endslot
 
-@slot('subTotal')
-@endslot
-
 @slot('shippingFee')
+{{$orderData['shipping_fee']}}
 @endslot
 
-@slot('tax')
+@slot('count')
+{{$orderData['item_count']}}
 @endslot
 
 @slot('grandTotal')

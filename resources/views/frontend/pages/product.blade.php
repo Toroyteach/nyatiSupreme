@@ -100,7 +100,7 @@
                                                         @if ($attributeCheck)
 
                                                             <dd>
-                                                                <select class="form-control option" style="width:180px;" id="option" name="{{ strtolower($attribute->name ) }}">
+                                                                <select class="form-control option" style="width:200px;" id="option" name="{{ strtolower($attribute->name ) }}">
                                                                     <option data-price="0" value="0"> Select a {{ $attribute->name }}</option>
                                                                     @foreach($product->attributes as $attributeValue)
                                                                         @if ($attributeValue->attribute_id == $attribute->id)
@@ -193,15 +193,15 @@
 
 		</ul>
 
-		<!-- <h5 class="title-description">Specifications</h5>
+		<h5 class="title-description">Specifications</h5>
 		<table class="table table-bordered" id="dimentions">
 
 			<tr> <th colspan="2">Dimensions</th> </tr>
-			<tr> <td>Length</td><td id="length">l_mm</td> </tr>
-			<tr> <td>Width</td><td id="width">w_mm</td> </tr>
-			<tr> <td>Height	</td><td id="height">h_mm</td> </tr>
+			<tr> <td>Length</td><td id="lengtht">l_mm</td> </tr>
+			<tr> <td>Width</td><td id="widtht">w_mm</td> </tr>
+			<tr> <td>Height	</td><td id="heightt">h_mm</td> </tr>
 
-		</table> -->
+		</table>
 	</div> <!-- col.// -->
 
 </div> <!-- row.// -->
@@ -225,6 +225,9 @@
                 }
             });
             $('.option').change(function () {
+				// $("td:contains('l_mm')").empty();
+				// $("td:contains('w_mm')").empty();
+				// $("td:contains('h_mm')").empty();
                 $('#productPrice').html("{{ $product->sale_price != '' ? $product->sale_price : $product->price }}");
                 let extraPrice = $(this).find(':selected').data('price');
 				let length = $(this).find(':selected').data('length');
@@ -243,10 +246,11 @@
 
 				//console.log(length, width, height);
 				// $("td:contains('l_mm')").remove();
+				console.log(length)
 
-				// $("td:contains('l_mm')").html(length);
-				// $("td:contains('w_mm')").html(width);
-				// $("td:contains('h_mm')").html(height);
+				$("#lengtht").html(length);
+				$("#widtht").html(width);
+				$("#heightt").html(height);
             });
         });
 

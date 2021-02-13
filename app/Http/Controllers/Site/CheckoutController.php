@@ -81,7 +81,7 @@ class CheckoutController extends Controller
         if ($order) {
             //replace with mpesa service processing
             //$this->payPal->processPayment($order);
-            $eventdata = collect($order)->only('order_number', 'grand_total', 'first_name', 'address', 'city', 'post_code');
+            $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
             $eventdata->all();
             $user = array('email' => Auth::user()->email);
             $eventdata = $eventdata->union($user);
@@ -90,7 +90,7 @@ class CheckoutController extends Controller
             
             //event with order placed
             event(new OrderPlaced($eventdata));// move to success mpesa payment api
-
+            //dd('finished');
             Cart::clear();
 
             if($order->payment_method == 'credit'){

@@ -19,7 +19,7 @@ class CreateOrderItemsTable extends Migration
             $table->bigInteger('order_id')->index()->unsigned();
             $table->bigInteger('product_id')->index()->unsigned();
             $table->bigInteger('quantity')->unsigned();
-            $table->decimal('price', 20, 6);
+            $table->decimal('price', 20, 2);
             $table->string('attribute')->default(null);
             $table->string('description')->default(null);
 
