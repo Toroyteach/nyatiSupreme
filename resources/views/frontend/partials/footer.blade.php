@@ -40,6 +40,7 @@
 					<p>Through our “client is king” philosophy we have ensured to train our staff on customer care and interaction </p>
 					
 					<form class="form-inline mb-3" action="{{ route('subscribers.store') }}" method="post">
+					@csrf
 						<input type="text" placeholder="Your Email" type="email" name="email" class="border-0 w-auto form-control">
 						<button class="btn ml-2 btn-warning" type="submit"> Subscribe</button>
 					</form>

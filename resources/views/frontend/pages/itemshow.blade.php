@@ -76,7 +76,7 @@
 										<i class="fa fa-star"></i> 
 									</li>
 								</ul>
-								<div class="label-rating">7/10</div>
+								<!-- <div class="label-rating">7/10</div> -->
 							</div> <!-- rating-wrap.// -->
 							
 							<p> {{$prodItems->description}}</p>
@@ -84,10 +84,6 @@
 					</div> <!-- col.// -->
 					<aside class="col-sm-3">
 						<div class="info-aside">
-							<div class="price-wrap">
-								<span class="price h5"> $62 </span>	
-							</div> <!-- info-price-detail // -->
-							<p class="text-success">Free shipping</p>
 							<br>
 							<p>
 								<a href="{{ route('product.show', $prodItems->slug) }}" class="btn btn-primary btn-block"> Details </a>
@@ -123,157 +119,71 @@
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
 <section class="section-content padding-y">
-<div class="container">
-<h4>More Images of {{$title}}</h4>
+<div class="container col-md-9 col-xl-7 col-lg-7 mx-auto">
+<h4>Images of {{$title}}</h4>
 
-<div class="row">
-	<aside class="col-md-6">
-		<!-- ============== COMPONENT SLIDER SINGLE SLICK  ============= -->
-		<!-- <div class="slider-banner-slick">
-			<div class="item-slide">
-				<img src="{{ asset('/frontend/cssfiles/images/banners/slide1.jpg') }}">
+<!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
+<div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
+
+  <div class="carousel-inner">
+
+  @forelse($catItems as $cat)
+		@forelse($cat->products as $key => $prodItems)
+			@if($key == 0)
+			<div class="carousel-item active">
+			<img src="{{ asset('storage/'.$prodItems->images->first()->full) }}" alt="image slide"> 
+			<div class="carousel-caption d-inline p-2 bg-secondary text-white">
+					<h5 class="lead">{{$prodItems->name}}</h5>
 			</div>
-			<div class="item-slide">
-				<img src="{{ asset('/frontend/cssfiles/images/banners/slide2.jpg') }}">
 			</div>
-			<div class="item-slide">
-				<img src="{{ asset('/frontend/cssfiles/images/banners/slide3.jpg') }}">
-			</div>
-		</div> -->
-		<!-- ============== COMPONENT SLIDER SINGLE SLICK .end // ============= -->
-		<br><br>
-		</aside> <!-- col.// -->
-</div>
+			@else
+				@if($key != 0)
+
+						<div class="carousel-item">
+						<img src="{{ asset('storage/'.$prodItems->images->first()->full) }}" alt="image slide"> 
+						<div class="carousel-caption d-inline p-2 bg-secondary text-white">
+								<h5 class="lead">{{$prodItems->name}}</h5>
+						</div>
+						</div>
+
+				@else
+
+					@forelse($prodItems->images() as $key => $prodItemsImages)
+
+					<div class="carousel-item">
+					<img src="{{ asset('storage/'.$prodItemsImages->images->full) }}" alt="image slide"> 
+					<div class="carousel-caption d-inline p-2 bg-secondary text-white">
+							<h5 class="lead">{{$prodItems->name}}</h5>
+					</div>
+					</div>
+					@empty
+					@endforelse
+
+				@endif
+
+			@endif
+
+		@empty
+		@endforelse
+  @empty
+  @endforelse
+
+
+
+  </div>
+  <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div> 
+<!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->	
 
 </div> <!-- container .//  -->
 </section>
 
 
 @stop
-@push('scrips')
-<script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script>
-<script type="text/javascript">
-/// some script
-
-// jquery ready start
-$(document).ready(function() {
-	// jQuery code
-	alert('this');
-
-
-
-    /////////////////  items slider. /plugins/slickslider/
-    if ($('.slider-banner-slick').length > 0) { // check if element exists
-	alert('this');
-        $('.slider-banner-slick').slick({
-              infinite: true,
-              autoplay: true,
-              slidesToShow: 1,
-              dots: false,
-              prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
-           	  nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
-        });
-    } // end if
-
-     /////////////////  items slider. /plugins/slickslider/
-    if ($('.slider-custom-slick').length > 0) { // check if element exists
-        $('.slider-custom-slick').slick({
-              infinite: true,
-              slidesToShow: 2,
-              dots: true,
-              prevArrow: $('.slick-prev-custom'),
-              nextArrow: $('.slick-next-custom')
-        });
-    } // end if
-
-  
-
-    /////////////////  items slider. /plugins/slickslider/
-    if ($('.slider-items-slick').length > 0) { // check if element exists
-        $('.slider-items-slick').slick({
-            infinite: true,
-            swipeToSlide: true,
-            slidesToShow: 4,
-            dots: true,
-            slidesToScroll: 2,
-            prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
-           	nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 640,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    } // end if
-
-    
-
-    /////////////////  items slider. /plugins/owlcarousel/
-    if ($('.slider-banner-owl').length > 0) { // check if element exists
-        $('.slider-banner-owl').owlCarousel({
-            loop:true,
-            margin:0,
-            items: 1,
-            dots: false,
-            nav:true,
-            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-        });
-    } // end if 
-
-    /////////////////  items slider. /plugins/owlslider/
-    if ($('.slider-items-owl').length > 0) { // check if element exists
-        $('.slider-items-owl').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
-            responsive:{
-                0:{
-                    items:1
-                },
-                640:{
-                    items:3
-                },
-                1024:{
-                    items:4
-                }
-            }
-        })
-    } // end if
-
-    /////////////////  items slider. /plugins/owlcarousel/
-    if ($('.slider-custom-owl').length > 0) { // check if element exists
-        var slider_custom_owl = $('.slider-custom-owl');
-        slider_custom_owl.owlCarousel({
-            loop: true,
-            margin:15,
-            items: 2,
-            nav: false,
-        });
-
-        // for custom navigation
-        $('.owl-prev-custom').click(function(){
-            slider_custom_owl.trigger('prev.owl.carousel');
-        });
-
-        $('.owl-next-custom').click(function(){
-           slider_custom_owl.trigger('next.owl.carousel');
-        });
-
-    } // end if 
-
-
-
-}); 
-// jquery end
-</script>
-@endpush

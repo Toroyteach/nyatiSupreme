@@ -40,8 +40,8 @@ class HomeController extends Controller
 
     public function shop()
     {
-        $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $products = Product::orderBy('updated_at')->where('status', 1)->with('images')->paginate(5);
+        $cats = Category::orderByRaw('-name ASC')->where('featured', 1)->get();
+        $products = Product::orderBy('updated_at')->where('status', 1)->with('images')->paginate(6);
 
         // dd($products->all());
 
@@ -106,6 +106,7 @@ class HomeController extends Controller
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
         $catItems = Category::orderByRaw('-name ASC')->where('slug', $slug)->with('products')->get();
         $title = $slug;
+        //$images = '';// =  
 
         return view('frontend.pages.itemshow', compact('cats', 'catItems', 'title'));   
     }

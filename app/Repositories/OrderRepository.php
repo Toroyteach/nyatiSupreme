@@ -121,7 +121,7 @@ class OrderRepository extends BaseRepository implements OrderContract
             }
 
         }
-            dd('finished');
+            //dd('finished');
         return $order;
     }
 

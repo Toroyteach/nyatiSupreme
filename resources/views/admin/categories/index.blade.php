@@ -2,11 +2,16 @@
 @section('title') {{ $pageTitle }} @endsection
 @section('content')
     <div class="app-title">
-        <div>
-            <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
-            <p>{{ $subTitle }}</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                <h1><i class="fa fa-tags"></i> {{ $pageTitle }}</h1>
+                </div>
+                <div class="col-sm-8">
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-primary pull-right">Add Category</a>
+                </div>
+            </div>
         </div>
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary pull-right">Add Category</a>
     </div>
     @include('admin.partials.flash')
     <div class="row">

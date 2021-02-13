@@ -52,6 +52,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            return response()->view('errors.admin404');
+        }
+        
         if ($this->isHttpException($exception)) {
             if ($exception->getStatusCode() == 404) {
                 return response()->view('errors.404');

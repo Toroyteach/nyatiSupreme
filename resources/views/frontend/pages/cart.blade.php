@@ -84,7 +84,7 @@
 </table>
 
 <div class="card-body border-top">
-	<a href="" class="btn btn-primary float-sm-left float-md-left float-lg-left float-xl-left">Make Purchase<i class="fa fa-chevron-right"></i> </a>
+	<a href="{{ route('checkout.index') }}" class="btn btn-primary float-sm-left float-md-left float-lg-left float-xl-left">Make Purchase<i class="fa fa-chevron-right"></i> </a>
 	<a href="{{ route('home') }}" class="btn btn-light float-sm-right float-md-right float-lg-right float-xl-right"> <i class="fa fa-chevron-left"></i>Back shopping</a>
 </div>	
 </div> <!-- card.// -->

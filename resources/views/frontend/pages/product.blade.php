@@ -193,7 +193,7 @@
 
 		</ul>
 
-		<h5 class="title-description">Specifications</h5>
+		<!-- <h5 class="title-description">Specifications</h5>
 		<table class="table table-bordered" id="dimentions">
 
 			<tr> <th colspan="2">Dimensions</th> </tr>
@@ -201,7 +201,7 @@
 			<tr> <td>Width</td><td id="width">w_mm</td> </tr>
 			<tr> <td>Height	</td><td id="height">h_mm</td> </tr>
 
-		</table>
+		</table> -->
 	</div> <!-- col.// -->
 
 </div> <!-- row.// -->
@@ -244,9 +244,9 @@
 				//console.log(length, width, height);
 				// $("td:contains('l_mm')").remove();
 
-				$("td:contains('l_mm')").html(length);
-				$("td:contains('w_mm')").html(width);
-				$("td:contains('h_mm')").html(height);
+				// $("td:contains('l_mm')").html(length);
+				// $("td:contains('w_mm')").html(width);
+				// $("td:contains('h_mm')").html(height);
             });
         });
 

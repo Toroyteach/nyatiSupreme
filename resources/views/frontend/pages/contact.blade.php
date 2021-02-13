@@ -71,7 +71,7 @@
 		<div class="col-md-6 col-md-offset-3 col-sm-12">
 			<div class="contact-bottom-text text-center">
 				<h2>Let’s talk</h2>
-				<p>The dismal man readily complied; a circle was again formed round the table, and harmony once more prevailed. Some lingering irritability appeared to find a resting-place in Mr. Winkle's bosom.</p>
+				<p>We are full active members of Kenya’s leading Industry associations The contractors association of Kenya (CAK),Kenya builders association (KBA) and KNCCI (Eldoret chapter).</p>
 			</div>
 		</div>
     </div>

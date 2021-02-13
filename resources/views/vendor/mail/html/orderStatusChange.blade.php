@@ -119,7 +119,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                        <img src="{{asset('vendor/beautymail/assets/images/nyati_logo_png.png')}}" width="200px" height="auto" style="display: block; border: 0px;" /> <br><h4 style="font-size: 18px; font-weight: 400; margin: 2;">Greetings {{$name}}</h4>
+                        <img src="{{asset('vendor/beautymail/assets/images/Nyati_logo_png.png')}}" width="200px" height="auto" style="display: block; border: 0px;" /> <br><h4 style="font-size: 18px; font-weight: 400; margin: 2;">Greetings {{$name}}</h4>
                         </td>
                     </tr>
                 </table>

@@ -77,7 +77,7 @@
                         <td align="center" style="padding: 35px 35px 20px 35px; background-color: #ffffff;" bgcolor="#ffffff">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:400px;">
                                 <tr>
-                                    <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; padding-top: 25px;"> <a href="{{ route('home')}}"><img src="{{asset('vendor/beautymail/assets/images/nyati_logo_png.png')}}" width="200px" height="auto" style="display: block; border: 0px;" /></a><br>
+                                    <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 400; line-height: 24px; padding-top: 25px;"> <a href="{{ route('home')}}"><img src="{{asset('vendor/beautymail/assets/images/Nyati_logo_png.png')}}" width="200px" height="auto" style="display: block; border: 0px;" /></a><br>
                                         <h6 style="font-size: 20px; font-weight: 500; line-height: 36px; color: #777777; margin: 0;"> Greatings {{$name}} </h5>
                                     </td>
                                 </tr>

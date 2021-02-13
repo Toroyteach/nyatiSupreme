@@ -103,7 +103,8 @@ class RoleController extends Controller
         $role->name = $request->input('name');
         $role->save();
         $role->syncPermissions($request->input('permission'));
-        return redirect()->route('admin.roles.index')
+        $roles = Role::orderBy('id','DESC')->paginate(5);
+        return view('admin.roles.index',compact('roles'))
         ->with('success','Role updated successfully');
     }
     /**

@@ -7,7 +7,7 @@
 <h2>Users Management</h2>
 </div>
 <div class="pull-right">
-<a class="btn btn-success" href="{{ route('users.create') }}"> Create New Admin User</a>
+<a class="btn btn-success btn-sm" href="{{ route('users.create') }}"> Create New Admin User</a>
 </div>
 </div>
 </div>
@@ -27,10 +27,10 @@
 </tr>
 @foreach ($data as $key => $user)
 <tr>
-<td>{{ ++$i }}</td>
-<td>{{ $user->first_name }}</td>
-<td>{{ $user->email }}</td>
-<td>
+<td class="align-middle">{{ ++$i }}</td>
+<td class="align-middle">{{ $user->first_name }}</td>
+<td class="align-middle">{{ $user->email }}</td>
+<td class="align-middle">
 @if(!empty($user->getRoleNames()))
 @foreach($user->getRoleNames() as $v)
 <label class="badge badge-success">{{ $v }}</label>
@@ -38,10 +38,10 @@
 @endif
 </td>
 <td>
-<a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-<a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+<a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}">Show</a>
+<a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}">Edit</a>
 {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
 {!! Form::close() !!}
 </td>
 </tr>

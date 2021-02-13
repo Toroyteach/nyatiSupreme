@@ -103,7 +103,7 @@
 			<h4 class="card-title mb-4">Mpesa</h4>
 					<div class="form-group">
 					<label for="username" data-toggle="tooltip" title="Only safaricom numbers allowed!!">Phone number <i class="fa fa-question-circle"></i></label>
-					<input type="text" class="form-control @error('mpesaPhonenumber') is-invalid @enderror" id="mnumber" value="{{ Auth::user()->phonenumber}}" name="mpesaPhonenumber" placeholder="Enter your Mobile number" onblur="checkUsername()" required >
+					<input type="text" class="form-control @error('mpesaPhonenumber') is-invalid @enderror" id="mnumber" value="{{ Auth::user()->phonenumber}}" name="mpesaPhonenumber" placeholder="Enter your Mobile number" onblur="validateNumber()" required >
 					</div> <!-- form-group.// -->
 			</div> <!-- card-body.// -->
 
@@ -179,8 +179,8 @@
 
 function validateNumber()
 {
-	var x = document.forms["mpesaPhonenumber"].value;
-	var regex = new RegExp("/(\+?254|0|^){1}[-. ]?[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}\z/");
+	var x = document.forms["submitform"]["mpesaPhonenumber"].value;
+	var regex = new RegExp('/(\+?254|0|^){1}[-. ]?[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}\z/');
 
 	if (regex.test(x)) {
 		// alert("Name must be filled out");

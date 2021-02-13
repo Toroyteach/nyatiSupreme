@@ -315,7 +315,7 @@ relevant authorities and according to customer specifications.
 <section class="padding-bottom">
 
 <header class="section-heading heading-line">
-	<h4 class="title-section text-uppercase">Request for Quotation</h4>
+	<h4 class="title-section">Request for Item</h4>
 </header>
 
 <div class="row">
@@ -357,7 +357,7 @@ relevant authorities and according to customer specifications.
 		</textarea>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-warning" type="submit" >Request for quote</button>
+			<button class="btn btn-warning" type="submit" >Send Request</button>
 		</div>
 	</form>
 </div>

@@ -32,18 +32,16 @@
 				<form class="pb-3" action="{{ route('product.search') }}" method="post" autocomplete="off">
 					@csrf
 				<div class="input-group">
-				  <input type="text" class="form-control" id="searchshop" placeholder="Search an item" name="itemshop">
+				  <input type="text" class="form-control" id="searchshop" placeholder="Search an item" name="item">
 				  <div class="input-group-append">
-				    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
+				    <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
 				  </div>
 				</div>
 				</form>
 
 				<ul class="list-menu">
 					@foreach($cats as $cat)
-						@foreach($cat->items as $category)
-								<li><a href="{{ route('category.show.product', $category->slug) }}">{{ $category->name }}</a></li>
-						@endforeach
+								<li><a href="{{ route('category.show.product', $cat->slug) }}">{{ $cat->name }}</a></li>
 					@endforeach
 				</ul>
 
@@ -94,6 +92,65 @@
 </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- =============== SECTION SERVICES =============== -->
+<section  class="padding-bottom">
+<header class="section-heading heading-line">
+	<h5 class="title-section text-uppercase">How to place and order	</h5>
+</header>
+<div class="container">
+
+<!-- ============================ COMPONENT 1 ================================= -->
+<div class="row">
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="fas fa-columns"></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">Browse through items</h5>
+			<p>Look through the items on categories or shop section </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div><!-- col // -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="fas fa-shopping-cart"></i></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">View your Cart</h5>
+			<p>Once selected review your items on your cart </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div> <!-- col // -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="fas fa-shopping-bag"></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">Proceed to checkout</h5>
+			<p>Once items verified make purchase and head to checkout</p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div> <!-- col // -->
+<div class="col-md-3 mb15">
+	<article class="card card-body">
+		<figure class="text-center">
+			<span class="rounded-circle icon-md "><i class="far fa-paper-plane"></i></span>
+			<figcaption class="pt-4">
+			<h5 class="title">Place your Order</h5>
+			<p>Confirm and fill in your contact details and place your order </p>
+			</figcaption>
+		</figure> <!-- iconbox // -->
+	</article> <!-- panel-lg.// -->
+</div> <!-- col // -->
+</div>
+<!-- ============================ COMPONENT 1 END .// ================================= -->
+</div>
+
+</section>
+<!-- =============== SECTION SERVICES .//END =============== -->
 
 @stop
 @push('scripts')

@@ -103,35 +103,33 @@
             </div>
         </div>
         <div class="col-md-6 col-lg-6">
-        <div class="container">
 
 
-    <div class="card" >
-    <div class="card-header">Top Customers</div>
-    <div class="card-body table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
-                <table class="table table-hover">
+                <div class="card" >
+                    <div class="card-header">Top Customers</div>
+                        <div class="card-body table-responsive-md table-responsive-lg table-responsive-xl table-responsive-sm">
+                            <table class="table table-hover">
 
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Revenue</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($topCustomers as $key => $customer)
-                <tr id="">
-                    <td>{{$key+1}}</td>
-                    <td>{{ $customer->first_name }}</td>
-                    <td>{{ config('settings.currency_symbol').' '.$customer->revenue }}</td>
-                @endforeach
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Revenue</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($topCustomers as $key => $customer)
+                            <tr id="">
+                                <td>{{$key+1}}</td>
+                                <td>{{ $customer->first_name }}</td>
+                                <td>{{ config('settings.currency_symbol').' '.$customer->revenue }}</td>
+                            @endforeach
 
-                </tbody>
-                </table>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="https://unpkg.com/chart.js@2.9.3/dist/Chart.min.js"></script>

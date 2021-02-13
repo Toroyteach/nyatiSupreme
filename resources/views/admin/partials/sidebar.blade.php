@@ -47,9 +47,6 @@
                 <li>
                     <a class="treeview-item" href="{{ route('roles.index') }}"><i class="icon fa fa-circle-o"></i> Roles</a>
                 </li>
-                <li>
-                    <a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Permissions</a>
-                </li>
             </ul>
         </li>
         
