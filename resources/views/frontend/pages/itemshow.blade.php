@@ -29,14 +29,14 @@
 		</header>
 		<div class="filter-content collapse show" id="collapse_1" style="">
 			<div class="card-body">
-				<form class="pb-3">
+				<!-- <form class="pb-3">
 				<div class="input-group">
 				  <input type="text" class="form-control" placeholder="Search">
 				  <div class="input-group-append">
 				    <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
 				  </div>
 				</div>
-				</form>
+				</form> -->
 				
 				<ul class="list-menu">
 					@foreach($cats as $cat)
@@ -58,7 +58,11 @@
 		<article class="card card-product-list">
 				<div class="row no-gutters">
 					<aside class="col-md-3">
-						<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
+						@if(empty($prodItems->images->first()->full))
+							<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+						@else
+							<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
+						@endif
 					</aside> <!-- col.// -->
 					<div class="col-md-6">
 						<div class="info-main">
@@ -134,6 +138,7 @@
 			<img src="{{ asset('storage/'.$prodItems->images->first()->full) }}" alt="image slide"> 
 			<div class="carousel-caption d-inline p-2 bg-secondary text-white">
 					<h5 class="lead">{{$prodItems->name}}</h5>
+					<!-- <p class="lead">{{$prodItems->description}}</p> -->
 			</div>
 			</div>
 			@else
@@ -147,6 +152,7 @@
 						<img src="{{ asset('storage/'.$prodItemsImages->full) }}" alt="image slide"> 
 						<div class="carousel-caption d-inline p-2 bg-secondary text-white">
 								<h5 class="lead">{{$prodItems->name}}</h5>
+								<!-- <p class="lead">{{$prodItems->description}}</p> -->
 						</div>
 						</div>
 						@empty
@@ -158,6 +164,7 @@
 						<img src="{{ asset('storage/'.$prodItems->images->first()->full) }}" alt="image slide"> 
 						<div class="carousel-caption d-inline p-2 bg-secondary text-white">
 								<h5 class="lead">{{$prodItems->name}}</h5>
+								<!-- <p class="lead">{{$prodItems->description}}</p> -->
 						</div>
 						</div>
 

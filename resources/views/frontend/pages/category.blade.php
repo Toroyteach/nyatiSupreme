@@ -22,7 +22,11 @@
 							<div class="card card-category">
 
 								<div class="img-wrap" style="">
-										<img src="{{ asset('storage/'.$category->image) }}">
+												@if(empty($category->image))
+													<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+												@else
+													<img src="{{ asset('storage/'.$category->image) }}">
+												@endif
 								</div>
 								<div class="card-body">
 									<h4 class="card-title"><a href="{{ route('category.show.product', $category->slug) }}">{{$category->name}}</a></h4>

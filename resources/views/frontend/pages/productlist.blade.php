@@ -59,7 +59,11 @@
 	<div class="col-md-4">
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
-				<img src="{{ asset('storage/'.$item->images->first()->full )}}" >
+						@if(empty($item->images->first()->full))
+							<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+						@else
+							<img src="{{ asset('storage/'.$item->images->first()->full )}}" >
+						@endif
 				<a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">

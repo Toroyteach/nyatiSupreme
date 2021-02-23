@@ -15,33 +15,28 @@
   </div>
 </section>
 
+
+
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content bg-white padding-y">
 <div class="container">
 
 <!-- ============================ ITEM DETAIL ======================== -->
 	<div class="row">
-		<aside class="col-md-6">
-			<div class="card">
-				<article class="gallery-wrap"> 
-												@if ($product->images->count() > 0)
-													<div class="img-big-wrap">
-														<div class="">
-															<a href="{{ asset('storage/'.$product->images->first()->full) }}" data-fancybox data-caption="{{$product->name}}">
-																<img src="{{ asset('storage/'.$product->images->first()->full) }}" alt="" class="img-fluid" >
-															</a>
-														</div>
-													</div>
-												@else
-													<div class="img-big-wrap">
-														<div>
-															<a href="https://via.placeholder.com/176" data-fancybox=""><img src="https://via.placeholder.com/176"></a>
-														</div>
-													</div>
-												@endif
-
-				</article> <!-- gallery-wrap .end// -->
-			</div> <!-- card.// -->
+	<aside class="col-md-6">
+<div class="card">
+<article class="gallery-wrap"> 
+	<div class="img-big-wrap">
+	  <div> <a href="#"><img src="images/items/15.jpg"></a></div>
+	</div> <!-- slider-product.// -->
+	<div class="thumbs-wrap">
+	  <a href="#" class="item-thumb"> <img src="images/items/15.jpg"></a>
+	  <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
+	  <a href="#" class="item-thumb"> <img src="images/items/15-2.jpg"></a>
+	  <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
+	</div> <!-- slider-nav.// -->
+</article> <!-- gallery-wrap .end// -->
+</div> <!-- card.// -->
 		</aside>
 	<main class="col-md-6">
 <article class="product-info-aside">
@@ -61,8 +56,8 @@
 			<i class="fa fa-star"></i> 
 		</li>
 	</ul>
-	<small class="label-rating text-muted">132 reviews</small>
-	<small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
+	<!-- <small class="label-rating text-muted">132 reviews</small> -->
+	<!-- <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small> -->
 </div> <!-- rating-wrap.// -->
 
 <div class="mb-3"> 

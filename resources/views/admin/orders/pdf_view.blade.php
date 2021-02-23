@@ -22,7 +22,7 @@
 
             <div class="col-md-4">
                 <div>
-                    <img src="{{ asset('frontend/cssfiles/images/nyati_logo_png.png') }}" class="float-right" width="150" alt="Responsive image">
+                    <img src="{{ asset('frontend/cssfiles/images/Nyati_logo_png.png') }}" class="float-right" width="150" alt="Responsive image">
                 </div>
             </div>
         </div>

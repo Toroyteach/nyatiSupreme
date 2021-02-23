@@ -39,7 +39,11 @@
                                         <td>
 
 											<figure class="itemside">
-												<div class="" style="padding:5px;"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}" class="img-sm" ></div>
+												@if(empty($item->associatedModel->images->first()->full))
+													<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+												@else
+													<a href="" data-fancybox data-caption="{{$prodItems->name}}" class="img-wrap"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}"></a>
+												@endif
 												<figcaption class="info">
 
 												{{ Str::words($item->name,20) }}

@@ -62,7 +62,11 @@
 		<article class="card card-product-list">
 				<div class="row no-gutters">
 					<aside class="col-md-3">
+					@if(empty($prodItems->images->first()->full))
+						<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+					@else
 						<a href="" data-fancybox data-caption="{{$prodItems->name}}" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
+					@endif
 					</aside> <!-- col.// -->
 					<div class="col-md-6">
 						<div class="info-main">

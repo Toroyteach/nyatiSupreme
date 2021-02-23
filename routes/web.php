@@ -32,6 +32,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/privacypolicy', 'HomeController@privacy')->name('privacypolicy');
 Route::post('/contact/store', 'HomeController@storeFeedback')->name('contact.store');
 Route::get('/shop', 'HomeController@shop')->name('shop');
 Route::get('/product/information', 'HomeController@getInformation')->name('product.information');

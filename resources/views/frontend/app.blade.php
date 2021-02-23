@@ -51,6 +51,7 @@
 <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
 <script src="{{ asset('/frontend/cssfiles/plugins/owlcarousel/owl.carousel.min.js') }}"></script> -->
 
+
 <style>
 .kustomer-feedback-component{
     z-index: 1000 !important;
@@ -65,7 +66,7 @@
 } */
 
  /* Small devices (landscape phones, 375px and down) */
-@media only screen and (max-width: 574.98px) and (min-width: 374.98px) { 
+@media only screen and (max-width: 574.98px) and (min-width: 359.98px) { 
     .catalogue img{
       /* display: none; */
     }

@@ -54,7 +54,7 @@
 <section class="border-bottom">
 <nav class="navbar navbar-main  navbar-expand-lg navbar-light">
   <div class="container">
-  	<a class="navbar-brand" href="{{route('home')}}"><img src="{{ asset('frontend/cssfiles/images/nyati_logo_png.png') }}" class="logo"></a>
+  	<a class="navbar-brand" href="{{route('home')}}"><img src="{{ asset('frontend/cssfiles/images/Nyati_logo_png.png') }}" class="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav2" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

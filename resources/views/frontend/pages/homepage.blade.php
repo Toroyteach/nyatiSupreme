@@ -57,6 +57,14 @@
 	<li data-target="#carousel1_indicator" data-slide-to="8"></li>
 	<li data-target="#carousel1_indicator" data-slide-to="9"></li>
 	<li data-target="#carousel1_indicator" data-slide-to="10"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="11"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="12"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="13"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="14"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="15"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="16"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="17"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="18"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -74,7 +82,7 @@
     <div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/3_edited.jpg') }}" alt="Third slide">
 	  <div class="carousel-caption d-md-block">
-			<h5>Work in Action</h5>
+			<h5>Hollow Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
@@ -84,45 +92,93 @@
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/new/mazera.jpg') }}" alt="Fourth slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/new/mazera.jpg') }}" alt="Fifth slide">
 	  <div class="carousel-caption d-md-block">
 			<h5>Mazera</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain2.jpg') }}" alt="Fourth slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain2.jpg') }}" alt="Sixth slide">
 	  <div class="carousel-caption d-md-block">
 			<h5>Shallow Drain</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/11_edited.jpg') }}" alt="Fifth slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/11_edited.jpg') }}" alt="seventh slide">
 	  <div class="carousel-caption d-md-block">
-			<h5>Louvre and Ventilation</h5>
+			<h5>Ventilation</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/6_edited.jpg') }}" alt="Sixth slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/6_edited.jpg') }}" alt="eight slide">
 	  <div class="carousel-caption d-md-block">
 			<h5>Solid Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/hollowbricks_edited.jpg') }}" alt="Seventh slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/hollowbricks_edited.jpg') }}" alt="nine slide">
 	  <div class="carousel-caption d-md-block">
 			<h5>Hollow Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/8.jpg') }}" alt="Eight slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/8.jpg') }}" alt="tenth slide">
 	  <div class="carousel-caption d-md-block">
-			<h5>Sample Application</h5>
+			<h5>Footpath within Eldoret CBD</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
-      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/custom.jpg') }}" alt="Fourth slide">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/custom.jpg') }}" alt="eleventh slide">
 	  <div class="carousel-caption d-md-block">
-			<h5>Custom Items</h5>
+			<h5>Flower Pot</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/13.jpg') }}" alt="twelvth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Garden Kerb</h5>
+	  </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/14.jpg') }}" alt="Thirteenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Concrete Tiles</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/15.jpg') }}" alt="Fourteenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Culvert Rings</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/16.jpg') }}" alt="Fifteenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Louvre</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/17.jpg') }}" alt="Sixteenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Paving Blocks</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/18.jpeg') }}" alt="Seventeenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Road Channel</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/19.jpg') }}" alt="Eighteenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Spindle</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/slider/20.jpg') }}" alt="Nineteenth slide">
+	  <div class="carousel-caption d-md-block">
+			<h5>Window sill</h5>
 	  </div>
     </div>
   </div>
@@ -148,6 +204,11 @@
 			    <h6 class="card-title">{{$cat->slug}}</h6>
 			    <a href="{{ route('category.show.product', $cat->slug) }}" class="btn btn-secondary btn-sm"> Source now </a>
 			  </div> 
+			  		@if(empty($cat->image))
+			  			<img src="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" height="80" class="img-bg">
+					@else
+						<img src="{{ asset('storage/'.$cat->image) }}" height="80" class="img-bg">
+					@endif
 			  <img src="{{ asset('storage/'.$cat->image) }}" height="80" class="img-bg">
 			</div>
 			@empty
@@ -380,7 +441,11 @@ relevant authorities and according to customer specifications.
 @forelse($topItems as $item)
 	<div class="col-xl-2 col-lg-3 col-md-4 col-6">
 		<div class="card card-sm card-product-grid">
-			<a href="{{ route('product.show', $item->slug) }}" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first()->full )}}"> </a>
+					@if(empty($item->images->first()->full))
+						<a href="{{ route('product.show', $item->slug) }}" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+					@else
+						<a href="{{ route('product.show', $item->slug) }}" class="img-wrap"> <img src="{{ asset('storage/'.$item->images->first()->full )}}"> </a>
+					@endif
 			<figcaption class="info-wrap">
 				<a href="#" class="title">{{$item->name}}</a>
 				<div class="price mt-1">{{ config('settings.currency_symbol') }} {{ $item->price }}</div> <!-- price-wrap.// -->

@@ -58,7 +58,7 @@
 		</section>	<!-- footer-top.// -->
 
 		<section class="footer-bottom text-center">
-				<p class="text-white">{{ config('settings.footer_copyright_text') }}</p>
+				<a href="{{route('privacypolicy')}}"><p class="text-white">{{ config('settings.footer_copyright_text', 'Privacy Policy') }}</p></a>
 				<p class="text-muted"> &copy 2021 Nyati Supreme, All rights reserved </p>
 				<br>
 		</section>

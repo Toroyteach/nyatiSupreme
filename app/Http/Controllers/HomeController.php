@@ -86,7 +86,7 @@ class HomeController extends Controller
     {
         $searchItem = $request->item;
         $cats = Category::orderByRaw('-name ASC')->get()->nest();
-        $products = Product::where('name', $searchItem)->get();
+        $products = Product::where('name', $searchItem)->where('status', 1)->get();
         //dd($products);
 
         return view('frontend.pages.productshow', compact('cats', 'products'));
@@ -115,5 +115,10 @@ class HomeController extends Controller
     {
 
         return view('frontend.pages.unavailableitems');   
+    }
+
+    public function privacy()
+    {
+        return view('frontend.policy');
     }
 }
