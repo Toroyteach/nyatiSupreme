@@ -37,7 +37,8 @@ class CheckoutController extends Controller
 
     public function getCheckout()
     {
-        return view('frontend.pages.checkout');
+        $total = Cart::getTotal();
+        return view('frontend.pages.checkout', compact('total'));
     }
 
     public function placeOrder(Request $request)

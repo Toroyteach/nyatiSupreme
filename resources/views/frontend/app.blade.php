@@ -75,6 +75,10 @@
       font-size: 1.3rem;
     }
 
+    .bannersection p{
+      font-size: .9rem;
+    }
+
     .catalogueimg img{
       float: none !important;
     }

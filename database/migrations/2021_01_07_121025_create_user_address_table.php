@@ -20,7 +20,7 @@ class CreateUserAddressTable extends Migration
             $table->string('city');
             $table->string('phonenumber');
             $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->json('geo_location')->nullable();
             $table->string('county');
             $table->string('town');

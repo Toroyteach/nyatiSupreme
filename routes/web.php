@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'isVerified']], function () {
     Route::get('account/settings', 'Site\AccountController@getUserDetails')->name('account.settings');
 
     Route::post('account/user/update', 'Site\AccountController@updateUserDetails')->name('account.users.update');
+    Route::get('account/user/delete/{id}', 'Site\AccountController@deleteUserAccount')->name('account.users.delete');
 
     Route::get('change-password', 'Site\ChangePasswordController@index')->name('update.password');
     Route::post('change-password', 'Site\ChangePasswordController@store')->name('change.password');
@@ -86,11 +87,20 @@ Route::group(['middleware' => ['auth', 'isVerified']], function () {
     Route::post('/requestMpesa', 'Site\CheckoutController@requestPaymentAgain');
     Route::post('/requestOrderPaymentConfirmation', 'Site\CheckoutController@requestUpdatePendingPay');
 
-    Route::group(['prefix' => 'payment'], function () {
-        Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
-        Route::get('/paymentconfirmation', 'Site\CheckoutController@paymentconfirmation');
-    });
+    // Route::group(['prefix' => 'payment'], function () {
+    //     Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
+    //     Route::get('/paymentconfirmation', ['as' => 'paymentsuccess', 'Site\CheckoutController@paymentconfirmation']);
+    // });
 });
+
+Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site/CheckoutController@paymentsuccess']);
+
+// Route::group(['prefix' => 'payment'], function () {
+//     //PESAPAL
+//     Route::post('/pesapal', 'CheckoutController@payment')->name('pesapal.deposit');
+//     Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site/CheckoutController@paymentsuccess']);
+//     Route::get('/paymentconfirmation', ['as' => 'paymentsuccess', 'Site/CheckoutController@paymentconfirmation']);
+// });
 
 Auth::routes(['verify' => true]);
 require 'admin.php';

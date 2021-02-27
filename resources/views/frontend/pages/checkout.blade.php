@@ -158,6 +158,15 @@
 					</div> <!-- row.// -->
 				</div> <!-- card-body.// -->
 			</div> <!-- card .// -->
+			
+			<div class="card-body">
+				<ul class="list-group mb-3">
+					<li class="list-group-item d-flex justify-content-between">
+						<span>Total</span>
+						<strong>{{ config('settings.currency_symbol').' '.$total }}</strong>
+					</li>
+				</ul>
+			</div>
 
 
 		<button class="btn btn-primary btn-block submitbtn" type="submit" id="submitButton">
@@ -180,7 +189,7 @@
 function validateNumber()
 {
 	var x = document.forms["submitform"]["mpesaPhonenumber"].value;
-	var regex = new RegExp('/(\+?254|0|^){1}[-. ]?[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}\z/');
+	var regex = new RegExp('');
 
 	if (regex.test(x)) {
 		// alert("Name must be filled out");

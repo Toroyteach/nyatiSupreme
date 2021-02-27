@@ -10,6 +10,7 @@ use App\Models\UserAddress;
 use Illuminate\Support\Str;
 use App\Traits\UploadAble;
 use Auth;
+use DB;
 
 class AccountController extends Controller
 {
@@ -219,6 +220,15 @@ class AccountController extends Controller
         \UserVerification::send(Auth::user(), 'Account Verification Link');
 
         return redirect()->back();
+
+    }
+
+    public function deleteUserAccount($id)
+    {
+        //DB::delete('delete from users where id = ?',[$id]);
+        $res = User::where('id',$id)->delete();
+        //dd('deleted account');
+        return redirect('/home')->with('success', 'Your user Details was removed successfully');
 
     }
 }

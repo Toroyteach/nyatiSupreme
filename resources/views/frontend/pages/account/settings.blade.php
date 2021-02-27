@@ -100,6 +100,8 @@
 
      	</div>  <!-- col.// -->
       </form>
+	  <a class="btn btn-primary" href="{{route('account.users.delete', Auth::user()->id)}}" role="button">Delete Account</a>		
+
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->
 

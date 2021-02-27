@@ -40,9 +40,9 @@
 
 											<figure class="itemside">
 												@if(empty($item->associatedModel->images->first()->full))
-													<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+													<a href="" data-fancybox data-caption="No image here" class="img-wrap"><img src="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-fluid"></a>
 												@else
-													<a href="" data-fancybox data-caption="{{$prodItems->name}}" class="img-wrap"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}"></a>
+													<a href="" data-fancybox data-caption="{{$item->name}}" class="img-wrap"><img src="{{ asset('storage/'.$item->associatedModel->images->first()->full )}}" class="img-fluid"></a>
 												@endif
 												<figcaption class="info">
 

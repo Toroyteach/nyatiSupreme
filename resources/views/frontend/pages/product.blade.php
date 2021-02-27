@@ -23,21 +23,39 @@
 
 <!-- ============================ ITEM DETAIL ======================== -->
 	<div class="row">
-	<aside class="col-md-6">
-<div class="card">
-<article class="gallery-wrap"> 
-	<div class="img-big-wrap">
-	  <div> <a href="#"><img src="images/items/15.jpg"></a></div>
-	</div> <!-- slider-product.// -->
-	<div class="thumbs-wrap">
-	  <a href="#" class="item-thumb"> <img src="images/items/15.jpg"></a>
-	  <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
-	  <a href="#" class="item-thumb"> <img src="images/items/15-2.jpg"></a>
-	  <a href="#" class="item-thumb"> <img src="images/items/15-1.jpg"></a>
-	</div> <!-- slider-nav.// -->
-</article> <!-- gallery-wrap .end// -->
-</div> <!-- card.// -->
+		
+		<aside class="col-md-6">
+			<div class="card">
+			<article class="gallery-wrap"> 
+														@if ($product->images->count() > 0)
+															<div class="img-big-wrap">
+																<div class="">
+																	<a href="{{ asset('storage/'.$product->images->first()->full) }}" data-fancybox="">
+																		<img src="{{ asset('storage/'.$product->images->first()->full) }}" alt="">
+																	</a>
+																</div>
+															</div>
+														@else
+															<div class="img-big-wrap">
+																<div>
+																	<a href="https://via.placeholder.com/176" data-fancybox=""><img src="https://via.placeholder.com/176"></a>
+																</div>
+															</div>
+														@endif
+														@if ($product->images->count() > 0)
+															<div class="thumbs-wrap">
+																@foreach($product->images as $image)
+																	<!-- <div class="item-gallery"> -->
+																	<a href="{{ asset('storage/'.$image->full) }}" data-fancybox="" class="item-thumb"> <img src="{{ asset('storage/'.$image->full) }}" alt=""></a>
+																	<!-- </div> -->
+																@endforeach
+															</div>
+														@endif
+
+			</article> <!-- gallery-wrap .end// -->
+			</div> <!-- card.// -->
 		</aside>
+
 	<main class="col-md-6">
 <article class="product-info-aside">
 
@@ -135,11 +153,12 @@
 			<input type="hidden" name="price" id="finalPrice" value="{{ $product->sale_price != '' ? $product->sale_price : $product->price }}">
 			<input type="hidden" name="productId" value="{{ $product->id }}">
 			<input type="hidden" name="description" id="finalDesc" value="{{$product->description}}">
-			<button type="submit" id="addtocart" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> </button>
+			<button type="submit" id="addtocart" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> </button>
+			<a class="btn btn-primary" href="{{route('shop')}}" role="button"><i class="fas fa-arrow-left"></i><span class="text">Back to Shop</a>
+
 		</div> <!-- col.// -->
 	</div> <!-- row.// -->
 </form>
-
 <p>{{ $product->description}}</p>
 
 </article> <!-- product-info-aside .// -->

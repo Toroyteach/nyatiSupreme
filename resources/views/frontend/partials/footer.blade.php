@@ -31,7 +31,7 @@
 					<ul class="list-unstyled">
 						<li> <a href="{{route('login')}}"> User Login </a></li>
 						<li> <a href="{{route('register')}}"> User register </a></li>
-						<li> <a href="{{route('account.settings')}}"> Account Setting </a></li>
+						<li> <a href="{{route('account.settings')}}"> Account Settings </a></li>
 						<li> <a href="{{route('account.orders')}}"> My Orders </a></li>
 					</ul>
 				</aside>
