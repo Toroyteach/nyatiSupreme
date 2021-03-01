@@ -27,7 +27,7 @@
 				<h6 class="title">Other Categories</h6>
 			</a>
 		</header>
-		<div class="filter-content collapse show" id="collapse_1" style="">
+		<div class="filter-content collapse" id="collapse_1" style="">
 			<div class="card-body">
 				<!-- <form class="pb-3">
 				<div class="input-group">

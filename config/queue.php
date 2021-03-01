@@ -15,6 +15,8 @@ return [
 
     'default' => env('QUEUE_CONNECTION', 'sync'),
 
+    //cron job /usr/local/bin/ea-php74 /home/vybibgul/nyatisupreme2/artisan schedule:run
+
     /*
     |--------------------------------------------------------------------------
     | Queue Connections

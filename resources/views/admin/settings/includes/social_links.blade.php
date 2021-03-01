@@ -27,7 +27,7 @@
                 />
             </div>
             <div class="form-group">
-                <label class="control-label" for="social_instagram">Instagram Profile</label>
+                <label class="control-label" for="social_instagram">Youtube Profile</label>
                 <input
                     class="form-control"
                     type="text"

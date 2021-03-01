@@ -49,8 +49,8 @@
 					<div>
 						<a href="{{ config('settings.social_facebook') }}" class="btn btn-icon btn-outline-light"><i class="fab fa-facebook-f"></i></a>
 						<a href="{{ config('settings.social_twitter') }}" class="btn btn-icon btn-outline-light"><i class="fab fa-twitter"></i></a>
-						<a href="{{ config('settings.social_instagram') }}" class="btn btn-icon btn-outline-light"><i class="fab fa-instagram"></i></a>
-						<a href="{{ config('settings.social_youtube') }}" class="btn btn-icon btn-outline-light"><i class="fab fa-youtube"></i></a>
+						<a href="{{ config('settings.social_instagram') }}" class="btn btn-icon btn-outline-light"><i class="fab fa-youtube"></i></a>
+						<a href="{{ config('settings.social_linkedin') }}" class="btn btn-icon btn-outline-light"><i class="fab fa-linkedin"></i></a>
 					</div>
 
 				</aside>

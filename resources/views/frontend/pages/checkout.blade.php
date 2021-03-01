@@ -189,7 +189,7 @@
 function validateNumber()
 {
 	var x = document.forms["submitform"]["mpesaPhonenumber"].value;
-	var regex = new RegExp('');
+	var regex = new RegExp('/\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/');
 
 	if (regex.test(x)) {
 		// alert("Name must be filled out");

@@ -103,9 +103,10 @@ class HomeController extends Controller
     public function itemShow($slug)
     {
         //dd('$slug');
-        $cats = Category::orderByRaw('-name ASC')->get()->nest();
+        $cats = Category::orderByRaw('-name ASC')->get();
         $catItems = Category::orderByRaw('-name ASC')->where('slug', $slug)->with('products')->get();
         $title = $slug;
+        //dd('this');
         //$images = '';// =  
 
         return view('frontend.pages.itemshow', compact('cats', 'catItems', 'title'));   
