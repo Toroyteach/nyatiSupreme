@@ -28,6 +28,7 @@
         "laravelcollective/html": "^6.2",
         "mydnic/laravel-kustomer": "^1.6",
         "mydnic/laravel-subscribers": "^1.6",
+        "queueworker/sansdaemon": "^1.2",
         "smodav/mpesa": "^5.2",
         "snowfire/beautymail": "^1.1",
         "spatie/laravel-permission": "^3.18",

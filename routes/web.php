@@ -105,7 +105,7 @@ Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site/CheckoutContr
 Auth::routes(['verify' => true]);
 require 'admin.php';
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->middleware('web')->name('home');
 
 Route::get('email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
 Route::get('email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');

@@ -18,6 +18,7 @@ return [
     //cron job /usr/local/bin/ea-php74 /home/vybibgul/nyatisupreme2/artisan schedule:run
     //cron job 2 /usr/local/bin/ea-php74 /home/vybibgul/nyatisupreme3/artisan schedule:run >> /dev/null 2>&1
     //cron job 2 /usr/local/bin/ea-php74 /home/vybibgul/nyatisupreme3/artisan queue:work >> /dev/null 2>&1
+    //cron job 2 /usr/local/bin/ea-php74 /home/vybibgul/nyatisupreme3/artisan queue:work --sansdaemon >> /dev/null 2>&1
 
     /*
     |--------------------------------------------------------------------------
