@@ -94,36 +94,37 @@ class CheckoutController extends Controller
             //dd('finished');
             Cart::clear();
 
-            if($order->payment_method == 'credit'){
+            //skip here before going live
+            // if($order->payment_method == 'credit'){
 
-                $payments = new PesapalTransaction;
-                $payments->order()->associate($order->id);
-                $payments->businessid = Auth::user()->id; //Business ID
-                $payments->transactionid = Pesapal::random_reference();
-                $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
-                $payments->amount = 10;
-                $payments->save();
+            //     $payments = new PesapalTransaction;
+            //     $payments->order()->associate($order->id);
+            //     $payments->businessid = Auth::user()->id; //Business ID
+            //     $payments->transactionid = Pesapal::random_reference();
+            //     $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
+            //     $payments->amount = 10;
+            //     $payments->save();
 
-                //dd($payments.''.$order);
+            //     //dd($payments.''.$order);
 
-                //make a model to create pesapal transaction
-                $details = array(
-                    'amount' => $order->grand_total,
-                    'description' => 'Test Transaction',
-                    'type' => 'MERCHANT',
-                    'first_name' => Auth::user()->first_name,
-                    'last_name' => Auth::user()->last_name,
-                    'email' => Auth::user()->email,
-                    'phonenumber' => Auth::user()->phonenumber,
-                    'reference' => $payments->transactionid,
-                    //'height'=>'400px',
-                    //'currency' => 'USD'
-                );
+            //     //make a model to create pesapal transaction
+            //     $details = array(
+            //         'amount' => $order->grand_total,
+            //         'description' => 'Test Transaction',
+            //         'type' => 'MERCHANT',
+            //         'first_name' => Auth::user()->first_name,
+            //         'last_name' => Auth::user()->last_name,
+            //         'email' => Auth::user()->email,
+            //         'phonenumber' => Auth::user()->phonenumber,
+            //         'reference' => $payments->transactionid,
+            //         //'height'=>'400px',
+            //         //'currency' => 'USD'
+            //     );
 
-                $iframe=Pesapal::makePayment($details);
+            //     $iframe=Pesapal::makePayment($details);
 
-                return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
-            }
+            //     return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+            // }
 
             return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
         }

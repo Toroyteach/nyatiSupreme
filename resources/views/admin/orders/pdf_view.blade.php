@@ -34,6 +34,7 @@
                             <b>Order ID:</b> {{ $order->order_number }}<br>
                             <b>Amount:</b> {{ config('settings.currency_symbol') }}{{ round($order->grand_total, 2) }}<br>
                             <b>Payment Status:</b> {{ $order->payment_status == 1 ? 'Completed' : 'Not Completed' }}<br>
+                            <b>Payment Method:</b> {{ $order->payment_method === 'nopaymentset' ? 'No Payment Set' : $order->payment_method }}<br>
                             <b>Order Status:</b> {{ $order->status }}<br>
                         </div>
     </div>
@@ -78,9 +79,9 @@
                                 </tr>
                                 </thead>
                 <tbody>
-                                    @foreach($order->items as $item)
+                                    @foreach($order->items as $key => $item)
                                         <tr>
-                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $key+1 }}</td>
                                             <td>{{ $item->product->name }}</td>
                                             <td>{{ $item->attribute }}</td>
                                             <td>{{ $item->quantity }}</td>

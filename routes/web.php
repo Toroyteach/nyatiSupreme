@@ -93,7 +93,7 @@ Route::group(['middleware' => ['auth', 'isVerified']], function () {
     // });
 });
 
-Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site/CheckoutController@paymentsuccess']);
+Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
 
 // Route::group(['prefix' => 'payment'], function () {
 //     //PESAPAL

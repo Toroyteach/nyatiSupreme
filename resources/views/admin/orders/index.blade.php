@@ -35,7 +35,11 @@
                                     @if ($order->payment_status == 1)
                                         <span class="badge badge-success">Completed</span>
                                     @else
-                                        <span class="badge badge-danger">Not Completed</span>
+                                        @if($order->payment_method === 'nopaymentset')
+                                            <span class="badge badge-warning">No Payment Method set</span>
+                                        @else
+                                            <span class="badge badge-danger">Not Completed</span>
+                                        @endif
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -49,7 +53,7 @@
                                 <td class="text-center">
                                     <div class="btn-group" role="group" aria-label="Second group">
                                         <a href="{{ route('admin.orders.show', $order->order_number) }}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="View order"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('admin.orders.edit', $order->order_number) }}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Update order status"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('admin.orders.edit', $order->order_number) }}" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Update order status"><i class="fa fa-edit"></i></a>
                                     </div>
                                 </td>
                             </tr>

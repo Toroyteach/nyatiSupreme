@@ -12,8 +12,8 @@
       <div class="card-body">
       <h4 class="card-title mb-4">{{ __('Login') }}</h4>
        
-       <a href="{{ route('login.request.facebook') }}" class="btn btn-facebook btn-block mb-4"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
-       <a href="{{ route('login.request.google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a>
+       <!-- <a href="{{ route('login.request.facebook') }}" class="btn btn-facebook btn-block mb-4"> <i class="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
+       <a href="{{ route('login.request.google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp  Sign in with Google</a> -->
 
       <form method="POST" action="{{ route('login') }}">
         @csrf

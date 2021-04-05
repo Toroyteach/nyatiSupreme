@@ -108,13 +108,14 @@ class OrderRepository extends BaseRepository implements OrderContract
                     'product_id'    =>  $product->id,
                     'quantity'      =>  $item->quantity,
                     'price'         =>  $item->getPriceSum(),
-                    'attribute'     =>  ($item->attributes->size == null ? 'null' : $item->attributes->size),
+                    'attribute'     =>  ($item->attributes->size == null ? 'None' : $item->attributes->size),
                     'description'   =>  $item->description 
                 ]);
 
                 $order->items()->save($orderItem);
             }
 
+            //skip here before going live
             if($order->payment_method == 'mpesa'){
                 //dd('mpesa');
                 //$response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');

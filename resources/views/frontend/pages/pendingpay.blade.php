@@ -17,7 +17,8 @@
                 </main>
                 <br>
 
-                <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6 successAlert" id="successAlert" style="display:none">
+                <!-- skip here before going live <style="display:none"> -->
+                <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6 successAlert" id="successAlert" style="">
                     <div class="alert alert-success">
                         <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
                         <p>Your payment has been received successfully.</p><br>
@@ -29,7 +30,8 @@
                     </div>
                 </main>
 
-                <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6" id="pendingAlert">
+                <!-- skip here before going live -->
+                <!-- <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6" id="pendingAlert">
 
                     <div class="spinner-border m-5" role="status">
                         <span class="sr-only">Loading...</span>
@@ -41,7 +43,7 @@
                         <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="requestSubmition()">Request</button><br>
                         <input type="hidden" value="{{ $order->order_number }}" name="orderNumber"></input>
                     </div>
-                </main>
+                </main> -->
             </div>
         </div> <!-- container .//  -->
 </section>
@@ -55,7 +57,9 @@
 
         var successAlert = document.getElementById("successAlert");
         var pendingAlert = document.getElementById("pendingAlert");
-      init();
+    
+    //skip here before going live
+      //init();
 
          function init(){
 
