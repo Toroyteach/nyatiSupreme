@@ -12,6 +12,8 @@ use App\Notifications\OrderCompleted;
 use App\Models\Admin;
 use Carbon\Carbon;
 
+//this listener sends notification from event to admin and user of status change of there order to completed
+
 class SendEmailNotification implements ShouldQueue
 {
     /**

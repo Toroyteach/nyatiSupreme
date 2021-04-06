@@ -13,6 +13,8 @@ use Notification;
 use App\Notifications\newOrderNotification;
 use App\Models\Admin;
 
+//this listener sends notification from event to admin and user of new order they have created
+
 class SendOrderConfirmationEmail implements ShouldQueue
 {
 

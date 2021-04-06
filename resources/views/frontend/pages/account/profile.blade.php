@@ -3,7 +3,7 @@
     <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg-gray">
 <div class="container">
-	<h2 class="title-page">My accountt</h2>
+	<h2 class="title-page">My Account</h2>
 </div> <!-- container //  -->
 </section>
 <!-- ========================= SECTION PAGETOP END// ========================= -->

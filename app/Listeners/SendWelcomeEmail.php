@@ -8,6 +8,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeNewUserMail;
 
+//this listener sends a welcom email to newly created user
+
 class SendWelcomeEmail implements ShouldQueue
 {
 

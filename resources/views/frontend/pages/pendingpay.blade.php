@@ -13,7 +13,7 @@
 <div class="container">
             <div class="">
                 <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6">
-                    <p class="alert alert-info">Your order placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
+                    <p class="alert alert-info">Your order was placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
                 </main>
                 <br>
 

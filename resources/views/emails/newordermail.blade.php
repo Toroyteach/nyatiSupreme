@@ -8,6 +8,10 @@
 {{$orderData['order_number']}}
 @endslot
 
+@slot('orderItems')
+
+@endslot
+
 @slot('shippingFee')
 {{$orderData['shipping_fee']}}
 @endslot

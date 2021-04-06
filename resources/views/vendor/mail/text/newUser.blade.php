@@ -118,7 +118,7 @@
             <td bgcolor="#8a4216" align="center" style="padding: 0px 10px 0px 10px;">
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
-                    <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                    <td bgcolor="#ffffff" align="center" valign="top" style="padding: 20px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
                         <img src="{{asset('vendor/beautymail/assets/images/Nyati_logo_png.png')}}" width="200px" height="auto" style="display: block; border: 0px;" /> <br><h4 style="font-size: 18px; font-weight: 400; margin: 2;">Greetings {{$name}}</h4>
                         </td>
                     </tr>
@@ -171,8 +171,10 @@
                     <tr>
                         <td align="left" style="padding: 35px; background-color: #ffffff;" bgcolor="#ffffff">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
-                                <tr>
-                                    <td align="left"> <img src="{{asset('vendor/beautymail/assets/images/nyati_logo.svg')}}" data-auto-embed="attachment" width="100" height="auto" style="display: block; border: 0px;" /> </td>
+                            <tr>
+                                    <td align="left" bgcolor="#ffffff" valign="bottom"  style="padding: 10px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;"> 
+                                    <img src="{{asset('vendor/beautymail/assets/images/nyati_logo_edited.jpg')}}" width="100" height="auto" style="display: block; border: 0px;" /> 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300; line-height: 24px; padding: 5px 0 10px 0;">
