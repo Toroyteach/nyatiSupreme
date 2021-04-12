@@ -19,10 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'API'], function () {
-    Route::get('/register-url', 'MPesaController@register');
-    Route::any('/mpesa/validate', 'MPesaController@validateTransaction');
-    Route::any('/mpesa/confirm', 'MPesaController@confirmTransaction');
+    Route::get('/register-url', 'MpesaController@register');
+    Route::any('/mpesa/validate', 'MpesaController@validateTransaction');
+    Route::any('/mpesa/confirm', 'MpesaController@confirmTransaction');
     
-    Route::get('/fake-invoice', 'MPesaTestController@fakeInvoice');
-    Route::get('/real-invoice', 'MPesaTestController@realInvoice');
+    Route::get('/fake-invoice', 'MpesaTestController@fakeInvoice');
+    Route::get('/real-invoice', 'MpesaTestController@realInvoice');
 });

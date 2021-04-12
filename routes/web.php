@@ -28,7 +28,9 @@ use Illuminate\Support\Facades\Hash;
 
 // });
 
-Route::get('/', 'HomeController@index');
+Route::group(['middleware' => ['web']], function () {
+
+Route::get('/', 'HomeController@index')->middleware('web');
 
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
@@ -50,6 +52,8 @@ Route::post('/product/add/cart', 'Site\ProductController@addToCart')->name('prod
 Route::get('/cart', 'Site\CartController@getCart')->name('checkout.cart');
 Route::get('/cart/item/{id}/remove', 'Site\CartController@removeItem')->name('checkout.cart.remove');
 Route::get('/cart/clear', 'Site\CartController@clearCart')->name('checkout.cart.clear');
+
+});
 
 Route::group(['prefix' => 'requestproducts'], function () {
     Route::get('/', 'Admin\RequestProductController@index')->name('admin.requestproducts.index');

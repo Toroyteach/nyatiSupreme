@@ -69,115 +69,115 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/1.jpg') }}" alt="First slide"> 
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Wall Grill</h5>
 	  </div>
     </div>
     <div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/2_edited.jpg') }}" alt="Second slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Coloured Cabro</h5>
 	  </div>
     </div>
     <div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/3_edited.jpg') }}" alt="Third slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Hollow Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/10.jpg') }}" alt="Fourth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Beautiful Pavement</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/new/mazera.jpg') }}" alt="Fifth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Mazera</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/shallowdrain2.jpg') }}" alt="Sixth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Shallow Drain</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/11_edited.jpg') }}" alt="seventh slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Ventilation</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/6_edited.jpg') }}" alt="eight slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Solid Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/hollowbricks_edited.jpg') }}" alt="nine slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Hollow Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/8.jpg') }}" alt="tenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Footpath within Eldoret CBD</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/custom.jpg') }}" alt="eleventh slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Flower Pot</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/13.jpg') }}" alt="twelvth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Garden Kerb</h5>
 	  </div>
     </div>
     <div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/14.jpg') }}" alt="Thirteenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Concrete Tiles</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/15.jpg') }}" alt="Fourteenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Culvert Rings</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/16.jpg') }}" alt="Fifteenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Louvre</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/17.jpg') }}" alt="Sixteenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Paving Blocks</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/18.jpeg') }}" alt="Seventeenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Road Channel</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/19.jpg') }}" alt="Eighteenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Spindle</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/20.jpg') }}" alt="Nineteenth slide">
-	  <div class="carousel-caption d-md-block">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Window sill</h5>
 	  </div>
     </div>

@@ -23,11 +23,7 @@ trait UploadAble
     {
         $name = !is_null($filename) ? $filename : Str::random(25);
 
-        return $file->storeAs(
-            $folder,
-            $name . "." . $file->getClientOriginalExtension(),
-            $disk
-        );
+        return $file->storeAs($folder, $name . "." . $file->getClientOriginalExtension(), $disk );
     }
 
     /**
