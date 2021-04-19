@@ -65,6 +65,7 @@
 	<li data-target="#carousel1_indicator" data-slide-to="16"></li>
 	<li data-target="#carousel1_indicator" data-slide-to="17"></li>
 	<li data-target="#carousel1_indicator" data-slide-to="18"></li>
+	<li data-target="#carousel1_indicator" data-slide-to="19"></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -83,6 +84,12 @@
       <img src="{{ asset('frontend/cssfiles/images/nyati/slider/3_edited.jpg') }}" alt="Third slide">
 	  <div class="carousel-caption d-md-block p-1 bg-primary">
 			<h5>Hollow Blocks</h5>
+	  </div>
+    </div>
+	<div class="carousel-item">
+      <img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/woordoor.jpg') }}" alt="Third slide">
+	  <div class="carousel-caption d-md-block p-1 bg-primary">
+			<h5>Wood Designers</h5>
 	  </div>
     </div>
 	<div class="carousel-item">
@@ -391,7 +398,7 @@ relevant authorities and according to customer specifications.
 <div class="card-banner banner-quote overlay-gradient" style="background-image: url('frontend/cssfiles/images/nyati/catalogue/options_edited.jpg');">
   <div class="card-img-overlay white">
     <h3 class="card-title">Not finding what you are looking for?</h3>
-    <p class="card-text" style="max-width: 400px">Don not you worry if you cannot find the product specification youtr looking for. 
+    <p class="card-text" style="max-width: 400px">Do not you worry if you cannot find the product specification youtr looking for. 
 	Just fill in the form with your specifications and we shall get back to you shortly after.</p>
     <a href="{{route('unavailableitems')}}" class="btn btn-primary rounded-pill">Learn more</a>
   </div>
@@ -467,12 +474,12 @@ relevant authorities and according to customer specifications.
 	<div class="row">
 		<aside class="col-md-6">
 			<div class="card card-banner-lg bg-dark">
-				<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/63.jpg') }}" class="card-img opacity">
+				<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/woordoor.jpg') }}" class="card-img opacity">
 				<div class="card-img-overlay text-white">
-				  <h3 class="card-title">High Quality Concrete Blocks</h3>
-				  <p class="card-text" style="max-width: 100%;">High quality concrete blocks that meet both dimensional and strength requirements by the
-relevant authorities and customer specifications.</p>
-					<a href="{{ route('item.show', 'block') }}" class="btn btn-warning">View more</a>
+				  <h3 class="card-title">Wood Designers</h3>
+				  <!-- <p class="card-text" style="max-width: 100%;">High quality concrete blocks that meet both dimensional and strength requirements by the
+relevant authorities and customer specifications.</p> -->
+					<!-- <a href="{{ route('item.show', 'block') }}" class="btn btn-warning">View more</a> -->
 				</div>
 			 </div>
 		</aside>
