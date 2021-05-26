@@ -61,7 +61,7 @@ Route::group(['prefix' => 'requestproducts'], function () {
     Route::get('/{item}/show', 'Admin\RequestProductController@show')->name('admin.requestproducts.show');
  });
 
-Route::group(['middleware' => ['auth', 'isVerified']], function () {
+Route::group(['middleware' => ['auth', 'web', 'isVerified']], function () {
     Route::get('/checkout', 'Site\CheckoutController@getCheckout')->name('checkout.index')->middleware(['emptyCart', 'emptysocialdetails']);
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
     Route::get('checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');

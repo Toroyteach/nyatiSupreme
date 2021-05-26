@@ -109,7 +109,7 @@ class OrderRepository extends BaseRepository implements OrderContract
                     'quantity'      =>  $item->quantity,
                     'price'         =>  $item->getPriceSum(),
                     'attribute'     =>  ($item->attributes->size == null ? 'None' : $item->attributes->size),
-                    'description'   =>  $item->description 
+                    'description'   =>  ($item->attributes->description == null ? 'None' : $item->attributes->description)  
                 ]);
 
                 $order->items()->save($orderItem);

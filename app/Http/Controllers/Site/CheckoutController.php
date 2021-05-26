@@ -56,24 +56,25 @@ class CheckoutController extends Controller
             
         }
 
+
         //dd('submited');
 
         //dd($request->all());
         //return response()->json(['success'=>'Ajax request submitted successfully']);
         // Before storing the order we should implement the
         // request validation which I leave it to you
-        $testdata = array(
-            "first_name" => "Anthony",
-            "last_name" => "Toroitich",
-            "address" => "123-123",
-            "city" => "rongai",
-            "country" => "kenya",
-            "post_code" => "020-1094",
-            "phone_number" => "0710516288",
-            "notes" => "i want this delivery",
-            "email" => "email@email.com",
-            "payment_method" => "mpesa"
-          );
+        // $testdata = array(
+        //     "first_name" => "Anthony",
+        //     "last_name" => "Toroitich",
+        //     "address" => "123-123",
+        //     "city" => "rongai",
+        //     "country" => "kenya",
+        //     "post_code" => "020-1094",
+        //     "phone_number" => "0710516288",
+        //     "notes" => "i want this delivery",
+        //     "email" => "email@email.com",
+        //     "payment_method" => "mpesa"
+        //   );
           
         //$order = $this->orderRepository->storeOrderDetails($request->all());
         $order = $this->orderRepository->storeOrderDetails($request->all());
@@ -92,39 +93,40 @@ class CheckoutController extends Controller
             //event with order placed
             event(new OrderPlaced($eventdata));// move to success mpesa payment api
             //dd('finished');
-            Cart::clear();
+            //Cart::clear();
+            //clearing the cart clears the cache hence the _token is cleared this brings up error..
 
             //skip here before going live
-            // if($order->payment_method == 'credit'){
+            if($order->payment_method == 'credit'){
 
-            //     $payments = new PesapalTransaction;
-            //     $payments->order()->associate($order->id);
-            //     $payments->businessid = Auth::user()->id; //Business ID
-            //     $payments->transactionid = Pesapal::random_reference();
-            //     $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
-            //     $payments->amount = 10;
-            //     $payments->save();
+                $payments = new PesapalTransaction;
+                $payments->order()->associate($order->id);
+                $payments->businessid = Auth::user()->id; //Business ID
+                $payments->transactionid = Pesapal::random_reference();
+                $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
+                $payments->amount = 10;
+                $payments->save();
 
-            //     //dd($payments.''.$order);
+                //dd($payments.''.$order);
 
-            //     //make a model to create pesapal transaction
-            //     $details = array(
-            //         'amount' => $order->grand_total,
-            //         'description' => 'Test Transaction',
-            //         'type' => 'MERCHANT',
-            //         'first_name' => Auth::user()->first_name,
-            //         'last_name' => Auth::user()->last_name,
-            //         'email' => Auth::user()->email,
-            //         'phonenumber' => Auth::user()->phonenumber,
-            //         'reference' => $payments->transactionid,
-            //         //'height'=>'400px',
-            //         //'currency' => 'USD'
-            //     );
+                //make a model to create pesapal transaction
+                $details = array(
+                    'amount' => $order->grand_total,
+                    'description' => 'Test Transaction',
+                    'type' => 'MERCHANT',
+                    'first_name' => Auth::user()->first_name,
+                    'last_name' => Auth::user()->last_name,
+                    'email' => Auth::user()->email,
+                    'phonenumber' => Auth::user()->phonenumber,
+                    'reference' => $payments->transactionid,
+                    //'height'=>'400px',
+                    //'currency' => 'USD'
+                );
 
-            //     $iframe=Pesapal::makePayment($details);
+                $iframe=Pesapal::makePayment($details);
 
-            //     return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
-            // }
+                return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+            }
 
             return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
         }
@@ -174,15 +176,33 @@ class CheckoutController extends Controller
 
     public function requestPaymentAgain(Request $request)
     {
-        return response()->json(['success'=>'request submitted successfully']);
+
+        $resubmitOrder = Order::where('order_number', $request->input('BilRefNo'))->first();
+        if($resubmitOrder->payment_status == 0){
+            //dd('mpesa');
+            //$response = STK::push($resubmitOrder->grand_total, $resubmitOrder->phone_number, 'Some Reference', 'Test Payment');
+            return response()->json(['success'=>'request submitted successfully', 'status' => true]);
+        }
+
+        return response()->json(['message' => 'This Request is completed', 'status' => false]);
+
     }
     
     public function requestUpdatePendingPay(Request $request)
     {
 
         //check if order number payment status has changed to successfull
-        return response()->json(['success'=>'Payment is Processed', 'status' => 1]);
-        //return response()->json(['failure'=>'Payment is Not Processed', 'status' => 0]);
+        // return response()->json(['success'=>'Payment is Processed', 'status' => 1]); $_GET['BilRefNo']
+
+        $oderstatus = Order::where('order_number', $request->input('BilRefNo'))->first();
+        // dd($oderstatus->status);
+
+        if($oderstatus->payment_status != 1){
+            return response()->json(['failure'=>'Payment still Pending', 'status' => false]);
+        } else {
+            return response()->json(['success'=>'Payment is Processed', 'status' => true]);
+        }
+
     }
 
     //pesapal payment methods

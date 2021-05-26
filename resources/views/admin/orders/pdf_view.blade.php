@@ -63,17 +63,17 @@
   </div>
 
 <br>
-  <div class="container">
+  <div class="container-fluid">
         <div class="page-header">
                     <h4>Order items</h4>
             </div>
-    <div class="card">
-            <table class="table table-sm">
+    <div class="table-responsive">
+            <table class="table table-striped">
             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Id</th>
                                     <th>Product</th>
-                                    <th>Attribute #</th>
+                                    <th>Item Attribute</th>
                                     <th>Qty</th>
                                     <th>Subtotal</th>
                                 </tr>
@@ -83,7 +83,7 @@
                                         <tr>
                                             <td>{{ $key+1 }}</td>
                                             <td>{{ $item->product->name }}</td>
-                                            <td>{{ $item->attribute }}</td>
+                                            <td>{{ $item->description }}</td>
                                             <td>{{ $item->quantity }}</td>
                                             <td>{{ config('settings.currency_symbol') }}{{ round($item->price, 2) }}</td>
                                         </tr>

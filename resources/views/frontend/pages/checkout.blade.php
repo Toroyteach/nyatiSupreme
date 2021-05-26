@@ -27,8 +27,8 @@
 		
 		<br>
 		<!-- //skip here before going live -->
-		<!-- <h5 class="title">Payment Option</h5> -->
-	  <!-- <div class="form-row">
+		<h5 class="title">Payment Option</h5>
+	  <div class="form-row">
 			<div class="form-group col-sm-6">
 				<label class="js-check box active">
 					<input type="radio" name="payment_method" id="mpesa" onclick="my_function(this)" value="mpesa" required>
@@ -41,8 +41,8 @@
 					<h6 class="title">Credit Card</h6>
 				</label> 
 			</div>
-		</div> -->
-		<input type="hidden" name="payment_method" id="mpesa" value="nopaymentset" required>
+		</div>
+		<!-- <input type="hidden" name="payment_method" id="mpesa" value="nopaymentset" required> -->
 
 
 		<br>
