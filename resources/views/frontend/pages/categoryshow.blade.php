@@ -4,7 +4,7 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
 <div class="container">
-	<h2 class="title-page">Category products</h2>
+	<h2 class="title-page">Category Products</h2>
 	<nav>
 	<ol class="breadcrumb text-white">
 	    <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -65,7 +65,7 @@
 					@if(empty($prodItems->images->first()->full))
 						<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
 					@else
-						<a href="" data-fancybox data-caption="{{$prodItems->name}}" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
+						<a href="{{ asset('storage/'.$prodItems->images->first()->full) }}" data-fancybox data-caption="{{$prodItems->name}}" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
 					@endif
 					</aside> <!-- col.// -->
 					<div class="col-md-6">

@@ -24,7 +24,7 @@
         "laravel/framework": "^8.0",
         "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "3.0",
+        "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.2",
         "mydnic/laravel-kustomer": "^1.6",
         "mydnic/laravel-subscribers": "^1.6",

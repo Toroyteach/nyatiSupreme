@@ -11,8 +11,4 @@ interface OrderContract
     public function findOrderByNumber($orderNumber);
 
     public function updateOrderStatus(array $params);
-
-    public function getDiscount();
-
-    public function updateDb();
 }

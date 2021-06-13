@@ -30,8 +30,14 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    // public function itemattribute()
-    // {
-    //     return $this->hasMany(OrderItem::class, '');
-    // }
+    //has one
+    public function mpesastk()
+    {
+        return $this->hasMany(STKPush::class);
+    }
+
+    public function mpesac2b()
+    {
+        return $this->hasMany(MpesaC2B::class);
+    }
 }

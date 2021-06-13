@@ -4,7 +4,7 @@
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
 <div class="container">
-	<h2 class="title-page"> products</h2>
+	<h2 class="title-page"> Products</h2>
 	<nav>
 	{{ Breadcrumbs::render('shop') }}
 	</nav>
@@ -60,11 +60,11 @@
 		<figure class="card card-product-grid">
 			<div class="img-wrap"> 
 						@if(empty($item->images->first()->full))
-							<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
+							<a href=""><img src="{{ asset('frontend/cssfiles/images/image-not-available.png') }}"></a>
 						@else
-							<img src="{{ asset('storage/'.$item->images->first()->full )}}" >
+							<a href="{{ asset('storage/'.$item->images->first()->full )}}" data-fancybox data-caption="{{$item->description}}" class="img-wrap"><img src="{{ asset('storage/'.$item->images->first()->full )}}" ></a>
 						@endif
-				<a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
+				<!-- <a class="btn-overlay" href="#" data-fancybox data-caption=""><i class="fa fa-search-plus"></i> Quick view</a> -->
 			</div> <!-- img-wrap.// -->
 			<figcaption class="info-wrap">
 				<div class="fix-height">

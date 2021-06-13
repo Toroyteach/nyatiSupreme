@@ -61,12 +61,12 @@
 						@if(empty($prodItems->images->first()->full))
 							<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
 						@else
-							<a href="" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
+							<a href="{{ route('product.show', $prodItems->slug) }}" class="img-wrap"><img src="{{ asset('storage/'.$prodItems->images->first()->full) }}"></a>
 						@endif
 					</aside> <!-- col.// -->
 					<div class="col-md-6">
 						<div class="info-main">
-							<a href="#" class="h5 title"> {{$prodItems->slug}}  </a>
+							<a href="" class="h5 title"> {{$prodItems->slug}}  </a>
 							<div class="rating-wrap mb-3">
 								<ul class="rating-stars">
 									<li style="width:80%" class="stars-active"> 

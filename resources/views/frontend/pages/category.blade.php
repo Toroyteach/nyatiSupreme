@@ -25,7 +25,7 @@
 												@if(empty($category->image))
 													<a href="" data-fancybox data-caption="{{ asset('frontend/cssfiles/images/image-not-available.png') }}" class="img-wrap"><img src=""></a>
 												@else
-													<img src="{{ asset('storage/'.$category->image) }}">
+												<a href="{{ asset('storage/'.$category->image) }}" data-fancybox data-caption="{{ $category->description }}" class="img-wrap"><img src="{{ asset('storage/'.$category->image) }}"></a>
 												@endif
 								</div>
 								<div class="card-body">
@@ -42,7 +42,8 @@
 							<div class="card card-category">
 								<div class="img-wrap" style="">
 									@if ($category->image != null)
-									<img src="{{ asset('storage/'.$category->image) }}" alt="img">
+									<a href="{{ asset('storage/'.$category->image) }}" data-fancybox data-caption="{{ $category->description }}" class="img-wrap"><img src="{{ asset('storage/'.$category->image) }}"></a>
+
 									@else
 									<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="">
 									@endif

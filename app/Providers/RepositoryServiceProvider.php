@@ -11,6 +11,8 @@ use App\Contracts\ProductContract;
 use App\Repositories\ProductRepository;
 use App\Contracts\OrderContract;
 use App\Repositories\OrderRepository;
+use App\Contracts\MpesaContract;
+use App\Repositories\MpesaRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
         AttributeContract::class        =>          AttributeRepository::class,
         ProductContract::class          =>          ProductRepository::class,
         OrderContract::class            =>          OrderRepository::class,
+        MpesaContract::class            =>          MpesaRepository::class,
     ];
 
     /**

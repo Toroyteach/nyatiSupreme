@@ -24,20 +24,13 @@ class OrderRepository extends BaseRepository implements OrderContract
     {
         $shippingAddress = UserAddress::where('user_id', auth()->user()->id)->where('default_address', 1)->get();
 
-        //dd(Cart::getContent());
-
-        //$updateDB = $this->updateDd();
-
         $grandTotal = Cart::getSubTotal() + (float)config('settings.shipping_fee');
-        //dd($grandTotal);
 
         if($shippingAddress->isEmpty())
         {
-            // dd($shippingAddress);
             //No shipping address is set
-            //dd('no address is set');
             $order = Order::create([
-                'order_number'      =>  'ORD-'.strtoupper(uniqid()),
+                'order_number'      => strtoupper(uniqid('ORD-', true)),
                 'user_id'           => auth()->user()->id,
                 'status'            =>  'pending',
                 'grand_total'       =>  $grandTotal,
@@ -58,9 +51,8 @@ class OrderRepository extends BaseRepository implements OrderContract
         } else {
 
             //shipping address set
-            //dd($shippingAddress[0]->id);
             $order = Order::create([
-                'order_number'      =>  'ORD-'.strtoupper(uniqid()),
+                'order_number'      =>  strtoupper(uniqid('ORD-', true)),
                 'user_id'           => auth()->user()->id,
                 'status'            =>  'pending',
                 'grand_total'       =>  $grandTotal,
@@ -80,13 +72,11 @@ class OrderRepository extends BaseRepository implements OrderContract
 
         }
 
-        //dd($order);
 
 
         if ($order) {
 
             $items = Cart::getContent();
-            //dd($items);
 
 
             foreach ($items as $item)
@@ -115,20 +105,8 @@ class OrderRepository extends BaseRepository implements OrderContract
                 $order->items()->save($orderItem);
             }
 
-            //skip here before going live
-            if($order->payment_method == 'mpesa'){
-                //dd('mpesa');
-                //$response = STK::push($order->grand_total, $order->phone_number, 'Some Reference', 'Test Payment');
-            }
-
         }
-            //dd('finished');
         return $order;
-    }
-
-    public function updateDb()
-    {
-
     }
 
     public function listOrders(string $order = 'id', string $sort = 'asc', array $columns = ['*'])
@@ -160,11 +138,6 @@ class OrderRepository extends BaseRepository implements OrderContract
         $order = $this->findOrderByNumber($id);
         $userid = $order->only('user_id');
         return $userid; 
-    }
-
-    public function getDiscount()
-    {
-
     }
 
     public function findOrderById($orderNumber)

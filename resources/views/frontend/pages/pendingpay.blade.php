@@ -10,7 +10,7 @@
 	
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content bg padding-y border-top">
-<div class="container">
+    <div class="container">
             <div class="">
                 <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6">
                     <p class="alert alert-info">Your order was placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
@@ -22,11 +22,10 @@
                     <div class="alert alert-success">
                         <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
                         <p>Your payment has been received successfully.</p><br>
-                        <p>Your order number is : <span>{{ $order->order_number }}<span>.</p><br>
+                        <p>Your order number is : <span>{{ \Illuminate\Support\Str::limit($order->order_number, 18) }}<span>.</p><br>
                         <p>Thank you for shooping with us.</p><br>
                         <p>Nyati Supreme Team.</p><br>
                         <a class="btn btn-primary btn-sm" href="{{ route('account.orders') }}">View Order</a>
-
                     </div>
                 </main>
 
@@ -39,105 +38,81 @@
 
                     <div class="alert alert-warning pendingAlert">
                         <p>Please wait while we finish processing your payment.</p> <br> 
-                        <p>Also wait 2 minutes and click here to request another mpesa confirmation</p>
-                        <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="requestSubmition()">Request</button><br>
+                        <p>Please Go to Mpesa <br>=> Lipa na Mpesa <br>=> Paybill Number use {{env('MPESA_LIVE_SHORT_CODE')}} <br>=> Account Number use {{\Illuminate\Support\Str::substr($order->order_number, 19, 26)}} <br>=> Amount is {{ config('settings.currency_symbol') }}{{$order->grand_total}} </p>
+                        <p>Also wait a minute and click here to request us to initiate the payment session for you in your phone</p>
+                        <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="requestSTKpush()">Request</button><br>
                         <input type="hidden" value="{{ $order->order_number }}" name="orderNumber"></input>
                     </div>
                 </main>
             </div>
         </div> <!-- container .//  -->
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Payment Request</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          We have sent a payment request on your Phone please <br>complete the transaction to continue enjoying our services.
+        </div>
+          <div class="d-flex justify-content-center">
+              <div class="spinner-border " role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+          </div><br>
+
+          <div class="alert alert-warning" id="modalFailedUi" style="display:none">
+              <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
+              <p>Your payment request was not processed successfully.</p><br>
+              <p>Please Contact our support team for more assistance.</p><br>
+              <a class="btn btn-primary btn-sm" href="{{ route('contact') }}">NyatiSupreme Team.</a>
+          </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClose">Close</button>
+          <button type="button" class="btn btn-primary">Finish</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="failureResponseModal" data-backdrop="static" data-keyboard="false"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Dear {{ Auth::user()->first_name }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+        <div class="alert alert-warning" id="modalFailedUi">
+            <p>Your payment request was not processed successfully.</p><br>
+            <p>Please Contact our support team for more assistance.</p><br>
+            <a class="btn btn-primary btn-sm" href="{{ route('contact') }}">NyatiSupreme Team.</a>
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClose">Close</button>
+        <button type="button" class="btn btn-primary">Finish</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 @stop
 @push('scripts')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-      
-      <script>
-
-        var successAlert = document.getElementById("successAlert");
-        var pendingAlert = document.getElementById("pendingAlert");
-    
-    //skip here before going live
-      init();
-
-         function init(){
-
-            var timerID = setInterval(function() {
-                // your code goes here...
-                checkPaymentStatus();
-            }, 10 * 1000); 
-
-            setTimeout(function() {
-                clearInterval(timerID);      
-            }, 60000);
-
-         }
-
-
-         function requestSubmition() {
-            let _token = $('meta[name="csrf-token"]').attr('content');
-            let BillrefNo = $("input[name=orderNumber]").val();
-
-            //console.log(BillrefNo);
-
-            $.ajax({
-               type:'POST',
-               url:'/requestMpesa',
-               dataType: 'json',
-               data:{
-                    BilRefNo:BillrefNo,
-                    _token:_token,
-                },
-               success:function(data) {
-
-                   if(data.status){
-                    $(".reSubmitButton").prop('disabled', true);
-
-                    setTimeout(function() {
-                        $(".reSubmitButton").removeAttr("disabled");      
-                    }, 180000);
-
-                    console.log(data.success);
-
-                   } else {
-                    console.log(data.message);
-                    $(".reSubmitButton").prop('disabled', true);
-                   }
-
-               }
-
-            });
-         }
-
-         function checkPaymentStatus(){
-            let _token = $('meta[name="csrf-token"]').attr('content');
-            let BillrefNo = $("input[name=orderNumber]").val();
-
-            console.log(BillrefNo);
-
-            $.ajax({
-               type:'POST',
-               url:'/requestOrderPaymentConfirmation',
-               dataType:'json',
-               data:{
-                    BilRefNo:BillrefNo,
-                    _token:_token,
-                },
-               success:function(odata) {
-
-                    //console.log(odata);
-                    if(odata.status){
-                     pendingAlert.style.display = "none";
-                     successAlert.style.display = "block";
-                        //console.log(odata.success);
-                    } else {
-                        console.log(odata.failure);
-                    }        
-               }
-
-            });
-         }
-      </script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ asset('frontend/cssfiles/js/payment.js') }}"></script>
 @endpush

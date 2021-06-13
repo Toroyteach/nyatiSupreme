@@ -9,6 +9,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 //use App\Services\PayPalService;
 use App\Contracts\OrderContract;
+use App\Contracts\MpesaContract;
 use App\Http\Controllers\Controller;
 use App\Notifications\NewOrder;
 use App\Models\User;
@@ -18,6 +19,8 @@ use App\Events\OrderPlaced;
 use Auth;
 //use Carbon\Carbon;
 //use Notification;
+use App\Http\Requests\PlaceOrderRequest;
+use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
@@ -25,7 +28,9 @@ class CheckoutController extends Controller
 
     protected $orderRepository;
 
-    public function __construct(OrderContract $orderRepository)
+    protected $mpesaRepository;
+
+    public function __construct(OrderContract $orderRepository, MpesaContract $mpesaRepository)
     {
         //dd('payment not set');
         $this->middleware(['auth','isVerified','emptyCart', 'emptysocialdetails'] , ['except' => [
@@ -33,6 +38,8 @@ class CheckoutController extends Controller
         ]]);
         //$this->payPal = $payPal;
         $this->orderRepository = $orderRepository;
+        $this->mpesaRepository = $mpesaRepository;
+        
     }
 
     public function getCheckout()
@@ -41,9 +48,9 @@ class CheckoutController extends Controller
         return view('frontend.pages.checkout', compact('total'));
     }
 
-    public function placeOrder(Request $request)
+    public function placeOrder(PlaceOrderRequest $request)
     {   
-
+        
         if($request->payment_method == 'mpesa'){
             $this->validate(request(), [
                 'mpesaPhonenumber' => 
@@ -56,28 +63,7 @@ class CheckoutController extends Controller
             
         }
 
-
-        //dd('submited');
-
-        //dd($request->all());
-        //return response()->json(['success'=>'Ajax request submitted successfully']);
-        // Before storing the order we should implement the
-        // request validation which I leave it to you
-        // $testdata = array(
-        //     "first_name" => "Anthony",
-        //     "last_name" => "Toroitich",
-        //     "address" => "123-123",
-        //     "city" => "rongai",
-        //     "country" => "kenya",
-        //     "post_code" => "020-1094",
-        //     "phone_number" => "0710516288",
-        //     "notes" => "i want this delivery",
-        //     "email" => "email@email.com",
-        //     "payment_method" => "mpesa"
-        //   );
-          
-        //$order = $this->orderRepository->storeOrderDetails($request->all());
-        $order = $this->orderRepository->storeOrderDetails($request->all());
+        $order = $this->orderRepository->storeOrderDetails($request->validated());
 
         // You can add more control here to handle if the order is not stored properly
         if ($order) {
@@ -92,43 +78,40 @@ class CheckoutController extends Controller
             
             //event with order placed
             event(new OrderPlaced($eventdata));// move to success mpesa payment api
-            //dd('finished');
+
             //Cart::clear();
             //clearing the cart clears the cache hence the _token is cleared this brings up error..
 
             //skip here before going live
             if($order->payment_method == 'credit'){
 
-                $payments = new PesapalTransaction;
-                $payments->order()->associate($order->id);
-                $payments->businessid = Auth::user()->id; //Business ID
-                $payments->transactionid = Pesapal::random_reference();
-                $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
-                $payments->amount = 10;
-                $payments->save();
-
-                //dd($payments.''.$order);
-
-                //make a model to create pesapal transaction
-                $details = array(
-                    'amount' => $order->grand_total,
-                    'description' => 'Test Transaction',
-                    'type' => 'MERCHANT',
-                    'first_name' => Auth::user()->first_name,
-                    'last_name' => Auth::user()->last_name,
-                    'email' => Auth::user()->email,
-                    'phonenumber' => Auth::user()->phonenumber,
-                    'reference' => $payments->transactionid,
-                    //'height'=>'400px',
-                    //'currency' => 'USD'
-                );
-
-                $iframe=Pesapal::makePayment($details);
+                //call function to initiate credit card pay
+                 $iframe = $this->mpesaRepository->pesapalcreate($order);
 
                 return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
-            }
 
-            return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+            } elseif ($order->payment_method =='mpesa'){
+
+                $data = [
+                    'short_code' => config('mpesa1.mpesa.c2b.live.short_code'),
+                    'amount' => $order->grand_total,
+                    'bill_ref_number' => substr($order->order_number, -7),
+                    'msisdn' => $order->order_phonenumber
+                ];
+
+                //call c2t to mpesa
+                //$response = $this->mpesaRepository->c2bsimulate($data);
+
+                // if($response){
+
+                    return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+
+                // }
+
+            } else {
+                //errorr on payment method
+                Log::error('failed to initiate pay. No payment method set');
+            }
         }
 
         return redirect()->back()->with('error','Order not placed!!');
@@ -176,15 +159,37 @@ class CheckoutController extends Controller
 
     public function requestPaymentAgain(Request $request)
     {
+        //ajax request to perform stk push to the user.
+        $resubmitOrder = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
 
-        $resubmitOrder = Order::where('order_number', $request->input('BilRefNo'))->first();
+        if(!$resubmitOrder){
+
+            return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
+
+        }
+
+        $data = [
+            'sender_phone' => $resubmitOrder->phone_number,
+            'amount' => $resubmitOrder->grand_total,
+            'payer_phone' => $resubmitOrder->phone_number,
+            'account_reference' => substr($request->input('BilRefNo'), -7)
+        ];
+
+
         if($resubmitOrder->payment_status == 0){
-            //dd('mpesa');
-            //$response = STK::push($resubmitOrder->grand_total, $resubmitOrder->phone_number, 'Some Reference', 'Test Payment');
+
+            $response = $this->mpesaRepository->stksimulate($data);
+
+            if(!$response){
+
+                return response()->json(['success'=>'request has failed', 'status' => false]);
+
+            }
+
             return response()->json(['success'=>'request submitted successfully', 'status' => true]);
         }
 
-        return response()->json(['message' => 'This Request is completed', 'status' => false]);
+        return response()->json(['message' => 'This Request is not completed', 'status' => false]);
 
     }
     
@@ -194,12 +199,14 @@ class CheckoutController extends Controller
         //check if order number payment status has changed to successfull
         // return response()->json(['success'=>'Payment is Processed', 'status' => 1]); $_GET['BilRefNo']
 
-        $oderstatus = Order::where('order_number', $request->input('BilRefNo'))->first();
+        $oderstatus = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
         // dd($oderstatus->status);
 
         if($oderstatus->payment_status != 1){
             return response()->json(['failure'=>'Payment still Pending', 'status' => false]);
         } else {
+
+            
             return response()->json(['success'=>'Payment is Processed', 'status' => true]);
         }
 

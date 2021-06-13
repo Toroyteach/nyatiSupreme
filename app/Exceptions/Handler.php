@@ -56,10 +56,22 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
             return response()->view('errors.admin404');
         }
+
+        if ($exception instanceof NotFoundHttpException) {
+            if ($request->is('api/*')) {
+                return response()->json(['error' => 'Not Found'], 404);
+            }
+            return response()->view('errors.', [], 404);
+        }
         
         if ($this->isHttpException($exception)) {
+
             if ($exception->getStatusCode() == 404) {
-                return response()->view('errors.404');
+                return response()->view('errors.' . '404', [], 404);
+            }
+
+            if ($exception->getStatusCode() == 500) {
+                return response()->view('errors.' . '500', [], 500);
             }
         }
         
