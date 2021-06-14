@@ -128,7 +128,9 @@ class C2BController extends Controller
 
     public function getOrder($orderId)
     {
-        return Order::where('order_number', 'like', '%'.$orderId)->first();
+        $from = date("Y/m/d H:i:s", strtotime("-15 minutes"));
+        $to = date("Y/m/d H:i:s", strtotime("now"));
+        return Order::where('order_number', 'like', '%'.$orderId)->whereBetween('created_at', [$from, $to])->first();
     }
 
     public function updateOrderPayment($orderId)
@@ -178,12 +180,14 @@ class C2BController extends Controller
      */
     protected function getInvoice($invoiceNumber)
     {
-        return Order::where('order_number', 'like', '%'.$id)->first();
+        $from = date("Y/m/d H:i:s", strtotime("-15 minutes"));
+        $to = date("Y/m/d H:i:s", strtotime("now"));
+        return Order::where('order_number', 'like', '%'.$id)->whereBetween('created_at', [$from, $to])->first();
     }
 
-    protected function getFullOrderId($id)
-    {
-        //return the full order number to be queried.
-        return Order::where('order_number', 'like', '%'.$id)->first();
-    }
+    // protected function getFullOrderId($id)
+    // {
+    //     //return the full order number to be queried.
+    //     return Order::where('order_number', 'like', '%'.$id)->first();
+    // }
 }

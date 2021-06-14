@@ -2,7 +2,7 @@
 var successAlert = document.getElementById("successAlert");
 var pendingAlert = document.getElementById("pendingAlert");
 var modalClose = document.getElementById("modalClose");
-var FailureUi = document.getElementById("modalFailedUi");
+var failureUi = document.getElementById("modalFailedUi");
 var paymentStatus = false;
 
 //skip here before going live
@@ -22,8 +22,15 @@ init();
 
  }
 
+ function stkRequest(){
+    $('#failureResponseModal').modal('hide');
+     init();
+     requestSTKpush();
+ }
+
  function paymentStatusCountCheck(){
      if(!paymentStatus){
+        $('#exampleModalCenter').modal('hide');
         $('#failureResponseModal').modal('show');
      } 
 
@@ -69,7 +76,7 @@ init();
             console.log(data.message);
             $(".reSubmitButton").prop('disabled', true);
             $(".modalClose").prop("disabled", false);   
-            FailureUi.style.display = "block";
+            failureUi.style.display = "block";
             //update ui to reflect failed request
 
            }

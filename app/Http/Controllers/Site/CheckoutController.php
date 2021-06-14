@@ -160,36 +160,36 @@ class CheckoutController extends Controller
     public function requestPaymentAgain(Request $request)
     {
         //ajax request to perform stk push to the user.
-        $resubmitOrder = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
+        // $resubmitOrder = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
 
-        if(!$resubmitOrder){
+        // if(!$resubmitOrder){
 
-            return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
+        //     return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
 
-        }
+        // }
 
-        $data = [
-            'sender_phone' => $resubmitOrder->phone_number,
-            'amount' => $resubmitOrder->grand_total,
-            'payer_phone' => $resubmitOrder->phone_number,
-            'account_reference' => substr($request->input('BilRefNo'), -7)
-        ];
+        // $data = [
+        //     'sender_phone' => $resubmitOrder->phone_number,
+        //     'amount' => $resubmitOrder->grand_total,
+        //     'payer_phone' => $resubmitOrder->phone_number,
+        //     'account_reference' => substr($request->input('BilRefNo'), -7)
+        // ];
 
 
-        if($resubmitOrder->payment_status == 0){
+        // if($resubmitOrder->payment_status == 0){
 
-            $response = $this->mpesaRepository->stksimulate($data);
+        //     $response = $this->mpesaRepository->stksimulate($data);
 
-            if(!$response){
+        //     if(!$response){
 
-                return response()->json(['success'=>'request has failed', 'status' => false]);
+        //         return response()->json(['success'=>'request has failed', 'status' => false]);
 
-            }
+        //     }
 
             return response()->json(['success'=>'request submitted successfully', 'status' => true]);
-        }
+        //}
 
-        return response()->json(['message' => 'This Request is not completed', 'status' => false]);
+        //return response()->json(['message' => 'This Request is not completed', 'status' => false]);
 
     }
     

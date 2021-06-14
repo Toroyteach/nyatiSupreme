@@ -98,12 +98,13 @@
         <div class="alert alert-warning" id="modalFailedUi">
             <p>Your payment request was not processed successfully.</p><br>
             <p>Please Contact our support team for more assistance.</p><br>
+            <p>You can try and request the payment Again.</p><br>
             <a class="btn btn-primary btn-sm" href="{{ route('contact') }}">NyatiSupreme Team.</a>
         </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalClose">Close</button>
-        <button type="button" class="btn btn-primary">Finish</button>
+        <button type="button" class="btn btn-primary" onClick="stkRequest()">Request Payment</button>
       </div>
     </div>
   </div>

@@ -220,7 +220,7 @@ class STKPush extends Validator
     public function updateOrderPayment($merchId, $reqId)
     {
         // check order table and update payment status to 1.
-        $mpesa = DB::statement("UPDATE orders set payment_status = 1 where id = ( select order_id from `mpesa_stk_push` where merchant_request_id = '123456789' ) ");
+        $mpesa = DB::statement("UPDATE orders set payment_status = 1 where id = ( select order_id from `mpesa_stk_push` where merchant_request_id = $merchId and  checkout_request_id = $reqId) ");
 
         if(!$mpesa){
             Log::error('failed to update details of the parent order record');
