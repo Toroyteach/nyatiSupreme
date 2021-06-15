@@ -155,9 +155,16 @@ class STKPush extends Validator
 
     public function setAmount(int $amount)
     {
-        $this->amount = $amount;
+        if($amount > 150000){
+            //think of something here
+            return false;
 
-        return $this;
+        } else {
+
+            $this->amount = $amount;
+
+            return $this;
+        }
     }
 
     public function setSenderPhone(string $phone)

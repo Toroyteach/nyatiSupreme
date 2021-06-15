@@ -26,6 +26,10 @@ class OrderRepository extends BaseRepository implements OrderContract
 
         $grandTotal = Cart::getSubTotal() + (float)config('settings.shipping_fee');
 
+        if( $params['payment_method'] == 'mpesa' && $grandTotal > 150000){
+            return false;
+        }
+
         if($shippingAddress->isEmpty())
         {
             //No shipping address is set

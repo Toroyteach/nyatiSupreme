@@ -26,7 +26,7 @@ class MpesaRepository implements MpesaContract
     {
         try {
             $feedback = (new C2B())->setShortCode($params->short_code)
-                ->setAmount($params->amount)
+                ->setAmount($this->checkAmount($params->amount))
                 ->setBillRefNumber($params->bill_ref_number)
                 ->setMsisdn($params->msisdn)
                 ->simulate();
@@ -101,5 +101,14 @@ class MpesaRepository implements MpesaContract
         );
 
         return Pesapal::makePayment($details);
+    }
+
+    public function checkAmount($amount){
+
+        if($amount > 150000){
+            return false;
+        } else {
+            return $amount;
+        }
     }
 }

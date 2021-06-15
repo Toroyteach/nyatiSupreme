@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Hash;
 
 // });
 
-Route::get('/testmpesa', 'Mpesa\STKPushController@testData');
+Route::get('/testmpesa/{amount}', 'Mpesa\STKPushController@testData');
 
 Route::group(['middleware' => ['web']], function () {
 

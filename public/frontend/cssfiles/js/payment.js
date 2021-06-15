@@ -22,6 +22,16 @@ init();
 
  }
 
+ function preventRefresh(){
+    $(window).on('popstate', function(event) {
+        return true;
+       });
+
+       window.onbeforeunload = function() {
+        return "Are you sure you want to refresh. Your order will be lost.";
+    }
+ }
+
  function stkRequest(){
     $('#failureResponseModal').modal('hide');
      init();

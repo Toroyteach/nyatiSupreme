@@ -85,25 +85,30 @@ class STKPushController extends Controller
         ]);
     }
 
-    public function testData(){
+    public function testData(int $amount){
         // $mpesa = \App\Models\STKPush::where('merchant_request_id', '123456789')->where('checkout_request_id', '987654321')->first();
         // dd($mpesa);
         // $update = $mpesa->order()->updateExistingPivot('140', ['payment_status' => 1], true);
 
-        $mpesa = DB::statement("UPDATE orders set payment_status = 1 where id = ( select order_id from `mpesa_stk_push` where merchant_request_id = '123456789' ) ");
+        // $mpesa = DB::statement("UPDATE orders set payment_status = 1 where id = ( select order_id from `mpesa_stk_push` where merchant_request_id = '123456789' ) ");
 
-        if(!$mpesa){
-            dd('data not updated');
-        } else {
-            dd('updated');
-        }
-        dd(strtoupper(uniqid('ORD-', true)));
-        dd(substr(strtoupper(uniqid('ORD-', true)), -8));
+        // if(!$mpesa){
+        //     dd('data not updated');
+        // } else {
+        //     dd('updated');
+        // }
+        // dd(strtoupper(uniqid('ORD-', true)));
+        // dd(substr(strtoupper(uniqid('ORD-', true)), -8));
         
         // $from = date("Y/m/d H:i:s", strtotime("-15 minutes"));
         // $to = date("Y/m/d H:i:s", strtotime("now"));
         // //dd($from.' to '.$to);
         // $id = 81581511;
         // dd(Order::where('order_number', 'like', '%'.$id)->whereBetween('created_at', [$from, $to])->first());
+        if($amount > 150000){
+            dd(false);
+        } else {
+            dd(true);
+        }
     }
 }

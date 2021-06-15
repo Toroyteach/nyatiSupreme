@@ -90,7 +90,7 @@ class CheckoutController extends Controller
 
                 return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
 
-            } elseif ($order->payment_method =='mpesa'){
+            } else if ($order->payment_method =='mpesa'){
 
                 $data = [
                     'short_code' => config('mpesa1.mpesa.c2b.live.short_code'),
@@ -100,13 +100,16 @@ class CheckoutController extends Controller
                 ];
 
                 //call c2t to mpesa
-                //$response = $this->mpesaRepository->c2bsimulate($data);
+                $response = $this->mpesaRepository->c2bsimulate($data);
 
-                // if($response){
+                 if($response){
 
                     return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
 
-                // }
+                 } else {
+
+                    return redirect()->back()->with('error','Order not placed!! Invalid Total Amount');
+                 }
 
             } else {
                 //errorr on payment method
@@ -114,7 +117,7 @@ class CheckoutController extends Controller
             }
         }
 
-        return redirect()->back()->with('error','Order not placed!!');
+        return redirect()->back()->with('error','Order not placed!! Ensure Total amount is with accepted limit');
     }
 
     public function complete(Request $request)
@@ -160,36 +163,36 @@ class CheckoutController extends Controller
     public function requestPaymentAgain(Request $request)
     {
         //ajax request to perform stk push to the user.
-        // $resubmitOrder = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
+        $resubmitOrder = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
 
-        // if(!$resubmitOrder){
+        if(!$resubmitOrder){
 
-        //     return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
+            return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
 
-        // }
+        }
 
-        // $data = [
-        //     'sender_phone' => $resubmitOrder->phone_number,
-        //     'amount' => $resubmitOrder->grand_total,
-        //     'payer_phone' => $resubmitOrder->phone_number,
-        //     'account_reference' => substr($request->input('BilRefNo'), -7)
-        // ];
+        $data = [
+            'sender_phone' => $resubmitOrder->phone_number,
+            'amount' => $resubmitOrder->grand_total,
+            'payer_phone' => $resubmitOrder->phone_number,
+            'account_reference' => substr($request->input('BilRefNo'), -7)
+        ];
 
 
-        // if($resubmitOrder->payment_status == 0){
+        if($resubmitOrder->payment_status == 0){
 
-        //     $response = $this->mpesaRepository->stksimulate($data);
+            $response = $this->mpesaRepository->stksimulate($data);
 
-        //     if(!$response){
+            if(!$response){
 
-        //         return response()->json(['success'=>'request has failed', 'status' => false]);
+                return response()->json(['success'=>'request has failed', 'status' => false]);
 
-        //     }
+            }
 
             return response()->json(['success'=>'request submitted successfully', 'status' => true]);
-        //}
+        }
 
-        //return response()->json(['message' => 'This Request is not completed', 'status' => false]);
+        return response()->json(['message' => 'This Request is not completed', 'status' => false]);
 
     }
     
@@ -203,9 +206,15 @@ class CheckoutController extends Controller
         // dd($oderstatus->status);
 
         if($oderstatus->payment_status != 1){
+
             return response()->json(['failure'=>'Payment still Pending', 'status' => false]);
+
         } else {
 
+            Cart::clear();
+
+            //send email notifications after payment
+            $this->sendEmails($oderstatus);
             
             return response()->json(['success'=>'Payment is Processed', 'status' => true]);
         }
@@ -249,8 +258,21 @@ class CheckoutController extends Controller
         $payments->save();
 
         $order = Order::find($payments->order_id);
-        $order->payment_status = 'Completed';
+        $order->payment_status = 1;
+        $order->
         $order->save();
+
+        //clear cart and send emails after success
+        Cart::clear();
+        $this->sendEmails($order);
         return "success";
+    }
+
+    public function sendEmails($order){
+        $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
+        $eventdata->all();
+        $user = array('email' => Auth::user()->email);
+        $eventdata = $eventdata->union($user);
+        event(new OrderPlaced($eventdata));// move to success mpesa payment api
     }
 }

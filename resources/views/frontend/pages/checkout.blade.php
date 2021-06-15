@@ -191,16 +191,17 @@
 
 function validateNumber()
 {
-	var x = document.forms["submitform"]["mpesaPhonenumber"].value;
-	var regex = new RegExp('/\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/');
+	// var x = document.forms["submitform"]["mpesaPhonenumber"].value;
+	// var regex = new RegExp('/\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/');
 
-	if (regex.test(x)) {
-		// alert("Name must be filled out");
-		return true;
-	} else {
-		swal("Please input Safaricom numbers!!");
-			return false;
-		}
+	// if (regex.test(x)) {
+	// 	// alert("Name must be filled out");
+	// 	return true;
+	// } else {
+	// 	swal("Please input Safaricom numbers!!");
+	// 		return false;
+	// 	}
+	swal("Please input Safaricom numbers!! if payment is Mpesa");
 
 }
 

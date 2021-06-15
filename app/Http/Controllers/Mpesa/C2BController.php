@@ -88,7 +88,7 @@ class C2BController extends Controller
     {
         try {
             $feedback = (new C2B())->setShortCode(config('mpesa1.mpesa.c2b.sandbox.short_code'))
-                ->setAmount($request->amount)
+                ->setAmount($this->checkAmount($request->amount))
                 ->setBillRefNumber($request->bill_ref_number)
                 ->setMsisdn($request->msisdn)
                 ->simulate();
@@ -190,4 +190,13 @@ class C2BController extends Controller
     //     //return the full order number to be queried.
     //     return Order::where('order_number', 'like', '%'.$id)->first();
     // }
+
+    public function checkAmount($amount){
+
+        if($amount > 150000){
+            return false;
+        } else {
+            return $amount;
+        }
+    }
 }
