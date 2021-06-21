@@ -74,7 +74,12 @@ $(document).ready(function() {
         $(".mobile-offcanvas").removeClass("show");
         $("body").removeClass("offcanvas-active");
     }); 
+
+    $(document).ready(function() {
+        $('.venobox').venobox({
+          'share': false
+        });
+      });
     
 }); 
-// jquery end
 

@@ -97,7 +97,6 @@
 
 @push('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
-<script type="text/javascript" src="{{ asset('frontend/cssfiles/js/payment.js') }}"></script>
 <script type="text/javascript">
     var route = "{{ url('autocomplete') }}";
     $('#search').typeahead({

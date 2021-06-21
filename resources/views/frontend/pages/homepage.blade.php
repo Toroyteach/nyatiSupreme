@@ -250,6 +250,7 @@
 		<h5 class="title">Nyati Supreme Concrete Works</h5>
 		<p>Here are but a few of the products we manufacture. We value our customers with services we offer. </p>
 		<a href="{{ route('product.information') }}" class="btn btn-outline-primary rounded-pill">See More</a>
+		<a href="https://youtu.be/drCcF4YrlUk" class="btn btn-outline-primary rounded-pill" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
 		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="" class="img-bg responsive">
 	</div>
 
