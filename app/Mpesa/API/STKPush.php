@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Cart;
 
 class STKPush extends Validator
 {
@@ -128,6 +129,7 @@ class STKPush extends Validator
 
                 $stk_push_model->fill($data)->save();
                 $this->updateOrderPayment($merchant_request_id, $checkout_request_id);
+                Cart::clear();
                 //how to get the unique order number
 
             } 

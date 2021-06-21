@@ -46,7 +46,7 @@
 <link href="{{ asset('/frontend/cssfiles/plugins/slickslider/slick-theme.css') }}" rel="stylesheet" type="text/css" />
 <!-- <script src="{{ asset('/frontend/cssfiles/plugins/slickslider/slick.min.js') }}"></script> -->
 
-<!-- venobox for youtube video-->>
+<!-- venobox for youtube video-->
 <link href="{{ asset('frontend/venobox/venobox.css') }} " rel="stylesheet">
 <!-- plugin: owl carousel  -->
 <!-- <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">

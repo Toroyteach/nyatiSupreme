@@ -9,6 +9,7 @@ use App\Mpesa\API\STKPush;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
+use Cart;
 
 class STKPushController extends Controller
 {

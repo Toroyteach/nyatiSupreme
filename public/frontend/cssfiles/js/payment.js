@@ -100,7 +100,7 @@ init();
     let _token = $('meta[name="csrf-token"]').attr('content');
     let BillrefNo = $("input[name=orderNumber]").val();
 
-    console.log(BillrefNo);
+    //console.log(BillrefNo);
 
     $.ajax({
        type:'POST',

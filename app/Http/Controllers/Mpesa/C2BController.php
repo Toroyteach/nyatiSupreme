@@ -10,6 +10,7 @@ use App\Mpesa\TokenGenerator;
 use App\Models\MpesaC2B;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
+use Cart;
 
 class C2BController extends Controller
 {
@@ -60,6 +61,7 @@ class C2BController extends Controller
             $this->result_code = 0;
 
             $this->updateOrderPayment($request->BillRefNumber);
+            Cart::clear();
         }
 
         return response()->json([
