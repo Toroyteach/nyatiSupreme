@@ -71,7 +71,7 @@
 					<a href="#" class="title">{{$item->slug}}</a>
 					<div class="price-wrap mt-2">
 						<span class="price">{{ config('settings.currency_symbol') }} {{$item->price}}</span>
-						<del class="price-old">per item</del>
+						<!-- <del class="price-old">per item</del> -->
 					</div> <!-- price-wrap.// -->
 				</div>
 				<a href="{{ route('product.show', $item->slug) }}" class="btn btn-block btn-primary">View Details </a>

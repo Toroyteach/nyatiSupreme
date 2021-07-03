@@ -7,8 +7,12 @@ var paymentStatus = false;
 
 //skip here before going live
 init();
-
+//preventRefresh(); 
+//warn user that order will be lost if they refresh
+//create a more clean way to prevent form to be submitted again when use refreshes the webpage
  function init(){
+
+    preventRefresh();
 
     var timerID = setInterval(function() {
         // your code goes here...
@@ -18,7 +22,7 @@ init();
     setTimeout(function() {
         clearInterval(timerID);
         paymentStatusCountCheck();      
-    }, 60000);
+    }, 300000);
 
  }
 
@@ -27,9 +31,15 @@ init();
         return true;
        });
 
+    //replace with sweet alerts
        window.onbeforeunload = function() {
         return "Are you sure you want to refresh. Your order will be lost.";
     }
+ }
+
+ function stkPush(){
+    init();
+    requestSTKpush();
  }
 
  function stkRequest(){
@@ -64,6 +74,7 @@ init();
        success:function(data) {
 
            if(data.status){
+            //disable the request button
             $(".reSubmitButton").prop('disabled', true);
 
             //bring up a modal to show waiting to process payment

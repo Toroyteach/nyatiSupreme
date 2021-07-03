@@ -77,7 +77,7 @@ class CheckoutController extends Controller
             //dd($testdata);
             
             //event with order placed
-            event(new OrderPlaced($eventdata));// move to success mpesa payment api
+            //event(new OrderPlaced($eventdata));// move to success mpesa payment api
 
             //Cart::clear();
             //clearing the cart clears the cache hence the _token is cleared this brings up error..
@@ -95,8 +95,8 @@ class CheckoutController extends Controller
                 $data = [
                     'short_code' => config('mpesa1.mpesa.c2b.live.short_code'),
                     'amount' => $order->grand_total,
-                    'bill_ref_number' => substr($order->order_number, -7),
-                    'msisdn' => $order->order_phonenumber
+                    'bill_ref_number' => substr($order->order_number, -7), //because the 8th digit can be zero
+                    'msisdn' => $order->phone_number
                 ];
 
                 //call c2t to mpesa
@@ -108,7 +108,7 @@ class CheckoutController extends Controller
 
                  } else {
 
-                    return redirect()->back()->with('error','Order not placed!! Invalid Total Amount');
+                    return redirect()->back()->with('error','Order not placed!! Invalid Transaction Details');
                  }
 
             } else {
@@ -165,9 +165,10 @@ class CheckoutController extends Controller
         //ajax request to perform stk push to the user.
         $resubmitOrder = Order::where('order_number', 'like', '%'.$request->input('BilRefNo'))->first();
 
+        
         if(!$resubmitOrder){
-
-            return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
+            //dd('didnt get order');
+            return response()->json(['message' => 'This Request is lost', 'status' => false]);
 
         }
 
@@ -178,6 +179,7 @@ class CheckoutController extends Controller
             'account_reference' => substr($request->input('BilRefNo'), -7)
         ];
 
+        //dd($data);
 
         if($resubmitOrder->payment_status == 0){
 
@@ -192,7 +194,7 @@ class CheckoutController extends Controller
             return response()->json(['success'=>'request submitted successfully', 'status' => true]);
         }
 
-        return response()->json(['message' => 'This Request is not completed', 'status' => false]);
+        return response()->json(['message' => 'This Request is already paid for', 'status' => false]);
 
     }
     

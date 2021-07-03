@@ -107,6 +107,7 @@ class C2BController extends Controller
             $env = config('mpesa1.mpesa.env');
             $config = config("mpesa1.mpesa.c2b.{$env}");
             $token = (new TokenGenerator())->generateToken($env);
+            //var_dump($config) . "<br>";
 
             $confirmation_url = route('api.mpesa.c2b.confirm', $config['confirmation_key']);
             //env('APP_URL')./api/v1/c2b/simulate/;

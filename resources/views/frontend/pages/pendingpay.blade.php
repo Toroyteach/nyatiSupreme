@@ -10,8 +10,8 @@
 	
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content bg padding-y border-top">
-    <div class="container">
-            <div class="">
+    <div class="container-fluid d-flex justify-content-center">
+            <div class="container">
                 <main class="col-sm-12 col-xl-6 col-md-6 col-lg-6">
                     <p class="alert alert-info">Your order was placed successfully. Your order number is : <span>{{ $order->order_number }}<span>.</p>
                 </main>
@@ -37,10 +37,11 @@
                     </div>
 
                     <div class="alert alert-warning pendingAlert">
-                        <p>Please wait while we finish processing your payment.</p> <br> 
-                        <p>Please Go to Mpesa <br>=> Lipa na Mpesa <br>=> Paybill Number use {{env('MPESA_LIVE_SHORT_CODE')}} <br>=> Account Number use {{\Illuminate\Support\Str::substr($order->order_number, 19, 26)}} <br>=> Amount is {{ config('settings.currency_symbol') }}{{$order->grand_total}} </p>
-                        <p>Also wait a minute and click here to request us to initiate the payment session for you in your phone</p>
-                        <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="requestSTKpush()">Request</button><br>
+                        <p>Please wait while we finish processing your payment..</p> <br> 
+                        <p>Please Go to Mpesa <br>=> Lipa na Mpesa <br>=> Paybill Number use {{env('MPESA_LIVE_SHORT_CODE')}} <br>=> Account Number use {{\Illuminate\Support\Str::substr($order->order_number, 20, 26)}} <br>=> Amount is {{ config('settings.currency_symbol') }}{{$order->grand_total}} </p>
+                        <p>You can also click here to request us to initiate the payment session for you in your phone</p>
+                        <button type="button" class="btn btn-warning btn-sm reSubmitButton" id="reSubmitButton" onClick="stkPush()">Request</button><br>
+                        <!-- change the onClick of the requestSTKpush -->
                         <input type="hidden" value="{{ $order->order_number }}" name="orderNumber"></input>
                     </div>
                 </main>

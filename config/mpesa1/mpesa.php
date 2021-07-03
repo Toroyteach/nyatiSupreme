@@ -21,7 +21,7 @@ return [
         'sandbox' => [
             'pass_key' => env("MPESA_SANDBOX_PASSKEY"),
             'confirmation_key' => env("MPESA_STK_CONFIRMATION_KEY"),
-            'short_code' => env("MPESA_SHORT_CODE"),
+            'short_code' => env("MPESA_SANDOX_SHORT_CODE"),
         ],
         'live' => [
             'pass_key' => env("MPESA_LIVE_PASSKEY"),

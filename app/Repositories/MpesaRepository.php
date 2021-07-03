@@ -25,10 +25,10 @@ class MpesaRepository implements MpesaContract
     public function c2bsimulate($params)
     {
         try {
-            $feedback = (new C2B())->setShortCode($params->short_code)
-                ->setAmount($this->checkAmount($params->amount))
-                ->setBillRefNumber($params->bill_ref_number)
-                ->setMsisdn($params->msisdn)
+            $feedback = (new C2B())->setShortCode($params['short_code'])
+                ->setAmount($this->checkAmount($params['amount']))
+                ->setBillRefNumber($params['bill_ref_number'])
+                ->setMsisdn($params['msisdn'])
                 ->simulate();
 
         } catch (\ErrorException $e) {
@@ -46,16 +46,16 @@ class MpesaRepository implements MpesaContract
             $stk_push_simulator = (new STKPush())
                 ->setShortCode($config['short_code'])
                 ->setPassKey($config['pass_key'])
-                ->setAmount($params->amount)
-                ->setSenderPhone($params->sender_phone)
-                ->setPayerPhone($params->payer_phone)
-                ->setAccountReference($params->account_reference)
+                ->setAmount($params['amount'])
+                ->setSenderPhone($params['sender_phone'])
+                ->setPayerPhone($params['payer_phone'])
+                ->setAccountReference($params['account_reference'])
                 ->setReceivingShortcode($config['short_code'])
                 ->setCallbackUrl(route('api.mpesa.stk-push.confirm', $config['confirmation_key']))
                 ->setRemarks('Payment for Goods NyatiSupreme Construction')
                 ->simulate($env);
 
-            if (! $stk_push_simulator->failed()) {
+            if (!$stk_push_simulator->failed()) {
 
                 $this->http_code = 200;
 

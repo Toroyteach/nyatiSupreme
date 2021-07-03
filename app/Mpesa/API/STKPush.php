@@ -76,17 +76,18 @@ class STKPush extends Validator
 
         $response = json_decode(curl_exec($curl));
 
-        if (property_exists($response, 'Body') && $response->Body->stkCallback->ResultCode == '0') {
+        if ($response->ResponseCode == '0') {
 
             $orderId = $this->getOrder($this->account_reference);
-
             if(!$orderId){
                 $this->failed = true;
             }
 
             $mpesa = \App\Models\STKPush::create([
-                        'merchant_request_id' => $response->Body->stkCallback->MerchantRequestID,
-                        'checkout_request_id' => $response->Body->stkCallback->CheckoutRequestID
+                        'order_id' =>  $orderId->id,
+                        'merchant_request_id' => $response->MerchantRequestID,
+                        'checkout_request_id' => $response->CheckoutRequestID,
+                        'phone_number' => $orderId->phone_number
                     ]);
 
             $orderId->mpesastk()->save($mpesa);
@@ -130,7 +131,8 @@ class STKPush extends Validator
                 $stk_push_model->fill($data)->save();
                 $this->updateOrderPayment($merchant_request_id, $checkout_request_id);
                 Cart::clear();
-                //how to get the unique order number
+                $this->sendEmails($this->returnOrder($stk_push_model->order_id)); //get the correct order details
+                //send emails to clients and adminstrators of the business to act on the order
 
             } 
 
@@ -221,9 +223,23 @@ class STKPush extends Validator
         return $this->response;
     }
 
+    public function sendEmails($order){
+        $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
+        $eventdata->all();
+        $user = array('email' => \Auth::user()->email);
+        $eventdata = $eventdata->union($user);
+        event(new OrderPlaced($eventdata));// move to success mpesa payment api
+    }
+
     public function getOrder($orderId)
     {
-        return Order::where('order_number', $orderId);
+
+        return Order::where('order_number', 'like', '%'.$orderId)->firstOrFail();
+    }
+
+    public function returnOrder($orderId)
+    {
+        return Order::findOrFail($orderId);
     }
 
     public function updateOrderPayment($merchId, $reqId)

@@ -12,13 +12,6 @@
     <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y">
 <div class="container" style="max-width: 720px;">
-            <div class="row">
-                <div class="col-sm-12">
-                    @if (Session::has('error'))
-                        <p class="alert alert-danger">{{ Session::get('error') }}</p>
-                    @endif
-                </div>
-            </div>
 	<form action="{{ route('checkout.place.order') }}" name="myform" method="POST" role="form" id="submitform">
 	  	@csrf
 <div class="card mb-4">
