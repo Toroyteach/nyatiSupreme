@@ -22,7 +22,7 @@
                     <div class="alert alert-success">
                         <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
                         <p>Your payment has been received successfully.</p><br>
-                        <p>Your order number is : <span>{{ \Illuminate\Support\Str::limit($order->order_number, 18) }}<span>.</p><br>
+                        <p>Your order number is : <span>{{ \Illuminate\Support\Str::limit($order->order_number, 26) }}<span>.</p><br>
                         <p>Thank you for shooping with us.</p><br>
                         <p>Nyati Supreme Team.</p><br>
                         <a class="btn btn-primary btn-sm" href="{{ route('account.orders') }}">View Order</a>

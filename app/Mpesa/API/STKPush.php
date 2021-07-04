@@ -86,8 +86,7 @@ class STKPush extends Validator
             $mpesa = \App\Models\STKPush::create([
                         'order_id' =>  $orderId->id,
                         'merchant_request_id' => $response->MerchantRequestID,
-                        'checkout_request_id' => $response->CheckoutRequestID,
-                        'phone_number' => $orderId->phone_number
+                        'checkout_request_id' => $response->CheckoutRequestID
                     ]);
 
             $orderId->mpesastk()->save($mpesa);
@@ -113,7 +112,8 @@ class STKPush extends Validator
             $checkout_request_id = $payload->Body->stkCallback->CheckoutRequestID;
 
             $stk_push_model = \App\Models\STKPush::where('merchant_request_id', $merchant_request_id)
-                ->where('checkout_request_id', $checkout_request_id);
+                ->where('checkout_request_id', $checkout_request_id)
+                ->get();
 
             $data = [
                 'result_desc' => $payload->Body->stkCallback->ResultDesc,
@@ -126,9 +126,9 @@ class STKPush extends Validator
                 'phone_number' => $payload->Body->stkCallback->CallbackMetadata->Item[3]->Value,
             ];
 
-            if ($stk_push_model) {
+            if($stk_push_model) {
 
-                $stk_push_model->fill($data)->save();
+                $stk_push_model->fill($data);
                 $this->updateOrderPayment($merchant_request_id, $checkout_request_id);
                 Cart::clear();
                 $this->sendEmails($this->returnOrder($stk_push_model->order_id)); //get the correct order details
@@ -245,7 +245,7 @@ class STKPush extends Validator
     public function updateOrderPayment($merchId, $reqId)
     {
         // check order table and update payment status to 1.
-        $mpesa = DB::statement("UPDATE orders set payment_status = 1 where id = ( select order_id from `mpesa_stk_push` where merchant_request_id = $merchId and  checkout_request_id = $reqId) ");
+        $mpesa = DB::statement("UPDATE orders set payment_status = 1 where id = ( select order_id from mpesa_stk_push where merchant_request_id = '$merchId' and  checkout_request_id = '$reqId') ");
 
         if(!$mpesa){
             Log::error('failed to update details of the parent order record');

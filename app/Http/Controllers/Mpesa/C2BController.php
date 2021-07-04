@@ -119,6 +119,7 @@ class C2BController extends Controller
 
             $response = (new C2BRegister())->setShortCode($short_code)
                 ->setValidationUrl($validation_url)
+                ->setResponseType('Completed')
                 ->setConfirmationUrl($confirmation_url)
                 ->setToken($token)
                 ->register($env);

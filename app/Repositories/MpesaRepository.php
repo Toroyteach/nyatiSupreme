@@ -51,7 +51,7 @@ class MpesaRepository implements MpesaContract
                 ->setPayerPhone($params['payer_phone'])
                 ->setAccountReference($params['account_reference'])
                 ->setReceivingShortcode($config['short_code'])
-                ->setCallbackUrl(route('api.mpesa.stk-push.confirm', $config['confirmation_key']))
+                ->setCallbackUrl(route('https://webhook.site/f00764e7-7db2-4faa-b208-c4b98e767476'))
                 ->setRemarks('Payment for Goods NyatiSupreme Construction')
                 ->simulate($env);
 
