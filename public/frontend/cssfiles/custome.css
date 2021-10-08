@@ -81,4 +81,16 @@
       display: inline !important;
   }
  }
+
+ .top-content { 
+    height: 100%; 
+    padding-bottom: 5em;
+    position: relative;
+    left: -3em; }
+
+.top-content .carousel { box-shadow: 0 0 15px 0 #444; }
+.top-content .carousel-control-prev { left: -66px; border-bottom: 0;  background-color: #444 !important;}
+.top-content .carousel-control-next { right: -66px; border-bottom: 0;  background-color: #444 !important;}
+.top-content .carousel-indicators { bottom: -40px;  color: #444 !important;}
+.top-content .carousel-indicators li { width: 16px; height: 16px; margin-left: 5px; margin-right: 5px; border-radius: 50%;  background-color: #444 !important;}
  

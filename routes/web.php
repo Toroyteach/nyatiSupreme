@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
+
+
+// \File::link(storage_path('app/public/'), public_path('storage'));
+// dd('done');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +31,12 @@ use Illuminate\Support\Facades\Hash;
 // 	});
 
 // });
+
+Route::get('/testfilecreation', function(){
+    //Example
+    \Storage::disk('local')->put('file.txt', 'Your content here');
+    dd('done');
+});
 
 Route::get('/testmpesa/{amount}', 'Mpesa\STKPushController@testData');
 

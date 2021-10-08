@@ -182,7 +182,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        //niklasravnsborg\LaravelPdf\PdfServiceProvider::class
+        //niklasravnsborg\LaravelPdf\PdfServiceProvider::classz
 
     ],
 

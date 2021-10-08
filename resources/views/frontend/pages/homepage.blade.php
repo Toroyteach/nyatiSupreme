@@ -250,7 +250,7 @@
 		<h5 class="title">Nyati Supreme Concrete Works</h5>
 		<p>Here are but a few of the products we manufacture. We value our customers with services we offer. </p>
 		<a href="{{ route('product.information') }}" class="btn btn-outline-primary rounded-pill">See More</a>
-		<a href="https://youtu.be/drCcF4YrlUk" class="btn btn-outline-primary rounded-pill" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
+		<a href="#videos" class="btn btn-outline-primary rounded-pill" data-vbtype="video" data-autoplay="true"> Watch Video <i class="icofont-play-alt-2"></i></a>
 		<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/logo.png') }}" style="" class="img-bg responsive">
 	</div>
 
@@ -478,8 +478,8 @@ relevant authorities and according to customer specifications.
 				<img src="{{ asset('frontend/cssfiles/images/nyati/catalogue/woordoor.jpg') }}" class="card-img opacity">
 				<div class="card-img-overlay text-white">
 				  <h3 class="card-title">Wood Designers</h3>
-				  <!-- <p class="card-text" style="max-width: 100%;">High quality concrete blocks that meet both dimensional and strength requirements by the
-relevant authorities and customer specifications.</p> -->
+				  <p class="card-text" style="max-width: 100%;">High quality wood works that meet both dimensional and strength requirements by the
+relevant authorities and customer specifications.</p>
 					<!-- <a href="{{ route('item.show', 'block') }}" class="btn btn-warning">View more</a> -->
 				</div>
 			 </div>
@@ -498,6 +498,90 @@ this provides a break from the monotony of the common profiles and ordinary grey
 	</div> <!-- row.// -->
 </section>
 <!-- =============== SECTION BANNER .//END =============== -->
+
+<!-- =============== SECTION ITEMS =============== -->
+<section  class="padding-bottom-sm" id="videos">
+
+<header class="section-heading heading-line">
+	<h5 class="title-section text-uppercase">Our Videos</h5>
+</header>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4" style="position:relative;top:1.7em;">
+						<div class="card-banner overlay-gradient"
+							style="min-height:320px; background-image: url('../images/banners/banner1.jpg');">
+							<div class="card-img-overlay white">
+								<h3 class="card-title">We are confident on our <br> products </h3>
+								<p class="card-text" style="max-width: 400px">We use state of the art equipments and follow standard guidlines 
+							 to ensure our products last long and satisfy out clients.</p>
+								<a href="https://www.youtube.com/c/NyatiSupreme/featured" target="_blank" class="btn btn-warning">View More Videos</a>
+							</div>
+						</div> <!-- card-banner //end -->
+					</div> <!-- col.// -->
+			<div class="top-content col-lg-8">
+				<div class="container">
+					<!-- Carousel row -->
+						<div class=" offset-md-1 offset-lg-2">
+							<!-- Carousel -->
+							<div id="carousel-example" class="carousel slide" data-interval="false">
+								<ol class="carousel-indicators">
+									<li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-example" data-slide-to="1"></li>
+									<li data-target="#carousel-example" data-slide-to="2"></li>
+									<li data-target="#carousel-example" data-slide-to="3"></li>
+									<li data-target="#carousel-example" data-slide-to="4"></li>
+									<li data-target="#carousel-example" data-slide-to="5"></li>
+								</ol>
+								<div class="carousel-inner">
+									<div class="carousel-item active">
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/drCcF4YrlUk" allowfullscreen></iframe>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tj_IopePHq8" allowfullscreen></iframe>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0_ZfV3WRXCA" allowfullscreen></iframe>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lKHxtzCGvAs" allowfullscreen></iframe>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vg29OCJGFJ8" allowfullscreen></iframe>
+										</div>
+									</div>
+									<div class="carousel-item">
+										<div class="embed-responsive embed-responsive-16by9">
+											<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vg29OCJGFJ8" allowfullscreen></iframe>
+										</div>
+									</div>
+								</div>
+								<a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>
+							<!-- End carousel -->
+					</div>
+					<!-- End carousel row -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- =============== SECTION ITEMS .//END =============== -->
 
 
 <!-- =============== SECTION SERVICES =============== -->
@@ -565,3 +649,8 @@ this provides a break from the monotony of the common profiles and ordinary grey
 <!-- container end.// -->
 
 @stop
+@push('scripts')
+<script type="text/javascript">
+
+</script>
+@endpush

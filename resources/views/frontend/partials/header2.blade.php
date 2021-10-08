@@ -36,7 +36,7 @@
         @auth
             @if (Auth::user()->profile_image != null)
               @if(Auth::user()->social != 1)
-                <li class="icon" style="position:relative;right:20px;top:-5px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+                <li class="icon" style="position:relative;right:20px;top:5px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
               @else
               <li class="icon" style="position:relative;right:20px"><a href="{{ route('account.settings') }}"><img src="{{ (Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
               @endif

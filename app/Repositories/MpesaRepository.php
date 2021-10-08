@@ -46,12 +46,12 @@ class MpesaRepository implements MpesaContract
             $stk_push_simulator = (new STKPush())
                 ->setShortCode($config['short_code'])
                 ->setPassKey($config['pass_key'])
-                ->setAmount($params['amount'])
+                ->setAmount($this->checkAmount($params['amount']))
                 ->setSenderPhone($params['sender_phone'])
                 ->setPayerPhone($params['payer_phone'])
                 ->setAccountReference($params['account_reference'])
                 ->setReceivingShortcode($config['short_code'])
-                ->setCallbackUrl(route('https://webhook.site/f00764e7-7db2-4faa-b208-c4b98e767476'))
+                ->setCallbackUrl(route('api.mpesa.stk-push.confirm', $config['confirmation_key']))
                 ->setRemarks('Payment for Goods NyatiSupreme Construction')
                 ->simulate($env);
 
@@ -81,7 +81,7 @@ class MpesaRepository implements MpesaContract
         $payments->businessid = Auth::user()->id; //Business ID
         $payments->transactionid = Pesapal::random_reference();
         $payments->status = 'Lost'; //if user gets to iframe then exits, i prefer to have that as a new/lost transaction, not pending
-        $payments->amount = 10;
+        $payments->amount = $params->grand_total;
         $payments->save();
 
         //dd($payments.''.$order);
@@ -97,7 +97,7 @@ class MpesaRepository implements MpesaContract
             'phonenumber' => Auth::user()->phonenumber,
             'reference' => $payments->transactionid,
             //'height'=>'400px',
-            //'currency' => 'USD'
+            'currency' => 'KES'
         );
 
         return Pesapal::makePayment($details);

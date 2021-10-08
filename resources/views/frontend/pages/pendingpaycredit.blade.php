@@ -9,8 +9,8 @@
 <!-- ========================= SECTION PAGETOP END// ========================= -->
 	
 <!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content bg padding-y border-top">
-<div class="container">
+<section class="section-content bg border-top">
+        <div class="container">
             <div class="row">
 
                 <main class="col-sm-12 successAlert" style="display:none">
@@ -27,11 +27,13 @@
             </div>
         </div> <!-- container .//  -->
 
-<div class="container">
-    <div class="embed-responsive embed-responsive-4by3">
-        {{ iframe }}
+    <div class="container">
+        <div class="embed-responsive embed-responsive-16by9">
+            <div class="embed-responsive-item">
+                {!! $iframe !!}
+            </div>
+        </div>
     </div>
-</div>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 @stop

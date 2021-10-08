@@ -110,11 +110,11 @@ class C2BController extends Controller
             //var_dump($config) . "<br>";
 
             $confirmation_url = route('api.mpesa.c2b.confirm', $config['confirmation_key']);
-            //env('APP_URL')./api/v1/c2b/simulate/;
-            //https://nyatisupreme.co.ke/api/v1/c2b/simulate
+            //env('APP_URL')./api/v1/c2b/confirm/;
+            //https://nyatisupreme.co.ke/api/v1/c2b/confirm/{key}
             $validation_url = route('api.mpesa.c2b.validate', $config['validation_key']);
-            //env('APP_URL')./api/v1/c2b/simulate/;
-            //https://nyatisupreme.co.ke/api/v1/c2b/simulate
+            //env('APP_URL')./api/v1/c2b/validate/;
+            //https://nyatisupreme.co.ke/api/v1/c2b/validate/{key}
             $short_code = $config['short_code'];
 
             $response = (new C2BRegister())->setShortCode($short_code)

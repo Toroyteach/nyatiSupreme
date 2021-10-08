@@ -49,9 +49,8 @@
 <!-- venobox for youtube video-->
 <link href="{{ asset('frontend/venobox/venobox.css') }} " rel="stylesheet">
 <!-- plugin: owl carousel  -->
-<!-- <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
+<link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet">
 <link href="{{ asset('/frontend/cssfiles/plugins/owlcarousel/assets/owl.theme.default.css') }}" rel="stylesheet">
-<script src="{{ asset('/frontend/cssfiles/plugins/owlcarousel/owl.carousel.min.js') }}"></script> -->
 
 
 <style>
@@ -88,6 +87,13 @@
     .catalogueimg p{
       padding-top: 10px;
     }
+
+    .top-content { 
+    height: 100%; 
+    padding-bottom: 5em; 
+    position: relative;
+    left: 0.2rem;
+    top: 3em;}
  }
  
 
@@ -101,6 +107,13 @@
       height: 100px;
       width: auto;
     }
+
+    .top-content { 
+    height: 100%; 
+    padding-bottom: 5em; 
+    position: relative;
+    left: 0.2rem;
+    top: 3em;}
  }
 
   /* Medium devices (tablets, 768px and down) */
@@ -113,6 +126,10 @@
       height: 30% !important;
       width: auto;
     }
+
+    .top-content .carousel-control-prev, 
+    .top-content .carousel-control-next { display: none; }
+    .top-content .carousel-indicators li { margin-left: 10px; margin-right: 10px; }
  }
 
  /* Large devices (desktops, 992px and down) */
@@ -137,8 +154,19 @@
 
 </style>
 
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TKK5WLT');</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKK5WLT"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 @include('frontend.partials.header2')
 @include('frontend.partials.flash-message')
 @include('kustomer::kustomer')

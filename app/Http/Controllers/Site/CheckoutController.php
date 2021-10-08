@@ -7,18 +7,13 @@ use Pesapal;
 use App\Models\PesapalTransaction;
 use App\Models\Order;
 use Illuminate\Http\Request;
-//use App\Services\PayPalService;
 use App\Contracts\OrderContract;
 use App\Contracts\MpesaContract;
 use App\Http\Controllers\Controller;
 use App\Notifications\NewOrder;
 use App\Models\User;
-// use App\Models\Admin;
 use App\Events\OrderPlaced;
-//use App\Notifications\newOrderNotification;
 use Auth;
-//use Carbon\Carbon;
-//use Notification;
 use App\Http\Requests\PlaceOrderRequest;
 use Illuminate\Support\Facades\Log;
 
@@ -32,11 +27,9 @@ class CheckoutController extends Controller
 
     public function __construct(OrderContract $orderRepository, MpesaContract $mpesaRepository)
     {
-        //dd('payment not set');
         $this->middleware(['auth','isVerified','emptyCart', 'emptysocialdetails'] , ['except' => [
             'paymentsuccess', 'paymentconfirmation'
         ]]);
-        //$this->payPal = $payPal;
         $this->orderRepository = $orderRepository;
         $this->mpesaRepository = $mpesaRepository;
         
@@ -261,7 +254,6 @@ class CheckoutController extends Controller
 
         $order = Order::find($payments->order_id);
         $order->payment_status = 1;
-        $order->
         $order->save();
 
         //clear cart and send emails after success
