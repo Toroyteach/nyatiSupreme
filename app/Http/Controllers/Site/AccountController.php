@@ -30,7 +30,6 @@ class AccountController extends Controller
         $userid = auth()->user()->id;
         $orders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->with('items')->paginate(3);
         //$orders = Order::where('user_id', auth()->user()->id)->with('items')->get();
-        //dd($orders->all());
 
         return view('frontend.pages.account.orders', compact('orders'));
     }
@@ -136,7 +135,6 @@ class AccountController extends Controller
         if(!$user)
         {
             //return view('frontend.pages.account.address')->with('success', 'Your address was added successfully!');
-
             dd('error');
         }
 
@@ -159,8 +157,6 @@ class AccountController extends Controller
             'town' => 'required|max:50',
             'location' => 'required|max:50'
         ]);
-
-        //dd($id);
 
         $address = UserAddress::find($id)->update($request->all());
 

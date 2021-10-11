@@ -70,44 +70,53 @@ class CheckoutController extends Controller
             //dd($testdata);
             
             //event with order placed
-            //event(new OrderPlaced($eventdata));// move to success mpesa payment api
+            event(new OrderPlaced($eventdata));// move to success mpesa payment api
 
-            //Cart::clear();
+            Cart::clear();
             //clearing the cart clears the cache hence the _token is cleared this brings up error..
 
-            //skip here before going live
-            if($order->payment_method == 'credit'){
+            
+            if(env('MPESA_ENABLE')){
+                //skip here before going live
+                if($order->payment_method == 'credit'){
 
-                //call function to initiate credit card pay
-                 $iframe = $this->mpesaRepository->pesapalcreate($order);
+                    //call function to initiate credit card pay
+                    $iframe = $this->mpesaRepository->pesapalcreate($order);
 
-                return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+                    return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
 
-            } else if ($order->payment_method =='mpesa'){
+                } else if ($order->payment_method =='mpesa'){
 
-                $data = [
-                    'short_code' => config('mpesa1.mpesa.c2b.live.short_code'),
-                    'amount' => $order->grand_total,
-                    'bill_ref_number' => substr($order->order_number, -7), //because the 8th digit can be zero
-                    'msisdn' => $order->phone_number
-                ];
+                    $data = [
+                        'short_code' => config('mpesa1.mpesa.c2b.live.short_code'),
+                        'amount' => $order->grand_total,
+                        'bill_ref_number' => substr($order->order_number, -7), //because the 8th digit can be zero
+                        'msisdn' => $order->phone_number
+                    ];
 
-                //call c2t to mpesa
-                $response = $this->mpesaRepository->c2bsimulate($data);
+                    //call c2t to mpesa
+                    $response = $this->mpesaRepository->c2bsimulate($data);
 
-                 if($response){
+                    if($response){
 
-                    return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+                        return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
 
-                 } else {
+                    } else {
 
-                    return redirect()->back()->with('error','Order not placed!! Invalid Transaction Details');
-                 }
+                        return redirect()->back()->with('error','Order not placed!! Invalid Transaction Details');
+                    }
 
+                } else {
+                    //errorr on payment method
+                    Log::error('failed to initiate pay. No payment method set');
+                }
             } else {
-                //errorr on payment method
-                Log::error('failed to initiate pay. No payment method set');
+
+                $type = "pod";
+                return view('frontend.pages.pendingpaycredit', compact('order', 'type'));
+
             }
+
         }
 
         return redirect()->back()->with('error','Order not placed!! Ensure Total amount is with accepted limit');

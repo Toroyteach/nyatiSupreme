@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Pagination\Paginator;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\SampleChart::class
         ]);
+
+        Paginator::useBootstrap();
 
         // $this->registerPolicies();
 

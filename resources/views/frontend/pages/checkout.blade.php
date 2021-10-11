@@ -22,16 +22,22 @@
 		<!-- //skip here before going live -->
 		<h5 class="title">Payment Option</h5>
 	  <div class="form-row">
-			<div class="form-group col-sm-6">
+			<div class="form-group col-sm-4">
 				<label class="js-check box active">
 					<input type="radio" name="payment_method" id="mpesa" onclick="my_function(this)" value="mpesa" required>
 					<h6 class="title">Mpesa</h6>
 				</label> 
 			</div>
-			<div class="form-group col-sm-6">
+			<div class="form-group col-sm-4">
 				<label class="js-check box">
 					<input type="radio" name="payment_method" id="credit" onclick="my_function(this)" value="credit" required>
 					<h6 class="title">Credit Card</h6>
+				</label> 
+			</div>
+			<div class="form-group col-sm-4">
+				<label class="js-check box">
+					<input type="radio" name="payment_method" id="cash" onclick="my_function(this)" value="cash" required>
+					<h6 class="title">Cash Delivery</h6>
 				</label> 
 			</div>
 		</div>
@@ -212,6 +218,10 @@ function my_function(elm)
 		{
 			document.getElementById('mpesaPayment').style.display = "none";
 			document.getElementById('creditCard').style.display = "block";
+		} else if(elm == document.getElementById('cash'))
+		{
+			document.getElementById('mpesaPayment').style.display = "none";
+			document.getElementById('creditCard').style.display = "none";
 		}
 }
 

@@ -94,7 +94,7 @@
 	@endforelse
 
 	<div class="d-flex justify-content-center">
-    	{!! $orders->links() !!}
+    	{{ $orders->links() }}
 	</div>
 
 	</main> <!-- col.// -->
