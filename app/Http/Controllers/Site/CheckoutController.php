@@ -78,12 +78,13 @@ class CheckoutController extends Controller
             
             if(env('MPESA_ENABLE')){
                 //skip here before going live
-                if($order->payment_method == 'credit'){
+                if($order->payment_method == 'other'){
 
                     //call function to initiate credit card pay
                     $iframe = $this->mpesaRepository->pesapalcreate($order);
 
-                    return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+                    //return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+                    return redirect()->route('checkout.success.other', ['order' => $order]);
 
                 } else if ($order->payment_method =='mpesa'){
 
@@ -99,7 +100,8 @@ class CheckoutController extends Controller
 
                     if($response){
 
-                        return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+                        //return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
+                        return redirect()->route('checkout.success.mpesa', ['order' => $order, 'orderId' => $eventdata['order_number']]);
 
                     } else {
 
@@ -108,18 +110,38 @@ class CheckoutController extends Controller
 
                 } else {
                     //errorr on payment method
-                    Log::error('failed to initiate pay. No payment method set');
+                    Log::error('failed to initiate pay. No payment method set. defaulted to cash on delivery');
+                    $type = "pod";
+                    //return view('frontend.pages.pendingpaycredit', compact('order', 'type'));
+                    return redirect()->route('checkout.success.pod', ['order' => $order]);
                 }
             } else {
 
                 $type = "pod";
-                return view('frontend.pages.pendingpaycredit', compact('order', 'type'));
+                //return view('frontend.pages.pendingpaycredit', compact('order', 'type'));
+                return redirect()->route('checkout.success.pod')->with([ 'order' => $order, 'type' => $type]);
 
             }
 
         }
 
         return redirect()->back()->with('error','Order not placed!! Ensure Total amount is with accepted limit');
+    }
+
+    public function orderSuccessMpesa(Order $order, $orderId)
+    {
+        return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$orderId.' was placed successfully');
+    }
+
+    public function orderSuccessOther(Order $order)
+    {
+        $iframe = $this->mpesaRepository->pesapalcreate($order);
+        return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
+    }
+
+    public function orderSuccessPod(Order $order)
+    {
+        return view('frontend.pages.pendingpaypod', compact('order'));
     }
 
     public function complete(Request $request)
@@ -258,6 +280,7 @@ class CheckoutController extends Controller
         $status = Pesapal::getMerchantStatus($merchant_reference);
         $payments = PesapalTransaction::where('trackingid',$trackingid)->first();
         $payments->status = $status;
+        $payments->payment_status = 'successfull';
         $payments->payment_method = "PESAPAL";//use the actual method though...
         $payments->save();
 

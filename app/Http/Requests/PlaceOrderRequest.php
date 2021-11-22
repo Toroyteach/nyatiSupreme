@@ -30,7 +30,7 @@ class PlaceOrderRequest extends FormRequest
     {
         return [
             'mpesaPhonenumber' => ['required', 'digits:10'],
-            'payment_method' => ['required', 'in:mpesa,credit,cash'],
+            'payment_method' => ['required', 'in:mpesa,other,cash'],
             'first_name' => ['required', 'max:20', 'min:5'],
             'last_name' => ['required', 'max:20', 'min:5'],
             'address' => ['required', 'max:20'],

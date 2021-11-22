@@ -30,8 +30,8 @@
 			</div>
 			<div class="form-group col-sm-4">
 				<label class="js-check box">
-					<input type="radio" name="payment_method" id="credit" onclick="my_function(this)" value="credit" required>
-					<h6 class="title">Credit Card</h6>
+					<input type="radio" name="payment_method" id="other" onclick="my_function(this)" value="other" required>
+					<h6 class="title">Other Payments</h6>
 				</label> 
 			</div>
 			<div class="form-group col-sm-4">
@@ -112,7 +112,7 @@
 
 
 			<div class="card-body" id="creditCard" style="display:none;">
-			<h4 class="card-title mb-4">Credit</h4>
+			<h4 class="card-title mb-4">Other Payments</h4>
 					<div class="form-group">
 					<label for="username">Name on card</label>
 					<input type="text" class="form-control" name="cardName" placeholder="Ex. John Smith" >
@@ -200,7 +200,7 @@ function validateNumber()
 	// 	swal("Please input Safaricom numbers!!");
 	// 		return false;
 	// 	}
-	swal("Please input Safaricom numbers!! if payment is Mpesa");
+	//swal("Please input Safaricom numbers!! if payment is Mpesa");
 
 }
 
@@ -214,7 +214,7 @@ function my_function(elm)
 			document.getElementById('creditCard').style.display = "none";
 			document.getElementById('mpesaPayment').style.display = "block";
 		}
-		else if(elm == document.getElementById('credit'))
+		else if(elm == document.getElementById('other'))
 		{
 			document.getElementById('mpesaPayment').style.display = "none";
 			document.getElementById('creditCard').style.display = "block";

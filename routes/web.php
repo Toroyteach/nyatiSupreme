@@ -78,6 +78,11 @@ Route::group(['middleware' => ['auth', 'web', 'isVerified']], function () {
     Route::post('/checkout/order', 'Site\CheckoutController@placeOrder')->name('checkout.place.order');
     Route::get('checkout/payment/complete', 'Site\CheckoutController@complete')->name('checkout.payment.complete');
 
+    //redirects checkout after payment has been submitted
+    Route::get('checkout/success/mpesa/{order}/{orderId}', 'Site\CheckoutController@orderSuccessMpesa')->name('checkout.success.mpesa');
+    Route::get('checkout/success/other/{order}/', 'Site\CheckoutController@orderSuccessOther')->name('checkout.success.other');
+    Route::get('checkout/success/pod/{order}', 'Site\CheckoutController@orderSuccessPod')->name('checkout.success.pod');
+
     Route::get('account/dashboard', 'Site\AccountController@getDashboardDetails')->name('account.dashboard');
 
     Route::get('account/address', 'Site\AccountController@getAddress')->name('account.address')->middleware(['emptysocialdetails']);

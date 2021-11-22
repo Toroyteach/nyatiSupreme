@@ -15,7 +15,7 @@
             <div class="row">
 
                 
-                <main class="col-sm-12 successAlert" style="display:none">
+                <main class="col-sm-12 successAlert" style="">
                     <div class="alert alert-success">
                         <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
                         <p>Your payment has been processed successfully.</p><br>
@@ -29,13 +29,6 @@
             </div>
         </div> <!-- container .//  -->
 
-        <div class="container">
-            <div class="embed-responsive embed-responsive-16by9">
-                <div class="embed-responsive-item">
-                        {!! $iframe !!}
-                </div>
-            </div>
-        </div>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 @stop
