@@ -49,8 +49,7 @@ class CheckoutController extends Controller
                 'mpesaPhonenumber' => 
                     array(
                         'required',
-                        'regex:/(\+?254|0|^){1}[-. ]?[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}\z/',
-                        'digits:10'
+                        'regex:/(\+?254|0|^){1}[-. ]?([7]{1}([0-2]{1}[0-9]{1}|[4]{1}([0-3]{1}|[5-6]{1})|[5]{1}[7-9]{1}|[6]{1}[8-9]{1}|[9]{1}[0-9]{1})|[1]{2}[0-5]{1})[0-9]{6}\z/'
                     )
             ]);
             
@@ -60,30 +59,11 @@ class CheckoutController extends Controller
 
         // You can add more control here to handle if the order is not stored properly
         if ($order) {
-            //replace with mpesa service processing
-            //$this->payPal->processPayment($order);
-            $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
-            $eventdata->all();
-            $user = array('email' => Auth::user()->email);
-            $eventdata = $eventdata->union($user);
-            //$eventdata->all();
-            //dd($testdata);
-            
-            //event with order placed
-            event(new OrderPlaced($eventdata));// move to success mpesa payment api
-
-            Cart::clear();
-            //clearing the cart clears the cache hence the _token is cleared this brings up error..
-
             
             if(env('MPESA_ENABLE')){
                 //skip here before going live
                 if($order->payment_method == 'other'){
 
-                    //call function to initiate credit card pay
-                    $iframe = $this->mpesaRepository->pesapalcreate($order);
-
-                    //return view('frontend.pages.pendingpaycredit', compact('order','iframe'));
                     return redirect()->route('checkout.success.other', ['order' => $order]);
 
                 } else if ($order->payment_method =='mpesa'){
@@ -101,7 +81,7 @@ class CheckoutController extends Controller
                     if($response){
 
                         //return view('frontend.pages.pendingpay', compact('order'))->with('success','Your Order '.$eventdata['order_number'].' was placed successfully');
-                        return redirect()->route('checkout.success.mpesa', ['order' => $order, 'orderId' => $eventdata['order_number']]);
+                        return redirect()->route('checkout.success.mpesa', ['order' => $order, 'orderId' => $order->order_number]);
 
                     } else {
 
@@ -112,6 +92,7 @@ class CheckoutController extends Controller
                     //errorr on payment method
                     Log::error('failed to initiate pay. No payment method set. defaulted to cash on delivery');
                     $type = "pod";
+                    Cart::clear();
                     //return view('frontend.pages.pendingpaycredit', compact('order', 'type'));
                     return redirect()->route('checkout.success.pod', ['order' => $order]);
                 }
@@ -148,40 +129,40 @@ class CheckoutController extends Controller
     {
 
         //not in use
-        $paymentId = $request->input('paymentId');
-        $payerId = $request->input('PayerID');
+        // $paymentId = $request->input('paymentId');
+        // $payerId = $request->input('PayerID');
 
-        //$status = $this->payPal->completePayment($paymentId, $payerId);
+        // //$status = $this->payPal->completePayment($paymentId, $payerId);
 
-        $order = Order::where('order_number', $status['invoiceId'])->first();
-        $order->status = 'processing';
-        $order->payment_status = 1;
-        $order->payment_method = 'PayPal -'.$status['salesId'];
-        $order->save();
+        // $order = Order::where('order_number', $status['invoiceId'])->first();
+        // $order->status = 'processing';
+        // $order->payment_status = 1;
+        // $order->payment_method = 'PayPal -'.$status['salesId'];
+        // $order->save();
 
-        // $fromUser = "eddyonline.com";
-        // $toUser = User::find($order->customer_id);
-        // $toUser->notify(new NewOrder($fromUser));
-        //dd('end check');
-        $user = Auth::user()->pluck('email');
-        $eventdata = $order->merge($user);
+        // // $fromUser = "eddyonline.com";
+        // // $toUser = User::find($order->customer_id);
+        // // $toUser->notify(new NewOrder($fromUser));
+        // //dd('end check');
+        // $user = Auth::user()->pluck('email');
+        // $eventdata = $order->merge($user);
 
-        event(new OrderPlacedEvent($eventdata));
+        // event(new OrderPlacedEvent($eventdata));
 
-        $userSchema = Admin::all();
+        // $userSchema = Admin::all();
   
-        $orderData = [
-            'name' => 'New Order',
-            'body' => 'This is a new placed order ',
-            'order_id' => $order->order_number
-        ];
+        // $orderData = [
+        //     'name' => 'New Order',
+        //     'body' => 'This is a new placed order ',
+        //     'order_id' => $order->order_number
+        // ];
 
-        $when = Carbon::now()->addSecond(10);
-        Notification::send($userSchema, (new newOrderNotification($orderData))->delay($when));
-        //\Notification::send($users, (new DealPublished($deal))->delay($when));    
+        // $when = Carbon::now()->addSecond(10);
+        // Notification::send($userSchema, (new newOrderNotification($orderData))->delay($when));
+        // //\Notification::send($users, (new DealPublished($deal))->delay($when));    
 
-        Cart::clear();
-        return view('frontend.pages.success', compact('order'));
+        // Cart::clear();
+        // return view('frontend.pages.success', compact('order'));
     }
 
     public function requestPaymentAgain(Request $request)

@@ -84,7 +84,7 @@ init();
 
             setTimeout(function() {
                 $(".reSubmitButton").removeAttr("disabled");  
-            }, 180000);
+            }, 30000);
 
             setTimeout(function(){
                 $(".modalClose").prop("disabled", false);    

@@ -36,12 +36,12 @@
         @auth
             @if (Auth::user()->profile_image != null)
               @if(Auth::user()->social != 1)
-                <li class="icon" style="position:relative;right:20px;top:5px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+                <li class="icon" data-toggle="tooltip" data-placement="top" title="Profile" style="position:relative;right:20px;top:5px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('profile/images/'. Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
               @else
-              <li class="icon" style="position:relative;right:20px"><a href="{{ route('account.settings') }}"><img src="{{ (Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+              <li class="icon" data-toggle="tooltip" data-placement="top" title="Profile" style="position:relative;right:20px"><a href="{{ route('account.settings') }}"><img src="{{ (Auth::user()->profile_image) }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
               @endif
 						@else
-                <li class="icon" style="position:relative;right:20px;top:3px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
+                <li class="icon" data-toggle="tooltip" data-placement="top" title="Profile" style="position:relative;right:20px;top:3px;"><a href="{{ route('account.settings') }}"><img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="icon icon-xs rounded-circle" alt="img"></a></li>
 						@endif
         @endauth
         <!-- <li  class="nav-item"><a href="#" class="nav-link">  <i class="fa fa-heart"></i> Wishlist </a></li> -->
@@ -64,7 +64,7 @@
 	  <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Home">
 			<a class="nav-link" href="{{route('home')}}">Home</a>
 		</li>
-    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="About Us">
+    <li class="nav-item" data-toggle="tooltip" data-placement="top" title="Categories">
 		<a class="nav-link" href="{{route('category.show')}}">Categories</a>
 		</li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="top" title="Shop">

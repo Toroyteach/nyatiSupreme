@@ -9,6 +9,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use App\Events\OrderPlaced;
 
 class STKPush extends Validator
 {
@@ -79,6 +80,7 @@ class STKPush extends Validator
         if ($response->ResponseCode == '0') {
 
             $orderId = $this->getOrder($this->account_reference);
+            
             if(!$orderId){
                 $this->failed = true;
             }
@@ -226,7 +228,7 @@ class STKPush extends Validator
     public function sendEmails($order){
         $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
         $eventdata->all();
-        $user = array('email' => \Auth::user()->email);
+        $user = array('email' => $order->user->email);
         $eventdata = $eventdata->union($user);
         event(new OrderPlaced($eventdata));// move to success mpesa payment api
     }

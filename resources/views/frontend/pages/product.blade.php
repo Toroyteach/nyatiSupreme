@@ -182,7 +182,7 @@
 		<p>{!! $product->name !!}. </p>
 		<ul class="list-check">
 
-	@foreach($attributes as $attribute)
+	@forelse($attributes as $attribute)
         @php
                                                         
             if ($attribute->count() > 0) {
@@ -202,12 +202,14 @@
                     @endforeach
 
         @endif
-	@endforeach
+	@empty
+	<li> This product has no more attributes</li>
+	@endforelse
 													
 
 		</ul>
 
-		<h5 class="title-description">Specifications</h5>
+		<!-- <h5 class="title-description">Specifications</h5>
 		<table class="table table-bordered" id="dimentions">
 
 			<tr> <th colspan="2">Dimensions</th> </tr>
@@ -215,7 +217,7 @@
 			<tr> <td>Width</td><td id="widtht">w_mm</td> </tr>
 			<tr> <td>Height	</td><td id="heightt">h_mm</td> </tr>
 
-		</table>
+		</table> -->
 	</div> <!-- col.// -->
 
 </div> <!-- row.// -->
@@ -238,6 +240,7 @@
                     swal("Please choose an attribute size you would like");
                 }
             });
+
             $('.option').change(function () {
 				// $("td:contains('l_mm')").empty();
 				// $("td:contains('w_mm')").empty();
@@ -252,20 +255,24 @@
 				let finalDesc = $(this).find(':selected').data('description');
 
                 $('#finalPrice').val(finalPrice);
+
 				if(finalDesc!=null){
-				$('#finalDesc').val(finalDesc);
+
+					$('#finalDesc').val(finalDesc);
+
 				}
 
                 $('#productPrice').html(finalPrice);
 
 				//console.log(length, width, height);
 				// $("td:contains('l_mm')").remove();
-				console.log(length)
+				//console.log(length+" "+width+" "+height)
 
 				$("#lengtht").html(length);
 				$("#widtht").html(width);
 				$("#heightt").html(height);
             });
+			
         });
 
 	function incrementQty()

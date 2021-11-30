@@ -11,6 +11,7 @@ use App\Models\MpesaC2B;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use App\Events\OrderPlaced;
 
 class C2BController extends Controller
 {
@@ -60,7 +61,13 @@ class C2BController extends Controller
             $this->result_desc = 'Transaction saved successfully';
             $this->result_code = 0;
 
-            $this->updateOrderPayment($request->BillRefNumber);
+            $order = $this->updateOrderPayment($request->BillRefNumber);
+
+            $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
+            $eventdata->all();
+            $user = array('email' => Auth::user()->email);
+            $eventdata = $eventdata->union($user);
+            event(new OrderPlaced($eventdata));
             Cart::clear();
         }
 

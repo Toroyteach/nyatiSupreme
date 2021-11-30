@@ -132,7 +132,7 @@ construction</p>
           <article class="card card-post">
             <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
             <div class="card-body">
-              <h6 class="title">Easy Payment</h6>
+              <h6 class="title">Easy Payment Options</h6>
               <p class="small text-uppercase text-muted">Finance solution</p>
             </div>
           </article> <!-- card.// -->
@@ -150,7 +150,7 @@ construction</p>
           <article class="card card-post">
             <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
             <div class="card-body">
-              <h6 class="title">Safe and Fast Shipping</h6>
+              <h6 class="title">Safe and Fast Transportation</h6>
               <p class="small text-uppercase text-muted">Logistic services</p>
             </div>
           </article> <!-- card.// -->

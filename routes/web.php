@@ -32,11 +32,11 @@ use Illuminate\Support\Facades\Hash;
 
 // });
 
-Route::get('/testfilecreation', function(){
-    //Example
-    \Storage::disk('local')->put('file.txt', 'Your content here');
-    dd('done');
-});
+// Route::get('/testfilecreation', function(){
+//     //Example
+//     \Storage::disk('local')->put('file.txt', 'Your content here');
+//     dd('done');
+// });
 
 Route::get('/testmpesa/{amount}', 'Mpesa\STKPushController@testData');
 
@@ -108,13 +108,13 @@ Route::group(['middleware' => ['auth', 'web', 'isVerified']], function () {
     Route::post('/requestMpesa', 'Site\CheckoutController@requestPaymentAgain');
     Route::post('/requestOrderPaymentConfirmation', 'Site\CheckoutController@requestUpdatePendingPay');
 
-    // Route::group(['prefix' => 'payment'], function () {
-    //     Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
-    //     Route::get('/paymentconfirmation', ['as' => 'paymentsuccess', 'Site\CheckoutController@paymentconfirmation']);
-    // });
+    Route::group(['prefix' => 'payment'], function () {
+        Route::get('/donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
+        Route::get('/paymentconfirmation', ['as' => 'paymentsuccess', 'Site\CheckoutController@paymentconfirmation']);
+    });
 });
 
-Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
+//Route::get('donepayment', ['as' => 'paymentsuccess', 'uses'=>'Site\CheckoutController@paymentsuccess']);
 
 // Route::group(['prefix' => 'payment'], function () {
 //     //PESAPAL

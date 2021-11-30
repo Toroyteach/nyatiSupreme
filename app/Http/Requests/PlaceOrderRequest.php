@@ -29,7 +29,7 @@ class PlaceOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'mpesaPhonenumber' => ['required', 'digits:10'],
+            'mpesaPhonenumber' => ['required', 'numeric', 'digits_between:10,12'],
             'payment_method' => ['required', 'in:mpesa,other,cash'],
             'first_name' => ['required', 'max:20', 'min:5'],
             'last_name' => ['required', 'max:20', 'min:5'],

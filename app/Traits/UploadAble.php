@@ -19,7 +19,7 @@ trait UploadAble
      * @param null $filename
      * @return false|string
      */
-    public function uploadOne(UploadedFile $file, $folder = null, $disk = 'public', $filename = null)
+    public function uploadOne(UploadedFile $file, $folder = null, $disk = 'public_uploads', $filename = null)
     {
         $name = !is_null($filename) ? $filename : Str::random(25);
 
@@ -30,7 +30,7 @@ trait UploadAble
      * @param null $path
      * @param string $disk
      */
-    public function deleteOne($path = null, $disk = 'public')
+    public function deleteOne($path = null, $disk = 'public_uploads')
     {
         Storage::disk($disk)->delete($path);
     }
