@@ -7,8 +7,8 @@
 	<h2 class="title-page">Category Products</h2>
 	<nav>
 	<ol class="breadcrumb text-white">
-	    <li class="breadcrumb-item"><a href="#">Home</a></li>
-	    <li class="breadcrumb-item"><a href="#">Category</a></li>
+	    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+	    <li class="breadcrumb-item"><a href="{{route('category.show')}}">Category</a></li>
 	    <li class="breadcrumb-item active" aria-current="page">Product</li>
 	</ol>  
 	</nav>
@@ -84,7 +84,6 @@
 										<i class="fa fa-star"></i> 
 									</li>
 								</ul>
-								<div class="label-rating">7/10</div>
 							</div> <!-- rating-wrap.// -->
 							
 							<p> {{$prodItems->description}}</p>

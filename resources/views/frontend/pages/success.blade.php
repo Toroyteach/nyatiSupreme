@@ -7,6 +7,8 @@
         </div>
     </section>
     <section class="section-content bg padding-y border-top">
+
+    <!-- create a javascript timer that will keep checking the database to see if payment is successfull] -->
 <div class="container">
             <div class="row">
 

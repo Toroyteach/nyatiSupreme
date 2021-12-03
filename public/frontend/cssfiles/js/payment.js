@@ -12,7 +12,7 @@ init();
 //create a more clean way to prevent form to be submitted again when use refreshes the webpage
  function init(){
 
-    preventRefresh();
+    //preventRefresh();
 
     var timerID = setInterval(function() {
         // your code goes here...
@@ -84,7 +84,7 @@ init();
 
             setTimeout(function() {
                 $(".reSubmitButton").removeAttr("disabled");  
-            }, 180000);
+            }, 30000);
 
             setTimeout(function(){
                 $(".modalClose").prop("disabled", false);    

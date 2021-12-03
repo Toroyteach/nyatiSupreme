@@ -89,18 +89,19 @@
      	</div> <!-- col.// -->
      	<div class="col-md">
 
-		 @if ($userDetails->profile_image != null)
-		 @if($userDetails->social != 1)
-									<img src="{{ asset('storage/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
-									@else
-									<img src="{{ (Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
-									@endif			@else
+		 @if($userDetails->profile_image != null)
+		 	@if($userDetails->social != 1)
+				<img src="{{ asset('profile/images/'. Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+			@else
+				<img src="{{ (Auth::user()->profile_image) }}" class="rounded-circle img-sm border" alt="img">
+			@endif			
+		@else
 			<img src="{{ asset('frontend/cssfiles/images/avatars/avatarimg.png') }}" class="img-md rounded-circle border">
 		@endif
 
      	</div>  <!-- col.// -->
       </form>
-	  <a class="btn btn-primary" href="{{route('account.users.delete', Auth::user()->id)}}" role="button">Delete Account</a>		
+	  <!-- <a class="btn btn-primary" href="{{route('account.users.delete', Auth::user()->id)}}" role="button">Delete Account</a>		 -->
 
       </div> <!-- card-body.// -->
     </div> <!-- card .// -->

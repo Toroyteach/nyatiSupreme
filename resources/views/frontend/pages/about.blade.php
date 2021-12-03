@@ -2,14 +2,6 @@
 @section('content')
 
 <!-- =============== SECTION SERVICES =============== -->
-<section  class="padding-bottom padding-top">
-
-<header class="section-heading heading-line">
-    <h4 class="title-section text-uppercase">We pride ourselves with this qualities</h4>
-    <p class="text-muted"></p>
-</header>
-
-</section>
 <!-- =============== SECTION SERVICES .//END =============== -->
 
       <!-- Marketing messaging and featurettes
@@ -17,6 +9,11 @@
       <!-- Wrap the rest of the page in another container to center all the content. -->
 
       <div class="container marketing">
+
+      <header class="section-heading heading-line">
+        <h4 class="title-section text-uppercase">We pride ourselves with this qualities</h4>
+        <p class="text-muted"></p>
+    </header>
 
       <p class="lead">We produce a wide range of masonry building and paving blocks compli-
 ant to all the latest technical and environmental standards for use in
@@ -84,14 +81,14 @@ well established and highly respected.</p>
       </div><!-- /.container -->
 
   <!-- =============== SECTION SERVICES =============== -->
-<section  class="padding-bottom padding-top">
+<!-- <section  class="padding-bottom padding-top">
 
 <header class="section-heading heading-line">
     <h5 class="title-section">Quality, Environmental and Sustainability</h5>
     <p class="text-muted"></p>
 </header>
 
-</section>
+</section> -->
 <!-- =============== SECTION SERVICES .//END =============== -->
 
       <!-- Marketing messaging and featurettes
@@ -99,6 +96,11 @@ well established and highly respected.</p>
       <!-- Wrap the rest of the page in another container to center all the content. -->
 
       <div class="container marketing">
+
+      <header class="section-heading heading-line">
+        <h5 class="title-section">Quality, Environmental and Sustainability</h5>
+        <p class="text-muted"></p>
+    </header>
 
       <p class="lead">Our belief is that true business success is achieved through giving the customer the
 highest quality products going hand in hand with excellent customer service which
@@ -117,7 +119,7 @@ construction</p>
       </div>
       <br><br>
 
-      <div class="container-marketing">
+      <div class="container marketing">
       <div class="row">
         <div class="col-md-3 col-sm-6">
           <article class="card card-post">
@@ -132,7 +134,7 @@ construction</p>
           <article class="card card-post">
             <img src="{{ asset('frontend/cssfiles/images/posts/2.jpg') }}" class="card-img-top">
             <div class="card-body">
-              <h6 class="title">Easy Payment</h6>
+              <h6 class="title">Easy Payment Options</h6>
               <p class="small text-uppercase text-muted">Finance solution</p>
             </div>
           </article> <!-- card.// -->
@@ -150,7 +152,7 @@ construction</p>
           <article class="card card-post">
             <img src="{{ asset('frontend/cssfiles/images/posts/4.jpg') }}" class="card-img-top">
             <div class="card-body">
-              <h6 class="title">Safe and Fast Shipping</h6>
+              <h6 class="title">Safe and Fast Transportation</h6>
               <p class="small text-uppercase text-muted">Logistic services</p>
             </div>
           </article> <!-- card.// -->

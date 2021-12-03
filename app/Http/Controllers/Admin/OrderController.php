@@ -67,6 +67,7 @@ class OrderController extends BaseController
         if (!$order) {
             return $this->responseRedirectBack('Error occurred while updating status of order.', 'error', true, true);
         }
+        
         if($request['status'] == 'completed') {
             $eventdata = collect($order)->only('order_number', 'status', 'first_name');
             $user_id = $this->orderRepository->findUserByOrderId($request->id);
@@ -78,7 +79,6 @@ class OrderController extends BaseController
             $eventdata = $eventdata->union($user);
             $eventdata->all();
             //dd($eventdata);
-    
     
             event(new OrderStatusChangedEvent($eventdata));
         }
@@ -93,13 +93,13 @@ class OrderController extends BaseController
         //dd($order->items);
 
       // share data to view
-      view()->share('order',$order);
+      //view()->share('order',$order);
       $pdf = PDF::loadView('admin.orders.pdf_view', compact('order'));
       $pdfName = $order->order_number.'_'.$order->created_at.'.pdf';
       //dd($pdfName);
 
       // download PDF file with download method
-      return $pdf->stream($pdfName);
+      return $pdf->download($pdfName);
     }
 
 }

@@ -30,7 +30,6 @@ class AccountController extends Controller
         $userid = auth()->user()->id;
         $orders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->with('items')->paginate(3);
         //$orders = Order::where('user_id', auth()->user()->id)->with('items')->get();
-        //dd($orders->all());
 
         return view('frontend.pages.account.orders', compact('orders'));
     }
@@ -93,11 +92,11 @@ class AccountController extends Controller
             // Make a image name based on user name and current timestamp
             $name = Str::slug($request->input('last_name')).'_'.time();
             // Define folder path
-            $folder = '/uploads/web/images/';
+            $folder = 'uploads/';
             // Make a file path where image will be stored [ folder path + file name + file extension]
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             // Upload image
-            $this->uploadOne($image, $folder, 'public', $name);
+            $this->uploadOne($image, $folder, 'public_uploads', $name);
             // Set user profile image path in database to filePath
             //$user->profile_image = $filePath;
             $request->profile_image = $filePath;
@@ -136,7 +135,6 @@ class AccountController extends Controller
         if(!$user)
         {
             //return view('frontend.pages.account.address')->with('success', 'Your address was added successfully!');
-
             dd('error');
         }
 
@@ -159,8 +157,6 @@ class AccountController extends Controller
             'town' => 'required|max:50',
             'location' => 'required|max:50'
         ]);
-
-        //dd($id);
 
         $address = UserAddress::find($id)->update($request->all());
 

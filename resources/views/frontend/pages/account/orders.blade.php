@@ -47,11 +47,15 @@
 											@break
 
 										@case('credit')
-										<i class="fa fa-credit-card"></i>
+										<i class="fa fa-credit-card fa-3x"></i>
+											@break
+											
+										@case('cash')
+										<i class="fa fa-money-check fa-3x"></i>
 											@break
 
 										@default
-										<i class="fas fa-money-check"></i>
+										<i class="fa fa-money-check fa-3x"></i>
 									@endswitch
 
 					</span>
@@ -94,7 +98,7 @@
 	@endforelse
 
 	<div class="d-flex justify-content-center">
-    	{!! $orders->links() !!}
+    	{{ $orders->links() }}
 	</div>
 
 	</main> <!-- col.// -->

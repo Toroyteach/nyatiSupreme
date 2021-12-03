@@ -24,7 +24,7 @@
 		<header class="card-header">
 			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
 				<i class="icon-control fa fa-chevron-down"></i>
-				<h6 class="title">Category type</h6>
+				<h6 class="title">Category types</h6>
 			</a>
 		</header>
 		<div class="filter-content collapse show" id="collapse_1" style="">
@@ -98,10 +98,10 @@
 <!-- ========================= SECTION CONTENT END// ========================= -->
 <!-- =============== SECTION SERVICES =============== -->
 <section  class="padding-bottom">
-<header class="section-heading heading-line">
-	<h5 class="title-section text-uppercase">How to place and order	</h5>
-</header>
-<div class="container">
+ <div class="container">
+	<header class="section-heading heading-line">
+		<h5 class="title-section text-uppercase">How to place and order	</h5>
+	</header>
 
 <!-- ============================ COMPONENT 1 ================================= -->
 <div class="row">

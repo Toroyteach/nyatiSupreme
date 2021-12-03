@@ -14,16 +14,21 @@
         <div class="container">
             <div class="row">
 
+                
+                <main class="col-sm-12 successAlert" style="">
+                    <div class="alert alert-success">
+                        <h4> Dear {{ Auth::user()->first_name }}</h4> <br>
+                        <p>Your payment has been processed successfully.</p><br>
+                        <p>Your order number is : <span>{{ $order->order_number }}<span>.</p><br>
+                        <p>Thank you for shooping with us.</p><br>
+                        <p>Nyati Supreme Team.</p><br>
+                        <a class="btn btn-primary btn-sm" href="{{ route('account.orders') }}">View Order</a>
+                    </div>
+                </main>
+
             </div>
         </div> <!-- container .//  -->
 
-        <div class="container">
-            <div class="embed-responsive embed-responsive-16by9">
-                <div class="embed-responsive-item">
-                        {!! $iframe !!}
-                </div>
-            </div>
-        </div>
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 @stop

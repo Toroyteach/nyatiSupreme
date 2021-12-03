@@ -13,8 +13,8 @@ return [
             'short_code' => env("MPESA_LIVE_SHORT_CODE"),
             'validation_key' => env("MPESA_LIVE_VALIDATION_KEY"),
             'confirmation_key' => env("MPESA_LIVE_CONFIRMATION_KEY"),
-            'consumer_secret' => env("MPESA_CONSUMER_SECRET"),
-            'consumer_key' => env("MPESA_CONSUMER_KEY"),
+            'consumer_secret' => env("MPESA_LIVE_CONSUMER_SECRET"),
+            'consumer_key' => env("MPESA_LIVE_CONSUMER_KEY"),
         ],
     ],
     'stk_push' => [
@@ -26,7 +26,7 @@ return [
         'live' => [
             'pass_key' => env("MPESA_LIVE_PASSKEY"),
             'confirmation_key' => env("MPESA_STK_CONFIRMATION_KEY"),
-            'short_code' => env("MPESA_SHORT_CODE"),
+            'short_code' => env("MPESA_LIVE_SHORT_CODE"),
         ]
     ],
 

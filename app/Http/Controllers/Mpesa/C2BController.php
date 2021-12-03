@@ -11,6 +11,7 @@ use App\Models\MpesaC2B;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use Cart;
+use App\Events\OrderPlaced;
 
 class C2BController extends Controller
 {
@@ -32,9 +33,14 @@ class C2BController extends Controller
             $this->result_desc = 'Short code mismatch';
         }
 
+        
         //If no error, Change to success
         if (!$this->result_desc) {
+
+            $transaction = $this->getOrder($request->BillRefNumber);
+
             $data = [
+                'order_id' => $transaction->id,
                 'trans_time' => $request->TransTime,
                 'trans_amount' => $request->TransAmount,
                 'business_short_code' => $request->BusinessShortCode,
@@ -52,7 +58,6 @@ class C2BController extends Controller
 
             //find out how to insert data on relationship
 
-            $transaction = $this->getOrder($request->BillRefNumber);
             $mpesac2b = MpesaC2B::create($data);
             
             $transaction->mpesac2b()->save($mpesac2b);
@@ -60,7 +65,13 @@ class C2BController extends Controller
             $this->result_desc = 'Transaction saved successfully';
             $this->result_code = 0;
 
-            $this->updateOrderPayment($request->BillRefNumber);
+            $order = $this->updateOrderPayment($request->BillRefNumber);
+
+            $eventdata = collect($order)->only('order_number', 'grand_total', 'shipping_fee', 'item_count', 'first_name', 'address', 'city', 'post_code');
+            $eventdata->all();
+            $user = array('email' => $transaction->user->email);
+            $eventdata = $eventdata->union($user);
+            event(new OrderPlaced($eventdata));
             Cart::clear();
         }
 
@@ -117,6 +128,7 @@ class C2BController extends Controller
             //https://nyatisupreme.co.ke/api/v1/c2b/validate/{key}
             $short_code = $config['short_code'];
 
+            //dd($confirmation_url, $validation_url);
             $response = (new C2BRegister())->setShortCode($short_code)
                 ->setValidationUrl($validation_url)
                 ->setResponseType('Completed')
@@ -142,7 +154,7 @@ class C2BController extends Controller
         //update payment status to 1 with date to only update changes if created last 15min
         $from = date("Y/m/d H:i:s", strtotime("-15 minutes"));
         $to = date("Y/m/d H:i:s", strtotime("now"));
-        return Order::where('order_number', 'like', '%'.$orderId)->whereBetween('created_at', [$from, $to])->update(['payment_status' => 1]);
+        return Order::where('order_number', 'like', '%'.$orderId)->whereBetween('created_at', [$from, $to])->update(['payment_status' => 1, 'payment_method' => 'mpesa']);
     }
 
         /**
