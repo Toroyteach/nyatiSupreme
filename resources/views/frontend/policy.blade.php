@@ -1,7 +1,7 @@
 @extends('frontend.app')
 @section('content')
 <!-- =============== SECTION SERVICES =============== -->
-<section  class="padding-bottom padding-top">
+<section  class="container padding-bottom padding-top">
 
 <header class="section-heading heading-line">
     <h4 class="title-section text-uppercase">Our Privacy Policy</h4>

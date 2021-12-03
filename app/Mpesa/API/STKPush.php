@@ -115,22 +115,45 @@ class STKPush extends Validator
 
             $stk_push_model = \App\Models\STKPush::where('merchant_request_id', $merchant_request_id)
                 ->where('checkout_request_id', $checkout_request_id)
-                ->get();
-
-            $data = [
-                'result_desc' => $payload->Body->stkCallback->ResultDesc,
-                'result_code' => $payload->Body->stkCallback->ResultCode,
-                'merchant_request_id' => $merchant_request_id,
-                'checkout_request_id' => $checkout_request_id,
-                'amount' => $payload->Body->stkCallback->CallbackMetadata->Item[0]->Value,
-                'mpesa_receipt_number' => $payload->Body->stkCallback->CallbackMetadata->Item[1]->Value,
-                'transaction_date' => $payload->Body->stkCallback->CallbackMetadata->Item[2]->Value,
-                'phone_number' => $payload->Body->stkCallback->CallbackMetadata->Item[3]->Value,
-            ];
-
+                ->firstOrFail();
+                
+                //$data = array();
+                
+                $data = [
+                    'result_desc' => $payload->Body->stkCallback->ResultDesc,
+                    'result_code' => $payload->Body->stkCallback->ResultCode,
+                    'merchant_request_id' => $merchant_request_id,
+                    'checkout_request_id' => $checkout_request_id,
+                ];
+            
+            //\Log::info($data);
+            
+            foreach($payload->Body->stkCallback->CallbackMetadata->Item as $row){
+                
+                if($row->Name == 'Amount'){
+                    $data['amount'] = $row->Value;
+                }
+                
+                if($row->Name == 'MpesaReceiptNumber'){
+                    $data['mpesa_receipt_number'] = $row->Value;
+                }
+                
+                if($row->Name== 'TransactionDate'){
+                    $data['transaction_date'] = $row->Value;
+                }
+                
+                if($row->Name == 'PhoneNumber'){
+                    $data['phone_number'] = $row->Value;
+                }
+                
+                
+            }
+            
+            //\Log::info($data);
+            
             if($stk_push_model) {
 
-                $stk_push_model->fill($data);
+                $stk_push_model->update($data);
                 $this->updateOrderPayment($merchant_request_id, $checkout_request_id);
                 Cart::clear();
                 $this->sendEmails($this->returnOrder($stk_push_model->order_id)); //get the correct order details

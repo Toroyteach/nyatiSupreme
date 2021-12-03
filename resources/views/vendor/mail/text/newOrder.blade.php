@@ -164,7 +164,7 @@
                         <td align="left" style="padding: 35px; background-color: #ffffff;" bgcolor="#ffffff">
                             <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
                                 <tr>
-                                    <td align="left"> <img src="{{asset('vendor/beautymail/assets/images/nyati_logo.svg')}}" width="100" height="auto" style="display: block; border: 0px;" /> </td>
+                                    <td align="left"> <img src="{{asset('vendor/beautymail/assets/images/nyati_logo_edited.jpg')}}" width="100" height="auto" style="display: block; border: 0px;" /> </td>
                                 </tr>
                                 <tr>
                                     <td align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 300; line-height: 24px; padding: 5px 0 10px 0;">

@@ -74,10 +74,10 @@
 <!-- ========================= SECTION CONTENT END// ========================= -->
 <!-- =============== SECTION SERVICES =============== -->
 <section  class="padding-bottom">
-	<header class="section-heading heading-line">
-		<h5 class="title-section text-uppercase">How to place and order	</h5>
-	</header>
 	<div class="container">
+		<header class="section-heading heading-line">
+			<h5 class="title-section text-uppercase">How to place and order	</h5>
+		</header>
 
 		<!-- ============================ COMPONENT 1 ================================= -->
 		<div class="row">
